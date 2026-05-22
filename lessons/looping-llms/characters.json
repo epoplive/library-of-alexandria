@@ -1,0 +1,21 @@
+{
+  "characters": [
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "description": "Default lesson voice. Conversational, curious, technically rigorous.",
+      "voice_service": "kokoro",
+      "voice_id": "af_bella",
+      "voice_persona": "Warm, clear, slightly thoughtful pacing. Reads like a thoughtful friend explaining something interesting."
+    },
+    {
+      "id": "banach-goose",
+      "name": "Banach the Goose",
+      "description": "A character-host for the fixed-point scene. Mathematical, slightly mischievous, makes the goose puzzle meta.",
+      "voice_service": "kokoro",
+      "voice_id": "am_puck",
+      "voice_persona": "Playful, conversational, drops mathematical asides like he just thought of them. Goose-mathematician energy."
+    }
+  ],
+  "default_speaker_id": "narrator"
+}
