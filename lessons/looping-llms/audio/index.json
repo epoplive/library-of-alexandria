@@ -1,6 +1,6 @@
 {
   "lesson": "looping-llms",
-  "updated_at": "2026-05-23T18:11:28.226Z",
+  "updated_at": "2026-05-23T20:50:14.051Z",
   "voices": [
     "af_bella",
     "am_puck"
@@ -183,6 +183,126 @@
           "text": "Five papers, in the order I'd read them. Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go. Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states. Then Yang et al 2024, Looped Transformers as Programmable Computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets. The 2025 paper from EleutherAI on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of K against task type. And finally, the 2026 mechanistic analysis paper — it reverse-engineers what the loops are actually computing internally, by reading the circuits trained looped networks converge to. Those five papers, in that order, take you from foundations to frontier. Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper. The graph of lessons grows wherever your curiosity pulls.",
           "startMs": 0,
           "durationMs": 83654
+        }
+      ]
+    },
+    {
+      "hash": "77a551894c03",
+      "text": "When a normal language model reasons through a hard problem, it has to think out loud. Every intermediate step burns output tokens that stream across your screen.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "77a551894c03.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "When a normal language model reasons through a hard problem, it has to think out loud. Every intermediate step burns output tokens that stream across your screen.",
+          "startMs": 0,
+          "durationMs": 11325
+        }
+      ]
+    },
+    {
+      "hash": "4685a35af784",
+      "text": "That's chain-of-thought reasoning. Popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "4685a35af784.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "That's chain-of-thought reasoning. Popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K.",
+          "startMs": 0,
+          "durationMs": 16226
+        }
+      ]
+    },
+    {
+      "hash": "18f66aeaf326",
+      "text": "The technique is now the foundation of every reasoning model — OpenAI's o1, DeepSeek R1, Anthropic's extended thinking. The cost is visible. You see the model working.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "18f66aeaf326.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "The technique is now the foundation of every reasoning model — OpenAI's o1, DeepSeek R1, Anthropic's extended thinking. The cost is visible. You see the model working.",
+          "startMs": 0,
+          "durationMs": 13300
+        }
+      ]
+    },
+    {
+      "hash": "387083f9e2ea",
+      "text": "But a looped model does something stranger. It thinks silently, inside the forward pass, looping its own block over and over before emitting a single answer token. None of the intermediate reasoning surfaces.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "387083f9e2ea.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "But a looped model does something stranger. It thinks silently, inside the forward pass, looping its own block over and over before emitting a single answer token. None of the intermediate reasoning surfaces.",
+          "startMs": 0,
+          "durationMs": 13750
+        }
+      ]
+    },
+    {
+      "hash": "ae669ddd1650",
+      "text": "The 2025 latent reasoning paper from EleutherAI showed eight internal loops can match twenty-two tokens of visible chain-of-thought on multi-hop benchmarks. Eight passes of the same block — no visible tokens — equivalent to a long emitted chain.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "ae669ddd1650.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "The 2025 latent reasoning paper from EleutherAI showed eight internal loops can match twenty-two tokens of visible chain-of-thought on multi-hop benchmarks. Eight passes of the same block — no visible tokens — equivalent to a long emitted chain.",
+          "startMs": 0,
+          "durationMs": 17900
+        }
+      ]
+    },
+    {
+      "hash": "cc9c32191234",
+      "text": "There's a parallel thread from Stanford called Quiet-STaR, where the model thinks token by token in silence — same target, different machinery.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "cc9c32191234.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "There's a parallel thread from Stanford called Quiet-STaR, where the model thinks token by token in silence — same target, different machinery.",
+          "startMs": 0,
+          "durationMs": 10275
+        }
+      ]
+    },
+    {
+      "hash": "e36d4fda1b2d",
+      "text": "Both share the same thesis with looped LMs — that the cheapest form of compute is the kind that never leaves the network and never costs you an output token.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e36d4fda1b2d.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "Both share the same thesis with looped LMs — that the cheapest form of compute is the kind that never leaves the network and never costs you an output token.",
+          "startMs": 0,
+          "durationMs": 10625
+        }
+      ]
+    },
+    {
+      "hash": "4e9549c39448",
+      "text": "The big open question is whether silent reasoning ever genuinely surpasses verbalized reasoning. As of now the empirical answer is roughly: matches it cheaply on tasks the model already had the capacity for; doesn't unlock new capabilities the way scale does.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "4e9549c39448.mp3",
+      "source_file": "silent-thinking-vo.ts",
+      "timings": [
+        {
+          "text": "The big open question is whether silent reasoning ever genuinely surpasses verbalized reasoning. As of now the empirical answer is roughly: matches it cheaply on tasks the model already had the capacity for; doesn't unlock new capabilities the way scale does.",
+          "startMs": 0,
+          "durationMs": 17975
         }
       ]
     },

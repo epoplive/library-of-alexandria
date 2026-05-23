@@ -3,11 +3,24 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  /* The app never page-scrolls. Every route controls its own internal
+     scrolling — LessonShell with a fixed-height viewport + internal
+     overflow on the visual pane; LessonIndex with overflow-y-auto on
+     its own container. */
+  body {
+    overflow: hidden;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    overscroll-behavior: none;
+  }
   html {
     scroll-behavior: smooth;
-  }
-  body {
-    font-feature-settings: 'cv11', 'ss01', 'ss03';
   }
 }
 

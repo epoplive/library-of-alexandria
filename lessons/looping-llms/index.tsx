@@ -11,6 +11,15 @@ import { CLOSING_TIMELINE } from './timelines/closing';
 import { WHEN_IT_WINS_TIMELINE } from './timelines/when-it-wins';
 import { WEIGHT_SHARING_TIMELINE } from './timelines/weight-sharing';
 import charactersJson from './characters.json';
+import { Playback } from '@/components/playback';
+import { SILENT_THINKING, SILENT_THINKING_MANIFEST } from './productions/silent-thinking';
+import { hydrateManifestFromAudio } from '@/lib/loa-manifest-loader';
+
+const SILENT_THINKING_HYDRATED = hydrateManifestFromAudio(
+  SILENT_THINKING_MANIFEST,
+  SILENT_THINKING,
+  'looping-llms',
+);
 
 const VOICE_MAP: Record<string, string> = Object.fromEntries(
   charactersJson.characters.map((c) => [c.id, c.voice_id]),
@@ -343,6 +352,39 @@ function ForwardPassSim() {
 
 const COT_TEXT =
   'Let me think. 12 × 47 = 12 × 50 − 12 × 3 = 600 − 36 = 564. Answer: 564';
+
+function SilentThinkingPlayer() {
+  const [mode, setMode] = useState<'stage' | 'legacy'>('stage');
+  return (
+    <div className="flex flex-col gap-3 h-full">
+      <div className="flex gap-1.5 flex-shrink-0">
+        <ListToggleButton
+          label="Stage"
+          sub="lattice + R3F"
+          active={mode === 'stage'}
+          onClick={() => setMode('stage')}
+        />
+        <ListToggleButton
+          label="Legacy"
+          sub="hand-coded"
+          active={mode === 'legacy'}
+          onClick={() => setMode('legacy')}
+        />
+      </div>
+      {mode === 'stage' ? (
+        <div className="flex-1 min-h-0">
+          <Playback
+            production={SILENT_THINKING}
+            manifest={SILENT_THINKING_HYDRATED}
+            aspect="16:9"
+          />
+        </div>
+      ) : (
+        <SilentThinkingScene />
+      )}
+    </div>
+  );
+}
 
 function SilentThinkingScene() {
   const [cotChars, setCotChars] = useState(0);
@@ -1167,7 +1209,7 @@ export default function LoopingLLMs() {
           },
         }}
       >
-        <SilentThinkingScene />
+        <SilentThinkingPlayer />
       </Section>
 
       <Section

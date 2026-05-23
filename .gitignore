@@ -5,3 +5,22 @@ dist
 .env
 .env.local
 .vite
+
+# Packet system local state — installed per-repo, not shared
+.claude/
+.context/
+
+# Built artifacts mistakenly emitted next to .ts sources
+src/**/*.js
+src/**/*.js.map
+src/**/*.d.ts
+src/**/*.d.ts.map
+lessons/**/*.js
+lessons/**/*.js.map
+lessons/**/*.d.ts
+lessons/**/*.d.ts.map
+mcp/**/*.js
+mcp/**/*.js.map
+mcp/**/*.d.ts
+mcp/**/*.d.ts.map
+tsconfig.tsbuildinfo
