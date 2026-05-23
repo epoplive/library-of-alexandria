@@ -77,12 +77,14 @@ export function Section({
 
   if (layout === 'slide') {
     return (
-      <div className="w-full max-w-7xl mx-auto flex flex-col min-h-[calc(100vh-13rem)]">
+      <div className="w-full max-w-7xl mx-auto flex flex-col h-full">
         {header}
-        <div className="flex-1 grid md:grid-cols-[1.6fr,1fr] gap-6 md:gap-10 items-start min-h-0">
-          <div className="min-h-0">{children}</div>
+        <div className="flex-1 grid md:grid-cols-[1.6fr,1fr] gap-6 md:gap-10 min-h-0 items-stretch">
+          <div className="min-h-0 flex flex-col overflow-y-auto">
+            <div className="flex-1 flex flex-col justify-center">{children}</div>
+          </div>
           {narration && (
-            <div className="md:sticky md:top-4 md:max-h-[calc(100vh-15rem)] min-h-0 flex">
+            <div className="min-h-0 flex">
               <TranscriptPanel text={narration} discoveries={discoveries} />
             </div>
           )}
@@ -113,11 +115,8 @@ interface TranscriptProps {
 
 function TranscriptPanel({ text, discoveries }: TranscriptProps) {
   const { progress, currentTimeSec, isPlaying } = useNarration();
+  const [expanded, setExpanded] = useState(false);
   const sentences = useMemo(() => splitSentences(text), [text]);
-  // Look up the pre-rendered audio's per-chunk timings (sentence-aligned
-  // gen-audio output). When present, the active sentence is computed by
-  // mapping audio position → chunk → sentence-within-chunk by char
-  // weight. When absent, falls back to uniform progress * N partitioning.
   const timings = useMemo(() => getTimings(text), [text]);
   const activeIdx = useMemo(
     () =>
@@ -127,64 +126,119 @@ function TranscriptPanel({ text, discoveries }: TranscriptProps) {
     [progress, currentTimeSec, isPlaying, sentences, timings],
   );
 
-  // Pre-compute the segmented sentences (text + discovery markers)
   const segmented = useMemo(
     () => sentences.map((s) => segmentSentence(s, discoveries)),
     [sentences, discoveries],
   );
 
+  // Slideshow mode: show the current sentence big, with the previous and
+  // next sentence ghosted above/below. Expanded mode shows the full
+  // transcript as a scrollable list (the old behavior, for reading
+  // ahead). Default to slideshow while audio is engaged.
+  const inFocus = activeIdx >= 0 ? activeIdx : 0;
+  const prev = inFocus > 0 ? segmented[inFocus - 1] : null;
+  const current = segmented[inFocus] ?? null;
+  const next = inFocus + 1 < segmented.length ? segmented[inFocus + 1] : null;
+
   return (
-    <aside className="flex flex-col bg-paper-card rounded-2xl border border-ink-subtle/10 shadow-card overflow-hidden">
+    <aside className="flex flex-col w-full bg-paper-card rounded-2xl border border-ink-subtle/10 shadow-card overflow-hidden">
       <div className="px-5 py-2.5 border-b border-ink-subtle/10 bg-paper-tint flex items-center justify-between">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-subtle">
           Transcript
         </p>
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-subtle tabular-nums">
-          {discoveries && Object.keys(discoveries).length > 0
-            ? `${Object.keys(discoveries).length} ⌖`
-            : `${sentences.length} lines`}
-        </p>
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-subtle hover:text-ink tabular-nums"
+        >
+          {expanded
+            ? '✕ slideshow'
+            : `${activeIdx >= 0 ? activeIdx + 1 : 1} / ${sentences.length}`}
+        </button>
       </div>
-      <div className="flex-1 overflow-y-auto p-5 space-y-3 text-[15px] leading-[1.7]">
-        {segmented.map((segs, i) => {
-          const isActive = i === activeIdx;
-          const isPast = activeIdx > -1 && i < activeIdx;
-          return (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.04, duration: 0.25 }}
-              className={
-                isActive
-                  ? 'text-ink font-medium border-l-2 border-accent pl-3 -ml-3'
-                  : isPast
-                    ? 'text-ink-muted pl-3 -ml-3 border-l-2 border-transparent'
-                    : 'text-ink/85 pl-3 -ml-3 border-l-2 border-transparent'
-              }
-            >
-              {segs.map((seg, j) =>
-                seg.kind === 'text' ? (
-                  <span key={j}>{seg.text}</span>
-                ) : (
-                  <DiscoveryMarker
-                    key={j}
-                    label={seg.text}
-                    discovery={seg.discovery!}
-                  />
-                ),
-              )}
-            </motion.p>
-          );
-        })}
-        {discoveries && Object.keys(discoveries).length > 0 && (
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-subtle pt-2 mt-3 border-t border-ink-subtle/10">
-            ⌖ click marked terms for rabbit holes
-          </p>
-        )}
-      </div>
+
+      {expanded ? (
+        <div className="flex-1 overflow-y-auto p-5 space-y-3 text-base leading-[1.7]">
+          {segmented.map((segs, i) => {
+            const isActive = i === activeIdx;
+            const isPast = activeIdx > -1 && i < activeIdx;
+            return (
+              <p
+                key={i}
+                className={
+                  isActive
+                    ? 'text-ink font-medium border-l-2 border-accent pl-3 -ml-3'
+                    : isPast
+                      ? 'text-ink-muted pl-3 -ml-3 border-l-2 border-transparent'
+                      : 'text-ink/85 pl-3 -ml-3 border-l-2 border-transparent'
+                }
+              >
+                {segs.map((seg, j) =>
+                  seg.kind === 'text' ? (
+                    <span key={j}>{seg.text}</span>
+                  ) : (
+                    <DiscoveryMarker
+                      key={j}
+                      label={seg.text}
+                      discovery={seg.discovery!}
+                    />
+                  ),
+                )}
+              </p>
+            );
+          })}
+          {discoveries && Object.keys(discoveries).length > 0 && (
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-subtle pt-2 mt-3 border-t border-ink-subtle/10">
+              ⌖ click marked terms for rabbit holes
+            </p>
+          )}
+        </div>
+      ) : (
+        <div className="flex-1 min-h-0 flex flex-col px-6 py-5 gap-3 overflow-hidden">
+          <div className="h-6 text-ink-subtle/55 text-sm leading-snug line-clamp-1 italic">
+            {prev && segsToString(prev)}
+          </div>
+          <div className="flex-1 min-h-0 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={inFocus}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="font-display text-xl md:text-2xl lg:text-[26px] text-ink leading-[1.35] tracking-tight"
+              >
+                {current?.map((seg, j) =>
+                  seg.kind === 'text' ? (
+                    <span key={j}>{seg.text}</span>
+                  ) : (
+                    <DiscoveryMarker
+                      key={j}
+                      label={seg.text}
+                      discovery={seg.discovery!}
+                    />
+                  ),
+                )}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+          <div className="h-6 text-ink-subtle/55 text-sm leading-snug line-clamp-1 italic">
+            {next && segsToString(next)}
+          </div>
+        </div>
+      )}
     </aside>
   );
+}
+
+interface Segment {
+  kind: 'text' | 'discovery';
+  text: string;
+  discovery?: Discovery;
+}
+
+function segsToString(segs: Segment[]): string {
+  return segs.map((s) => s.text).join('');
 }
 
 /* ============================================================

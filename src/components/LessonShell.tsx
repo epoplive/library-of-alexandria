@@ -136,8 +136,10 @@ function LessonShellInner({
         </div>
       </header>
 
-      {/* Viewport */}
-      <div ref={viewportRef} className="flex-1 overflow-y-auto">
+      {/* Viewport — fixed-height slideshow. Each scene fills the available
+          vertical space; internal scrolling lives inside the scene panes,
+          not at the viewport level. Cover page can grow if needed. */}
+      <div ref={viewportRef} className="flex-1 min-h-0 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={page}
@@ -145,7 +147,11 @@ function LessonShellInner({
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="min-h-full px-6 py-10 md:py-14"
+            className={
+              isCover
+                ? 'h-full px-6 py-10 md:py-14 overflow-y-auto'
+                : 'h-full px-4 md:px-8 py-6 md:py-8'
+            }
           >
             {isCover ? (
               <div className="max-w-2xl mx-auto text-center flex flex-col items-center justify-center min-h-[calc(100vh-14rem)]">
