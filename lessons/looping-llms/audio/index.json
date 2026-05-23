@@ -1,6 +1,6 @@
 {
   "lesson": "looping-llms",
-  "updated_at": "2026-05-23T18:01:34.536Z",
+  "updated_at": "2026-05-23T18:11:28.226Z",
   "voices": [
     "af_bella",
     "am_puck"
@@ -543,6 +543,231 @@
           "text": "Those five papers, in that order, take you from foundations to frontier. Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper.",
           "startMs": 0,
           "durationMs": 13025
+        }
+      ]
+    },
+    {
+      "hash": "c4ddf35f5e94",
+      "text": "Not every problem deserves eight loops. A chess engine doesn't think for the same amount of time on every move — a grandmaster spends seconds on a forced capture and minutes on a closed positional decision.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "c4ddf35f5e94.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Not every problem deserves eight loops. A chess engine doesn't think for the same amount of time on every move — a grandmaster spends seconds on a forced capture and minutes on a closed positional decision.",
+          "startMs": 0,
+          "durationMs": 13300
+        }
+      ]
+    },
+    {
+      "hash": "c46827ea259e",
+      "text": "Adaptive halting gives a looped LM that same dynamic compute allocation. A tiny head sits on top of the network and emits a stop probability at each iteration. The training signal balances ponder cost against answer accuracy.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "c46827ea259e.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Adaptive halting gives a looped LM that same dynamic compute allocation. A tiny head sits on top of the network and emits a stop probability at each iteration. The training signal balances ponder cost against answer accuracy.",
+          "startMs": 0,
+          "durationMs": 16175
+        }
+      ]
+    },
+    {
+      "hash": "a13115165eec",
+      "text": "First problem. Easy. What color is the sky on a clear day. Look at the confidence after one loop.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a13115165eec.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "First problem. Easy. What color is the sky on a clear day. Look at the confidence after one loop.",
+          "startMs": 0,
+          "durationMs": 7250
+        }
+      ]
+    },
+    {
+      "hash": "08f967804c6d",
+      "text": "Fifty-five percent at the first iteration. Not enough to commit. One more.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "08f967804c6d.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Fifty-five percent at the first iteration. Not enough to commit. One more.",
+          "startMs": 0,
+          "durationMs": 5475
+        }
+      ]
+    },
+    {
+      "hash": "24719505cd50",
+      "text": "Ninety-six percent on the second iteration — that's the model locked in. Halt here. Two iterations, correct answer. Optimal.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "24719505cd50.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Ninety-six percent on the second iteration — that's the model locked in. Halt here. Two iterations, correct answer. Optimal.",
+          "startMs": 0,
+          "durationMs": 8925
+        }
+      ]
+    },
+    {
+      "hash": "fb2364efc5eb",
+      "text": "Second problem. Medium. Is ninety-one a prime number. Watch the confidence climb more slowly — the model is actually working.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "fb2364efc5eb.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Second problem. Medium. Is ninety-one a prime number. Watch the confidence climb more slowly — the model is actually working.",
+          "startMs": 0,
+          "durationMs": 9400
+        }
+      ]
+    },
+    {
+      "hash": "12709c556a1c",
+      "text": "Forty percent. Way too low to commit. Continue.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "12709c556a1c.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Forty percent. Way too low to commit. Continue.",
+          "startMs": 0,
+          "durationMs": 3900
+        }
+      ]
+    },
+    {
+      "hash": "ce542a41c513",
+      "text": "Fifty-five. Still climbing.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "ce542a41c513.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Fifty-five. Still climbing.",
+          "startMs": 0,
+          "durationMs": 2600
+        }
+      ]
+    },
+    {
+      "hash": "078712f337b8",
+      "text": "Seventy. The model is converging.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "078712f337b8.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Seventy. The model is converging.",
+          "startMs": 0,
+          "durationMs": 3100
+        }
+      ]
+    },
+    {
+      "hash": "4745c25bff86",
+      "text": "Eighty-five. Above the answer threshold now.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "4745c25bff86.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Eighty-five. Above the answer threshold now.",
+          "startMs": 0,
+          "durationMs": 3650
+        }
+      ]
+    },
+    {
+      "hash": "e835305e39ac",
+      "text": "Ninety-four percent on the fifth iteration. Stops climbing. Halt — five iterations, correct, optimal. Notice how if we had halted at three the answer would have been wrong. That's the answer-loss term doing its work.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e835305e39ac.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Ninety-four percent on the fifth iteration. Stops climbing. Halt — five iterations, correct, optimal. Notice how if we had halted at three the answer would have been wrong. That's the answer-loss term doing its work.",
+          "startMs": 0,
+          "durationMs": 14350
+        }
+      ]
+    },
+    {
+      "hash": "70ddf3edfcc3",
+      "text": "Last problem. Hard. Multi-hop spatial reasoning. A is north of B, B east of C, C south of D — where is A versus D. Confidence will climb very slowly. This needs the full budget.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "70ddf3edfcc3.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Last problem. Hard. Multi-hop spatial reasoning. A is north of B, B east of C, C south of D — where is A versus D. Confidence will climb very slowly. This needs the full budget.",
+          "startMs": 0,
+          "durationMs": 13975
+        }
+      ]
+    },
+    {
+      "hash": "f9a071531498",
+      "text": "Watch the confidence at each step. Thirty. Forty. Forty-five. Fifty. Sixty. Seventy-two. Eighty-seven. Ninety-five.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "f9a071531498.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Watch the confidence at each step. Thirty. Forty. Forty-five. Fifty. Sixty. Seventy-two. Eighty-seven. Ninety-five.",
+          "startMs": 0,
+          "durationMs": 9050
+        }
+      ]
+    },
+    {
+      "hash": "a0a9811a9740",
+      "text": "Halt at iteration eight. Hard problem, full budget used, correct. Optimal.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a0a9811a9740.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "Halt at iteration eight. Hard problem, full budget used, correct. Optimal.",
+          "startMs": 0,
+          "durationMs": 6050
+        }
+      ]
+    },
+    {
+      "hash": "57b0b06a638e",
+      "text": "The optimal policy is exactly what the halting head converges to in training — minimize compute on easy problems, spend it freely on hard ones. The math comes from Alex Graves's 2016 paper Adaptive Computation Time at DeepMind. Now play it yourself, see if you can beat the optimal twenty-three iterations for three correct.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "57b0b06a638e.mp3",
+      "source_file": "halt.ts",
+      "timings": [
+        {
+          "text": "The optimal policy is exactly what the halting head converges to in training — minimize compute on easy problems, spend it freely on hard ones. The math comes from Alex Graves's 2016 paper Adaptive Computation Time at DeepMind. Now play it yourself, see if you can beat the optimal twenty-three iterations for three correct.",
+          "startMs": 0,
+          "durationMs": 22226
         }
       ]
     },
