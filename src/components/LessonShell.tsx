@@ -92,7 +92,7 @@ function LessonShellInner({
   const sceneKey = `${location.pathname}#${page}`;
 
   return (
-    <div className="h-screen flex flex-col bg-paper-tint">
+    <div className="h-[100svh] flex flex-col bg-paper-tint">
       {/* Top bar */}
       <header className="flex-shrink-0 h-14 px-3 md:px-5 bg-paper-card border-b border-ink-subtle/10 flex items-center gap-4">
         <Link
@@ -150,7 +150,7 @@ function LessonShellInner({
             className={
               isCover
                 ? 'h-full px-6 py-10 md:py-14 overflow-y-auto'
-                : 'h-full px-4 md:px-8 py-6 md:py-8'
+                : 'h-full px-4 md:px-8 pt-4 pb-4 md:pt-5 md:pb-5'
             }
           >
             {isCover ? (

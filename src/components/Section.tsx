@@ -52,12 +52,12 @@ export function Section({
       <header
         className={
           layout === 'slide'
-            ? 'mb-4 md:mb-6 flex-shrink-0'
+            ? 'mb-3 md:mb-4 flex-shrink-0 flex items-baseline gap-3 flex-wrap'
             : 'mb-6'
         }
       >
         {eyebrow && (
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-accent mb-2">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
             {eyebrow}
           </p>
         )}
@@ -65,7 +65,7 @@ export function Section({
           <h2
             className={
               layout === 'slide'
-                ? 'font-display text-3xl md:text-4xl font-semibold tracking-tight leading-tight'
+                ? 'font-display text-xl md:text-2xl font-semibold tracking-tight leading-tight'
                 : 'font-display text-2xl md:text-3xl font-semibold tracking-tight'
             }
           >
@@ -81,7 +81,7 @@ export function Section({
         {header}
         <div className="flex-1 grid md:grid-cols-[1.6fr,1fr] gap-6 md:gap-10 min-h-0 items-stretch">
           <div className="min-h-0 flex flex-col overflow-y-auto">
-            <div className="flex-1 flex flex-col justify-center">{children}</div>
+            <div className="flex flex-col gap-3">{children}</div>
           </div>
           {narration && (
             <div className="min-h-0 flex">
