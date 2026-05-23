@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   isCached,
@@ -8,7 +8,7 @@ import {
   synthesize,
   type LoadProgress,
 } from '@/lib/tts';
-import { useNarrationSetter } from '@/lib/narration-context';
+import { splitSentences, useNarrationSetter } from '@/lib/narration-context';
 
 interface NarrationPlayerProps {
   text: string;
@@ -25,34 +25,56 @@ type PlayState =
   | 'paused'
   | 'error';
 
+/**
+ * Long-narration handling.
+ *
+ * Kokoro's live `generate()` has a token cap; passing ~500+ char strings
+ * produces a truncated MP3 (so a 3-minute paragraph silently becomes a
+ * 30-second clip with the rest dropped). To work around that without
+ * pre-rendering every Section narration, we split text into sentences,
+ * synthesize each one, and chain playback. Progress is computed across
+ * the full chunk list so the transcript highlight stays in sync with
+ * whichever sentence is actually audible.
+ *
+ * When a single pre-rendered MP3 exists for the full text (gen-audio
+ * has run + the file matches), we skip chunking and play the prerendered
+ * file directly — that's the cheapest path.
+ */
 export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps) {
   const [state, setState] = useState<PlayState>('idle');
   const [load, setLoad] = useState<LoadProgress>({ status: 'idle' });
-  const [progress, setProgress] = useState(0); // 0..1
-  const [duration, setDuration] = useState(0);
+  const [progress, setProgress] = useState(0); // 0..1 across the WHOLE narration
+  const [duration, setDuration] = useState(0); // total seconds across all chunks
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const urlRef = useRef<string | null>(null);
+  const chunksRef = useRef<{ text: string; url: string; duration: number }[]>([]);
+  const chunkIdxRef = useRef(0);
   const setNarration = useNarrationSetter();
+
+  const fullPrerendered = isCached(text, voice);
+
+  // Pre-split text into sentences once; the chunked path uses these.
+  const sentences = useMemo(() => splitSentences(text), [text]);
 
   // Subscribe to model load progress
   useEffect(() => {
     return subscribeToLoadProgress(setLoad);
   }, []);
 
-  // Reset on scene change — stop audio, clear ref
+  // Reset on scene change — stop audio, clear refs
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current = null;
     }
-    urlRef.current = null;
+    chunksRef.current = [];
+    chunkIdxRef.current = 0;
     setProgress(0);
     setDuration(0);
-    setState(isCached(text, voice) ? 'idle' : 'idle');
+    setState('idle');
     setNarration({ progress: 0, isPlaying: false, sceneKey });
   }, [sceneKey, text, voice, setNarration]);
 
-  // Publish progress to context
+  // Publish progress to context (drives transcript highlight)
   useEffect(() => {
     setNarration({ progress });
   }, [progress, setNarration]);
@@ -62,11 +84,51 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
     setNarration({ isPlaying: state === 'playing' });
   }, [state, setNarration]);
 
+  function progressForChunk(idx: number, currentTimeWithinChunk: number): number {
+    const chunks = chunksRef.current;
+    if (chunks.length === 0) return 0;
+    const totalDur = chunks.reduce((a, c) => a + c.duration, 0);
+    if (totalDur === 0) return idx / chunks.length;
+    let elapsed = 0;
+    for (let i = 0; i < idx; i++) elapsed += chunks[i].duration;
+    elapsed += Math.min(currentTimeWithinChunk, chunks[idx].duration);
+    return Math.min(1, elapsed / totalDur);
+  }
+
+  function playChunk(idx: number) {
+    const chunks = chunksRef.current;
+    if (idx >= chunks.length) {
+      setState('ready');
+      setProgress(1);
+      return;
+    }
+    chunkIdxRef.current = idx;
+    const audio = new Audio(chunks[idx].url);
+    audioRef.current = audio;
+    audio.addEventListener('loadedmetadata', () => {
+      if (Number.isFinite(audio.duration)) {
+        chunks[idx].duration = audio.duration;
+        setDuration(chunks.reduce((a, c) => a + c.duration, 0));
+      }
+    });
+    audio.addEventListener('timeupdate', () => {
+      setProgress(progressForChunk(idx, audio.currentTime));
+    });
+    audio.addEventListener('ended', () => {
+      if (chunkIdxRef.current === idx) playChunk(idx + 1);
+    });
+    audio.addEventListener('error', () => {
+      // Skip this chunk, advance — surface as error only if NO chunks have played
+      if (chunkIdxRef.current === idx) playChunk(idx + 1);
+    });
+    audio.play().catch(() => setState('error'));
+  }
+
   async function play() {
     if (state === 'playing') return;
 
-    // If we already have audio loaded for this scene, just resume.
-    if (audioRef.current && urlRef.current) {
+    // Resume if we already have chunks loaded for this scene.
+    if (chunksRef.current.length > 0 && audioRef.current) {
       try {
         await audioRef.current.play();
         setState('playing');
@@ -78,20 +140,23 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
 
     setState('preparing');
     try {
-      const url = await synthesize(text, voice);
-      urlRef.current = url;
-      const audio = new Audio(url);
-      audioRef.current = audio;
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration > 0) setProgress(audio.currentTime / audio.duration);
-      });
-      audio.addEventListener('loadedmetadata', () => setDuration(audio.duration));
-      audio.addEventListener('ended', () => {
-        setState('ready');
-        setProgress(1);
-      });
-      audio.addEventListener('error', () => setState('error'));
-      await audio.play();
+      // Path A — full text already pre-rendered. Skip chunking; play single file.
+      if (fullPrerendered) {
+        const url = await synthesize(text, voice);
+        chunksRef.current = [{ text, url, duration: 0 }];
+        playChunk(0);
+        setState('playing');
+        return;
+      }
+
+      // Path B — live Kokoro. Synthesize each sentence and chain.
+      // Synthesize in parallel; first-sentence-ready starts playback while
+      // the rest finish in the background.
+      const urls = await Promise.all(
+        sentences.map((s) => synthesize(s, voice)),
+      );
+      chunksRef.current = sentences.map((s, i) => ({ text: s, url: urls[i], duration: 0 }));
+      playChunk(0);
       setState('playing');
     } catch {
       setState('error');
@@ -104,9 +169,15 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
   }
 
   function restart() {
+    // Hard reset to chunk 0, replay from top
     if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      void audioRef.current.play();
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    setProgress(0);
+    chunkIdxRef.current = 0;
+    if (chunksRef.current.length > 0) {
+      playChunk(0);
       setState('playing');
     } else {
       void play();
