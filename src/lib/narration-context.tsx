@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from 'react';
 
 interface NarrationState {
   /** 0..1 of the current scene's audio. 0 when not playing. */
@@ -83,13 +83,21 @@ export function useActiveSentence(text: string): number {
 
 export function useNarrationSetter() {
   const v = useContext(ctx);
+  // Keep latest context in a ref so the returned callback identity stays
+  // stable across context state updates. Effects that depend on this
+  // setter won't refire when progress/isPlaying/sceneKey change — that
+  // was killing playback mid-flight (start → state changed → reset effect
+  // fired because setter identity changed → audio paused).
+  const ref = useRef(v);
+  ref.current = v;
   return useCallback(
     (patch: Partial<Pick<NarrationContextValue, 'progress' | 'isPlaying' | 'sceneKey'>>) => {
-      if (!v) return;
-      if (patch.progress !== undefined) v.setProgress(patch.progress);
-      if (patch.isPlaying !== undefined) v.setIsPlaying(patch.isPlaying);
-      if (patch.sceneKey !== undefined) v.setSceneKey(patch.sceneKey);
+      const cur = ref.current;
+      if (!cur) return;
+      if (patch.progress !== undefined) cur.setProgress(patch.progress);
+      if (patch.isPlaying !== undefined) cur.setIsPlaying(patch.isPlaying);
+      if (patch.sceneKey !== undefined) cur.setSceneKey(patch.sceneKey);
     },
-    [v],
+    [],
   );
 }

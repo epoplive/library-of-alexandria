@@ -1,10 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LessonShell, Section } from '@/components';
+import { TimelineScene } from '@/components/TimelineScene';
 import { BanachPlayableScene } from './games/BanachPlayableScene';
 import { KVCacheArchitect } from './games/KVCacheArchitect';
 import { ComputeAllocator } from './games/ComputeAllocator';
 import { GradientSurgeon } from './games/GradientSurgeon';
+import { CLOSING_TIMELINE } from './timelines/closing';
+import charactersJson from './characters.json';
+
+const VOICE_MAP: Record<string, string> = Object.fromEntries(
+  charactersJson.characters.map((c) => [c.id, c.voice_id]),
+);
 
 /* ============================================================
    GAME — Build your own looped transformer
@@ -1079,6 +1086,67 @@ function WhenItWinsScene() {
    ============================================================ */
 
 function ReadingListScene() {
+  const [mode, setMode] = useState<'list' | 'tour'>('list');
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex gap-1.5">
+        <ListToggleButton
+          label="List"
+          sub="static"
+          active={mode === 'list'}
+          onClick={() => setMode('list')}
+        />
+        <ListToggleButton
+          label="Walk-through"
+          sub="narrated tour"
+          active={mode === 'tour'}
+          onClick={() => setMode('tour')}
+        />
+      </div>
+      {mode === 'list' ? (
+        <ReadingListStatic />
+      ) : (
+        <TimelineScene scene={CLOSING_TIMELINE} voiceMap={VOICE_MAP} autoPlay />
+      )}
+    </div>
+  );
+}
+
+function ListToggleButton({
+  label,
+  sub,
+  active,
+  onClick,
+}: {
+  label: string;
+  sub: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`rounded-xl px-3 py-1.5 text-left transition ${
+        active
+          ? 'bg-accent text-paper'
+          : 'bg-paper-card border border-ink-subtle/15 text-ink-muted hover:text-ink hover:border-ink-subtle/40'
+      }`}
+    >
+      <p className="font-mono text-xs uppercase tracking-[0.18em] leading-none">{label}</p>
+      <p
+        className={`font-mono text-[9px] uppercase tracking-[0.18em] mt-0.5 leading-none ${
+          active ? 'opacity-80' : 'text-ink-subtle'
+        }`}
+      >
+        {sub}
+      </p>
+    </button>
+  );
+}
+
+function ReadingListStatic() {
   const papers = [
     {
       title: 'Universal Transformer',

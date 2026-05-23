@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   isCached,
   prefetchModel,
+  prerenderedCount,
   subscribeToLoadProgress,
   synthesize,
   type LoadProgress,
@@ -222,9 +223,14 @@ function formatTime(sec: number): string {
   return `${m}:${r.toString().padStart(2, '0')}`;
 }
 
-/** Call once on lesson mount to start downloading the model in the background. */
+/**
+ * Call once on lesson mount to start downloading the Kokoro model in
+ * the background — but only if there's no pre-rendered audio yet.
+ * Lessons with full pre-rendered narration never need Kokoro client-side.
+ */
 export function useTTSPrefetch() {
   useEffect(() => {
+    if (prerenderedCount() > 0) return; // skip the 80MB download
     prefetchModel();
   }, []);
 }
