@@ -1,242 +1,298 @@
 {
   "lesson": "looping-llms",
-  "updated_at": "2026-05-22T20:59:53.108Z",
+  "updated_at": "2026-05-23T16:23:42.607Z",
   "voices": [
-    "af_bella",
-    "am_puck"
+    "21m00Tcm4TlvDq8ikWAM",
+    "ErXwobaYiN019PkySvjV"
   ],
   "entries": [
     {
-      "hash": "9fd8c46b25ac",
+      "hash": "3a66a6ba453b",
       "text": "Every modern AI architecture starts by deciding one thing — how deep to build. The standard playbook since Ashish Vaswani and his team published Attention is All You Need at Google Brain in June 2017 has been to stack more unique layers and pay the parameter cost. GPT-3 went ninety-six layers. Llama 3's largest variant has one hundred twenty-six. The frontier just keeps stacking. But there's a side path that doesn't get talked about as much. Use fewer unique blocks, and just run them again. The idea isn't new — it descends straight from recurrent neural networks, which Jeff Elman first applied to language all the way back in 1990 at UCSD. Same set of weights, fired over and over, building representation through repetition rather than novelty. Now try it. The puzzle is to hit an effective depth of twenty-four. M is how many unique transformer blocks you bring. K is how many times each one fires. There are many valid combinations — M=1 with K=24, M=8 with K=3, and everything between. Each trade-off is real. Parameter cost stays at M. Compute cost grows linearly with K. Inference latency, memory pressure, the things you actually care about — all depend on which combination wins.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "9fd8c46b25ac.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "3a66a6ba453b.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "7269114a18ba",
+      "hash": "777b19a0b20d",
       "text": "Here's where it gets concrete. Inside a looped block, the weights themselves are frozen across iterations. What does change is the hidden state — the vector of activations being passed through. Click run-next-loop. The bars on the left are the input state. The bars on the right are what the same block produces. Now click again. The output of the last loop becomes the input of the next. Watch how the state stabilizes after a few passes — that's the model literally reasoning in latent space, one fixed step at a time. The math here is the same problem Sepp Hochreiter analyzed in his 1991 master's thesis at TU Munich, when he discovered what we now call the vanishing gradient problem. Multiplying by the same weight matrix repeatedly is what makes training a stack of K loops hard — small changes either compound out of control or fade to nothing. Hochreiter's solution six years later, with Jürgen Schmidhuber, was the LSTM — gating machinery that lets signal survive long iteration chains. Modern looped LMs don't use LSTM-style gates. They fight the same problem with normalization layers, careful weight initialization, and gradient checkpointing. The mechanism on screen is identical to an RNN unrolled — just for depth instead of for time.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "7269114a18ba.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "777b19a0b20d.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "a8b9fccfbf10",
+      "hash": "d177d120e126",
       "text": "Here's a question that sounds almost too simple. If you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something? In 1922, a young Polish mathematician named Stefan Banach proved the answer is yes, as long as the function is a contraction map — meaning every time you apply it, the points it produces get strictly closer to each other than they started. The result is now called the Banach fixed-point theorem, and the proof fits on a page. But that one-page proof is the mathematical bedrock under every looped language model, every Deep Equilibrium Model, and even most of the numerical ODE solvers your physics simulations are using right now. Banach himself died young, of cancer, in Soviet-occupied Lviv in 1945. The school of mathematics he led used to meet in a café called the Scottish Café, and they wrote unsolved problems in a notebook with prizes attached — including, famously, a live goose for problem 153. The math you're about to play with came out of those meetings. Here's the setup. The green dot is z-star — the fixed point you're trying to reach. The function f is shown as a vector field. Drag z-naught anywhere on the plane. Pick K, the number of times to iterate. Some functions converge fast; some slowly; some spiral; one diverges entirely. There are four levels. Level one — find the equilibrium of a single f. Level two — three candidate f's, pick the one that converges fastest. Level three — set K precisely to reach within tolerance epsilon. Level four is the real DEQ design problem. You're given a compute budget, two candidate f's with different per-loop costs, and you have to choose both f and K to hit the target. The cheapest path through that compute budget is what Shaojie Bai's 2019 PhD work at CMU showed how to find analytically, without iterating at all — that's what Deep Equilibrium Models do.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "a8b9fccfbf10.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "d177d120e126.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "a978feddeef2",
+      "hash": "2b174441d19b",
       "text": "When a normal model reasons through a hard problem, it has to think out loud. Every intermediate step burns output tokens that stream across your screen. That's chain-of-thought reasoning, popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K. The technique is now the foundation of every reasoning model — OpenAI's o1, DeepSeek R1, Anthropic's extended thinking. But a looped model does something stranger. It thinks silently, inside the forward pass, looping its own block over and over before emitting a single answer token. None of the intermediate reasoning surfaces. The 2025 latent reasoning paper from EleutherAI showed eight internal loops can match twenty-two tokens of visible chain-of-thought on multi-hop benchmarks. There's a parallel thread from Stanford called Quiet-STaR, where the model thinks token by token in silence — same target, different machinery. Both share a common thesis with looped LMs — that the cheapest form of compute is the kind that never leaves the network and never costs you an output token. The big open question is whether silent reasoning ever genuinely surpasses verbalized reasoning. As of now the empirical answer is roughly: matches it cheaply on tasks the model already had the capacity for; doesn't unlock new capabilities the way scale does.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "a978feddeef2.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "2b174441d19b.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "684542c21c38",
+      "hash": "4bd6e57c4c7d",
       "text": "Looping isn't free at training time. The same set of weights gets touched K times in one forward pass — and during backpropagation, they get blamed K times. All those gradient contributions sum into the same parameter update. The failure modes are well-known: exploding gradients when the spectral radius of the Jacobian drifts above one, vanishing gradients when it falls below, and out-of-memory crashes when K-fold activation storage exceeds your VRAM. Each one shows up as a different curve shape in your training log. Now you're the gradient surgeon. Three broken training runs are waiting for you — one that explodes mid-training, one that plateaus and never recovers, and one that crashes from memory pressure. For each, you'll diagnose the failure and apply one of five mitigations. Scaled initialization keeps the spectral radius near one. Layer normalization at the loop boundary resets state magnitude between iterations. Gradient clipping caps the explosion at the cost of masking root cause. Gradient checkpointing — Tianqi Chen's 2016 trick — recomputes activations on backward instead of storing them. And lowering K avoids the issue by giving up depth. The right mitigation depends on the failure. Pick wrong and the curve doesn't recover.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "684542c21c38.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "4bd6e57c4c7d.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "e0b2027c13ed",
+      "hash": "a7e56371415e",
       "text": "Looping is one of several ways to spend inference compute. Chain-of-thought spends tokens. Mixture-of-experts spends parameters per token. Speculative decoding spends draft-model FLOPs to batch more verifier work. Loops spend depth. The frontier labs are quietly building all four. Different query types reward different allocations — a factual lookup gets nothing from extra reasoning, but it benefits from the right specialized expert. A multi-hop chain wants loops or chain-of-thought. Code generation wants width and throughput. Creative writing wants varied generation. Now play it. Five query types come in sequentially. You have a budget of one hundred compute units per query. Distribute them across the four paradigms. Watch the predicted accuracy update as you allocate. Submit each query when remaining hits zero. At the end you get scored against the optimal mix per query — and your run total against the optimal portfolio.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "e0b2027c13ed.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "a7e56371415e.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "58362e9f1081",
+      "hash": "6def59ab3dbb",
       "text": "Here's the cost most papers downplay. Looping K times means K forward passes per training step — and K backward passes through the exact same weights. Activation memory normally scales with K too, because backpropagation through time needs every intermediate state to compute gradients. A K-equals-eight looped model costs roughly eight times the training compute of a single-block model, even though it has eight times fewer parameters. The net is an unusual trade. Cheap at inference once trained, expensive to train in the first place. It's the opposite of mixture-of-experts, where you can swell the total parameter count without paying per-token FLOPs, but you have to load the whole model into VRAM at inference time. DeepSeek-V3 is the modern example — 671 billion total parameters, only 37 billion active per token. Gradient checkpointing fixes the looped-LM memory blowup at the cost of recomputing activations on the backward pass — about thirty percent extra wall-clock for the privilege. The training-cost asymmetry is why looped LMs haven't shown up at frontier scale yet, even though they're competitive at one to three billion parameters. Anyone with frontier compute spends it on more unique parameters instead of training cycles.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "58362e9f1081.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "6def59ab3dbb.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "890a87302494",
+      "hash": "3938ee4b79f9",
       "text": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018. But you can be more surgical. Share just the attention weights, and the multilayer perceptron — the MLP — can still specialize per loop iteration. Or share just the MLP, and attention stays unique at each iteration. Each choice trades parameter efficiency for representational flexibility. The 2018 paper used full sharing and matched LSTM baselines on bAbI reasoning tasks. Modern variants in 2024 and 2025 are exploring all three sharing patterns. Full sharing is still the most common default, partly because it's the most parameter-efficient, partly because it composes cleanly with adaptive halting. The bAbI benchmark Dehghani's team used was a set of twenty synthetic reading-comprehension tasks released by Facebook AI Research in 2015 — the standard reasoning testbed before LLMs made larger benchmarks like MMLU and HellaSwag the norm. Universal Transformer's claim to fame was solving bAbI fully where vanilla transformers stalled — the first concrete hint that recurrence helps specifically on tasks with algorithmic structure. The paper was largely ignored at the time, overshadowed by BERT and GPT-1 launching the same year, and only rediscovered when latent reasoning got hot in 2024.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "890a87302494.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "3938ee4b79f9.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "bf44159bcedb",
+      "hash": "5642c888f7c3",
       "text": "Not every problem deserves eight loops. A chess engine doesn't think for the same amount of time on every move. A grandmaster spends seconds on a forced capture and minutes on a closed positional decision. Adaptive halting gives a looped LM the same kind of dynamic compute allocation. A tiny head sits on top of the network and emits a stop probability at each iteration. The training signal is a careful trade-off — a ponder cost penalizes extra iterations, but answer-loss penalizes early termination. The math comes from Alex Graves's 2016 paper Adaptive Computation Time, written while he was at DeepMind. Graves is one of the most underrated architects in deep learning — he also invented connectionist temporal classification, the algorithm that powers every speech recognition system, and Neural Turing Machines, the direct ancestor of attention. Now you play the halting head. Three problems of varying difficulty. Watch the internal confidence at each iteration and click halt when you think the model has it. Halt too early, you get the wrong answer. Halt too late, you wasted compute. Both are penalized in real ACT training. The optimal policy is exactly what the halting head converges to — minimize compute, maximize correctness, find the trade-off that fits your task.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "bf44159bcedb.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "5642c888f7c3.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "064be7906119",
+      "hash": "8088c940c2f8",
       "text": "Here's the gotcha that catches everyone implementing this. The KV cache — the data structure that makes long-context inference fast by remembering keys and values from previous tokens — does not shrink when you loop. Visiting the same three blocks eight times still requires twenty-four separate stacks of cached attention, because each visit is attending over a different hidden state. Looping saves parameter memory. It does NOT save cache memory. At long context, that's where the bill actually comes due. The formula is two times the number of effective layers times sequence length times hidden dimension times bytes per element. For a model at one hundred twenty-eight thousand sequence length, four thousand hidden, and bfloat16 precision, with twenty-four effective layers, you're looking at roughly fifty gigabytes of cache per request. That's why frontier inference is bottlenecked on memory bandwidth, not raw FLOPs. There are research variants that share the cache across loop iterations — sometimes called token-recurrent or cross-iteration architectures — but they trade memory for representational expressiveness. DeepSeek's multi-head latent attention is a different approach to the same problem, compressing the cache via low-rank projection. The cache-sharing question is one of the most active design choices in late-2024 and 2025 looped-LM research. Drag the sliders below. Watch how cache memory scales with sequence length and effective depth — regardless of whether you got that depth from stacking or looping.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "064be7906119.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "8088c940c2f8.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "708fce9cc50b",
+      "hash": "97f54c6c96ca",
       "text": "So when does this actually pay off? Looping wins on tasks with a step that repeats — arithmetic, multi-hop chains, traversal, parsing. The shared block learns the step once, and the loop counts how many times to apply it. It does not help much on pattern matching that one forward pass can solve — sentiment classification doesn't care how deep your network is past a point. And at frontier scale, beyond seventy billion parameters, unique-layer specialization starts to win again. Different layers learn different functions in big models; forcing them all to be the same block costs more than it saves. There's an interesting echo across the literature. In 1989, George Cybenko at Dartmouth proved the universal approximation theorem — a single-hidden-layer feedforward network with enough width can approximate any continuous function. Kurt Hornik extended it in 1991. Width can substitute for depth. Looped LMs are the depth-side dual of that result — depth can substitute for width, in the right regime. The 2024 paper by Yang et al titled Looped Transformers as Programmable Computers extends this dual all the way: looped transformers can in principle simulate any Turing machine. But both universality theorems share the same problem. They say absolutely nothing about how learnable the parameters are. That gap between what's representable in principle and what's trainable in practice is where all the interesting research lives.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "708fce9cc50b.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "97f54c6c96ca.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "e0ba94b81c0d",
+      "hash": "aef3346ef220",
       "text": "Five papers, in the order I'd read them. Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go. Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states. Then Yang et al 2024, Looped Transformers as Programmable Computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets. The 2025 paper from EleutherAI on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of K against task type. And finally, the 2026 mechanistic analysis paper — it reverse-engineers what the loops are actually computing internally, by reading the circuits trained looped networks converge to. Those five papers, in that order, take you from foundations to frontier. Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper. The graph of lessons grows wherever your curiosity pulls.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "e0ba94b81c0d.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "aef3346ef220.mp3",
       "source_file": "index.tsx"
     },
     {
-      "hash": "00f2f6ce6e01",
+      "hash": "0966a3134dfe",
       "text": "Here's a question that sounds almost too simple. If you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something?",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "00f2f6ce6e01.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "0966a3134dfe.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "ebf8abf42b16",
+      "hash": "c8d84566eb0b",
       "text": "In 1922, a young Polish mathematician named Stefan Banach proved that the answer is yes — as long as the function is a contraction map, one that strictly brings every pair of points closer together. The result fits in a one-page proof and underpins every looped language model on screens today.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "ebf8abf42b16.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "c8d84566eb0b.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "4aeddbc444a3",
+      "hash": "86245e452a54",
       "text": "Watch what that looks like. The green dot is the fixed point — call it z-star. The little goose is z-naught. Each iteration applies the same function. The goose drifts toward home.",
       "speaker_id": "banach-goose",
-      "voice_id": "am_puck",
-      "file": "4aeddbc444a3.mp3",
+      "voice_id": "ErXwobaYiN019PkySvjV",
+      "file": "86245e452a54.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "331c981f17ef",
+      "hash": "1861001cdfc6",
       "text": "Alright, watch this. I'll start far from home, way down in the bottom-left. K equals twelve flaps.",
       "speaker_id": "banach-goose",
-      "voice_id": "am_puck",
-      "file": "331c981f17ef.mp3",
+      "voice_id": "ErXwobaYiN019PkySvjV",
+      "file": "1861001cdfc6.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "02f22ee27b66",
+      "hash": "a44f5dc84f9f",
       "text": "Twelve flaps should do it. Hit submit.",
       "speaker_id": "banach-goose",
-      "voice_id": "am_puck",
-      "file": "02f22ee27b66.mp3",
+      "voice_id": "ErXwobaYiN019PkySvjV",
+      "file": "a44f5dc84f9f.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "8ce2209e4322",
+      "hash": "c2940d64cbd5",
       "text": "Home. From anywhere on the plane, the breeze carries me back. That's the theorem in feathers.",
       "speaker_id": "banach-goose",
-      "voice_id": "am_puck",
-      "file": "8ce2209e4322.mp3",
+      "voice_id": "ErXwobaYiN019PkySvjV",
+      "file": "c2940d64cbd5.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "e492c4738aee",
+      "hash": "08ce7b35972d",
       "text": "Level two raises the bar. Same target, but now three candidate functions. The question is which one converges fastest — measured in number of iterations to reach within five percent of the target.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "e492c4738aee.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "08ce7b35972d.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "e5a1683bf68c",
+      "hash": "bf48497282ef",
       "text": "The strong tailwind has a contraction rate of zero point three. Lower contraction rate, fewer iterations. That should win.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "e5a1683bf68c.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "bf48497282ef.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "23fa9cf804c9",
+      "hash": "531afa84884e",
       "text": "Eight iterations. Submit.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "23fa9cf804c9.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "531afa84884e.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "4f7e65b869b2",
+      "hash": "f843c710eb0f",
       "text": "Right. Lower contraction rate hits the tolerance in fewer steps. This same number — c, the Lipschitz constant — determines the minimum K in a real looped language model. The math is identical.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "4f7e65b869b2.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "f843c710eb0f.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "ce52f5b78287",
+      "hash": "8621171cdaa9",
       "text": "Level three. Now the question is, how few iterations do you need? Pick K just large enough to reach the tolerance — no more, no less. Stop early, you miss. Stop late, you wasted compute.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "ce52f5b78287.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "8621171cdaa9.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "879df283b268",
+      "hash": "25d4f7e5bf03",
       "text": "Try K equals nine for this function — should land right at the edge.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "879df283b268.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "25d4f7e5bf03.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "453b145a73c9",
+      "hash": "21ed1fb5f5d7",
       "text": "Solved with one wasted iteration. The optimal was eight. In a real looped model, that wasted iteration is what adaptive halting heads are trained to avoid.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "453b145a73c9.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "21ed1fb5f5d7.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "6dc1c4d584cc",
+      "hash": "a8e7493aaa0a",
       "text": "Level four is the actual Deep Equilibrium Models design problem. You have a fixed compute budget of fourteen units. Two functions to choose from, each with a different per-loop cost. The cheap one has a slow contraction. The expensive one converges fast. Find the combination that hits the target within budget.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "6dc1c4d584cc.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "a8e7493aaa0a.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "20a4e5d44479",
+      "hash": "1f10e01ad436",
       "text": "Strong tailwind costs two per loop and converges in five steps — that's ten units total. Cheaper than the gentle breeze, which would need fourteen loops at one each.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "20a4e5d44479.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "1f10e01ad436.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "517c4b49f95e",
+      "hash": "dfde7eb745f2",
       "text": "Five iterations. Submit.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "517c4b49f95e.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "dfde7eb745f2.mp3",
       "source_file": "banach.ts"
     },
     {
-      "hash": "a8e06adee58d",
+      "hash": "bda7f0413a82",
       "text": "Optimal. Ten units under a fourteen-unit budget. That's what Shaojie Bai and Zico Kolter at CMU solved analytically in 2019 with implicit differentiation — finding the cheapest fixed-point path without iterating at all. Same problem you just solved by hand.",
       "speaker_id": "narrator",
-      "voice_id": "af_bella",
-      "file": "a8e06adee58d.mp3",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "bda7f0413a82.mp3",
       "source_file": "banach.ts"
+    },
+    {
+      "hash": "59c0c47fb44c",
+      "text": "Five papers, in the order I'd read them.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "59c0c47fb44c.mp3",
+      "source_file": "closing.ts"
+    },
+    {
+      "hash": "3cf5291be335",
+      "text": "Start with Mostafa Dehghani's Universal Transformer from 2018. It's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "3cf5291be335.mp3",
+      "source_file": "closing.ts"
+    },
+    {
+      "hash": "e722859f8ade",
+      "text": "Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "e722859f8ade.mp3",
+      "source_file": "closing.ts"
+    },
+    {
+      "hash": "b53a57145348",
+      "text": "Then Yang et al 2024, Looped Transformers as Programmable Computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "b53a57145348.mp3",
+      "source_file": "closing.ts"
+    },
+    {
+      "hash": "fceb30c7fae6",
+      "text": "The 2025 paper from EleutherAI on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of K against task type.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "fceb30c7fae6.mp3",
+      "source_file": "closing.ts"
+    },
+    {
+      "hash": "83840b91dcd8",
+      "text": "And finally, the 2026 mechanistic analysis paper — it reverse-engineers what the loops are actually computing internally by reading the circuits trained looped networks converge to.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "83840b91dcd8.mp3",
+      "source_file": "closing.ts"
+    },
+    {
+      "hash": "3e118e5b5bb7",
+      "text": "Those five papers, in that order, take you from foundations to frontier. Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper.",
+      "speaker_id": "narrator",
+      "voice_id": "21m00Tcm4TlvDq8ikWAM",
+      "file": "3e118e5b5bb7.mp3",
+      "source_file": "closing.ts"
     }
   ]
 }

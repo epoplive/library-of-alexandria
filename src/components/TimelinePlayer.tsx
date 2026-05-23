@@ -9,7 +9,7 @@ import {
   type RefObject,
 } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { isCached, synthesize } from '@/lib/tts';
+import { synthesize } from '@/lib/tts';
 import type {
   Beat,
   Scene,
@@ -181,28 +181,31 @@ export function TimelinePlayer({
         return () => clearTimeout(waitId);
       }
       const voice = beat.speaker_id ? voiceMap?.[beat.speaker_id] : undefined;
-      try {
-        setIsPreparing(!isCached(beat.narration, voice));
-        const url = await synthesize(beat.narration, voice);
-        setIsPreparing(false);
-        if (currentIdxRef.current !== idx) return; // user moved on
-        stopAudio();
-        const audio = new Audio(url);
-        audioRef.current = audio;
-        audio.addEventListener('ended', () => {
+      const url = await synthesize(beat.narration, voice);
+      if (currentIdxRef.current !== idx) return; // user moved on
+      if (!url) {
+        // No pre-rendered MP3 for this beat. Wait beat.duration (or 4s
+        // default) so the visual still cycles, then advance — never
+        // synthesize at runtime.
+        const ms = (beat.duration ?? 4) * 1000;
+        const waitId = setTimeout(() => {
           if (currentIdxRef.current === idx) playBeat(idx + 1);
-        });
-        audio.addEventListener('error', () => {
-          if (currentIdxRef.current === idx) playBeat(idx + 1);
-        });
-        await audio.play().catch(() => {
-          /* user gesture not granted; surface via state */
-          setIsPlaying(false);
-        });
-      } catch {
-        setIsPreparing(false);
-        if (currentIdxRef.current === idx) playBeat(idx + 1);
+        }, ms);
+        return () => clearTimeout(waitId);
       }
+      stopAudio();
+      const audio = new Audio(url);
+      audioRef.current = audio;
+      audio.addEventListener('ended', () => {
+        if (currentIdxRef.current === idx) playBeat(idx + 1);
+      });
+      audio.addEventListener('error', () => {
+        if (currentIdxRef.current === idx) playBeat(idx + 1);
+      });
+      await audio.play().catch(() => {
+        /* user gesture not granted; surface via state */
+        setIsPlaying(false);
+      });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [beats, dispatch, applyOp, stopAudio, userMode, voiceMap],

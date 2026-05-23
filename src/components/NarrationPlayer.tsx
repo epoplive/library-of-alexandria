@@ -1,14 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  isCached,
-  prefetchModel,
-  prerenderedCount,
-  subscribeToLoadProgress,
-  synthesize,
-  type LoadProgress,
-} from '@/lib/tts';
-import { splitSentences, useNarrationSetter } from '@/lib/narration-context';
+import { getPrerenderedUrl } from '@/lib/tts';
+import { useNarrationSetter } from '@/lib/narration-context';
 
 interface NarrationPlayerProps {
   text: string;
@@ -19,148 +12,76 @@ interface NarrationPlayerProps {
 
 type PlayState =
   | 'idle'
-  | 'preparing'
   | 'ready'
   | 'playing'
   | 'paused'
-  | 'error';
+  | 'error'
+  | 'unavailable';
 
 /**
- * Long-narration handling.
+ * Plays the pre-rendered MP3 for a narration string. The browser never
+ * synthesizes — if no file is on disk for this text, the play button
+ * is disabled with an "audio pending" label.
  *
- * Kokoro's live `generate()` has a token cap; passing ~500+ char strings
- * produces a truncated MP3 (so a 3-minute paragraph silently becomes a
- * 30-second clip with the rest dropped). To work around that without
- * pre-rendering every Section narration, we split text into sentences,
- * synthesize each one, and chain playback. Progress is computed across
- * the full chunk list so the transcript highlight stays in sync with
- * whichever sentence is actually audible.
- *
- * When a single pre-rendered MP3 exists for the full text (gen-audio
- * has run + the file matches), we skip chunking and play the prerendered
- * file directly — that's the cheapest path.
+ * Progressive enhancement: as the lesson moves from v0.1 → v0.6 → v1.0,
+ * the MP3 files on disk get replaced with better takes (Kokoro → ElevenLabs
+ * → eventually a video with integrated audio). This component doesn't
+ * care which tier the file came from.
  */
 export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps) {
-  const [state, setState] = useState<PlayState>('idle');
-  const [load, setLoad] = useState<LoadProgress>({ status: 'idle' });
-  const [progress, setProgress] = useState(0); // 0..1 across the WHOLE narration
-  const [duration, setDuration] = useState(0); // total seconds across all chunks
+  const url = getPrerenderedUrl(text, voice);
+  const [state, setState] = useState<PlayState>(url ? 'idle' : 'unavailable');
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const chunksRef = useRef<{ text: string; url: string; duration: number }[]>([]);
-  const chunkIdxRef = useRef(0);
   const setNarration = useNarrationSetter();
 
-  const fullPrerendered = isCached(text, voice);
-
-  // Pre-split text into sentences once; the chunked path uses these.
-  const sentences = useMemo(() => splitSentences(text), [text]);
-
-  // Subscribe to model load progress
-  useEffect(() => {
-    return subscribeToLoadProgress(setLoad);
-  }, []);
-
-  // Reset on scene change — stop audio, clear refs
+  // Reset on scene change
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current = null;
     }
-    chunksRef.current = [];
-    chunkIdxRef.current = 0;
     setProgress(0);
     setDuration(0);
-    setState('idle');
+    setState(url ? 'idle' : 'unavailable');
     setNarration({ progress: 0, isPlaying: false, sceneKey });
-  }, [sceneKey, text, voice, setNarration]);
+  }, [sceneKey, text, voice, url, setNarration]);
 
-  // Publish progress to context (drives transcript highlight)
   useEffect(() => {
     setNarration({ progress });
   }, [progress, setNarration]);
 
-  // Publish play state to context
   useEffect(() => {
     setNarration({ isPlaying: state === 'playing' });
   }, [state, setNarration]);
 
-  function progressForChunk(idx: number, currentTimeWithinChunk: number): number {
-    const chunks = chunksRef.current;
-    if (chunks.length === 0) return 0;
-    const totalDur = chunks.reduce((a, c) => a + c.duration, 0);
-    if (totalDur === 0) return idx / chunks.length;
-    let elapsed = 0;
-    for (let i = 0; i < idx; i++) elapsed += chunks[i].duration;
-    elapsed += Math.min(currentTimeWithinChunk, chunks[idx].duration);
-    return Math.min(1, elapsed / totalDur);
-  }
-
-  function playChunk(idx: number) {
-    const chunks = chunksRef.current;
-    if (idx >= chunks.length) {
-      setState('ready');
-      setProgress(1);
+  function play() {
+    if (state === 'playing' || state === 'unavailable') return;
+    if (!url) {
+      setState('unavailable');
       return;
     }
-    chunkIdxRef.current = idx;
-    const audio = new Audio(chunks[idx].url);
+    if (audioRef.current) {
+      audioRef.current.play().catch(() => setState('error'));
+      setState('playing');
+      return;
+    }
+    const audio = new Audio(url);
     audioRef.current = audio;
-    audio.addEventListener('loadedmetadata', () => {
-      if (Number.isFinite(audio.duration)) {
-        chunks[idx].duration = audio.duration;
-        setDuration(chunks.reduce((a, c) => a + c.duration, 0));
-      }
-    });
+    audio.addEventListener('loadedmetadata', () => setDuration(audio.duration));
     audio.addEventListener('timeupdate', () => {
-      setProgress(progressForChunk(idx, audio.currentTime));
+      if (audio.duration > 0) setProgress(audio.currentTime / audio.duration);
     });
     audio.addEventListener('ended', () => {
-      if (chunkIdxRef.current === idx) playChunk(idx + 1);
+      setState('ready');
+      setProgress(1);
     });
-    audio.addEventListener('error', () => {
-      // Skip this chunk, advance — surface as error only if NO chunks have played
-      if (chunkIdxRef.current === idx) playChunk(idx + 1);
-    });
-    audio.play().catch(() => setState('error'));
-  }
-
-  async function play() {
-    if (state === 'playing') return;
-
-    // Resume if we already have chunks loaded for this scene.
-    if (chunksRef.current.length > 0 && audioRef.current) {
-      try {
-        await audioRef.current.play();
-        setState('playing');
-      } catch {
-        setState('error');
-      }
-      return;
-    }
-
-    setState('preparing');
-    try {
-      // Path A — full text already pre-rendered. Skip chunking; play single file.
-      if (fullPrerendered) {
-        const url = await synthesize(text, voice);
-        chunksRef.current = [{ text, url, duration: 0 }];
-        playChunk(0);
-        setState('playing');
-        return;
-      }
-
-      // Path B — live Kokoro. Synthesize each sentence and chain.
-      // Synthesize in parallel; first-sentence-ready starts playback while
-      // the rest finish in the background.
-      const urls = await Promise.all(
-        sentences.map((s) => synthesize(s, voice)),
-      );
-      chunksRef.current = sentences.map((s, i) => ({ text: s, url: urls[i], duration: 0 }));
-      playChunk(0);
-      setState('playing');
-    } catch {
-      setState('error');
-    }
+    audio.addEventListener('error', () => setState('error'));
+    audio.play().then(
+      () => setState('playing'),
+      () => setState('error'),
+    );
   }
 
   function pause() {
@@ -169,28 +90,18 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
   }
 
   function restart() {
-    // Hard reset to chunk 0, replay from top
     if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-    setProgress(0);
-    chunkIdxRef.current = 0;
-    if (chunksRef.current.length > 0) {
-      playChunk(0);
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch(() => undefined);
       setState('playing');
     } else {
-      void play();
+      play();
     }
   }
 
-  const downloading = load.status === 'downloading';
-  const downloadPct = downloading ? Math.round((load.progress ?? 0) * 100) : 0;
   const showLabel =
-    state === 'preparing'
-      ? downloading
-        ? `Downloading voice · ${downloadPct}%`
-        : 'Synthesizing…'
+    state === 'unavailable'
+      ? 'Audio pending'
       : state === 'playing'
         ? 'Playing'
         : state === 'paused'
@@ -199,34 +110,21 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
             ? 'Audio error'
             : 'Narration';
 
+  const disabled = state === 'unavailable';
+
   return (
     <div className="flex items-center gap-3 bg-paper-card border border-ink-subtle/15 rounded-full pl-1.5 pr-4 py-1.5 shadow-card max-w-[420px] min-w-[200px]">
       <button
         type="button"
         onClick={() => {
           if (state === 'playing') pause();
-          else if (state === 'paused' || state === 'ready' || state === 'idle') play();
-          else if (state === 'error') play();
+          else play();
         }}
-        disabled={state === 'preparing'}
+        disabled={disabled}
         aria-label={state === 'playing' ? 'Pause' : 'Play'}
-        className="w-9 h-9 rounded-full bg-accent text-paper flex items-center justify-center hover:bg-accent-hover transition shrink-0 disabled:opacity-60"
+        className="w-9 h-9 rounded-full bg-accent text-paper flex items-center justify-center hover:bg-accent-hover transition shrink-0 disabled:opacity-40 disabled:cursor-not-allowed"
       >
-        {state === 'preparing' ? (
-          <motion.svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
-          >
-            <path d="M21 12a9 9 0 1 1-6.2-8.5" />
-          </motion.svg>
-        ) : state === 'playing' ? (
+        {state === 'playing' ? (
           <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
             <rect x="2" y="1" width="3" height="10" rx="0.5" />
             <rect x="7" y="1" width="3" height="10" rx="0.5" />
@@ -251,25 +149,17 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
         </div>
         <div className="h-1 bg-paper-tint rounded-full overflow-hidden">
           <AnimatePresence>
-            {downloading && state === 'preparing' ? (
-              <motion.div
-                key="download"
-                animate={{ width: `${downloadPct}%` }}
-                className="h-full bg-signal-info"
-              />
-            ) : (
-              <motion.div
-                key="progress"
-                animate={{ width: `${progress * 100}%` }}
-                className="h-full bg-accent"
-                transition={{ duration: 0.1 }}
-              />
-            )}
+            <motion.div
+              key="progress"
+              animate={{ width: `${progress * 100}%` }}
+              className="h-full bg-accent"
+              transition={{ duration: 0.1 }}
+            />
           </AnimatePresence>
         </div>
       </div>
 
-      {progress > 0.05 && state !== 'preparing' && (
+      {progress > 0.05 && !disabled && (
         <button
           type="button"
           onClick={restart}
@@ -294,14 +184,7 @@ function formatTime(sec: number): string {
   return `${m}:${r.toString().padStart(2, '0')}`;
 }
 
-/**
- * Call once on lesson mount to start downloading the Kokoro model in
- * the background — but only if there's no pre-rendered audio yet.
- * Lessons with full pre-rendered narration never need Kokoro client-side.
- */
+/** Compatibility no-op — viewer doesn't load a TTS model. */
 export function useTTSPrefetch() {
-  useEffect(() => {
-    if (prerenderedCount() > 0) return; // skip the 80MB download
-    prefetchModel();
-  }, []);
+  /* no-op */
 }

@@ -1,16 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { KokoroTTS } from 'kokoro-js';
-
-const MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
-const DEFAULT_VOICE = 'af_bella';
-
-/* ---- Pre-rendered audio lookup ----------------------------- */
 
 /**
- * Vite-time glob of every lesson's pre-rendered audio index. Lessons
- * not yet built will simply have no entries here; we fall back to live
- * synthesis for those.
+ * Browser-side audio lookup.
+ *
+ * The viewer never synthesizes. All narration audio is pre-rendered by
+ * `scripts/gen-audio.mjs` (server-side) and committed to
+ * `lessons/<slug>/audio/<hash>.mp3` + indexed by
+ * `lessons/<slug>/audio/index.json`. Vite globs everything at build time.
+ *
+ * Progressive enhancement model:
+ *  - v0.1 narrations are rendered with Kokoro CLI (free, server-side)
+ *  - v0.6 narrations re-rendered with ElevenLabs (per-lesson donation)
+ *  - v1.0 replaces audio with full integrated-audio video
+ *
+ * The browser doesn't care which tier the file came from — it just
+ * plays whichever MP3 is currently on disk for a given narration string.
  */
+
+const DEFAULT_VOICE = 'af_bella';
+
 type AudioIndex = {
   lesson: string;
   entries: { hash: string; text: string; voice_id: string; file: string }[];
@@ -25,7 +33,6 @@ const audioFileUrls = import.meta.glob<string>(
   { eager: true, query: '?url', import: 'default' },
 );
 
-/** Map of "voice|text" → resolved URL of a pre-rendered audio file. */
 const prerendered: Map<string, string> = (() => {
   const m = new Map<string, string>();
   for (const indexPath in audioIndexes) {
@@ -49,100 +56,45 @@ export function prerenderedCount(): number {
   return prerendered.size;
 }
 
-export type LoadProgress =
-  | { status: 'idle' }
-  | { status: 'downloading'; progress: number; file?: string }
-  | { status: 'ready' }
-  | { status: 'error'; error: string };
-
-type ProgressListener = (state: LoadProgress) => void;
-
-const listeners = new Set<ProgressListener>();
-let currentState: LoadProgress = { status: 'idle' };
-let modelPromise: Promise<KokoroTTS> | null = null;
-const audioCache = new Map<string, string>(); // key: voice|text → object URL
-
-function notify(state: LoadProgress) {
-  currentState = state;
-  for (const l of listeners) l(state);
-}
-
-export function subscribeToLoadProgress(listener: ProgressListener): () => void {
-  listeners.add(listener);
-  listener(currentState);
-  return () => listeners.delete(listener);
-}
-
-export function getLoadProgress(): LoadProgress {
-  return currentState;
-}
-
-async function getModel(): Promise<KokoroTTS> {
-  if (modelPromise) return modelPromise;
-  notify({ status: 'downloading', progress: 0 });
-  modelPromise = (async () => {
-    try {
-      const model = await KokoroTTS.from_pretrained(MODEL_ID, {
-        dtype: 'q8',
-        device: 'wasm',
-        progress_callback: (info: any) => {
-          if (info?.status === 'progress' && typeof info.progress === 'number') {
-            notify({
-              status: 'downloading',
-              progress: info.progress / 100,
-              file: info.file,
-            });
-          }
-        },
-      } as any);
-      notify({ status: 'ready' });
-      return model;
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      notify({ status: 'error', error: msg });
-      modelPromise = null;
-      throw e;
-    }
-  })();
-  return modelPromise;
-}
-
 export function isCached(text: string, voice: string = DEFAULT_VOICE): boolean {
-  // Pre-rendered files count as "cached" — playback is effectively instant.
-  if (prerendered.has(`${voice}|${text}`)) return true;
-  return audioCache.has(`${voice}|${text}`);
+  return prerendered.has(`${voice}|${text}`);
 }
 
+/**
+ * Look up the pre-rendered audio URL for a given narration. Returns
+ * null when the audio hasn't been rendered yet (run `npm run gen:audio`).
+ *
+ * Synchronous in spirit — Vite resolved everything at build time — but
+ * kept async-returning for API stability with callers written when
+ * live synthesis was supported.
+ */
 export async function synthesize(
   text: string,
   voice: string = DEFAULT_VOICE,
-): Promise<string> {
-  // 1. Prefer pre-rendered audio from disk (committed to repo by gen-audio script).
-  const prerenderedUrl = prerendered.get(`${voice}|${text}`);
-  if (prerenderedUrl) return prerenderedUrl;
-
-  // 2. Fall back to in-memory cache of previously-synthesized audio this session.
-  const key = `${voice}|${text}`;
-  const cached = audioCache.get(key);
-  if (cached) return cached;
-
-  // 3. Live-synthesize via Kokoro (lazy model load).
-  const model = await getModel();
-  const audio: any = await (model as any).generate(text, { voice });
-  const blob: Blob = typeof audio.toBlob === 'function' ? audio.toBlob() : audio;
-  const url = URL.createObjectURL(blob);
-  audioCache.set(key, url);
-  return url;
+): Promise<string | null> {
+  return prerendered.get(`${voice}|${text}`) ?? null;
 }
 
-export function clearAudioCache() {
-  for (const url of audioCache.values()) URL.revokeObjectURL(url);
-  audioCache.clear();
+/* Compatibility exports — load progress + prefetch are no-ops since
+ * nothing is loaded client-side. Kept so existing callers don't break. */
+
+export type LoadProgress =
+  | { status: 'idle' }
+  | { status: 'ready' };
+
+export function subscribeToLoadProgress(listener: (s: LoadProgress) => void): () => void {
+  listener({ status: 'ready' });
+  return () => undefined;
 }
 
-/** Begin downloading the model in the background. Safe to call multiple times. */
+export function getLoadProgress(): LoadProgress {
+  return { status: 'ready' };
+}
+
 export function prefetchModel(): void {
-  void getModel().catch(() => {
-    /* listener has the error */
-  });
+  /* no-op — viewer doesn't load a TTS model */
+}
+
+export function clearAudioCache(): void {
+  /* no-op — pre-rendered URLs are static module-level data */
 }
