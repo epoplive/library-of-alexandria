@@ -4,27 +4,17 @@
       "id": "narrator",
       "name": "Narrator",
       "description": "Default lesson voice. Conversational, curious, technically rigorous.",
-      "voice_service": "elevenlabs",
-      "voice_id": "21m00Tcm4TlvDq8ikWAM",
-      "voice_model": "eleven_multilingual_v2",
-      "voice_persona": "Warm, clear, thoughtful pacing. Reads like a thoughtful friend explaining something interesting.",
-      "stability": 0.55,
-      "similarity_boost": 0.75,
-      "style": 0.45,
-      "use_speaker_boost": true
+      "voice_service": "kokoro",
+      "voice_id": "af_bella",
+      "voice_persona": "Warm, clear, thoughtful pacing. Reads like a thoughtful friend explaining something interesting."
     },
     {
       "id": "banach-goose",
       "name": "Banach the Goose",
       "description": "Character host for the fixed-point scene. Mathematical, slightly mischievous.",
-      "voice_service": "elevenlabs",
-      "voice_id": "ErXwobaYiN019PkySvjV",
-      "voice_model": "eleven_multilingual_v2",
-      "voice_persona": "Playful, conversational, drops mathematical asides like he just thought of them. Goose-mathematician energy. Push style for character.",
-      "stability": 0.4,
-      "similarity_boost": 0.7,
-      "style": 0.85,
-      "use_speaker_boost": true
+      "voice_service": "kokoro",
+      "voice_id": "am_puck",
+      "voice_persona": "Playful, conversational, drops mathematical asides like he just thought of them. Goose-mathematician energy."
     }
   ],
   "default_speaker_id": "narrator"
