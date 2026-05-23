@@ -92,7 +92,7 @@ function LessonShellInner({
   const sceneKey = `${location.pathname}#${page}`;
 
   return (
-    <div className="h-[100svh] flex flex-col bg-paper-tint">
+    <div className="fixed inset-0 flex flex-col bg-paper-tint">
       {/* Top bar */}
       <header className="flex-shrink-0 h-14 px-3 md:px-5 bg-paper-card border-b border-ink-subtle/10 flex items-center gap-4">
         <Link

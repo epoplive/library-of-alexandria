@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
   html {
     scroll-behavior: smooth;
   }
   body {
     font-feature-settings: 'cv11', 'ss01', 'ss03';
+    overscroll-behavior: none;
   }
 }
 
