@@ -19,9 +19,29 @@
 
 const DEFAULT_VOICE = 'af_bella';
 
+/**
+ * Per-chunk timing entry. gen-audio writes one of these per chunk it
+ * synthesized. For single-call narrations there's one entry covering
+ * the whole MP3. For long-form narrations split at sentence boundaries
+ * before TTS, each chunk gets its own entry. The browser uses these
+ * to map currentTime → which chunk is audible, then uses the chunk's
+ * char range against the full narration to pick the active sentence.
+ */
+export interface AudioTiming {
+  text: string;
+  startMs: number;
+  durationMs: number;
+}
+
 type AudioIndex = {
   lesson: string;
-  entries: { hash: string; text: string; voice_id: string; file: string }[];
+  entries: {
+    hash: string;
+    text: string;
+    voice_id: string;
+    file: string;
+    timings?: AudioTiming[];
+  }[];
 };
 
 const audioIndexes = import.meta.glob<AudioIndex>(
@@ -33,23 +53,30 @@ const audioFileUrls = import.meta.glob<string>(
   { eager: true, query: '?url', import: 'default' },
 );
 
-const prerendered: Map<string, string> = (() => {
-  const m = new Map<string, string>();
-  for (const indexPath in audioIndexes) {
-    const idx = audioIndexes[indexPath];
-    const baseDir = indexPath.replace(/\/index\.json$/, '');
-    for (const entry of idx.entries) {
-      const filePath = `${baseDir}/${entry.file}`;
-      const url = audioFileUrls[filePath];
-      if (!url) continue;
-      m.set(`${entry.voice_id}|${entry.text}`, url);
+const prerendered: Map<string, string> = new Map();
+const prerenderedTimings: Map<string, AudioTiming[]> = new Map();
+
+for (const indexPath in audioIndexes) {
+  const idx = audioIndexes[indexPath];
+  const baseDir = indexPath.replace(/\/index\.json$/, '');
+  for (const entry of idx.entries) {
+    const filePath = `${baseDir}/${entry.file}`;
+    const url = audioFileUrls[filePath];
+    if (!url) continue;
+    const key = `${entry.voice_id}|${entry.text}`;
+    prerendered.set(key, url);
+    if (entry.timings && entry.timings.length > 0) {
+      prerenderedTimings.set(key, entry.timings);
     }
   }
-  return m;
-})();
+}
 
 export function getPrerenderedUrl(text: string, voice: string = DEFAULT_VOICE): string | null {
   return prerendered.get(`${voice}|${text}`) ?? null;
+}
+
+export function getTimings(text: string, voice: string = DEFAULT_VOICE): AudioTiming[] | null {
+  return prerenderedTimings.get(`${voice}|${text}`) ?? null;
 }
 
 export function prerenderedCount(): number {

@@ -45,7 +45,7 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
     setProgress(0);
     setDuration(0);
     setState(url ? 'idle' : 'unavailable');
-    setNarration({ progress: 0, isPlaying: false, sceneKey });
+    setNarration({ progress: 0, currentTimeSec: 0, isPlaying: false, sceneKey });
   }, [sceneKey, text, voice, url, setNarration]);
 
   useEffect(() => {
@@ -72,6 +72,7 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
     audio.addEventListener('loadedmetadata', () => setDuration(audio.duration));
     audio.addEventListener('timeupdate', () => {
       if (audio.duration > 0) setProgress(audio.currentTime / audio.duration);
+      setNarration({ currentTimeSec: audio.currentTime });
     });
     audio.addEventListener('ended', () => {
       setState('ready');

@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   splitSentences,
   useNarration,
-  currentSentenceIndex,
+  sentenceIndexFromTimings,
 } from '@/lib/narration-context';
+import { getTimings } from '@/lib/tts';
 
 export interface Discovery {
   /** Short reveal — 1–2 sentences. */
@@ -111,14 +112,19 @@ interface TranscriptProps {
 }
 
 function TranscriptPanel({ text, discoveries }: TranscriptProps) {
-  const { progress, isPlaying } = useNarration();
+  const { progress, currentTimeSec, isPlaying } = useNarration();
   const sentences = useMemo(() => splitSentences(text), [text]);
+  // Look up the pre-rendered audio's per-chunk timings (sentence-aligned
+  // gen-audio output). When present, the active sentence is computed by
+  // mapping audio position → chunk → sentence-within-chunk by char
+  // weight. When absent, falls back to uniform progress * N partitioning.
+  const timings = useMemo(() => getTimings(text), [text]);
   const activeIdx = useMemo(
     () =>
       isPlaying || progress > 0
-        ? currentSentenceIndex(progress, sentences.length)
+        ? sentenceIndexFromTimings(currentTimeSec, progress, sentences, timings)
         : -1,
-    [progress, isPlaying, sentences.length],
+    [progress, currentTimeSec, isPlaying, sentences, timings],
   );
 
   // Pre-compute the segmented sentences (text + discovery markers)

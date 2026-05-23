@@ -1,8 +1,11 @@
 import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from 'react';
+import type { AudioTiming } from './tts';
 
 interface NarrationState {
   /** 0..1 of the current scene's audio. 0 when not playing. */
   progress: number;
+  /** Absolute audio position in seconds. Drives timings-based highlight. */
+  currentTimeSec: number;
   isPlaying: boolean;
   /** Stable key for the active scene — flips when navigating. */
   sceneKey: string;
@@ -10,6 +13,7 @@ interface NarrationState {
 
 interface NarrationContextValue extends NarrationState {
   setProgress: (p: number) => void;
+  setCurrentTimeSec: (t: number) => void;
   setIsPlaying: (b: boolean) => void;
   setSceneKey: (k: string) => void;
 }
@@ -18,12 +22,16 @@ const ctx = createContext<NarrationContextValue | null>(null);
 
 export function NarrationProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState(0);
+  const [currentTimeSec, setCurrentTimeSec] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [sceneKey, setSceneKey] = useState('');
 
   const value = useMemo<NarrationContextValue>(
-    () => ({ progress, isPlaying, sceneKey, setProgress, setIsPlaying, setSceneKey }),
-    [progress, isPlaying, sceneKey],
+    () => ({
+      progress, currentTimeSec, isPlaying, sceneKey,
+      setProgress, setCurrentTimeSec, setIsPlaying, setSceneKey,
+    }),
+    [progress, currentTimeSec, isPlaying, sceneKey],
   );
 
   return <ctx.Provider value={value}>{children}</ctx.Provider>;
@@ -31,8 +39,13 @@ export function NarrationProvider({ children }: { children: ReactNode }) {
 
 export function useNarration(): NarrationState {
   const v = useContext(ctx);
-  if (!v) return { progress: 0, isPlaying: false, sceneKey: '' };
-  return { progress: v.progress, isPlaying: v.isPlaying, sceneKey: v.sceneKey };
+  if (!v) return { progress: 0, currentTimeSec: 0, isPlaying: false, sceneKey: '' };
+  return {
+    progress: v.progress,
+    currentTimeSec: v.currentTimeSec,
+    isPlaying: v.isPlaying,
+    sceneKey: v.sceneKey,
+  };
 }
 
 export function useNarrationControls() {
@@ -41,12 +54,14 @@ export function useNarrationControls() {
     const noop = () => undefined;
     return {
       setProgress: noop,
+      setCurrentTimeSec: noop,
       setIsPlaying: noop,
       setSceneKey: noop,
     };
   }
   return {
     setProgress: v.setProgress,
+    setCurrentTimeSec: v.setCurrentTimeSec,
     setIsPlaying: v.setIsPlaying,
     setSceneKey: v.setSceneKey,
   };
@@ -74,11 +89,95 @@ export function currentSentenceIndex(progress: number, total: number): number {
   return Math.min(total - 1, Math.floor(progress * total));
 }
 
+/**
+ * Timings-aware sentence resolver. Pre-rendered narration ships with a
+ * `timings` table: one entry per chunk (sentence-aligned by gen-audio's
+ * splitter) with startMs + durationMs in the concatenated MP3. We map
+ * the current audio position to a chunk, then interpolate within the
+ * chunk by character weight to pick the active sentence.
+ *
+ * When `timings` is missing (no pre-rendered file with timings yet),
+ * falls back to uniform `progress * total` partitioning.
+ */
+export function sentenceIndexFromTimings(
+  currentTimeSec: number,
+  progress: number,
+  sentences: string[],
+  timings: AudioTiming[] | null | undefined,
+): number {
+  if (sentences.length === 0) return -1;
+  if (!timings || timings.length === 0) {
+    return currentSentenceIndex(progress, sentences.length);
+  }
+  const currentMs = currentTimeSec * 1000;
+  const chunkIdx = locateChunk(timings, currentMs);
+  const chunk = timings[chunkIdx];
+  // Position within the chunk, 0..1
+  const chunkProgress = chunk.durationMs > 0
+    ? Math.min(1, Math.max(0, (currentMs - chunk.startMs) / chunk.durationMs))
+    : 0;
+  // Find which sentences belong to this chunk via prefix-matching
+  const { firstSentenceIdx, lastSentenceIdx } = sentencesForChunk(chunk.text, sentences);
+  if (firstSentenceIdx < 0) {
+    return currentSentenceIndex(progress, sentences.length);
+  }
+  // Within the chunk, distribute by character weight (longer sentences hold longer)
+  const chunkSentences = sentences.slice(firstSentenceIdx, lastSentenceIdx + 1);
+  const totalChars = chunkSentences.reduce((a, s) => a + s.length, 0) || 1;
+  let charCursor = 0;
+  for (let i = 0; i < chunkSentences.length; i++) {
+    const weight = chunkSentences[i].length / totalChars;
+    if (chunkProgress < charCursor + weight) return firstSentenceIdx + i;
+    charCursor += weight;
+  }
+  return lastSentenceIdx;
+}
+
+function locateChunk(timings: AudioTiming[], currentMs: number): number {
+  for (let i = timings.length - 1; i >= 0; i--) {
+    if (currentMs >= timings[i].startMs) return i;
+  }
+  return 0;
+}
+
+function sentencesForChunk(
+  chunkText: string,
+  sentences: string[],
+): { firstSentenceIdx: number; lastSentenceIdx: number } {
+  // Match the FIRST sentence of the chunk against the narration's
+  // sentence list. The chunk text is gen-audio's chunkTextForTts output
+  // (sentence-aligned), so it begins with a sentence boundary.
+  const trimmedChunk = chunkText.trim();
+  if (sentences.length === 0) return { firstSentenceIdx: -1, lastSentenceIdx: -1 };
+  let firstSentenceIdx = -1;
+  for (let i = 0; i < sentences.length; i++) {
+    if (trimmedChunk.startsWith(sentences[i])) {
+      firstSentenceIdx = i;
+      break;
+    }
+  }
+  if (firstSentenceIdx < 0) return { firstSentenceIdx: -1, lastSentenceIdx: -1 };
+  // Walk forward while the chunk still covers each sentence
+  let covered = sentences[firstSentenceIdx];
+  let lastSentenceIdx = firstSentenceIdx;
+  while (lastSentenceIdx + 1 < sentences.length) {
+    const next = sentences[lastSentenceIdx + 1];
+    const combined = covered + ' ' + next;
+    if (!trimmedChunk.startsWith(combined.trimStart())) break;
+    covered = combined;
+    lastSentenceIdx += 1;
+  }
+  return { firstSentenceIdx, lastSentenceIdx };
+}
+
 // Small helper for components that just want the current sentence index
-export function useActiveSentence(text: string): number {
-  const { progress } = useNarration();
+export function useActiveSentence(text: string, timings?: AudioTiming[] | null): number {
+  const { progress, currentTimeSec } = useNarration();
   const sentences = useMemo(() => splitSentences(text), [text]);
-  return useMemo(() => currentSentenceIndex(progress, sentences.length), [progress, sentences.length]);
+  return useMemo(
+    () => sentenceIndexFromTimings(currentTimeSec, progress, sentences, timings),
+    [currentTimeSec, progress, sentences, timings],
+  );
 }
 
 export function useNarrationSetter() {
@@ -91,10 +190,12 @@ export function useNarrationSetter() {
   const ref = useRef(v);
   ref.current = v;
   return useCallback(
-    (patch: Partial<Pick<NarrationContextValue, 'progress' | 'isPlaying' | 'sceneKey'>>) => {
+    (patch: Partial<Pick<NarrationContextValue,
+      'progress' | 'currentTimeSec' | 'isPlaying' | 'sceneKey'>>) => {
       const cur = ref.current;
       if (!cur) return;
       if (patch.progress !== undefined) cur.setProgress(patch.progress);
+      if (patch.currentTimeSec !== undefined) cur.setCurrentTimeSec(patch.currentTimeSec);
       if (patch.isPlaying !== undefined) cur.setIsPlaying(patch.isPlaying);
       if (patch.sceneKey !== undefined) cur.setSceneKey(patch.sceneKey);
     },
