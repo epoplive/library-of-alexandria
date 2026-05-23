@@ -7,6 +7,7 @@ import { KVCacheArchitect } from './games/KVCacheArchitect';
 import { ComputeAllocator } from './games/ComputeAllocator';
 import { GradientSurgeon } from './games/GradientSurgeon';
 import { CLOSING_TIMELINE } from './timelines/closing';
+import { WHEN_IT_WINS_TIMELINE } from './timelines/when-it-wins';
 import charactersJson from './characters.json';
 
 const VOICE_MAP: Record<string, string> = Object.fromEntries(
@@ -1020,6 +1021,34 @@ function KVSlider({
    ============================================================ */
 
 function WhenItWinsScene() {
+  const [mode, setMode] = useState<'matrix' | 'tour'>('matrix');
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex gap-1.5">
+        <ListToggleButton
+          label="Matrix"
+          sub="all at once"
+          active={mode === 'matrix'}
+          onClick={() => setMode('matrix')}
+        />
+        <ListToggleButton
+          label="Walk-through"
+          sub="narrated tour"
+          active={mode === 'tour'}
+          onClick={() => setMode('tour')}
+        />
+      </div>
+      {mode === 'matrix' ? (
+        <WhenItWinsStatic />
+      ) : (
+        <TimelineScene scene={WHEN_IT_WINS_TIMELINE} voiceMap={VOICE_MAP} autoPlay />
+      )}
+    </div>
+  );
+}
+
+function WhenItWinsStatic() {
   const wins = [
     { icon: '∑', label: 'Iterative arithmetic', detail: 'Long mult, modular math' },
     { icon: '↬', label: 'Multi-hop reasoning', detail: 'Chains of A → B → C' },

@@ -1,4 +1,5 @@
 export { LessonShell } from './LessonShell';
+export { FundingStrip, type LessonFunding } from './FundingStrip';
 export { Section } from './Section';
 export { Callout } from './Callout';
 export { Quiz } from './Quiz';
