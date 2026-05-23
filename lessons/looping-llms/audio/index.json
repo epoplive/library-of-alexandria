@@ -1,6 +1,6 @@
 {
   "lesson": "looping-llms",
-  "updated_at": "2026-05-23T17:59:06.805Z",
+  "updated_at": "2026-05-23T18:01:34.536Z",
   "voices": [
     "af_bella",
     "am_puck"
@@ -543,6 +543,96 @@
           "text": "Those five papers, in that order, take you from foundations to frontier. Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper.",
           "startMs": 0,
           "durationMs": 13025
+        }
+      ]
+    },
+    {
+      "hash": "60104a58dfee",
+      "text": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018. But you can be more surgical.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "60104a58dfee.mp3",
+      "source_file": "weight-sharing.ts",
+      "timings": [
+        {
+          "text": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018. But you can be more surgical.",
+          "startMs": 0,
+          "durationMs": 12400
+        }
+      ]
+    },
+    {
+      "hash": "ac33266f33c3",
+      "text": "Full sharing. Both the attention pattern and the MLP weights are shared across every K loop iteration. Most parameter-efficient. The default for the Universal Transformer architecture.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "ac33266f33c3.mp3",
+      "source_file": "weight-sharing.ts",
+      "timings": [
+        {
+          "text": "Full sharing. Both the attention pattern and the MLP weights are shared across every K loop iteration. Most parameter-efficient. The default for the Universal Transformer architecture.",
+          "startMs": 0,
+          "durationMs": 13125
+        }
+      ]
+    },
+    {
+      "hash": "47e1e8422bf2",
+      "text": "Attention-shared. Reuse the same attention pattern across loops, but each loop gets its own MLP. Reasoning-style refinement — the model attends the same way each pass but transforms differently.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "47e1e8422bf2.mp3",
+      "source_file": "weight-sharing.ts",
+      "timings": [
+        {
+          "text": "Attention-shared. Reuse the same attention pattern across loops, but each loop gets its own MLP. Reasoning-style refinement — the model attends the same way each pass but transforms differently.",
+          "startMs": 0,
+          "durationMs": 14250
+        }
+      ]
+    },
+    {
+      "hash": "a9f201cf1cfe",
+      "text": "MLP-shared. Each loop attends fresh — different attention pattern per iteration — but reuses the same MLP. Better for tasks where position-specific routing matters more than the per-step transform.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a9f201cf1cfe.mp3",
+      "source_file": "weight-sharing.ts",
+      "timings": [
+        {
+          "text": "MLP-shared. Each loop attends fresh — different attention pattern per iteration — but reuses the same MLP. Better for tasks where position-specific routing matters more than the per-step transform.",
+          "startMs": 0,
+          "durationMs": 14575
+        }
+      ]
+    },
+    {
+      "hash": "e9791488ad99",
+      "text": "Each choice trades parameter efficiency for representational flexibility. Modern variants in 2024 and 2025 are exploring all three sharing patterns. Full sharing is still the most common default, partly because it's the most parameter-efficient, partly because it composes cleanly with adaptive halting.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e9791488ad99.mp3",
+      "source_file": "weight-sharing.ts",
+      "timings": [
+        {
+          "text": "Each choice trades parameter efficiency for representational flexibility. Modern variants in 2024 and 2025 are exploring all three sharing patterns. Full sharing is still the most common default, partly because it's the most parameter-efficient, partly because it composes cleanly with adaptive halting.",
+          "startMs": 0,
+          "durationMs": 21300
+        }
+      ]
+    },
+    {
+      "hash": "5902f9001351",
+      "text": "The 2018 paper used full sharing and matched LSTM baselines on bAbI reasoning tasks. Universal Transformer's claim to fame was solving bAbI fully where vanilla transformers stalled — the first concrete hint that recurrence helps specifically on tasks with algorithmic structure. The paper was largely ignored at the time, overshadowed by BERT and GPT-1 launching the same year, and only rediscovered when latent reasoning got hot in 2024.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "5902f9001351.mp3",
+      "source_file": "weight-sharing.ts",
+      "timings": [
+        {
+          "text": "The 2018 paper used full sharing and matched LSTM baselines on bAbI reasoning tasks. Universal Transformer's claim to fame was solving bAbI fully where vanilla transformers stalled — the first concrete hint that recurrence helps specifically on tasks with algorithmic structure. The paper was largely ignored at the time, overshadowed by BERT and GPT-1 launching the same year, and only rediscovered when latent reasoning got hot in 2024.",
+          "startMs": 0,
+          "durationMs": 26825
         }
       ]
     },

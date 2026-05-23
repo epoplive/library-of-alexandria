@@ -8,6 +8,7 @@ import { ComputeAllocator } from './games/ComputeAllocator';
 import { GradientSurgeon } from './games/GradientSurgeon';
 import { CLOSING_TIMELINE } from './timelines/closing';
 import { WHEN_IT_WINS_TIMELINE } from './timelines/when-it-wins';
+import { WEIGHT_SHARING_TIMELINE } from './timelines/weight-sharing';
 import charactersJson from './characters.json';
 
 const VOICE_MAP: Record<string, string> = Object.fromEntries(
@@ -603,6 +604,34 @@ function TrainingComputeScene() {
    ============================================================ */
 
 function WeightTyingScene() {
+  const [mode, setMode] = useState<'matrix' | 'tour'>('matrix');
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex gap-1.5">
+        <ListToggleButton
+          label="Schemes"
+          sub="all at once"
+          active={mode === 'matrix'}
+          onClick={() => setMode('matrix')}
+        />
+        <ListToggleButton
+          label="Walk-through"
+          sub="narrated tour"
+          active={mode === 'tour'}
+          onClick={() => setMode('tour')}
+        />
+      </div>
+      {mode === 'matrix' ? (
+        <WeightTyingStatic />
+      ) : (
+        <TimelineScene scene={WEIGHT_SHARING_TIMELINE} voiceMap={VOICE_MAP} autoPlay />
+      )}
+    </div>
+  );
+}
+
+function WeightTyingStatic() {
   const schemes = [
     {
       name: 'Full sharing',
