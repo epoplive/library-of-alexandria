@@ -185,17 +185,19 @@ function LessonShellInner({
 
       {/* Bottom bar */}
       {!isCover && (
-        <footer className="flex-shrink-0 h-16 px-3 md:px-5 bg-paper-card border-t border-ink-subtle/10 flex items-center justify-between gap-4">
+        <footer className="flex-shrink-0 h-16 px-2 md:px-5 bg-paper-card border-t border-ink-subtle/10 flex items-center justify-between gap-2 md:gap-4">
           <button
             type="button"
             onClick={() => go(page - 1)}
-            className="font-mono text-xs uppercase tracking-[0.14em] text-ink-muted hover:text-ink px-3 py-2 rounded-lg hover:bg-paper-tint transition shrink-0"
+            aria-label="Back"
+            className="font-mono text-xs uppercase tracking-[0.14em] text-ink-muted hover:text-ink px-2 sm:px-3 py-2 rounded-lg hover:bg-paper-tint transition shrink-0"
           >
-            ← Back
+            <span className="hidden sm:inline">← Back</span>
+            <span className="sm:hidden text-base">←</span>
           </button>
 
           {narration ? (
-            <div className="flex-1 flex justify-center min-w-0">
+            <div className="flex-1 flex justify-center min-w-0 px-1">
               <NarrationPlayer text={narration} sceneKey={sceneKey} />
             </div>
           ) : (
@@ -208,16 +210,20 @@ function LessonShellInner({
             <button
               type="button"
               onClick={() => go(page + 1)}
-              className="px-5 py-2.5 rounded-xl bg-accent text-paper font-mono text-xs uppercase tracking-[0.14em] hover:bg-accent-hover transition shadow-card shrink-0"
+              aria-label="Next"
+              className="px-3 sm:px-5 py-2.5 rounded-xl bg-accent text-paper font-mono text-xs uppercase tracking-[0.14em] hover:bg-accent-hover transition shadow-card shrink-0"
             >
-              Next →
+              <span className="hidden sm:inline">Next →</span>
+              <span className="sm:hidden text-base">→</span>
             </button>
           ) : (
             <Link
               to="/"
-              className="px-5 py-2.5 rounded-xl bg-accent text-paper font-mono text-xs uppercase tracking-[0.14em] hover:bg-accent-hover transition shadow-card shrink-0"
+              aria-label="Finish"
+              className="px-3 sm:px-5 py-2.5 rounded-xl bg-accent text-paper font-mono text-xs uppercase tracking-[0.14em] hover:bg-accent-hover transition shadow-card shrink-0"
             >
-              Finish ✓
+              <span className="hidden sm:inline">Finish ✓</span>
+              <span className="sm:hidden">✓</span>
             </Link>
           )}
         </footer>

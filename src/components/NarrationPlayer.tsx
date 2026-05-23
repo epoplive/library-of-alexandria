@@ -114,7 +114,7 @@ export function NarrationPlayer({ text, sceneKey, voice }: NarrationPlayerProps)
   const disabled = state === 'unavailable';
 
   return (
-    <div className="flex items-center gap-3 bg-paper-card border border-ink-subtle/15 rounded-full pl-1.5 pr-4 py-1.5 shadow-card max-w-[420px] min-w-[200px]">
+    <div className="flex items-center gap-2 sm:gap-3 bg-paper-card border border-ink-subtle/15 rounded-full pl-1.5 pr-3 sm:pr-4 py-1.5 shadow-card w-full max-w-[420px] sm:min-w-[200px]">
       <button
         type="button"
         onClick={() => {
