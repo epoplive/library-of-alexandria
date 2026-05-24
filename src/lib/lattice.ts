@@ -33,6 +33,9 @@ export type SlotId = string;
 /** A Cast member id. */
 export type CastId = string;
 
+/** A Cast pose name. Resolved through CastMember.pose_slots. */
+export type PoseName = string;
+
 /** An Element id, unique within a Shot. */
 export type ElementId = string;
 
@@ -220,9 +223,8 @@ export interface CastMember {
     /** Per-service settings (ElevenLabs stability/similarity, etc). */
     settings?: Record<string, unknown>;
   };
-  /** Optional set of poses (neutral / excited / teaching / skeptical).
-   *  Each maps to a Slot that holds the pose's image / sprite-sheet / 3D model. */
-  pose_set?: Record<string, SlotRef>;
+  /** Pose name to Slot id. Character Elements resolve through this map. */
+  pose_slots?: Record<PoseName, SlotId>;
   /** Identity reference for image gen consistency (a Slot whose Takes
    *  are reference images used to keep the character visually stable). */
   identity_ref?: SlotRef;
@@ -305,16 +307,20 @@ export interface Model3DElement extends ElementBase {
   clip?: string;
 }
 
-/** Cast portrait + lip-sync — used when a Cast member speaks
- *  on-screen. The talent reference resolves to their pose Slot. */
-export interface ChromaKeyedTalentElement extends ElementBase {
-  kind: 'chroma-keyed-talent';
+export type CharacterPosePolicy =
+  | { mode: 'cue-driven'; current_pose: PoseName }
+  | { mode: 'dialogue-auto' };
+
+/** Cast member rendered on-screen through pose Slots. */
+export interface CharacterElement extends ElementBase {
+  kind: 'character';
   cast_id: CastId;
-  /** Which pose from the Cast member's pose_set. Cues can swap pose. */
-  pose?: string;
-  /** If true the system attempts lip-sync against the active dialogue
-   *  Track. v0.1 ignores; v0.9+ video Takes may carry phoneme data. */
-  lipsync?: boolean;
+  pose_policy: CharacterPosePolicy;
+}
+
+/** @deprecated Use CharacterElement. Retained for one migration phase. */
+export interface ChromaKeyedTalentElement extends Omit<CharacterElement, 'kind'> {
+  kind: 'chroma-keyed-talent';
 }
 
 /** Interactive — a React-Three-Fiber group authored as a custom
@@ -351,6 +357,7 @@ export type Element =
   | VideoPlaneElement
   | SpriteElement
   | Model3DElement
+  | CharacterElement
   | ChromaKeyedTalentElement
   | InteractiveGroupElement
   | ShapeElement;
@@ -461,10 +468,16 @@ export interface VOTrack {
 }
 
 /** On-screen dialogue track — same shape as VO but tied to a
- *  ChromaKeyedTalentElement that speaks it. */
-export interface DialogueTrack extends VOTrack {
-  /** The Element id of the Talent that's speaking (lip-sync target). */
-  talent_element_id?: ElementId;
+ *  Cast member rendered on-screen by a character Element. */
+export interface DialogueSegment {
+  id: string;
+  cast_id: CastId;
+  line: Line;
+  /** The Slot holding the rendered dialogue audio. */
+  audio: SlotRef;
+  /** Optional explicit duration override (seconds); else inferred
+   *  from the rendered Take's timings or the containing Shot duration. */
+  duration_override?: number;
 }
 
 /** Music bed. */
@@ -551,7 +564,7 @@ export interface Shot {
 
   /** Per-Shot Tracks. */
   vo?: VOTrack;
-  dialogue?: DialogueTrack[];
+  dialogue?: DialogueSegment[];
   music?: MusicTrack;
   sfx?: SFXTrack[];
   camera?: CameraTrack;

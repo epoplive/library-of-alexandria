@@ -27,6 +27,7 @@ import { useMemo } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import type {
   AssetManifest,
+  CastId,
   Cue,
   Production,
   Shot,
@@ -45,6 +46,7 @@ export interface StageProps {
   interactives?: ElementContext['interactives'];
   interactiveRefs?: ElementContext['interactiveRefs'];
   aspect?: '16:9' | '4:3' | '1:1' | '9:16';
+  activeSpeakerCastId?: CastId | null;
   mastery_level?: number;
   /** Background color for the Stage frame (inside the letterbox). */
   background?: string;
@@ -80,6 +82,7 @@ export function Stage({
   interactives,
   interactiveRefs,
   aspect = '16:9',
+  activeSpeakerCastId,
   mastery_level,
   background = '#0f172a',
   letterboxColor = '#000',
@@ -142,6 +145,8 @@ export function Stage({
   const ctx: ElementContext = {
     manifest,
     viewport: { width: aspectW, height: aspectH },
+    characters: production.characters,
+    activeSpeakerCastId: activeSpeakerCastId ?? null,
     interactives,
     interactiveRefs,
     mastery_level,

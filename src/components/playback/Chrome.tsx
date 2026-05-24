@@ -22,9 +22,10 @@ import {
 } from '@/lib/narration-context';
 
 export function Chrome({ state }: { state: PlaybackState }) {
-  const lineText = state.shot?.vo?.line.text ?? '';
+  const lineText = transcriptLineText(state);
   const sentences = useMemo(() => splitSentences(lineText), [lineText]);
   const timings = state.activeTake?.timings ?? null;
+  const speaker_label = speakerLabelForShot(state);
 
   // Sentence-level highlight. shotTime is in seconds; timings use ms.
   // sentenceIndexFromTimings expects (currentTimeSec, progress, sentences, timings).
@@ -60,6 +61,7 @@ export function Chrome({ state }: { state: PlaybackState }) {
         sentences={sentences}
         activeIdx={activeSentenceIdx}
         sceneTitle={sceneTitleForShot(state)}
+        speaker_label={speaker_label}
       />
       <Scrubber
         totalSec={totalSec}
@@ -87,9 +89,10 @@ interface TranscriptPanelProps {
   sentences: string[];
   activeIdx: number;
   sceneTitle?: string;
+  speaker_label: string | null;
 }
 
-function TranscriptPanel({ sentences, activeIdx, sceneTitle }: TranscriptPanelProps) {
+function TranscriptPanel({ sentences, activeIdx, sceneTitle, speaker_label }: TranscriptPanelProps) {
   if (sentences.length === 0) return null;
   const inFocus = activeIdx >= 0 ? activeIdx : 0;
   const prev = inFocus > 0 ? sentences[inFocus - 1] : null;
@@ -110,7 +113,12 @@ function TranscriptPanel({ sentences, activeIdx, sceneTitle }: TranscriptPanelPr
           {prev}
         </p>
         <p className="text-ink text-base md:text-lg leading-[1.6] font-medium">
-          {current}
+          {speaker_label === null ? current : (
+            <>
+              <span className="font-semibold">{speaker_label}: </span>
+              {current}
+            </>
+          )}
         </p>
         <p className="h-5 text-ink-subtle/55 text-sm leading-snug line-clamp-1 italic">
           {next}
@@ -118,6 +126,56 @@ function TranscriptPanel({ sentences, activeIdx, sceneTitle }: TranscriptPanelPr
       </div>
     </div>
   );
+}
+
+function transcriptLineText(state: PlaybackState): string {
+  if (state.activeSegment !== null) {
+    return state.activeSegment.line;
+  }
+  const shot = state.shot;
+  if (shot === null) {
+    return '';
+  }
+  const vo = shot.vo;
+  if (vo !== undefined) {
+    return vo.line.text;
+  }
+  const dialogue = shot.dialogue;
+  if (dialogue !== undefined && dialogue.length > 0) {
+    return dialogue[0].line.text;
+  }
+  return '';
+}
+
+function speakerLabelForShot(state: PlaybackState): string | null {
+  const activeSpeakerCastId = state.activeSpeakerCastId;
+  const shot = state.shot;
+  if (activeSpeakerCastId === null || shot === null) {
+    return null;
+  }
+  if (!shotHasMultipleSpeakers(shot)) {
+    return null;
+  }
+  const cast = state.characters.find((member) => member.id === activeSpeakerCastId);
+  if (cast === undefined) {
+    throw new Error(`chrome.speaker_label.cast_missing: ${activeSpeakerCastId}`);
+  }
+  return cast.name;
+}
+
+function shotHasMultipleSpeakers(shot: NonNullable<PlaybackState['shot']>): boolean {
+  const speakerIds = new Set<string>();
+  const vo = shot.vo;
+  if (vo !== undefined) {
+    speakerIds.add(vo.cast_id);
+  }
+  const dialogue = shot.dialogue;
+  if (dialogue !== undefined) {
+    for (const segment of dialogue) {
+      speakerIds.add(segment.cast_id);
+    }
+  }
+  return speakerIds.size > 1;
 }
 
 interface ScrubberProps {

@@ -19,7 +19,9 @@
 import type {
   AssetManifest,
   CastMember,
+  CharacterElement,
   Cue,
+  DialogueSegment,
   Element,
   ElementId,
   EaseCurve,
@@ -212,6 +214,151 @@ export function addElement(
   });
 }
 
+/* ---- addCharacter --------------------------------------- */
+
+/**
+ * Add a character Element to an existing Shot's composition.
+ *
+ * **Schema slice** — CharacterElement (tier-neutral Element kind)
+ * **Decomposition** — Character-composition agent receives the Shot
+ * beat, Cast roster, and stage layout, selects a Cast member, chooses
+ * cue-driven or dialogue-auto pose policy, and emits a character
+ * Element with an on-stage initial_layout.
+ * **Format gate** — element id unique within Shot; kind is character;
+ * cast_id resolves in Production.characters; pose_policy is
+ * cue-driven with a declared pose or dialogue-auto requiring idle and
+ * speaking Cast pose_slots.
+ * **Test corpus** — addCharacter(p,'s','a',{id:'duck-el',kind:'character',
+ * cast_id:'duck',pose_policy:{mode:'dialogue-auto'},initial_layout:layout(...)})
+ * appends that Element to Shot.elements[] without touching cues.
+ */
+export function addCharacter(
+  production: Production,
+  sceneId: SceneId,
+  shotId: ShotId,
+  characterElement: CharacterElement,
+): Production {
+  return addElement(production, sceneId, shotId, characterElement);
+}
+
+/* ---- characterEnter ------------------------------------- */
+
+/**
+ * Animate a character Element from off-stage to its declared layout.
+ *
+ * **Schema slice** — Shot.elements[] (character initial_layout) +
+ * Shot.cues[] (TransformCue)
+ * **Decomposition** — Blocking agent receives a character Element id,
+ * entrance side, beat time, duration, and optional ease. It snapshots
+ * the Element's declared initial_layout as the on-stage target,
+ * computes the off-stage start position, stores that as the Element's
+ * initial_layout, and appends one transform Cue back to the target.
+ * **Format gate** — character Element exists in the Shot; kind is
+ * character; initial_layout.position is declared; at >= 0;
+ * duration_ms is non-negative; ease is a valid EaseCurve.
+ * **Test corpus** — characterEnter(p,'s','a','duck-el',{from:'right',
+ * at:0,duration_ms:600,ease:'easeOut'}) leaves duck-el starting just
+ * off the right edge and adds a transform Cue to the original layout.
+ */
+export function characterEnter(
+  production: Production,
+  sceneId: SceneId,
+  shotId: ShotId,
+  characterElementId: ElementId,
+  opts: {
+    from: 'left' | 'right' | 'top' | 'bottom';
+    at: number;
+    duration_ms: number;
+    ease?: EaseCurve;
+  },
+): Production {
+  return mutateShot(production, sceneId, shotId, (shot) => {
+    const character = characterElementInShot(shot, characterElementId);
+    const targetLayout = declaredCharacterLayout(character);
+    const startLayout = offstageLayout(targetLayout, opts.from);
+    const ease = opts.ease === undefined ? 'easeOut' : opts.ease;
+    const elements: Element[] = shot.elements.map((element) =>
+      element.id === characterElementId ? { ...element, initial_layout: startLayout } : element,
+    );
+    return {
+      ...shot,
+      elements,
+      cues: [
+        ...(shot.cues ?? []),
+        {
+          kind: 'transform',
+          element_id: characterElementId,
+          at: opts.at,
+          layout: targetLayout,
+          transition: {
+            duration_ms: opts.duration_ms,
+            ease,
+          },
+        },
+      ],
+    };
+  });
+}
+
+/* ---- characterExit -------------------------------------- */
+
+/**
+ * Animate a character Element from its current layout off-stage.
+ *
+ * **Schema slice** — Shot.cues[] (TransformCue + VisibilityCue)
+ * **Decomposition** — Blocking agent receives a character Element id,
+ * exit side, beat time, duration, and optional ease. It computes the
+ * off-stage target from the Element's declared initial_layout, appends
+ * a transform Cue to that target, then appends a visibility Cue at the
+ * end of the move so downstream rendering omits the Element.
+ * **Format gate** — character Element exists in the Shot; kind is
+ * character; initial_layout.position is declared; to side is
+ * left|right|top|bottom; duration_ms is non-negative.
+ * **Test corpus** — characterExit(p,'s','a','duck-el',{to:'left',
+ * at:2,duration_ms:400}) appends one transform Cue and one visibility
+ * Cue with visible:false at 2.4 seconds.
+ */
+export function characterExit(
+  production: Production,
+  sceneId: SceneId,
+  shotId: ShotId,
+  characterElementId: ElementId,
+  opts: {
+    to: 'left' | 'right' | 'top' | 'bottom';
+    at: number;
+    duration_ms: number;
+    ease?: EaseCurve;
+  },
+): Production {
+  return mutateShot(production, sceneId, shotId, (shot) => {
+    const character = characterElementInShot(shot, characterElementId);
+    const targetLayout = offstageLayout(declaredCharacterLayout(character), opts.to);
+    const ease = opts.ease === undefined ? 'easeIn' : opts.ease;
+    return {
+      ...shot,
+      cues: [
+        ...(shot.cues ?? []),
+        {
+          kind: 'transform',
+          element_id: characterElementId,
+          at: opts.at,
+          layout: targetLayout,
+          transition: {
+            duration_ms: opts.duration_ms,
+            ease,
+          },
+        },
+        {
+          kind: 'visibility',
+          element_id: characterElementId,
+          at: opts.at + opts.duration_ms / 1000,
+          visible: false,
+        },
+      ],
+    };
+  });
+}
+
 /* ---- addCue ---------------------------------------------- */
 
 /**
@@ -305,6 +452,42 @@ export function setVO(
   vo: VOTrack,
 ): Production {
   return mutateShot(production, sceneId, shotId, (shot) => ({ ...shot, vo }));
+}
+
+/* ---- addDialogue ---------------------------------------- */
+
+/**
+ * Append one dialogue segment to a Shot.
+ *
+ * **Schema slice** — Shot.dialogue[] (DialogueSegment)
+ * **Decomposition** — Dialogue agent receives the beat-level script,
+ * Cast assignment, and audio Slot plan, emits one ordered segment with
+ * id, cast_id, line text, audio SlotRef, and optional duration
+ * override. VO remains separate and plays before dialogue when both
+ * are present.
+ * **Format gate** — segment id unique within Shot.dialogue; cast_id
+ * resolves in Production.characters; audio Slot id present; line text
+ * non-empty; duration_override, when present, is positive.
+ * **Test corpus** — addDialogue(p,'s','a',{id:'d1',cast_id:'duck',
+ * line:{text:'Quack'},audio:{slot_id:'duck.line.1'}}) appends one
+ * segment after any existing dialogue beats.
+ */
+export function addDialogue(
+  production: Production,
+  sceneId: SceneId,
+  shotId: ShotId,
+  segment: DialogueSegment,
+): Production {
+  return mutateShot(production, sceneId, shotId, (shot) => {
+    const dialogue = shot.dialogue;
+    if (dialogue !== undefined && dialogue.find((existing) => existing.id === segment.id)) {
+      throw new Error(`dialogue id "${segment.id}" exists in shot "${shotId}"`);
+    }
+    return {
+      ...shot,
+      dialogue: [...(dialogue ?? []), segment],
+    };
+  });
 }
 
 /* ---- Asset Manifest ops --------------------------------- */
@@ -439,6 +622,50 @@ function mutateShot(
       : { ...s, shots: s.shots.map((sh) => (sh.id !== shotId ? sh : fn(sh))) },
   );
   return { ...production, scenes };
+}
+
+function characterElementInShot(shot: Shot, characterElementId: ElementId): CharacterElement {
+  const element = shot.elements.find((candidate) => candidate.id === characterElementId);
+  if (element === undefined) {
+    throw new Error(`element id "${characterElementId}" not in shot "${shot.id}"`);
+  }
+  if (element.kind !== 'character') {
+    throw new Error(`element id "${characterElementId}" is not a character Element`);
+  }
+  return element;
+}
+
+function declaredCharacterLayout(character: CharacterElement): Layout {
+  const initialLayout = character.initial_layout;
+  if (initialLayout === undefined) {
+    throw new Error(`character "${character.id}" needs initial_layout for blocking commands`);
+  }
+  if (initialLayout.position === undefined) {
+    throw new Error(`character "${character.id}" needs initial_layout.position for blocking commands`);
+  }
+  return initialLayout;
+}
+
+function offstageLayout(
+  base: Layout,
+  side: 'left' | 'right' | 'top' | 'bottom',
+): Layout {
+  const position = base.position;
+  if (position === undefined) {
+    throw new Error('offstageLayout requires base.position');
+  }
+  switch (side) {
+    case 'left':
+      return { ...base, position: [-0.2, position[1], position[2]] };
+    case 'right':
+      return { ...base, position: [1.2, position[1], position[2]] };
+    case 'top':
+      return { ...base, position: [position[0], -0.2, position[2]] };
+    case 'bottom':
+      return { ...base, position: [position[0], 1.2, position[2]] };
+  }
+  const exhaustive: never = side;
+  return exhaustive;
 }
 
 /* ---- Re-exports for convenience ------------------------- */

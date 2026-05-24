@@ -14,10 +14,15 @@
 
 import { Suspense, useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { Html, useTexture } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import type {
   Element as LatticeElement,
   AssetManifest,
+  CastId,
+  CastMember,
+  CharacterElement,
+  ChromaKeyedTalentElement,
   InteractiveGroupElement,
   TextOverlayElement,
   MathElement,
@@ -25,6 +30,7 @@ import type {
   VideoPlaneElement,
   ShapeElement,
 } from '@/lib/lattice';
+import { resolveCharacterPose } from '@/lib/character-pose-resolver';
 import type { ResolvedElementState } from './cues';
 import { resolveSlot } from './asset-resolve';
 
@@ -36,6 +42,10 @@ export interface ElementContext {
    *  0..1 layout coords into world-space positions). The Stage
    *  parents an Orthographic camera framed to these bounds. */
   viewport: { width: number; height: number };
+  /** Cast roster used by character Elements to resolve pose Slots. */
+  characters: CastMember[];
+  /** Cast member currently speaking, driven by Playback dialogue state. */
+  activeSpeakerCastId: CastId | null;
   /** Registry of custom interactive components (component_id → React component). */
   interactives?: Record<string, React.ComponentType<{ ref?: React.Ref<unknown>; props?: Record<string, unknown> }>>;
   /** Optional ref bag for interactive Elements — Stage caller can pass
@@ -50,6 +60,10 @@ interface RenderProps<E extends LatticeElement> {
   state: ResolvedElementState;
   ctx: ElementContext;
 }
+
+type CharacterPoseElement = CharacterElement | ChromaKeyedTalentElement;
+
+let warnedChromaKeyedTalentAlias = false;
 
 /* ---- Coord translator -------------------------------------- */
 
@@ -290,6 +304,93 @@ function VideoPlaneRenderer({ element, state, ctx }: RenderProps<VideoPlaneEleme
   );
 }
 
+/* ---- character ------------------------------------------ */
+
+function CharacterRenderer({ element, state, ctx }: RenderProps<CharacterPoseElement>) {
+  const cast = castMemberFor(element, ctx.characters);
+  const pose = resolveCharacterPose(element, {
+    activeSpeakerCastId: ctx.activeSpeakerCastId,
+    cast,
+  });
+  const resolved = resolveSlot(
+    { slot_id: pose.slot_id },
+    ctx.manifest,
+    { mastery_level: ctx.mastery_level },
+  );
+  if (resolved.url === null) {
+    throw new Error(`character.pose_slot.unresolved: ${element.cast_id}.${pose.pose_name} -> ${pose.slot_id}`);
+  }
+
+  const w = layoutToWorld(state, ctx.viewport);
+  const [width, height] = elementSize(state, ctx.viewport);
+  return (
+    <Suspense fallback={null}>
+      <CharacterTextured
+        url={resolved.url}
+        poseName={pose.pose_name}
+        position={w.position}
+        rotation={w.rotation}
+        scale={w.scale}
+        width={width}
+        height={height}
+        opacity={state.layout.opacity}
+        visible={state.visible}
+        bobAmplitude={ctx.viewport.height * 0.005}
+      />
+    </Suspense>
+  );
+}
+
+function CharacterTextured(props: {
+  url: string;
+  poseName: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+  scale: [number, number, number];
+  width: number;
+  height: number;
+  opacity: number;
+  visible: boolean;
+  bobAmplitude: number;
+}) {
+  const groupRef = useRef<THREE.Group | null>(null);
+  const tex = useTexture(props.url);
+
+  useFrame(({ clock }) => {
+    const group = groupRef.current;
+    if (group === null) {
+      return;
+    }
+    const idleOffset = props.poseName === 'idle'
+      ? Math.sin(clock.elapsedTime * Math.PI) * props.bobAmplitude
+      : 0;
+    group.position.set(props.position[0], props.position[1] + idleOffset, props.position[2]);
+  });
+
+  return (
+    <group
+      ref={groupRef}
+      position={props.position}
+      rotation={props.rotation}
+      scale={props.scale}
+      visible={props.visible}
+    >
+      <mesh>
+        <planeGeometry args={[props.width, props.height]} />
+        <meshBasicMaterial map={tex} transparent opacity={props.opacity} />
+      </mesh>
+    </group>
+  );
+}
+
+function castMemberFor(element: CharacterPoseElement, characters: CastMember[]): CastMember {
+  const cast = characters.find((member) => member.id === element.cast_id);
+  if (cast === undefined) {
+    throw new Error(`character.cast.missing: ${element.cast_id}`);
+  }
+  return cast;
+}
+
 /* ---- interactive-group ---------------------------------- */
 
 function InteractiveGroupRenderer({ element, state, ctx }: RenderProps<InteractiveGroupElement>) {
@@ -344,11 +445,15 @@ export function renderElement(
       return <ImagePlaneRenderer key={element.id} element={element} state={state} ctx={ctx} />;
     case 'video-plane':
       return <VideoPlaneRenderer key={element.id} element={element} state={state} ctx={ctx} />;
+    case 'character':
+      return <CharacterRenderer key={element.id} element={element} state={state} ctx={ctx} />;
+    case 'chroma-keyed-talent':
+      warnChromaKeyedTalentAlias();
+      return <CharacterRenderer key={element.id} element={element} state={state} ctx={ctx} />;
     case 'interactive-group':
       return <InteractiveGroupRenderer key={element.id} element={element} state={state} ctx={ctx} />;
     case 'sprite':
     case 'model-3d':
-    case 'chroma-keyed-talent':
       // v0.1 placeholder — render a labeled rectangle so author-mode is informative.
       return (
         <group key={element.id} position={layoutToWorld(state, ctx.viewport).position}>
@@ -360,6 +465,15 @@ export function renderElement(
         </group>
       );
     default:
-      return null;
+      const exhaustive: never = element;
+      return exhaustive;
   }
+}
+
+function warnChromaKeyedTalentAlias(): void {
+  if (warnedChromaKeyedTalentAlias) {
+    return;
+  }
+  warnedChromaKeyedTalentAlias = true;
+  console.warn('chroma-keyed-talent is deprecated; use character Element kind.');
 }
