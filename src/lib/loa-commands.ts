@@ -22,6 +22,7 @@ import type {
   Cue,
   Element,
   ElementId,
+  EaseCurve,
   FundingBlock,
   Layout,
   Production,
@@ -34,8 +35,10 @@ import type {
   SlotId,
   Take,
   Tier,
+  TransitionEdge,
   VOTrack,
 } from './lattice';
+import { normalizeProduction } from './lattice-normalize';
 
 /* ---- newProduction ---------------------------------------- */
 
@@ -70,6 +73,7 @@ export function newProduction(args: {
     tier: args.tier ?? 'v0.1',
     characters: [],
     scenes: [],
+    transitions: [],
     rabbit_holes: [],
     funding: {
       production_cost_usd: 0,
@@ -153,6 +157,33 @@ export function addShot(
   return { ...production, scenes };
 }
 
+/* ---- addTransition -------------------------------------- */
+
+/**
+ * Add a transition edge between adjacent Shots.
+ *
+ * **Schema slice** — Production.transitions[] (TransitionEdge)
+ * **Decomposition** — Transition-planning agent reads the canonical
+ * Scene/Shot order, selects one adjacent pair, chooses the cinematic
+ * transition kind, duration_ms, optional ease/direction/shader fields,
+ * then emits one edge from the outgoing Shot address to the incoming
+ * Shot address.
+ * **Format gate** — from/to must be adjacent in canonical timeline
+ * order; kind is cut|fade|cross-dissolve|slide|push|wipe|iris|shader;
+ * duration is milliseconds and non-negative; cut requires duration:0;
+ * slide/push should include direction; shader transitions include shader.
+ * **Test corpus** — add {from:{scene_id:'s',shot_id:'a'},
+ * to:{scene_id:'s',shot_id:'b'},kind:'cross-dissolve',duration:600}
+ * to a two-shot Production; normalizeProduction returns the same edge
+ * in Production.transitions[] and no deprecated Shot transition fields.
+ */
+export function addTransition(production: Production, edge: TransitionEdge): Production {
+  return normalizeProduction({
+    ...production,
+    transitions: [...production.transitions, edge],
+  });
+}
+
 /* ---- addElement ------------------------------------------ */
 
 /**
@@ -206,6 +237,52 @@ export function addCue(
     ...shot,
     cues: [...(shot.cues ?? []), cue],
   }));
+}
+
+/* ---- addKeyframeCue ------------------------------------- */
+
+/**
+ * Append a transform keyframe Cue to a Shot.
+ *
+ * **Schema slice** — Shot.cues[] (TransformCue.transition)
+ * **Decomposition** — Keyframe agent receives an Element id, target
+ * Layout fields, beat time, duration_ms, and ease curve; it constructs
+ * one transform Cue with transition populated, then delegates to addCue.
+ * **Format gate** — at >= 0; at <= shot.duration when set; element_id
+ * resolves in the Shot; layout contains absolute target values only;
+ * duration_ms is non-negative; ease is linear|easeIn|easeOut|easeInOut|spring;
+ * composition may only be additive when all same-field overlaps are additive.
+ * **Test corpus** — addKeyframeCue(p,'s','a',{element_id:'card',
+ * at:0,layout:{scale:1.2,opacity:1},duration_ms:600,ease:'easeOut'})
+ * appends {kind:'transform',element_id:'card',transition:{duration_ms:600,
+ * ease:'easeOut'}} to Shot.cues[].
+ */
+export function addKeyframeCue(
+  production: Production,
+  sceneId: SceneId,
+  shotId: ShotId,
+  cue: {
+    id?: string;
+    element_id: ElementId;
+    at: number;
+    layout: Layout;
+    duration_ms: number;
+    ease: EaseCurve;
+    composition?: 'additive';
+  },
+): Production {
+  return addCue(production, sceneId, shotId, {
+    kind: 'transform',
+    id: cue.id,
+    element_id: cue.element_id,
+    at: cue.at,
+    layout: cue.layout,
+    transition: {
+      duration_ms: cue.duration_ms,
+      ease: cue.ease,
+    },
+    composition: cue.composition,
+  });
 }
 
 /* ---- setVO ----------------------------------------------- */
@@ -366,4 +443,4 @@ function mutateShot(
 
 /* ---- Re-exports for convenience ------------------------- */
 
-export type { ElementId, ShotId, SceneId, SlotId, Tier };
+export type { EaseCurve, ElementId, ShotId, SceneId, SlotId, Tier, TransitionEdge };

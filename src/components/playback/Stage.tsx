@@ -30,9 +30,12 @@ import type {
   Cue,
   Production,
   Shot,
+  TransitionEdge,
 } from '@/lib/lattice';
-import { resolveShotState } from './cues';
+import { normalizeProduction } from '@/lib/lattice-normalize';
+import { resolveShotState, type ResolvedElementState, type ResolvedShotState } from './cues';
 import { renderElement, type ElementContext } from './elements';
+import { resolveTransitionEnvelope } from './transition-envelope';
 
 export interface StageProps {
   production: Production;
@@ -60,6 +63,15 @@ const ASPECTS: Record<NonNullable<StageProps['aspect']>, [number, number]> = {
   '9:16': [9, 16],
 };
 
+type LayerOffset = readonly [number, number];
+
+interface TransitionLayerVisuals {
+  prev: { opacity: number; offset: LayerOffset };
+  next: { opacity: number; offset: LayerOffset };
+}
+
+const warnedTransitionFallbacks = new Set<TransitionEdge['kind']>();
+
 export function Stage({
   production,
   manifest,
@@ -76,24 +88,50 @@ export function Stage({
 }: StageProps) {
   const [aspectW, aspectH] = ASPECTS[aspect];
 
-  const allShots: Shot[] = useMemo(
-    () => production.scenes.flatMap((s) => s.shots),
+  const normalizedProduction = useMemo(
+    () => normalizeProduction(production),
     [production],
   );
-  const shot = allShots[shotIndex];
 
-  const resolved = useMemo(
+  const envelopeState = useMemo(
+    () => resolveTransitionEnvelope(normalizedProduction, shotIndex, shotTime),
+    [normalizedProduction, shotIndex, shotTime],
+  );
+  const shot = envelopeState === null ? null : envelopeState.activeShot;
+
+  const activeResolved = useMemo(
     () => (shot ? resolveShotState(shot.elements, shot.cues, shotTime) : null),
     [shot, shotTime],
   );
 
+  const transitionResolved = useMemo(() => {
+    if (envelopeState === null || envelopeState.envelope === undefined) {
+      return null;
+    }
+    const envelope = envelopeState.envelope;
+    return {
+      envelope,
+      prevResolved: resolveShotState(
+        envelope.prevShot.elements,
+        envelope.prevShot.cues,
+        envelope.prevShotTime,
+      ),
+      nextResolved: resolveShotState(
+        envelope.nextShot.elements,
+        envelope.nextShot.cues,
+        envelope.nextShotTime,
+      ),
+      visuals: transitionVisuals(envelope.edge, envelope.progress, aspectW, aspectH),
+    };
+  }, [envelopeState, aspectW, aspectH]);
+
   // Stable signal of which action cues have fired by now
   useMemo(() => {
-    if (resolved && onActions) onActions(resolved.pendingActions);
+    if (activeResolved && onActions) onActions(activeResolved.pendingActions);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resolved?.pendingActions.length]);
+  }, [activeResolved?.pendingActions.length, shotIndex]);
 
-  if (!shot || !resolved) {
+  if (!shot || !activeResolved) {
     return (
       <div className={`w-full h-full flex items-center justify-center ${className}`} style={{ background: letterboxColor }}>
         <p className="font-mono text-xs text-ink-subtle">No Shot at index {shotIndex}</p>
@@ -108,8 +146,6 @@ export function Stage({
     interactiveRefs,
     mastery_level,
   };
-
-  const allElements = [...shot.elements, ...resolved.spawned];
 
   return (
     <div
@@ -134,18 +170,174 @@ export function Stage({
         >
           <ambientLight intensity={1} />
           <CameraFrame width={aspectW} height={aspectH} />
-          {allElements
-            .filter((el) => resolved.elements[el.id]?.visible)
-            .sort(
-              (a, b) =>
-                (resolved.elements[a.id]?.layout.z_order ?? 0) -
-                (resolved.elements[b.id]?.layout.z_order ?? 0),
-            )
-            .map((el) => renderElement(el, resolved.elements[el.id], ctx))}
+          {transitionResolved === null
+            ? renderShotLayer({
+                shot,
+                resolved: activeResolved,
+                ctx,
+                opacity: 1,
+                offset: [0, 0],
+                layerKey: 'active',
+              })
+            : (
+              <>
+                {renderShotLayer({
+                  shot: transitionResolved.envelope.prevShot,
+                  resolved: transitionResolved.prevResolved,
+                  ctx,
+                  opacity: transitionResolved.visuals.prev.opacity,
+                  offset: transitionResolved.visuals.prev.offset,
+                  layerKey: 'transition-prev',
+                })}
+                {renderShotLayer({
+                  shot: transitionResolved.envelope.nextShot,
+                  resolved: transitionResolved.nextResolved,
+                  ctx,
+                  opacity: transitionResolved.visuals.next.opacity,
+                  offset: transitionResolved.visuals.next.offset,
+                  layerKey: 'transition-next',
+                })}
+              </>
+            )}
         </Canvas>
       </div>
     </div>
   );
+}
+
+function renderShotLayer(args: {
+  shot: Shot;
+  resolved: ResolvedShotState;
+  ctx: ElementContext;
+  opacity: number;
+  offset: LayerOffset;
+  layerKey: string;
+}) {
+  const allElements = [...args.shot.elements, ...args.resolved.spawned];
+  const rendered = allElements
+    .map((element, originalIndex) => ({
+      element,
+      originalIndex,
+      state: args.resolved.elements[element.id],
+    }))
+    .filter((entry): entry is { element: Shot['elements'][number]; originalIndex: number; state: ResolvedElementState } =>
+      entry.state !== undefined && entry.state.visible,
+    )
+    .sort((a, b) => {
+      const za = a.state.layout.z_order;
+      const zb = b.state.layout.z_order;
+      if (za !== zb) {
+        return za - zb;
+      }
+      return a.originalIndex - b.originalIndex;
+    })
+    .map((entry) => renderElement(
+      entry.element,
+      stateWithOpacity(entry.state, args.opacity),
+      args.ctx,
+    ));
+
+  return (
+    <group key={args.layerKey} position={[args.offset[0], args.offset[1], 0]}>
+      {rendered}
+    </group>
+  );
+}
+
+function stateWithOpacity(state: ResolvedElementState, opacity: number): ResolvedElementState {
+  if (opacity === 1) {
+    return state;
+  }
+  return {
+    ...state,
+    layout: {
+      ...state.layout,
+      opacity: state.layout.opacity * opacity,
+    },
+  };
+}
+
+function transitionVisuals(
+  edge: TransitionEdge,
+  progress: number,
+  width: number,
+  height: number,
+): TransitionLayerVisuals {
+  switch (edge.kind) {
+    case 'cut':
+      return {
+        prev: { opacity: 0, offset: [0, 0] },
+        next: { opacity: 1, offset: [0, 0] },
+      };
+    case 'fade':
+    case 'cross-dissolve':
+      return fadeVisuals(progress);
+    case 'slide': {
+      const movement = movementVector(edge.direction, width, height);
+      return {
+        prev: { opacity: 1, offset: [0, 0] },
+        next: {
+          opacity: 1,
+          offset: [-movement[0] * (1 - progress), -movement[1] * (1 - progress)],
+        },
+      };
+    }
+    case 'push': {
+      const movement = movementVector(edge.direction, width, height);
+      return {
+        prev: {
+          opacity: 1,
+          offset: [movement[0] * progress, movement[1] * progress],
+        },
+        next: {
+          opacity: 1,
+          offset: [-movement[0] * (1 - progress), -movement[1] * (1 - progress)],
+        },
+      };
+    }
+    case 'wipe':
+    case 'iris':
+    case 'shader':
+      warnTransitionFallback(edge.kind);
+      return fadeVisuals(progress);
+  }
+  const exhaustive: never = edge.kind;
+  return exhaustive;
+}
+
+function fadeVisuals(progress: number): TransitionLayerVisuals {
+  return {
+    prev: { opacity: 1 - progress, offset: [0, 0] },
+    next: { opacity: progress, offset: [0, 0] },
+  };
+}
+
+function movementVector(
+  direction: TransitionEdge['direction'],
+  width: number,
+  height: number,
+): LayerOffset {
+  const resolvedDirection = direction === undefined ? 'left' : direction;
+  switch (resolvedDirection) {
+    case 'left':
+      return [-width, 0];
+    case 'right':
+      return [width, 0];
+    case 'up':
+      return [0, height];
+    case 'down':
+      return [0, -height];
+  }
+  const exhaustive: never = resolvedDirection;
+  return exhaustive;
+}
+
+function warnTransitionFallback(kind: TransitionEdge['kind']): void {
+  if (warnedTransitionFallbacks.has(kind)) {
+    return;
+  }
+  warnedTransitionFallbacks.add(kind);
+  console.warn(`${kind} transitions are not implemented in Stage yet; falling back to fade.`);
 }
 
 /** Configure the orthographic camera's zoom so the (width × height)

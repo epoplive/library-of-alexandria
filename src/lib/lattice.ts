@@ -58,15 +58,13 @@ export type Scale = number | readonly [number, number, number];
 /** Color as hex string (#rrggbb / #rrggbbaa) or named token. */
 export type Color = string;
 
-/** Easing curve name; resolved against a small lookup in the Stage. */
+/** Easing curve name; resolved against the canonical easing helpers. */
 export type EaseCurve =
   | 'linear'
-  | 'ease'
-  | 'ease-in'
-  | 'ease-out'
-  | 'ease-in-out'
-  | 'spring'
-  | 'snap';
+  | 'easeIn'
+  | 'easeOut'
+  | 'easeInOut'
+  | 'spring';
 
 /* ---- Layout — where an Element sits in the Stage ------------ */
 
@@ -98,12 +96,10 @@ export const DEFAULT_LAYOUT: Required<Pick<Layout, 'position' | 'rotation' | 'sc
 
 /** Layout transition for animated Cues. */
 export interface LayoutTransition {
-  /** Seconds. Default 0.5. */
-  duration?: number;
-  /** Default 'ease-in-out'. 'snap' = no animation. */
+  /** Milliseconds. Omit for an instantaneous Cue. */
+  duration_ms?: number;
+  /** Default is author-provided; runtime requires a concrete curve for interpolation. */
   ease?: EaseCurve;
-  /** Optional delay before transition starts (seconds). */
-  delay?: number;
 }
 
 /** Optional clipping mask applied to an Element. */
@@ -378,6 +374,8 @@ interface CueBase {
   at?: number;
   /** Optional id; useful for debugging + author tooling. */
   id?: string;
+  /** Additive composition is accepted by validation; runtime support lands when first needed. */
+  composition?: 'additive';
 }
 
 /** Animate an Element's Layout (position / rotation / scale / opacity). */
@@ -525,6 +523,21 @@ export interface Transition {
   angle?: number;
 }
 
+export type ShotAddress = { scene_id: SceneId; shot_id: ShotId };
+
+export interface TransitionEdge {
+  id: string;
+  from: ShotAddress;
+  to: ShotAddress;
+  kind: 'cut' | 'fade' | 'cross-dissolve' | 'slide' | 'push' | 'wipe' | 'iris' | 'shader';
+  /** Milliseconds; `cut` is always duration: 0. */
+  duration: number;
+  ease?: EaseCurve;
+  direction?: 'left' | 'right' | 'up' | 'down';
+  shader?: string;
+  angle?: number;
+}
+
 /* ---- Shot — atomic unit of pacing --------------------------- */
 
 export interface Shot {
@@ -543,7 +556,9 @@ export interface Shot {
   sfx?: SFXTrack[];
   camera?: CameraTrack;
   lighting?: LightingTrack;
+  /** @deprecated Use Production.transitions[] edges instead. */
   transition_in?: Transition;
+  /** @deprecated Use Production.transitions[] edges instead. */
   transition_out?: Transition;
 
   /** Cues fired during this Shot. */
@@ -622,6 +637,9 @@ export interface Production {
   characters: CastMember[];
   scenes: Scene[];
 
+  /** Explicit transition edges between adjacent Shots in canonical timeline order. */
+  transitions: TransitionEdge[];
+
   /** Inter-Production graph edges (rabbit holes to other Productions). */
   rabbit_holes?: Array<{ slug: string; reason: string }>;
 
@@ -692,3 +710,5 @@ const TIER_RANK: Record<string, number> = {
   'v0.9': 4,
   'v1.0': 5,
 };
+
+export { normalizeProduction } from './lattice-normalize';
