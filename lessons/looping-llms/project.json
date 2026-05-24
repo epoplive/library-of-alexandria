@@ -1,0 +1,57 @@
+{
+  "artifacts": {},
+  "audio_index_ref": "audio/index.json",
+  "cast_ref": "characters.json",
+  "funding": {
+    "donation_links": {
+      "github_sponsors": "https://github.com/sponsors/epoplive?lesson=looping-llms"
+    },
+    "donations_received_usd": 0,
+    "ledger": [],
+    "planned_improvements": [
+      {
+        "cost_usd": 12,
+        "tier": "v0.6",
+        "what": "ElevenLabs Pro voices for narrator + Banach Goose"
+      },
+      {
+        "cost_usd": 45,
+        "tier": "v0.9",
+        "what": "Image-to-video clips for Banach Cafe establishing shot + goose-flap loop"
+      },
+      {
+        "cost_usd": 120,
+        "tier": "v1.0",
+        "what": "Full video tier — composited animation with integrated audio"
+      }
+    ],
+    "production_cost_usd": 0
+  },
+  "generated_production_ref": "productions/looping-llms.generated.ts",
+  "identity": {
+    "created_at": "2026-05-21T02:00:00.000Z",
+    "summary": "Same transformer block, applied K times with shared weights — depth without parameter growth, and reasoning that happens inside the forward pass.",
+    "tags": [
+      "ai",
+      "architecture",
+      "research"
+    ],
+    "tier": "v0.1",
+    "title": "Looped Language Models"
+  },
+  "meta_ref": "meta.json",
+  "provenance": {
+    "authors": [],
+    "created_at": "2026-05-21T02:00:00.000Z",
+    "license": "CC-BY-4.0"
+  },
+  "schema_version": "loa.project.v1",
+  "slug": "looping-llms",
+  "source": {
+    "audio_index_ref": "audio/index.json",
+    "cast_ref": "characters.json",
+    "kind": "existing-lesson",
+    "lesson_ref": "index.tsx",
+    "meta_ref": "meta.json"
+  }
+}

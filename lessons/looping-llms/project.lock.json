@@ -1,0 +1,51 @@
+{
+  "locked": {
+    "value": false
+  },
+  "schema_version": "loa.project-lock.v1",
+  "slug": "looping-llms",
+  "steps": {
+    "compose": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    },
+    "curriculum": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    },
+    "hydrate": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    },
+    "ingest": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    },
+    "scene-map": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    },
+    "storyboard": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    },
+    "validate": {
+      "diagnostics": [],
+      "input_hashes": [],
+      "output_hashes": [],
+      "status": "pending"
+    }
+  }
+}
