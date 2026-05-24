@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest';
+import type { Diagnostic } from './lesson-workflow/diagnostic-schema';
 import type { Production } from './lattice';
-import type { ContentMap } from './lesson-workflow/project-schema';
+import {
+  ContentMapSchema,
+  defaultMapKeyframeId,
+  type ContentMap,
+  type MapKeyframe,
+  type ShotMap,
+} from './lesson-workflow/project-schema';
 import {
   buildTimelineIndex,
   TimelineIndexError,
-  type TimelineMapKeyframe,
 } from './timeline-index';
 
 describe('buildTimelineIndex', () => {
@@ -61,6 +67,18 @@ describe('buildTimelineIndex', () => {
     });
   });
 
+  it('returns empty mapped spans for a ContentMap with empty acts', () => {
+    const idx = buildTimelineIndex(baseProduction([]), [], baseContentMap([]));
+
+    expect(idx).toEqual({
+      total_duration_s: 0,
+      acts: [],
+      scenes: [],
+      shots: [],
+      keyframes: [],
+    });
+  });
+
   it('walks ContentMap acts, scenes, shots, and keyframes against canonical durations', () => {
     const production = baseProduction([
       {
@@ -77,59 +95,34 @@ describe('buildTimelineIndex', () => {
         shots: [{ id: 'shot-three', elements: [] }],
       },
     ]);
-    const mapKeyframes: TimelineMapKeyframe[] = [
+    const mapKeyframes: MapKeyframe[] = [
       {
+        id: 'primary-marker',
+        shot_id: 'shot-two',
         at: 0.5,
-        beat: 'Primary beat',
         label: 'Primary marker',
         importance: 'primary',
-        slot_refs: [],
-        cue_refs: [],
       },
       {
+        id: 'secondary-marker',
+        shot_id: 'shot-two',
         at: 1.25,
-        beat: 'Secondary beat',
         label: 'Secondary marker',
         importance: 'secondary',
-        slot_refs: [],
-        cue_refs: [],
       },
     ];
     const contentMap = baseContentMap([
-      {
-        id: 'scene-one',
-        act_id: 'act-one',
-        title: 'Mapped Scene One',
-        summary: 'First scene summary.',
-        shot_maps: [
-          shotMap('scene-one', 'shot-one', []),
-          shotMap('scene-one', 'shot-two', mapKeyframes),
-        ],
-        interactive_contract_refs: [],
-      },
-      {
-        id: 'scene-two',
-        act_id: 'act-two',
-        title: 'Mapped Scene Two',
-        summary: 'Second scene summary.',
-        shot_maps: [
-          shotMap('scene-two', 'shot-three', []),
-        ],
-        interactive_contract_refs: [],
-      },
-    ], [
-      {
-        id: 'act-one',
-        title: 'Act One',
-        summary: 'Act one summary.',
-        scene_refs: ['scene-one'],
-      },
-      {
-        id: 'act-two',
-        title: 'Act Two',
-        summary: 'Act two summary.',
-        scene_refs: ['scene-two'],
-      },
+      actMap('act-one', 'Act One', [
+        sceneMap('scene-one', 'Mapped Scene One', [
+          shotMap('shot-one', []),
+          shotMap('shot-two', mapKeyframes),
+        ]),
+      ]),
+      actMap('act-two', 'Act Two', [
+        sceneMap('scene-two', 'Mapped Scene Two', [
+          shotMap('shot-three', []),
+        ]),
+      ]),
     ]);
 
     const idx = buildTimelineIndex(production, [2, 3, 5], contentMap);
@@ -189,7 +182,7 @@ describe('buildTimelineIndex', () => {
     ]);
     expect(idx.keyframes).toEqual([
       {
-        id: 'scene-one.shot-two.keyframe.1',
+        id: 'primary-marker',
         scene_id: 'scene-one',
         shot_id: 'shot-two',
         at_s: 2.5,
@@ -197,7 +190,7 @@ describe('buildTimelineIndex', () => {
         importance: 'primary',
       },
       {
-        id: 'scene-one.shot-two.keyframe.2',
+        id: 'secondary-marker',
         scene_id: 'scene-one',
         shot_id: 'shot-two',
         at_s: 3.25,
@@ -207,7 +200,7 @@ describe('buildTimelineIndex', () => {
     ]);
   });
 
-  it('defaults current-schema keyframes to primary and uses beat as the label', () => {
+  it('allows SceneMap without source_section_id at the timeline boundary', () => {
     const production = baseProduction([
       {
         id: 'scene-one',
@@ -216,61 +209,79 @@ describe('buildTimelineIndex', () => {
       },
     ]);
     const contentMap = baseContentMap([
-      {
-        id: 'scene-one',
-        act_id: 'act-one',
-        title: 'Mapped Scene One',
-        summary: 'Scene summary.',
-        shot_maps: [
-          shotMap('scene-one', 'shot-one', [{
-            at: 1,
-            beat: 'Schema beat',
-            slot_refs: [],
-            cue_refs: [],
-          }]),
-        ],
-        interactive_contract_refs: [],
-      },
-    ], [
-      {
+      actMap('act-one', 'Act One', [
+        sceneMap('scene-one', 'Mapped Scene One', [
+          shotMap('shot-one', []),
+        ]),
+      ]),
+    ]);
+
+    expect(buildTimelineIndex(production, [3], contentMap).scenes).toEqual([{
+      id: 'scene-one',
+      title: 'Mapped Scene One',
+      act_id: 'act-one',
+      start_s: 0,
+      end_s: 3,
+    }]);
+  });
+
+  it('uses generated keyframe ids when ContentMapSchema parses missing keyframe id', () => {
+    const contentMap = ContentMapSchema.parse({
+      schema_version: 'loa.content-map.v1',
+      lesson_slug: 'timeline-test',
+      acts: [{
         id: 'act-one',
         title: 'Act One',
-        summary: 'Act summary.',
-        scene_refs: ['scene-one'],
+        scenes: [{
+          id: 'scene-one',
+          title: 'Scene One',
+          cast_in_scene: [],
+          discoveries: [],
+          shots: [{
+            id: 'shot-one',
+            kind: 'narrative',
+            speakers: [],
+            duration_estimate_s: 3,
+            keyframes: [{
+              shot_id: 'shot-one',
+              at: 1,
+              label: 'Generated marker',
+            }],
+          }],
+        }],
+      }],
+    });
+    const expectedId = defaultMapKeyframeId('scene-one', 'shot-one', 1, 'Generated marker');
+    const production = baseProduction([
+      {
+        id: 'scene-one',
+        title: 'Scene One',
+        shots: [{ id: 'shot-one', elements: [] }],
       },
     ]);
 
-    expect(buildTimelineIndex(production, [3], contentMap).keyframes).toEqual([{
-      id: 'scene-one.shot-one.keyframe.1',
-      scene_id: 'scene-one',
-      shot_id: 'shot-one',
-      at_s: 1,
-      label: 'Schema beat',
-      importance: 'primary',
-    }]);
+    expect(defaultMapKeyframeId('scene-one', 'shot-one', 1, 'Generated marker')).toBe(expectedId);
+    expect(contentMap.acts[0].scenes[0].shots[0].keyframes[0].id).toBe(expectedId);
+    expect(buildTimelineIndex(production, [3], contentMap).keyframes[0].id).toBe(expectedId);
+  });
+
+  it('derives stable default keyframe ids across re-runs', () => {
+    const first = defaultMapKeyframeId('scene-one', 'shot-one', 1.25, 'Stable marker');
+    const second = defaultMapKeyframeId('scene-one', 'shot-one', 1.25, 'Stable marker');
+
+    expect(first).toBe(second);
   });
 
   it('throws a structured diagnostic when ContentMap references an unknown scene', () => {
     const production = baseProduction([]);
     const contentMap = baseContentMap([
-      {
-        id: 'missing-scene',
-        act_id: 'act-one',
-        title: 'Missing Scene',
-        summary: 'Scene summary.',
-        shot_maps: [],
-        interactive_contract_refs: [],
-      },
-    ], [
-      {
-        id: 'act-one',
-        title: 'Act One',
-        summary: 'Act summary.',
-        scene_refs: ['missing-scene'],
-      },
+      actMap('act-one', 'Act One', [
+        sceneMap('missing-scene', 'Missing Scene', []),
+      ]),
     ]);
 
-    expectDiagnostic(contentMap, production, [], 'timeline.scene.unknown');
+    const diagnostics = expectDiagnostics(contentMap, production, [], 'timeline.scene.unknown');
+    expect(diagnostics[0].path).toEqual(['acts', 0, 'scenes', 0, 'id']);
   });
 
   it('throws a structured diagnostic when ContentMap references an unknown shot', () => {
@@ -282,24 +293,15 @@ describe('buildTimelineIndex', () => {
       },
     ]);
     const contentMap = baseContentMap([
-      {
-        id: 'scene-one',
-        act_id: 'act-one',
-        title: 'Scene One',
-        summary: 'Scene summary.',
-        shot_maps: [shotMap('scene-one', 'missing-shot', [])],
-        interactive_contract_refs: [],
-      },
-    ], [
-      {
-        id: 'act-one',
-        title: 'Act One',
-        summary: 'Act summary.',
-        scene_refs: ['scene-one'],
-      },
+      actMap('act-one', 'Act One', [
+        sceneMap('scene-one', 'Scene One', [
+          shotMap('missing-shot', []),
+        ]),
+      ]),
     ]);
 
-    expectDiagnostic(contentMap, production, [], 'timeline.shot.unknown');
+    const diagnostics = expectDiagnostics(contentMap, production, [], 'timeline.shot.unknown');
+    expect(diagnostics[0].path).toEqual(['acts', 0, 'scenes', 0, 'shots', 0, 'id']);
   });
 
   it('throws a structured diagnostic when ContentMap omits a Production shot', () => {
@@ -311,24 +313,13 @@ describe('buildTimelineIndex', () => {
       },
     ]);
     const contentMap = baseContentMap([
-      {
-        id: 'scene-one',
-        act_id: 'act-one',
-        title: 'Scene One',
-        summary: 'Scene summary.',
-        shot_maps: [],
-        interactive_contract_refs: [],
-      },
-    ], [
-      {
-        id: 'act-one',
-        title: 'Act One',
-        summary: 'Act summary.',
-        scene_refs: ['scene-one'],
-      },
+      actMap('act-one', 'Act One', [
+        sceneMap('scene-one', 'Scene One', []),
+      ]),
     ]);
 
-    expectDiagnostic(contentMap, production, [2], 'timeline.shot.unknown');
+    const diagnostics = expectDiagnostics(contentMap, production, [2], 'timeline.shot.unknown');
+    expect(diagnostics[0].path).toEqual(['scenes', 0, 'shots', 0, 'id']);
   });
 
   it('throws a structured diagnostic for invalid shot durations', () => {
@@ -357,12 +348,12 @@ describe('buildTimelineIndex', () => {
   });
 });
 
-function expectDiagnostic(
+function expectDiagnostics(
   contentMap: ContentMap,
   production: Production,
   shotDurations: number[],
   code: string,
-): void {
+): Diagnostic[] {
   try {
     buildTimelineIndex(production, shotDurations, contentMap);
   } catch (error) {
@@ -370,7 +361,7 @@ function expectDiagnostic(
       throw error;
     }
     expect(error.diagnostics.map((diagnostic) => diagnostic.code)).toContain(code);
-    return;
+    return error.diagnostics;
   }
   throw new Error(`Expected diagnostic ${code}`);
 }
@@ -400,34 +391,49 @@ function baseProduction(scenes: Production['scenes']): Production {
   };
 }
 
-function baseContentMap(
-  scenes: ContentMap['scenes'],
-  acts: ContentMap['acts'],
-): ContentMap {
+function baseContentMap(acts: ContentMap['acts']): ContentMap {
   return {
     schema_version: 'loa.content-map.v1',
     lesson_slug: 'timeline-test',
     acts,
+  };
+}
+
+function actMap(
+  id: string,
+  title: string,
+  scenes: ContentMap['acts'][number]['scenes'],
+): ContentMap['acts'][number] {
+  return {
+    id,
+    title,
     scenes,
   };
 }
 
-function shotMap(
-  sceneId: string,
-  shotId: string,
-  keyframes: ContentMap['scenes'][number]['shot_maps'][number]['keyframes'],
-): ContentMap['scenes'][number]['shot_maps'][number] {
+function sceneMap(
+  id: string,
+  title: string,
+  shots: ContentMap['acts'][number]['scenes'][number]['shots'],
+): ContentMap['acts'][number]['scenes'][number] {
   return {
-    id: `${shotId}-map`,
-    address: {
-      scene_id: sceneId,
-      shot_id: shotId,
-    },
-    title: `Shot ${shotId}`,
-    intent: `Intent for ${shotId}`,
-    cast_refs: [],
-    slot_refs: [],
+    id,
+    title,
+    cast_in_scene: [],
+    discoveries: [],
+    shots,
+  };
+}
+
+function shotMap(
+  shotId: string,
+  keyframes: MapKeyframe[],
+): ShotMap {
+  return {
+    id: shotId,
+    kind: 'narrative',
+    speakers: [],
+    duration_estimate_s: 1,
     keyframes,
-    variations: [],
   };
 }

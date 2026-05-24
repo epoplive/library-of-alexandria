@@ -16,6 +16,16 @@ export interface ShotAddress {
   shot_id: ShotId;
 }
 
+export const SHOT_PLAN_KINDS = [
+  'title-card',
+  'narrative',
+  'narrator-opener',
+  'character-demo-beat',
+  'interactive-takeover',
+] as const;
+
+export type ShotPlanKind = typeof SHOT_PLAN_KINDS[number];
+
 export const WORKFLOW_STEPS = [
   'ingest',
   'curriculum',

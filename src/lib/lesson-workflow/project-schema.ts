@@ -1,13 +1,29 @@
+import { createHash } from 'node:crypto';
 import { z } from 'zod';
 import type {
+  SceneId,
+  ShotId,
   FundingBlock as LatticeFundingBlock,
   Provenance as LatticeProvenance,
   Tier,
 } from '@/lib/lattice';
-import { SOURCE_KINDS } from './types';
+import { SHOT_PLAN_KINDS, SOURCE_KINDS } from './types';
 
 const sha256Pattern = /^[a-f0-9]{64}$/;
 const idPattern = /^[a-z0-9][a-z0-9-]{0,79}$/;
+
+export function defaultMapKeyframeId(
+  scene_id: SceneId,
+  shot_id: ShotId,
+  at: number,
+  label?: string,
+): string {
+  const labelBasis = label !== undefined ? label : '';
+  return createHash('sha256')
+    .update(`${scene_id}/${shot_id}|${at}|${labelBasis}`)
+    .digest('hex')
+    .slice(0, 16);
+}
 
 export const ISODateTimeSchema = z.string().datetime({ offset: true });
 
@@ -113,11 +129,16 @@ export const SourceSchema: z.ZodType<SourceInput> = z.lazy(() =>
 );
 
 export const MapKeyframeSchema = z.object({
+  id: z.string().regex(idPattern),
+  shot_id: z.string().regex(idPattern),
   at: z.number().nonnegative(),
-  beat: z.string().min(1),
-  slot_refs: z.array(z.string()),
-  cue_refs: z.array(z.string()),
+  label: z.string().min(1).optional(),
+  importance: z.enum(['primary', 'secondary']).optional(),
 }).strict();
+
+const MapKeyframeInputSchema = MapKeyframeSchema.extend({
+  id: z.string().regex(idPattern).optional(),
+});
 
 export const VariationSpecSchema = z.object({
   id: z.string().regex(idPattern),
@@ -134,37 +155,55 @@ export const ShotAddressSchema = z.object({
 
 export const ShotMapSchema = z.object({
   id: z.string().regex(idPattern),
-  address: ShotAddressSchema,
-  title: z.string().min(1),
-  intent: z.string().min(1),
-  spoken_text: z.string().optional(),
-  cast_refs: z.array(z.string()),
-  slot_refs: z.array(z.string()),
+  kind: z.enum(SHOT_PLAN_KINDS),
+  speakers: z.array(z.string().min(1)),
+  duration_estimate_s: z.number().nonnegative(),
   keyframes: z.array(MapKeyframeSchema),
-  variations: z.array(VariationSpecSchema),
 }).strict();
 
-export const SceneMapSchema = z.object({
+const ShotMapInputSchema = ShotMapSchema.extend({
+  keyframes: z.array(MapKeyframeInputSchema),
+});
+
+const SceneMapInputSchema = z.object({
   id: z.string().regex(idPattern),
-  act_id: z.string().regex(idPattern),
+  source_section_id: z.string().min(1).optional(),
+  eyebrow: z.string().min(1).optional(),
   title: z.string().min(1),
-  summary: z.string().min(1),
-  shot_maps: z.array(ShotMapSchema),
-  interactive_contract_refs: z.array(z.string()),
+  summary: z.string().min(1).optional(),
+  learning_objective: z.string().min(1).optional(),
+  cast_in_scene: z.array(z.string().min(1)),
+  interactive_ref: z.object({
+    component_id: z.string().min(1),
+  }).strict().optional(),
+  discoveries: z.array(z.string().min(1)),
+  shots: z.array(ShotMapInputSchema),
 }).strict();
+
+export const SceneMapSchema = SceneMapInputSchema.transform((sceneMap) => ({
+  ...sceneMap,
+  shots: sceneMap.shots.map((shotMap) => ({
+    ...shotMap,
+    keyframes: shotMap.keyframes.map((keyframe) => ({
+      ...keyframe,
+      id: keyframe.id !== undefined
+        ? keyframe.id
+        : defaultMapKeyframeId(sceneMap.id, keyframe.shot_id, keyframe.at, keyframe.label),
+    })),
+  })),
+}));
 
 export const ActSchema = z.object({
   id: z.string().regex(idPattern),
   title: z.string().min(1),
-  summary: z.string().min(1),
-  scene_refs: z.array(z.string().regex(idPattern)),
+  summary: z.string().min(1).optional(),
+  scenes: z.array(SceneMapSchema),
 }).strict();
 
 export const ContentMapSchema = z.object({
   schema_version: z.literal('loa.content-map.v1'),
   lesson_slug: z.string().regex(idPattern),
   acts: z.array(ActSchema),
-  scenes: z.array(SceneMapSchema),
 }).strict();
 
 export const LessonProjectSchema = z.object({

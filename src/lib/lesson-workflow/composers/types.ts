@@ -21,16 +21,9 @@ import type {
 } from '@/lib/lattice';
 import type { InteractivesRegistry } from '@/lib/interactives';
 import type { Diagnostic } from '@/lib/lesson-workflow/diagnostic-schema';
+import type { ShotPlanKind } from '../types';
 
-export const SHOT_PLAN_KINDS = [
-  'title-card',
-  'narrative',
-  'narrator-opener',
-  'character-demo-beat',
-  'interactive-takeover',
-] as const;
-
-export type ShotPlanKind = typeof SHOT_PLAN_KINDS[number];
+export { SHOT_PLAN_KINDS, type ShotPlanKind } from '../types';
 
 export interface SpokenLine {
   id: string;

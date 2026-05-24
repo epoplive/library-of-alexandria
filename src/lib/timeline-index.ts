@@ -8,7 +8,6 @@ import type {
 import type { Diagnostic } from './lesson-workflow/diagnostic-schema';
 import type {
   ContentMap,
-  MapKeyframe,
   SceneMap,
   ShotMap,
 } from './lesson-workflow/project-schema';
@@ -54,11 +53,6 @@ export interface KeyframeMarker {
   label?: string;
   importance: KeyframeImportance;
 }
-
-export type TimelineMapKeyframe = MapKeyframe & {
-  label?: string;
-  importance?: KeyframeImportance;
-};
 
 interface CanonicalShotEntry {
   scene: Scene;
@@ -208,23 +202,7 @@ function buildMappedTimelineIndex(
 ): TimelineIndex {
   const diagnostics: Diagnostic[] = [];
   const sceneMapsById = new Map<SceneId, SceneMap>();
-  for (let i = 0; i < contentMap.scenes.length; i += 1) {
-    const sceneMap = contentMap.scenes[i];
-    sceneMapsById.set(sceneMap.id, sceneMap);
-    if (!timeline.scene_by_id.has(sceneMap.id)) {
-      diagnostics.push({
-        code: 'timeline.scene.unknown',
-        path: ['scenes', i, 'id'],
-        actual: sceneMap.id,
-        expected: 'Scene id declared in Production.scenes',
-        repair: `add Scene "${sceneMap.id}" to the Production or remove it from the content map.`,
-        severity: 'error',
-      });
-    }
-  }
-
   const mappedShotKeys = new Set<string>();
-  const mappedSceneIds = new Set<SceneId>();
   const scenes: SceneSpan[] = [];
   const shots: ShotSpan[] = [];
   const keyframes: KeyframeMarker[] = [];
@@ -235,17 +213,17 @@ function buildMappedTimelineIndex(
     const actSceneIds: SceneId[] = [];
     const actSceneSpans: SceneSpan[] = [];
 
-    for (let sceneRefIndex = 0; sceneRefIndex < act.scene_refs.length; sceneRefIndex += 1) {
-      const sceneId = act.scene_refs[sceneRefIndex];
-      const sceneMap = sceneMapsById.get(sceneId);
-      const canonicalScene = timeline.scene_by_id.get(sceneId);
-      if (sceneMap === undefined || canonicalScene === undefined) {
+    for (let sceneIndex = 0; sceneIndex < act.scenes.length; sceneIndex += 1) {
+      const sceneMap = act.scenes[sceneIndex];
+      sceneMapsById.set(sceneMap.id, sceneMap);
+      const canonicalScene = timeline.scene_by_id.get(sceneMap.id);
+      if (canonicalScene === undefined) {
         diagnostics.push({
           code: 'timeline.scene.unknown',
-          path: ['acts', actIndex, 'scene_refs', sceneRefIndex],
-          actual: sceneId,
-          expected: 'Scene id declared in both ContentMap.scenes and Production.scenes',
-          repair: `add Scene "${sceneId}" to both sources or remove the act scene_ref.`,
+          path: ['acts', actIndex, 'scenes', sceneIndex, 'id'],
+          actual: sceneMap.id,
+          expected: 'Scene id declared in Production.scenes',
+          repair: `add Scene "${sceneMap.id}" to the Production or remove it from the content map.`,
           severity: 'error',
         });
         continue;
@@ -255,14 +233,13 @@ function buildMappedTimelineIndex(
       scenes.push(sceneSpan);
       actSceneSpans.push(sceneSpan);
       actSceneIds.push(sceneMap.id);
-      mappedSceneIds.add(sceneMap.id);
 
-      for (let shotMapIndex = 0; shotMapIndex < sceneMap.shot_maps.length; shotMapIndex += 1) {
-        const shotMap = sceneMap.shot_maps[shotMapIndex];
-        const shotKey = addressKey(shotMap.address.scene_id, shotMap.address.shot_id);
+      for (let shotMapIndex = 0; shotMapIndex < sceneMap.shots.length; shotMapIndex += 1) {
+        const shotMap = sceneMap.shots[shotMapIndex];
+        const shotKey = addressKey(sceneMap.id, shotMap.id);
         const canonicalShot = timeline.shot_by_address.get(shotKey);
         if (canonicalShot === undefined) {
-          diagnostics.push(unknownShotDiagnostic(sceneMap, shotMap, shotMapIndex));
+          diagnostics.push(unknownShotDiagnostic(actIndex, sceneIndex, sceneMap, shotMap, shotMapIndex));
           continue;
         }
         mappedShotKeys.add(shotKey);
@@ -288,13 +265,13 @@ function buildMappedTimelineIndex(
 
   for (let sceneIndex = 0; sceneIndex < production.scenes.length; sceneIndex += 1) {
     const scene = production.scenes[sceneIndex];
-    if (!mappedSceneIds.has(scene.id)) {
+    if (!sceneMapsById.has(scene.id)) {
       diagnostics.push({
         code: 'timeline.scene.unknown',
         path: ['scenes', sceneIndex, 'id'],
         actual: scene.id,
-        expected: 'Scene id referenced by ContentMap.acts[].scene_refs',
-        repair: `add "${scene.id}" to an act scene_refs list or remove the Production Scene.`,
+        expected: 'Scene id declared in ContentMap.acts[].scenes[]',
+        repair: `add "${scene.id}" to an act scenes list or remove the Production Scene.`,
         severity: 'error',
       });
     }
@@ -310,7 +287,7 @@ function buildMappedTimelineIndex(
           scene_id: entry.scene.id,
           shot_id: entry.shot.id,
         },
-        expected: 'ShotMap address declared in ContentMap.scenes[].shot_maps',
+        expected: 'Shot id declared in ContentMap.acts[].scenes[].shots[]',
         repair: `add ShotMap "${entry.shot.id}" to SceneMap "${entry.scene.id}" or remove the Production Shot.`,
         severity: 'error',
       });
@@ -349,37 +326,46 @@ function keyframesForShotMap(
   shotMap: ShotMap,
   canonicalShot: CanonicalShotEntry,
 ): KeyframeMarker[] {
-  return shotMap.keyframes.map((rawKeyframe, keyframeIndex) => {
-    const keyframe: TimelineMapKeyframe = rawKeyframe;
-    const label = keyframe.label !== undefined ? keyframe.label : keyframe.beat;
-    const importance = keyframe.importance !== undefined ? keyframe.importance : 'primary';
-    return {
-      id: `${sceneMap.id}.${shotMap.address.shot_id}.keyframe.${keyframeIndex + 1}`,
+  return shotMap.keyframes.map((keyframe) => {
+    const marker: KeyframeMarker = {
+      id: keyframe.id,
       scene_id: sceneMap.id,
-      shot_id: shotMap.address.shot_id,
+      shot_id: keyframe.shot_id,
       at_s: canonicalShot.start_s + keyframe.at,
-      label,
-      importance,
+      importance: keyframeImportance(keyframe.importance),
     };
+    if (keyframe.label !== undefined) {
+      marker.label = keyframe.label;
+    }
+    return marker;
   });
 }
 
 function unknownShotDiagnostic(
+  actIndex: number,
+  sceneIndex: number,
   sceneMap: SceneMap,
   shotMap: ShotMap,
   shotMapIndex: number,
 ): Diagnostic {
   return {
     code: 'timeline.shot.unknown',
-    path: ['scenes', sceneMap.id, 'shot_maps', shotMapIndex, 'address'],
+    path: ['acts', actIndex, 'scenes', sceneIndex, 'shots', shotMapIndex, 'id'],
     actual: {
-      scene_id: shotMap.address.scene_id,
-      shot_id: shotMap.address.shot_id,
+      scene_id: sceneMap.id,
+      shot_id: shotMap.id,
     },
     expected: 'Shot id declared in the matching Production Scene',
-    repair: `add Shot "${shotMap.address.shot_id}" to Production Scene "${shotMap.address.scene_id}" or remove it from the content map.`,
+    repair: `add Shot "${shotMap.id}" to Production Scene "${sceneMap.id}" or remove it from the content map.`,
     severity: 'error',
   };
+}
+
+function keyframeImportance(importance: KeyframeImportance | undefined): KeyframeImportance {
+  if (importance !== undefined) {
+    return importance;
+  }
+  return 'primary';
 }
 
 function startForSceneSpans(spans: SceneSpan[]): number {
