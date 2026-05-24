@@ -23,20 +23,37 @@
    the caller is responsible for de-duping vs prior tick).
    ============================================================ */
 
-import { useMemo } from 'react';
+import { Suspense, useEffect, useMemo, useRef } from 'react';
+import { useTexture } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import * as THREE from 'three';
 import type {
   AssetManifest,
+  BoxRect,
   CastId,
   Cue,
+  GradientBackground,
+  ImagePanBackground,
+  ParallaxLayer,
   Production,
+  Scene,
+  SceneBackground,
   Shot,
+  ShotAddress,
   TransitionEdge,
 } from '@/lib/lattice';
 import { normalizeProduction } from '@/lib/lattice-normalize';
+import {
+  findActiveScene,
+  gradientDriftOffset,
+  imagePanFrame,
+  sceneElapsedSeconds,
+} from '@/lib/scene-background-renderer';
+import { getInteractive } from '@/lib/interactives';
 import { resolveShotState, type ResolvedElementState, type ResolvedShotState } from './cues';
-import { renderElement, type ElementContext } from './elements';
-import { resolveTransitionEnvelope } from './transition-envelope';
+import { renderElement, type ElementContext, type RuntimeInteractivesRegistry } from './elements';
+import { resolveSlot } from './asset-resolve';
+import { resolveTransitionEnvelope, type TransitionEnvelopeState } from './transition-envelope';
 
 export interface StageProps {
   production: Production;
@@ -72,7 +89,16 @@ interface TransitionLayerVisuals {
   next: { opacity: number; offset: LayerOffset };
 }
 
+interface BackgroundLayerSpec {
+  layerKey: string;
+  scene: Scene;
+  elapsed_s: number;
+  opacity: number;
+}
+
 const warnedTransitionFallbacks = new Set<TransitionEdge['kind']>();
+const warnedInteractiveActionDiagnostics = new Set<string>();
+let warnedParallaxBackground = false;
 
 export function Stage({
   production,
@@ -128,9 +154,22 @@ export function Stage({
     };
   }, [envelopeState, aspectW, aspectH]);
 
+  const backgroundLayers = useMemo(
+    () => backgroundLayerSpecs(normalizedProduction, shotIndex, shotTime, envelopeState),
+    [normalizedProduction, shotIndex, shotTime, envelopeState],
+  );
+
   // Stable signal of which action cues have fired by now
   useMemo(() => {
-    if (activeResolved && onActions) onActions(activeResolved.pendingActions);
+    if (activeResolved) {
+      assertInteractiveActionContracts(
+        activeResolved.pendingActions,
+        shot,
+        activeResolved.spawned,
+        interactives,
+      );
+      if (onActions) onActions(activeResolved.pendingActions);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeResolved?.pendingActions.length, shotIndex]);
 
@@ -175,6 +214,17 @@ export function Stage({
         >
           <ambientLight intensity={1} />
           <CameraFrame width={aspectW} height={aspectH} />
+          {backgroundLayers.map((layer) => (
+            <SceneBackgroundLayer
+              key={layer.layerKey}
+              background={layer.scene.background}
+              manifest={manifest}
+              viewport={{ width: aspectW, height: aspectH }}
+              elapsed_s={layer.elapsed_s}
+              opacity={layer.opacity}
+              mastery_level={mastery_level}
+            />
+          ))}
           {transitionResolved === null
             ? renderShotLayer({
                 shot,
@@ -208,6 +258,64 @@ export function Stage({
       </div>
     </div>
   );
+}
+
+function backgroundLayerSpecs(
+  production: Production,
+  shotIndex: number,
+  shotTime: number,
+  envelopeState: TransitionEnvelopeState | null,
+): BackgroundLayerSpec[] {
+  if (envelopeState === null) {
+    return [];
+  }
+
+  const envelope = envelopeState.envelope;
+  if (envelope !== undefined) {
+    const prevScene = findActiveScene(production, envelope.edge.from);
+    const nextScene = findActiveScene(production, envelope.edge.to);
+    if (prevScene.id !== nextScene.id) {
+      return [
+        {
+          layerKey: 'background-transition-prev',
+          scene: prevScene,
+          elapsed_s: sceneElapsedSeconds(production, envelope.edge.from, envelope.prevShotTime),
+          opacity: 1 - envelope.progress,
+        },
+        {
+          layerKey: 'background-transition-next',
+          scene: nextScene,
+          elapsed_s: sceneElapsedSeconds(production, envelope.edge.to, envelope.nextShotTime),
+          opacity: envelope.progress,
+        },
+      ];
+    }
+  }
+
+  const activeAddress = shotAddressAtIndex(production, shotIndex);
+  if (activeAddress === null) {
+    return [];
+  }
+  const activeScene = findActiveScene(production, activeAddress);
+  return [{
+    layerKey: 'background-active',
+    scene: activeScene,
+    elapsed_s: sceneElapsedSeconds(production, activeAddress, shotTime),
+    opacity: 1,
+  }];
+}
+
+function shotAddressAtIndex(production: Production, targetIndex: number): ShotAddress | null {
+  let shotIndex = 0;
+  for (const scene of production.scenes) {
+    for (const shot of scene.shots) {
+      if (shotIndex === targetIndex) {
+        return { scene_id: scene.id, shot_id: shot.id };
+      }
+      shotIndex += 1;
+    }
+  }
+  return null;
 }
 
 function renderShotLayer(args: {
@@ -260,6 +368,472 @@ function stateWithOpacity(state: ResolvedElementState, opacity: number): Resolve
       opacity: state.layout.opacity * opacity,
     },
   };
+}
+
+function assertInteractiveActionContracts(
+  actions: Array<Extract<Cue, { kind: 'action' }>>,
+  shot: Shot | null,
+  spawned: Shot['elements'],
+  interactives: ElementContext['interactives'],
+): void {
+  if (shot === null || !hasContractRegistry(interactives)) {
+    return;
+  }
+
+  const componentIds = interactiveComponentIds(shot, spawned);
+  for (const action of actions) {
+    const componentId = componentIds[action.element_id];
+    if (componentId === undefined) {
+      continue;
+    }
+    const entry = getInteractive(interactives, componentId);
+    if (entry === undefined) {
+      continue;
+    }
+    if (entry.contract.methods[action.method] !== undefined) {
+      continue;
+    }
+    const key = `${componentId}:${action.id === undefined ? `${action.element_id}.${action.method}.${action.at}` : action.id}`;
+    if (warnedInteractiveActionDiagnostics.has(key)) {
+      continue;
+    }
+    warnedInteractiveActionDiagnostics.add(key);
+    console.error({
+      code: 'interactive.action.unknown_method',
+      component_id: componentId,
+      method: action.method,
+      known_methods: Object.keys(entry.contract.methods),
+    });
+  }
+}
+
+function hasContractRegistry(
+  interactives: ElementContext['interactives'],
+): interactives is RuntimeInteractivesRegistry {
+  if (interactives === undefined) {
+    return false;
+  }
+  const keys = Object.keys(interactives);
+  if (keys.length === 0) {
+    return true;
+  }
+  const first = interactives[keys[0]];
+  return typeof first === 'object'
+    && first !== null
+    && 'component' in first
+    && 'contract' in first;
+}
+
+function interactiveComponentIds(
+  shot: Shot,
+  spawned: Shot['elements'],
+): { [element_id: string]: string } {
+  const componentIds: { [element_id: string]: string } = {};
+  for (const element of shot.elements) {
+    if (element.kind === 'interactive-group') {
+      componentIds[element.id] = element.component_id;
+    }
+  }
+  for (const element of spawned) {
+    if (element.kind === 'interactive-group') {
+      componentIds[element.id] = element.component_id;
+    }
+  }
+  return componentIds;
+}
+
+function SceneBackgroundLayer(props: {
+  background: SceneBackground | undefined;
+  manifest: AssetManifest;
+  viewport: { width: number; height: number };
+  elapsed_s: number;
+  opacity: number;
+  mastery_level?: number;
+}) {
+  const background = props.background;
+  if (background === undefined) {
+    return null;
+  }
+
+  switch (background.kind) {
+    case 'none':
+      return null;
+    case 'gradient':
+      return (
+        <GradientBackgroundMesh
+          background={background}
+          viewport={props.viewport}
+          elapsed_s={props.elapsed_s}
+          opacity={props.opacity}
+        />
+      );
+    case 'image-pan':
+      return (
+        <ImagePanBackgroundMesh
+          background={background}
+          manifest={props.manifest}
+          viewport={props.viewport}
+          elapsed_s={props.elapsed_s}
+          opacity={props.opacity}
+          mastery_level={props.mastery_level}
+        />
+      );
+    case 'parallax': {
+      warnParallaxBackgroundFallback();
+      const layer = deepestParallaxLayer(background.layers);
+      if (layer === null) {
+        return null;
+      }
+      return (
+        <SlotBackgroundMesh
+          slot_id={layer.slot_id}
+          manifest={props.manifest}
+          viewport={props.viewport}
+          opacity={props.opacity}
+          offset={parallaxLayerOffset(layer)}
+          mastery_level={props.mastery_level}
+        />
+      );
+    }
+  }
+  const exhaustive: never = background;
+  return exhaustive;
+}
+
+function GradientBackgroundMesh(props: {
+  background: GradientBackground;
+  viewport: { width: number; height: number };
+  elapsed_s: number;
+  opacity: number;
+}) {
+  const texture = useMemo(
+    () => makeGradientTexture(props.background),
+    [props.background],
+  );
+  const elapsedRef = useRef(props.elapsed_s);
+  elapsedRef.current = props.elapsed_s;
+
+  useEffect(() => () => texture.dispose(), [texture]);
+
+  useFrame(() => {
+    const offset = gradientDriftOffset(props.background, elapsedRef.current);
+    texture.offset.set(offset.x, offset.y);
+  });
+
+  return (
+    <mesh position={[0, 0, -10]}>
+      <planeGeometry args={[props.viewport.width, props.viewport.height]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        opacity={props.opacity}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+function ImagePanBackgroundMesh(props: {
+  background: ImagePanBackground;
+  manifest: AssetManifest;
+  viewport: { width: number; height: number };
+  elapsed_s: number;
+  opacity: number;
+  mastery_level?: number;
+}) {
+  const resolved = resolveSlot(
+    { slot_id: props.background.slot_id },
+    props.manifest,
+    { mastery_level: props.mastery_level },
+  );
+
+  if (resolved.url === null) {
+    return (
+      <DebugGridBackground
+        slot_id={props.background.slot_id}
+        viewport={props.viewport}
+        opacity={props.opacity}
+      />
+    );
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <ImagePanTexturedBackground
+        url={resolved.url}
+        background={props.background}
+        viewport={props.viewport}
+        elapsed_s={props.elapsed_s}
+        opacity={props.opacity}
+      />
+    </Suspense>
+  );
+}
+
+function ImagePanTexturedBackground(props: {
+  url: string;
+  background: ImagePanBackground;
+  viewport: { width: number; height: number };
+  elapsed_s: number;
+  opacity: number;
+}) {
+  const sourceTexture = useTexture(props.url);
+  const texture = useMemo(() => {
+    const clone = sourceTexture.clone();
+    clone.colorSpace = THREE.SRGBColorSpace;
+    clone.wrapS = THREE.ClampToEdgeWrapping;
+    clone.wrapT = THREE.ClampToEdgeWrapping;
+    clone.needsUpdate = true;
+    return clone;
+  }, [sourceTexture]);
+  const elapsedRef = useRef(props.elapsed_s);
+  elapsedRef.current = props.elapsed_s;
+
+  useEffect(() => () => texture.dispose(), [texture]);
+
+  useFrame(() => {
+    const frame = imagePanFrame(props.background, elapsedRef.current);
+    applyTextureBox(texture, zoomedBox(frame.box, frame.zoom));
+  });
+
+  return (
+    <mesh position={[0, 0, -10]}>
+      <planeGeometry args={[props.viewport.width, props.viewport.height]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        opacity={props.opacity}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+function SlotBackgroundMesh(props: {
+  slot_id: string;
+  manifest: AssetManifest;
+  viewport: { width: number; height: number };
+  opacity: number;
+  offset: { x: number; y: number };
+  mastery_level?: number;
+}) {
+  const resolved = resolveSlot(
+    { slot_id: props.slot_id },
+    props.manifest,
+    { mastery_level: props.mastery_level },
+  );
+
+  if (resolved.url === null) {
+    return (
+      <DebugGridBackground
+        slot_id={props.slot_id}
+        viewport={props.viewport}
+        opacity={props.opacity}
+      />
+    );
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <StaticTexturedBackground
+        url={resolved.url}
+        viewport={props.viewport}
+        opacity={props.opacity}
+        offset={props.offset}
+      />
+    </Suspense>
+  );
+}
+
+function StaticTexturedBackground(props: {
+  url: string;
+  viewport: { width: number; height: number };
+  opacity: number;
+  offset: { x: number; y: number };
+}) {
+  const sourceTexture = useTexture(props.url);
+  const texture = useMemo(() => {
+    const clone = sourceTexture.clone();
+    clone.colorSpace = THREE.SRGBColorSpace;
+    clone.wrapS = THREE.ClampToEdgeWrapping;
+    clone.wrapT = THREE.ClampToEdgeWrapping;
+    clone.needsUpdate = true;
+    return clone;
+  }, [sourceTexture]);
+
+  useEffect(() => () => texture.dispose(), [texture]);
+
+  return (
+    <mesh
+      position={[
+        props.offset.x * props.viewport.width,
+        -props.offset.y * props.viewport.height,
+        -10,
+      ]}
+    >
+      <planeGeometry args={[props.viewport.width, props.viewport.height]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        opacity={props.opacity}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+function DebugGridBackground(props: {
+  slot_id: string;
+  viewport: { width: number; height: number };
+  opacity: number;
+}) {
+  const texture = useMemo(
+    () => makeDebugGridTexture(props.slot_id),
+    [props.slot_id],
+  );
+
+  useEffect(() => () => texture.dispose(), [texture]);
+
+  return (
+    <mesh position={[0, 0, -10]}>
+      <planeGeometry args={[props.viewport.width, props.viewport.height]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        opacity={props.opacity * 0.72}
+        depthWrite={false}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+function makeGradientTexture(background: GradientBackground): THREE.CanvasTexture {
+  const size = 512;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  if (ctx === null) {
+    throw new Error('2d canvas context unavailable for gradient background');
+  }
+
+  if (background.stops.length === 0) {
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, size, size);
+  } else if (background.stops.length === 1) {
+    ctx.fillStyle = background.stops[0].color;
+    ctx.fillRect(0, 0, size, size);
+  } else {
+    const gradient = ctx.createLinearGradient(0, 0, size, size);
+    for (const stop of background.stops) {
+      gradient.addColorStop(stop.offset, stop.color);
+    }
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function makeDebugGridTexture(slot_id: string): THREE.CanvasTexture {
+  const size = 512;
+  const step = 32;
+  const hue = hashHue(slot_id);
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  if (ctx === null) {
+    throw new Error('2d canvas context unavailable for debug background');
+  }
+
+  ctx.fillStyle = `hsl(${hue}, 48%, 24%)`;
+  ctx.fillRect(0, 0, size, size);
+  ctx.strokeStyle = `hsla(${hue}, 88%, 72%, 0.42)`;
+  ctx.lineWidth = 1;
+  for (let x = 0; x <= size; x += step) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, size);
+    ctx.stroke();
+  }
+  for (let y = 0; y <= size; y += step) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(size, y);
+    ctx.stroke();
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function applyTextureBox(texture: THREE.Texture, box: BoxRect): void {
+  texture.repeat.set(box.width, box.height);
+  texture.offset.set(box.x, 1 - box.y - box.height);
+  texture.needsUpdate = true;
+}
+
+function zoomedBox(box: BoxRect, zoom: number): BoxRect {
+  const width = box.width / zoom;
+  const height = box.height / zoom;
+  const centerX = box.x + box.width / 2;
+  const centerY = box.y + box.height / 2;
+  return {
+    x: centerX - width / 2,
+    y: centerY - height / 2,
+    width,
+    height,
+  };
+}
+
+function deepestParallaxLayer(layers: ParallaxLayer[]): ParallaxLayer | null {
+  if (layers.length === 0) {
+    return null;
+  }
+  let deepest = layers[0];
+  for (let i = 1; i < layers.length; i += 1) {
+    if (layers[i].depth > deepest.depth) {
+      deepest = layers[i];
+    }
+  }
+  return deepest;
+}
+
+function parallaxLayerOffset(layer: ParallaxLayer): { x: number; y: number } {
+  if (layer.offset === undefined) {
+    return { x: 0, y: 0 };
+  }
+  return layer.offset;
+}
+
+function hashHue(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash * 31 + value.charCodeAt(i)) % 360;
+  }
+  return hash;
+}
+
+function warnParallaxBackgroundFallback(): void {
+  if (warnedParallaxBackground) {
+    return;
+  }
+  warnedParallaxBackground = true;
+  console.warn('parallax backgrounds render the deepest layer only in Stage v0.1.');
 }
 
 function transitionVisuals(

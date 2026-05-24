@@ -551,6 +551,70 @@ export interface TransitionEdge {
   angle?: number;
 }
 
+/* ---- Scene backgrounds ------------------------------------- */
+
+export interface GradientStop {
+  /** Offset along the gradient line, 0..1. */
+  offset: number;
+  color: string;
+}
+
+export interface BoxRect {
+  /** Normalized source x, 0..1. */
+  x: number;
+  /** Normalized source y, 0..1. */
+  y: number;
+  /** Normalized source width, 0..1. */
+  width: number;
+  /** Normalized source height, 0..1. */
+  height: number;
+}
+
+export interface ParallaxLayer {
+  slot_id: SlotId;
+  /** 0=front, 1=back. */
+  depth: number;
+  offset?: { x: number; y: number };
+}
+
+export interface NoneBackground {
+  kind: 'none';
+}
+
+export interface GradientBackground {
+  kind: 'gradient';
+  stops: GradientStop[];
+  drift?: {
+    speed_s: number;
+    direction: 'left' | 'right' | 'up' | 'down' | 'diagonal';
+  };
+}
+
+export interface ImagePanBackground {
+  kind: 'image-pan';
+  slot_id: SlotId;
+  pan: {
+    from: BoxRect;
+    to: BoxRect;
+  };
+  zoom?: {
+    from: number;
+    to: number;
+  };
+  duration_s: number;
+}
+
+export interface ParallaxBackground {
+  kind: 'parallax';
+  layers: ParallaxLayer[];
+}
+
+export type SceneBackground =
+  | NoneBackground
+  | GradientBackground
+  | ImagePanBackground
+  | ParallaxBackground;
+
 /* ---- Shot — atomic unit of pacing --------------------------- */
 
 export interface Shot {
@@ -592,6 +656,8 @@ export interface Scene {
   title: string;
   /** Summary used in storyboard + library landing. */
   summary?: string;
+  /** Scene-scoped backdrop rendered behind all Shot Elements. */
+  background?: SceneBackground;
   shots: Shot[];
   /** Discoveries attached to this Scene that aren't tied to a
    *  specific Line — used by the rabbit-hole graph. */

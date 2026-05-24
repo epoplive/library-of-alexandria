@@ -31,10 +31,26 @@ import type {
   ShapeElement,
 } from '@/lib/lattice';
 import { resolveCharacterPose } from '@/lib/character-pose-resolver';
+import type {
+  InteractiveContract,
+  InteractiveRegistryEntry,
+  InteractivesRegistry,
+} from '@/lib/interactives';
 import type { ResolvedElementState } from './cues';
 import { resolveSlot } from './asset-resolve';
 
 /* ---- Shared types ----------------------------------------- */
+
+export interface InteractiveComponentProps {
+  ref?: React.Ref<unknown>;
+  props?: InteractiveGroupElement['props'];
+}
+
+export type RuntimeInteractivesRegistry = InteractivesRegistry<InteractiveComponentProps>;
+export type DeprecatedInteractivesRecord = {
+  [component_id: string]: React.ComponentType<InteractiveComponentProps>;
+};
+export type ElementInteractivesRegistry = RuntimeInteractivesRegistry | DeprecatedInteractivesRecord;
 
 export interface ElementContext {
   manifest: AssetManifest;
@@ -46,8 +62,8 @@ export interface ElementContext {
   characters: CastMember[];
   /** Cast member currently speaking, driven by Playback dialogue state. */
   activeSpeakerCastId: CastId | null;
-  /** Registry of custom interactive components (component_id → React component). */
-  interactives?: Record<string, React.ComponentType<{ ref?: React.Ref<unknown>; props?: Record<string, unknown> }>>;
+  /** Registry of custom interactive components (component_id → component + contract). */
+  interactives?: ElementInteractivesRegistry;
   /** Optional ref bag for interactive Elements — Stage caller can pass
    *  refs in to dispatch action Cues onto them. */
   interactiveRefs?: Record<string, React.RefObject<unknown>>;
@@ -64,6 +80,7 @@ interface RenderProps<E extends LatticeElement> {
 type CharacterPoseElement = CharacterElement | ChromaKeyedTalentElement;
 
 let warnedChromaKeyedTalentAlias = false;
+let warnedInteractivesRecordAlias = false;
 
 /* ---- Coord translator -------------------------------------- */
 
@@ -396,9 +413,9 @@ function castMemberFor(element: CharacterPoseElement, characters: CastMember[]):
 function InteractiveGroupRenderer({ element, state, ctx }: RenderProps<InteractiveGroupElement>) {
   const w = layoutToWorld(state, ctx.viewport);
   const [width, height] = elementSize(state, ctx.viewport);
-  const Component = ctx.interactives?.[element.component_id];
+  const entry = resolveInteractiveEntry(ctx.interactives, element.component_id);
 
-  if (!Component) {
+  if (entry === null) {
     return (
       <group position={w.position} rotation={w.rotation} scale={w.scale}>
         <Html
@@ -413,7 +430,8 @@ function InteractiveGroupRenderer({ element, state, ctx }: RenderProps<Interacti
     );
   }
 
-  const ref = ctx.interactiveRefs?.[element.id];
+  const Component = entry.component;
+  const ref = ctx.interactiveRefs === undefined ? undefined : ctx.interactiveRefs[element.id];
   return (
     <group position={w.position} rotation={w.rotation} scale={w.scale} visible={state.visible}>
       <Html
@@ -425,6 +443,41 @@ function InteractiveGroupRenderer({ element, state, ctx }: RenderProps<Interacti
       </Html>
     </group>
   );
+}
+
+interface ResolvedInteractiveEntry {
+  component: React.ComponentType<InteractiveComponentProps>;
+  contract?: InteractiveContract;
+}
+
+function resolveInteractiveEntry(
+  registry: ElementInteractivesRegistry | undefined,
+  component_id: string,
+): ResolvedInteractiveEntry | null {
+  if (registry === undefined) {
+    return null;
+  }
+  const candidate = registry[component_id];
+  if (candidate === undefined) {
+    return null;
+  }
+  if (isInteractiveRegistryEntry(candidate)) {
+    return {
+      component: candidate.component,
+      contract: candidate.contract,
+    };
+  }
+  warnInteractivesRecordAlias();
+  return { component: candidate };
+}
+
+function isInteractiveRegistryEntry(
+  candidate: InteractiveRegistryEntry<InteractiveComponentProps> | React.ComponentType<InteractiveComponentProps>,
+): candidate is InteractiveRegistryEntry<InteractiveComponentProps> {
+  return typeof candidate === 'object'
+    && candidate !== null
+    && 'component' in candidate
+    && 'contract' in candidate;
 }
 
 /* ---- Dispatch ------------------------------------------- */
@@ -476,4 +529,12 @@ function warnChromaKeyedTalentAlias(): void {
   }
   warnedChromaKeyedTalentAlias = true;
   console.warn('chroma-keyed-talent is deprecated; use character Element kind.');
+}
+
+function warnInteractivesRecordAlias(): void {
+  if (warnedInteractivesRecordAlias) {
+    return;
+  }
+  warnedInteractivesRecordAlias = true;
+  console.warn('plain interactive component records are deprecated; use defineInteractivesRegistry entries with contracts.');
 }

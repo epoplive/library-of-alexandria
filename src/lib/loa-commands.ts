@@ -18,6 +18,7 @@
 
 import type {
   AssetManifest,
+  BoxRect,
   CastMember,
   CharacterElement,
   Cue,
@@ -30,6 +31,7 @@ import type {
   Production,
   ProductionId,
   Scene,
+  SceneBackground,
   SceneId,
   Shot,
   ShotId,
@@ -128,6 +130,84 @@ export function addScene(production: Production, scene: Scene): Production {
     throw new Error(`scene id "${scene.id}" already exists in production "${production.id}"`);
   }
   return { ...production, scenes: [...production.scenes, scene] };
+}
+
+/* ---- addBackground --------------------------------------- */
+
+/**
+ * Set a Scene-scoped background.
+ *
+ * **Schema slice** — Scene.background (SceneBackground)
+ * **Decomposition** — Art-direction agent receives the Scene outline,
+ * Shot list, and asset Slots, then emits one backdrop that persists
+ * across the Scene instead of duplicating Elements per Shot. Image-pan
+ * backgrounds reference a Slot and pan/zoom inside normalized source
+ * boxes; gradient backgrounds declare ordered color stops.
+ * **Format gate** — scene_id resolves in Production.scenes;
+ * Scene.background is unset; image-pan Slot id is declared in the
+ * manifest validator; gradient stops are monotonic.
+ * **Test corpus** — addBackground(p,'s1',imagePanBackground('cafe.bg',
+ * from,to,30)) sets p.scenes[0].background without touching Shots.
+ */
+export function addBackground(
+  production: Production,
+  sceneId: SceneId,
+  background: SceneBackground,
+): Production {
+  let found = false;
+  const scenes = production.scenes.map((scene) => {
+    if (scene.id !== sceneId) {
+      return scene;
+    }
+    found = true;
+    if (scene.background !== undefined) {
+      throw new Error(
+        `background.already_exists: scene "${sceneId}" already has a background; replacement requires replaceBackground.`,
+      );
+    }
+    return { ...scene, background };
+  });
+  if (!found) {
+    throw new Error(`scene "${sceneId}" not found in production "${production.id}"`);
+  }
+  return { ...production, scenes };
+}
+
+/* ---- imagePanBackground ---------------------------------- */
+
+/**
+ * Construct an image-pan SceneBackground.
+ *
+ * **Schema slice** — SceneBackground.kind='image-pan'
+ * **Decomposition** — Art-direction agent selects a background Slot,
+ * chooses normalized source rectangles for the start and end framing,
+ * and optionally declares a zoom ramp. The renderer interpolates these
+ * values against Scene-relative elapsed time, so the motion survives
+ * Shot cuts inside the Scene.
+ * **Format gate** — slot_id is a stable Slot id; boxes are normalized
+ * 0..1 rectangles; duration_s is positive; zoom values are positive
+ * when present.
+ * **Test corpus** — imagePanBackground('cafe.bg',{x:0,y:0,width:1,
+ * height:1},{x:.1,y:.1,width:.8,height:.8},30) returns the exact
+ * SceneBackground value authors pass into addBackground.
+ */
+export function imagePanBackground(
+  slot_id: SlotId,
+  from_box: BoxRect,
+  to_box: BoxRect,
+  duration_s: number,
+  zoom?: { from: number; to: number },
+): SceneBackground {
+  return {
+    kind: 'image-pan',
+    slot_id,
+    pan: {
+      from: from_box,
+      to: to_box,
+    },
+    zoom,
+    duration_s,
+  };
 }
 
 /* ---- addShot --------------------------------------------- */
