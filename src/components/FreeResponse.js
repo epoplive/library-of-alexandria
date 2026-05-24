@@ -1,8 +1,0 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-export function FreeResponse({ prompt, sampleAnswer, placeholder }) {
-    const [value, setValue] = useState('');
-    const [showSample, setShowSample] = useState(false);
-    return (_jsxs("div", { className: "my-8 rounded-2xl border border-ink-subtle/20 bg-paper-card p-6 shadow-card", children: [_jsx("p", { className: "font-mono text-xs uppercase tracking-[0.18em] text-accent mb-3", children: "Think it through" }), _jsx("p", { className: "font-display text-lg font-semibold mb-4", children: prompt }), _jsx("textarea", { value: value, onChange: (e) => setValue(e.target.value), placeholder: placeholder ?? 'Type your thinking…', rows: 4, className: "w-full rounded-xl border border-ink-subtle/20 bg-paper p-3 font-sans text-ink resize-y focus:border-accent focus:outline-none focus:shadow-focus" }), sampleAnswer && (_jsx("div", { className: "mt-3", children: !showSample ? (_jsx("button", { onClick: () => setShowSample(true), disabled: value.trim().length < 5, className: "font-mono text-xs uppercase tracking-[0.12em] text-accent disabled:opacity-30 disabled:cursor-not-allowed hover:text-accent-hover", children: "Show sample answer \u2192" })) : (_jsx(AnimatePresence, { children: _jsx(motion.div, { initial: { opacity: 0, height: 0 }, animate: { opacity: 1, height: 'auto' }, className: "overflow-hidden", children: _jsxs("div", { className: "mt-2 rounded-xl bg-paper-tint p-4", children: [_jsx("p", { className: "font-mono text-xs uppercase tracking-wider text-ink-subtle mb-1", children: "Sample answer" }), _jsx("p", { className: "text-ink/90", children: sampleAnswer })] }) }) })) }))] }));
-}

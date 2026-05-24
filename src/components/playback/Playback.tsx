@@ -7,16 +7,19 @@
      - tracks shotIndex + shotTime (audio currentTime)
      - dispatches action Cues onto interactive refs as they fire
      - renders <Stage> with the current (shotIndex, shotTime)
-     - exposes Play / Pause / Restart controls
+     - exposes Play / Pause / Restart controls + a Production-wide
+       seek (drag the scrubber across Scene boundaries)
 
    Audio is per-Shot, never concatenated. The viewer never
    synthesizes — Takes are pre-rendered server-side and committed
-   to the AssetManifest.
+   to the AssetManifest. The chrome reads each Take's `timings`
+   off the AssetManifest to drive transcript highlight.
    ============================================================ */
 
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ReactNode,
@@ -26,9 +29,11 @@ import type {
   Production,
   Shot,
   Cue,
+  Take,
 } from '@/lib/lattice';
 import { Stage, type StageProps } from './Stage';
 import { resolveSlot } from './asset-resolve';
+import { Chrome } from './Chrome';
 
 interface PlaybackProps {
   production: Production;
@@ -38,7 +43,7 @@ interface PlaybackProps {
   aspect?: StageProps['aspect'];
   /** Default true. */
   autoPlay?: boolean;
-  /** Optional render-prop for chrome (play/pause button, transcript). */
+  /** Optional render-prop for chrome (replaces the default chrome). */
   chrome?: (state: PlaybackState) => ReactNode;
   className?: string;
 }
@@ -48,6 +53,12 @@ export interface PlaybackState {
   totalShots: number;
   shotTime: number;
   shot: Shot | null;
+  /** Active audio Take for the current Shot (carries timings for sync). */
+  activeTake: Take | null;
+  /** Declared per-Shot durations across the whole Production. Drives the
+   *  global scrubber. Falls back to 4s for silent shots without
+   *  duration overrides. */
+  shotDurations: number[];
   isPlaying: boolean;
   isFinished: boolean;
   /** True while VO audio is being fetched / decoded. */
@@ -57,6 +68,9 @@ export interface PlaybackState {
   pause: () => void;
   restart: () => void;
   seekToShot: (i: number) => void;
+  /** Drag-the-scrubber seek. Argument is seconds from the start of the
+   *  Production. Resolves to a (shot, localTime) pair internally. */
+  seekToTime: (globalSec: number) => void;
 }
 
 export function Playback({
@@ -69,11 +83,21 @@ export function Playback({
   chrome,
   className = '',
 }: PlaybackProps) {
-  const allShots: Shot[] = production.scenes.flatMap((s) => s.shots);
+  const allShots: Shot[] = useMemo(
+    () => production.scenes.flatMap((s) => s.shots),
+    [production],
+  );
+  const shotDurations: number[] = useMemo(
+    () =>
+      allShots.map((s) => s.duration ?? s.vo?.duration_override ?? 4),
+    [allShots],
+  );
+
   const [shotIndex, setShotIndex] = useState(0);
   const [shotTime, setShotTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPreparing, setIsPreparing] = useState(false);
+  const [activeTake, setActiveTake] = useState<Take | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const firedActionsRef = useRef<Set<string>>(new Set());
 
@@ -88,35 +112,38 @@ export function Playback({
   }, []);
 
   const playShot = useCallback(
-    (idx: number) => {
+    (idx: number, startAt = 0) => {
       stopAudio();
       firedActionsRef.current = new Set();
       setShotIndex(idx);
-      setShotTime(0);
+      setShotTime(startAt);
+      setActiveTake(null);
       if (idx >= allShots.length) {
         setIsPlaying(false);
         return;
       }
       const next = allShots[idx];
       if (!next.vo) {
-        // Silent shot — use duration override or 4s default; advance on timer
         setIsPlaying(true);
-        const dur = (next.duration ?? 4) * 1000;
-        const t = setTimeout(() => playShot(idx + 1), dur);
+        const dur = (shotDurations[idx] - startAt) * 1000;
+        const t = setTimeout(() => playShot(idx + 1), Math.max(0, dur));
         return () => clearTimeout(t);
       }
       const resolved = resolveSlot(next.vo.audio, manifest);
       if (!resolved.url) {
-        // No Take ready — wait the duration override then advance
         setIsPlaying(true);
-        const dur = (next.duration ?? next.vo.duration_override ?? 4) * 1000;
-        const t = setTimeout(() => playShot(idx + 1), dur);
+        const dur = (shotDurations[idx] - startAt) * 1000;
+        const t = setTimeout(() => playShot(idx + 1), Math.max(0, dur));
         return () => clearTimeout(t);
       }
+      setActiveTake(resolved.take);
       setIsPreparing(true);
       const audio = new Audio(resolved.url);
       audioRef.current = audio;
-      audio.addEventListener('loadedmetadata', () => setIsPreparing(false));
+      audio.addEventListener('loadedmetadata', () => {
+        setIsPreparing(false);
+        if (startAt > 0) audio.currentTime = startAt;
+      });
       audio.addEventListener('timeupdate', () => setShotTime(audio.currentTime));
       audio.addEventListener('ended', () => {
         setShotTime(audio.duration);
@@ -131,7 +158,7 @@ export function Playback({
         () => setIsPlaying(false),
       );
     },
-    [allShots, manifest, stopAudio],
+    [allShots, manifest, shotDurations, stopAudio],
   );
 
   const play = useCallback(() => {
@@ -163,6 +190,20 @@ export function Playback({
       playShot(Math.max(0, Math.min(allShots.length - 1, i)));
     },
     [allShots.length, playShot],
+  );
+
+  const seekToTime = useCallback(
+    (globalSec: number) => {
+      let remaining = Math.max(0, globalSec);
+      for (let i = 0; i < shotDurations.length; i++) {
+        if (remaining < shotDurations[i] || i === shotDurations.length - 1) {
+          playShot(i, Math.min(remaining, shotDurations[i]));
+          return;
+        }
+        remaining -= shotDurations[i];
+      }
+    },
+    [playShot, shotDurations],
   );
 
   // Auto-play once on mount when the audio context is allowed
@@ -199,6 +240,8 @@ export function Playback({
     totalShots: allShots.length,
     shotTime,
     shot,
+    activeTake,
+    shotDurations,
     isPlaying,
     isFinished,
     isPreparing,
@@ -206,6 +249,7 @@ export function Playback({
     pause,
     restart,
     seekToShot,
+    seekToTime,
   };
 
   return (
@@ -222,51 +266,7 @@ export function Playback({
           onActions={handleActions}
         />
       </div>
-      {chrome ? chrome(state) : <DefaultControls state={state} />}
-    </div>
-  );
-}
-
-function DefaultControls({ state }: { state: PlaybackState }) {
-  return (
-    <div className="flex items-center gap-3 bg-paper-card border border-ink-subtle/15 rounded-full pl-1.5 pr-4 py-1.5 shadow-card w-fit mx-auto">
-      <button
-        type="button"
-        onClick={() => (state.isPlaying ? state.pause() : state.play())}
-        className="w-9 h-9 rounded-full bg-accent text-paper flex items-center justify-center hover:bg-accent-hover transition shrink-0"
-        aria-label={state.isPlaying ? 'Pause' : 'Play'}
-      >
-        {state.isPlaying ? (
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-            <rect x="2" y="1" width="3" height="10" rx="0.5" />
-            <rect x="7" y="1" width="3" height="10" rx="0.5" />
-          </svg>
-        ) : (
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-            <path d="M2 1 L10 6 L2 11 Z" />
-          </svg>
-        )}
-      </button>
-      <div className="flex gap-1">
-        {Array.from({ length: state.totalShots }, (_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => state.seekToShot(i)}
-            aria-label={`Shot ${i + 1}`}
-            className={`h-1.5 rounded-full transition-all ${
-              i === state.shotIndex
-                ? 'w-6 bg-accent'
-                : i < state.shotIndex
-                  ? 'w-3 bg-accent/40 hover:bg-accent/60'
-                  : 'w-3 bg-ink-subtle/20 hover:bg-ink-subtle/40'
-            }`}
-          />
-        ))}
-      </div>
-      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-subtle tabular-nums">
-        {state.isPreparing ? 'preparing' : state.isFinished ? 'done' : `shot ${state.shotIndex + 1}/${state.totalShots}`}
-      </p>
+      {chrome ? chrome(state) : <Chrome state={state} />}
     </div>
   );
 }

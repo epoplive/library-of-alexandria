@@ -162,6 +162,15 @@ export interface ArtifactRef {
   [extra: string]: unknown;
 }
 
+/** Per-chunk timing entry. Chunk-level today (sentence-aligned by
+ *  gen-audio's splitter); word-level when we add forced alignment in a
+ *  v0.3 upgrade. Drives transcript highlight + scrubber readouts. */
+export interface AudioTiming {
+  text: string;
+  startMs: number;
+  durationMs: number;
+}
+
 export interface Take {
   tier: Tier;
   /** The rendered artifact. May be a file URL, a sprite-sheet pack,
@@ -170,6 +179,9 @@ export interface Take {
   status: 'pending' | 'queued' | 'rendering' | 'ready' | 'failed' | 'superseded';
   /** USD cost to produce this Take, if known. */
   cost_usd?: number;
+  /** Playback-time alignment for audio Takes — chunks the chrome lights
+   *  up as the playhead crosses them. */
+  timings?: AudioTiming[];
   /** Provider + model used to render this Take (for receipts + reproducibility). */
   provenance?: {
     provider: string;     // e.g. 'kokoro', 'elevenlabs', 'openai-image', 'kling-i2v'

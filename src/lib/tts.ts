@@ -20,18 +20,11 @@
 const DEFAULT_VOICE = 'af_bella';
 
 /**
- * Per-chunk timing entry. gen-audio writes one of these per chunk it
- * synthesized. For single-call narrations there's one entry covering
- * the whole MP3. For long-form narrations split at sentence boundaries
- * before TTS, each chunk gets its own entry. The browser uses these
- * to map currentTime → which chunk is audible, then uses the chunk's
- * char range against the full narration to pick the active sentence.
+ * Re-export so callers in src/lib/* can keep their import paths;
+ * canonical declaration lives in lattice.ts next to Take.
  */
-export interface AudioTiming {
-  text: string;
-  startMs: number;
-  durationMs: number;
-}
+export type { AudioTiming } from './lattice';
+import type { AudioTiming } from './lattice';
 
 type AudioIndex = {
   lesson: string;

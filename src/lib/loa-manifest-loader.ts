@@ -85,6 +85,7 @@ export function hydrateManifestFromAudio(
         tier: 'v0.1',
         artifact: { url, path: url, hash: entry.hash },
         status: 'ready',
+        timings: entry.timings,
         provenance: {
           provider: cast.voice_profile.service,
           voice_id: cast.voice_profile.voice_id,
