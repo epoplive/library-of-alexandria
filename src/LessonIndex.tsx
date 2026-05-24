@@ -12,7 +12,7 @@ export default function LessonIndex() {
   }, []);
 
   return (
-    <main className="min-h-screen px-6 py-16">
+    <main className="h-[100svh] max-h-[100svh] overflow-y-auto overscroll-contain px-6 py-16">
       <div className="mx-auto max-w-3xl">
         <header className="mb-12">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent mb-3">
