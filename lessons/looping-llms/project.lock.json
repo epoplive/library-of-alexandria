@@ -24,10 +24,35 @@
       "status": "pending"
     },
     "ingest": {
+      "completed_at": "2026-05-24T07:34:48.729Z",
       "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "elapsed_ms": 47,
+      "input_hashes": [
+        {
+          "hash": "55b0be15734da5aa9a1ede68d4c0c8337ce3a0ad7d2a961e4216c1b2a1382885",
+          "path": "audio/index.json"
+        },
+        {
+          "hash": "53e67c82cd4cd362e752c2c9787f44ab5f5adfd763f74180887fff565870def5",
+          "path": "characters.json"
+        },
+        {
+          "hash": "8888b109c617bf61f4e8711bfafcae04ce2f5d340cbc5b50c1d3f801bc49004c",
+          "path": "index.tsx"
+        },
+        {
+          "hash": "272a596f0fdd30cc147eb66b0387c0a197bff7645ed4cb60e6a5b86314aab64a",
+          "path": "meta.json"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "150fa4a1368970506b91eeae148d3d46c90461db433f5a59693e8fb0a4f79597",
+          "path": "artifacts/lesson-input.json"
+        }
+      ],
+      "run_id": "ingest_2026-05-24T07-34-48-729Z",
+      "status": "completed"
     },
     "scene-map": {
       "diagnostics": [],

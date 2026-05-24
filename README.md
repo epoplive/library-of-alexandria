@@ -7,7 +7,7 @@ Lessons are authored there; this repo holds the player + lesson content that dep
 
 **Do not edit files in this repo directly** — changes will be overwritten on the next publish.
 
-Last published from librarian-of-alexandria @ `70c70d7`.
+Last published from librarian-of-alexandria @ `2e0a7c6`.
 
 ## Local preview
 ```

@@ -1,5 +1,13 @@
 {
-  "artifacts": {},
+  "artifacts": {
+    "lesson_input": {
+      "bytes": 187459,
+      "hash": "150fa4a1368970506b91eeae148d3d46c90461db433f5a59693e8fb0a4f79597",
+      "path": "artifacts/lesson-input.json",
+      "schema_ref": "loa.lesson-corpus.v1",
+      "updated_at": "2026-05-24T07:34:48.729Z"
+    }
+  },
   "audio_index_ref": "audio/index.json",
   "cast_ref": "characters.json",
   "funding": {
@@ -53,5 +61,12 @@
     "kind": "existing-lesson",
     "lesson_ref": "index.tsx",
     "meta_ref": "meta.json"
+  },
+  "workflow": {
+    "ingest": {
+      "artifact_ref": "artifacts/lesson-input.json",
+      "last_ran_at": "2026-05-24T07:34:48.729Z",
+      "status": "ok"
+    }
   }
 }
