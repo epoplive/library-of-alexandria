@@ -34,6 +34,8 @@ import type {
   Take,
 } from '@/lib/lattice';
 import { selectTake } from '@/lib/lattice';
+import type { ContentMap } from '@/lib/lesson-workflow/project-schema';
+import { buildTimelineIndex, type TimelineIndex } from '@/lib/timeline-index';
 import { Stage, type StageProps } from './Stage';
 import { resolveSlot } from './asset-resolve';
 import { Chrome } from './Chrome';
@@ -41,13 +43,14 @@ import { Chrome } from './Chrome';
 interface PlaybackProps {
   production: Production;
   manifest: AssetManifest;
+  contentMap?: ContentMap;
   interactives?: StageProps['interactives'];
   interactiveRefs?: StageProps['interactiveRefs'];
   aspect?: StageProps['aspect'];
   /** Default true. */
   autoPlay?: boolean;
   /** Optional render-prop for chrome (replaces the default chrome). */
-  chrome?: (state: PlaybackState) => ReactNode;
+  chrome?: (state: PlaybackState, children: ReactNode) => ReactNode;
   className?: string;
 }
 
@@ -67,6 +70,7 @@ export interface PlaybackState {
   shotDurations: number[];
   /** Segment durations for the active Shot. Empty for silent shots. */
   shotSegmentDurations: number[];
+  timelineIndex: TimelineIndex;
   isPlaying: boolean;
   isFinished: boolean;
   /** True while VO audio is being fetched / decoded. */
@@ -348,6 +352,7 @@ function materializeSegmentDurations(
 export function Playback({
   production,
   manifest,
+  contentMap,
   interactives,
   interactiveRefs,
   aspect,
@@ -363,6 +368,10 @@ export function Playback({
     () =>
       allShots.map((s) => playbackShotDuration(s, manifest)),
     [allShots, manifest],
+  );
+  const timelineIndex = useMemo(
+    () => buildTimelineIndex(production, shotDurations, contentMap),
+    [production, shotDurations, contentMap],
   );
 
   const [shotIndex, setShotIndex] = useState(0);
@@ -588,6 +597,7 @@ export function Playback({
     characters: production.characters,
     shotDurations,
     shotSegmentDurations,
+    timelineIndex,
     isPlaying,
     isFinished,
     isPreparing,
@@ -599,22 +609,23 @@ export function Playback({
     seekToTime,
   };
 
+  const stage = (
+    <Stage
+      production={production}
+      manifest={manifest}
+      shotIndex={shotIndex}
+      shotTime={shotTime}
+      activeSpeakerCastId={activeSpeakerCastId}
+      interactives={interactives}
+      interactiveRefs={interactiveRefs}
+      aspect={aspect ?? production.default_aspect ?? '16:9'}
+      onActions={handleActions}
+    />
+  );
+
   return (
-    <div className={`flex flex-col gap-3 h-full ${className}`}>
-      <div className="flex-1 min-h-0">
-        <Stage
-          production={production}
-          manifest={manifest}
-          shotIndex={shotIndex}
-          shotTime={shotTime}
-          activeSpeakerCastId={activeSpeakerCastId}
-          interactives={interactives}
-          interactiveRefs={interactiveRefs}
-          aspect={aspect ?? production.default_aspect ?? '16:9'}
-          onActions={handleActions}
-        />
-      </div>
-      {chrome ? chrome(state) : <Chrome state={state} />}
+    <div className={`h-full ${className}`}>
+      {chrome ? chrome(state, stage) : <Chrome state={state}>{stage}</Chrome>}
     </div>
   );
 }
