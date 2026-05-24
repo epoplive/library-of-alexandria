@@ -1,0 +1,13 @@
+{
+  "characters": [
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "description": "Default lesson voice. Conversational, curious, technically rigorous.",
+      "voice_service": "kokoro",
+      "voice_id": "af_bella",
+      "voice_persona": "Warm, clear, thoughtful pacing. Reads like a thoughtful friend explaining something interesting."
+    }
+  ],
+  "default_speaker_id": "narrator"
+}

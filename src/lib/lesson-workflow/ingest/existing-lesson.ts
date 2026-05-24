@@ -51,10 +51,10 @@ export async function ingestExistingLesson(
   ctx: IngestContext,
 ): Promise<LessonCorpus> {
   const projectPaths = paths(slug);
-  const lessonPath = path.join(projectPaths.lessonDir, source.lesson_ref);
-  const castPath = path.join(projectPaths.lessonDir, source.cast_ref);
-  const audioPath = path.join(projectPaths.lessonDir, source.audio_index_ref);
-  const metaPath = path.join(projectPaths.lessonDir, source.meta_ref);
+  const lessonPath = path.join(projectPaths.lessonDir, source.sections_ref);
+  const castPath = projectPaths.charactersJson;
+  const audioPath = path.join(projectPaths.audioDir, 'index.json');
+  const metaPath = projectPaths.metaJson;
   const [lessonSource, castRaw, audioRaw, metaRaw] = await Promise.all([
     readFile(lessonPath, 'utf8'),
     readFile(castPath, 'utf8'),
@@ -102,7 +102,7 @@ export async function ingestExistingLesson(
   const audioIndex = audioSnapshotFromRaw(audioRaw);
   const interactiveInventory = buildInteractiveInventory({
     slug,
-    lessonRef: source.lesson_ref,
+    lessonRef: source.sections_ref,
     sections,
     importedGameRefs: extracted.imported_game_refs,
   });

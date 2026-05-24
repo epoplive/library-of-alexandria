@@ -1,0 +1,4 @@
+Reading prompt from stdin...
+2026-05-24T22:55:34.197792Z ERROR codex_core_skills::loader: failed to stat skills path /Users/epoplive/.codex/skills/.system/openai-docs/agents/openai.yaml: No such file or directory (os error 2)
+2026-05-24T22:55:34.201151Z ERROR codex_core_skills::loader: failed to read skills dir /Users/epoplive/.codex/skills/.system/openai-docs/scripts: No such file or directory (os error 2)
+2026-05-24T22:55:34.201165Z ERROR codex_core_skills::loader: failed to read skills dir /Users/epoplive/.codex/skills/.system/openai-docs/scripts: No such file or directory (os error 2)

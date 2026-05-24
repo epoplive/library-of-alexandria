@@ -1,0 +1,187 @@
+{
+  "cast_seed": [
+    {
+      "description": "Default lesson narrator.",
+      "id": "narrator",
+      "name": "Narrator"
+    }
+  ],
+  "discovery_inventory": [],
+  "interactive_inventory": [],
+  "provenance": {
+    "extractor_version": "p1b-ingest.1",
+    "ingested_at": "2026-05-24T23:02:48.646Z",
+    "source_hash": "c4987079443424c3758bbbb26350c054cc00d84727f8ce23d80869ebef52a504"
+  },
+  "research_brief": {
+    "adjacent_stories": [
+      "From dreams to simulators: why learned latent rollouts changed RL.",
+      "Why objects and relations fight the combinatorial explosion in multi-object worlds.",
+      "Graph neural networks as differentiable physics engines before they became world models.",
+      "Planning comes back: MPC, heuristic search, and MCTS over learned graph states.",
+      "Knowledge-graph world models for text games and language agents."
+    ],
+    "depth_target": "Intermediate-to-advanced: move from latent imagination to object-centric graph simulators and planning.",
+    "key_concepts": [
+      "latent world model",
+      "model-based reinforcement learning",
+      "imagined rollouts",
+      "object-centric representation",
+      "relational inductive bias",
+      "message passing as learned physics",
+      "permutation equivariance",
+      "action-conditioned graph dynamics",
+      "contrastive vs reconstruction objectives",
+      "slot attention plus latent GNNs",
+      "compounding prediction error",
+      "MPC/MCTS over graph latents",
+      "graph as connector, simulator, and reasoner"
+    ],
+    "named_figures": [
+      {
+        "name": "David Ha",
+        "relevance": "Popularized neural world models with agents trained inside learned latent dreams."
+      },
+      {
+        "name": "Jürgen Schmidhuber",
+        "relevance": "Early adaptive world-model and curiosity lineage; coauthor of the 2018 World Models paper."
+      },
+      {
+        "name": "Peter W. Battaglia",
+        "relevance": "Key figure behind Interaction Networks, Graph Networks, and relational inductive bias for physical reasoning."
+      },
+      {
+        "name": "Thomas N. Kipf",
+        "relevance": "Bridged object-centric world modeling and GNN dynamics in Contrastive Structured World Models."
+      },
+      {
+        "name": "Danijar Hafner",
+        "relevance": "Built the Dreamer line, making latent imagination a practical model-based RL workhorse."
+      },
+      {
+        "name": "Jiaxuan You",
+        "relevance": "Coauthored Graph World Model, extending world-model framing to graph-structured and multimodal states."
+      }
+    ],
+    "papers": [
+      {
+        "authors": "David Ha, Jürgen Schmidhuber",
+        "cite_string": "arXiv:1803.10122, https://arxiv.org/abs/1803.10122",
+        "title": "World Models",
+        "year": 2018
+      },
+      {
+        "authors": "Peter W. Battaglia, Razvan Pascanu, Matthew Lai, Danilo Rezende, Koray Kavukcuoglu",
+        "cite_string": "arXiv:1612.00222, https://arxiv.org/abs/1612.00222",
+        "title": "Interaction Networks for Learning about Objects, Relations and Physics",
+        "year": 2016
+      },
+      {
+        "authors": "Alvaro Sanchez-Gonzalez et al.",
+        "cite_string": "ICML 2018 / arXiv:1806.01242, https://arxiv.org/abs/1806.01242",
+        "title": "Graph Networks as Learnable Physics Engines for Inference and Control",
+        "year": 2018
+      },
+      {
+        "authors": "Danijar Hafner, Timothy Lillicrap, Jimmy Ba, Mohammad Norouzi",
+        "cite_string": "ICLR 2020 / arXiv:1912.01603, https://arxiv.org/abs/1912.01603",
+        "title": "Dream to Control: Learning Behaviors by Latent Imagination",
+        "year": 2020
+      },
+      {
+        "authors": "Thomas N. Kipf, Elise van der Pol, Max Welling",
+        "cite_string": "ICLR 2020 / arXiv:1911.12247, https://arxiv.org/abs/1911.12247",
+        "title": "Contrastive Learning of Structured World Models",
+        "year": 2020
+      },
+      {
+        "authors": "Ondrej Biza, Thomas Kipf, David Klee, Robert Platt, Jan-Willem van de Meent, Lawson L. S. Wong",
+        "cite_string": "arXiv:2202.05333, https://arxiv.org/abs/2202.05333",
+        "title": "Factored World Models for Zero-Shot Generalization in Robotic Manipulation",
+        "year": 2022
+      },
+      {
+        "authors": "Jonathan Collu, Riccardo Majellaro, Aske Plaat, Thomas M. Moerland",
+        "cite_string": "arXiv:2402.03326, https://arxiv.org/abs/2402.03326",
+        "title": "Slot Structured World Models",
+        "year": 2024
+      },
+      {
+        "authors": "Tao Feng, Yexin Wu, Guanyu Lin, Jiaxuan You",
+        "cite_string": "ICML 2025 / arXiv:2507.10539, https://arxiv.org/abs/2507.10539",
+        "title": "Graph World Model",
+        "year": 2025
+      },
+      {
+        "authors": "Anais Berkes, Donna Vakalis, Yoshua Bengio, David Rolnick",
+        "cite_string": "WiML @ NeurIPS 2025, https://openreview.net/forum?id=pHmgNUZixd",
+        "title": "Graph Dreamer: Temporal Graph World Models for Sample-Efficient and Generalisable Reinforcement Learning",
+        "year": 2025
+      },
+      {
+        "authors": "Rodion Vakhitov, Leonid Ugadiarov, Aleksandr Panov",
+        "cite_string": "arXiv:2601.06604, https://arxiv.org/abs/2601.06604",
+        "title": "Object-Centric World Models Meet Monte Carlo Tree Search",
+        "year": 2026
+      },
+      {
+        "authors": "Jiawei Liu, Senqiao Yang, Mingjun Wang, Yu Wang, Bei Yu",
+        "cite_string": "arXiv:2604.27895, https://arxiv.org/abs/2604.27895",
+        "title": "Graph World Models: Concepts, Taxonomy, and Future Directions",
+        "year": 2026
+      }
+    ],
+    "source_digest_ids": [
+      "arxiv:1803.10122",
+      "arxiv:1612.00222",
+      "arxiv:1806.01242",
+      "arxiv:1912.01603",
+      "arxiv:1911.12247",
+      "arxiv:2202.05333",
+      "arxiv:2402.03326",
+      "arxiv:2507.10539",
+      "openreview:pHmgNUZixd",
+      "arxiv:2601.06604",
+      "arxiv:2604.27895"
+    ],
+    "topic": "World Models meet Graph Neural Networks"
+  },
+  "schema_version": "loa.lesson-corpus.v1",
+  "slug": "world-graph-models",
+  "source_items": [
+    {
+      "content": {
+        "key_points": [
+          "latent world model",
+          "model-based reinforcement learning",
+          "imagined rollouts",
+          "object-centric representation",
+          "relational inductive bias",
+          "message passing as learned physics",
+          "permutation equivariance",
+          "action-conditioned graph dynamics",
+          "contrastive vs reconstruction objectives",
+          "slot attention plus latent GNNs",
+          "compounding prediction error",
+          "MPC/MCTS over graph latents",
+          "graph as connector, simulator, and reasoner"
+        ],
+        "named_entities": [
+          "David Ha",
+          "Jürgen Schmidhuber",
+          "Peter W. Battaglia",
+          "Thomas N. Kipf",
+          "Danijar Hafner",
+          "Jiaxuan You"
+        ],
+        "text": "latent world model\nmodel-based reinforcement learning\nimagined rollouts\nobject-centric representation\nrelational inductive bias\nmessage passing as learned physics\npermutation equivariance\naction-conditioned graph dynamics\ncontrastive vs reconstruction objectives\nslot attention plus latent GNNs\ncompounding prediction error\nMPC/MCTS over graph latents\ngraph as connector, simulator, and reasoner",
+        "title": "World Models meet Graph Neural Networks"
+      },
+      "id": "topic-be7947959f0f35a4",
+      "kind": "section",
+      "required": true,
+      "status": "ok"
+    }
+  ],
+  "source_kind": "topic"
+}

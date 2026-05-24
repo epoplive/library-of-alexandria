@@ -21,7 +21,7 @@ describe('ingestScript', () => {
 
       const corpus = await ingestScript(
         'script-demo',
-        { kind: 'script', script_ref: scriptPath },
+        { kind: 'script', script_path: scriptPath },
         { now: () => new Date('2026-05-24T00:00:00.000Z') },
       );
 

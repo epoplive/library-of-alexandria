@@ -36,7 +36,7 @@ export function resolveTransitionEnvelope(
   }
 
   const edge = transitionBetween(production.transitions, activeEntry.address, nextEntry.address);
-  if (edge === null || edge.kind === 'cut' || edge.duration === 0) {
+  if (edge === null || edge.kind === 'cut' || edge.duration_ms === 0) {
     return { activeShot: activeEntry.shot };
   }
 
@@ -45,7 +45,7 @@ export function resolveTransitionEnvelope(
     return { activeShot: activeEntry.shot };
   }
 
-  const transitionDuration = edge.duration / 1000;
+  const transitionDuration = edge.duration_ms / 1000;
   const startsAt = activeDuration - transitionDuration;
   if (shotTime < startsAt) {
     return { activeShot: activeEntry.shot };

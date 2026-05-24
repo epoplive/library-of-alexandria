@@ -1,0 +1,308 @@
+{
+  "applicable": true,
+  "lesson_slug": "looping-llms",
+  "overall_status": "pass",
+  "per_section": [
+    {
+      "diagnostics": [],
+      "eyebrow": "01 · puzzle",
+      "scene_id": "section-01",
+      "sentence_counts": {
+        "matched": 18,
+        "source": 18,
+        "storyboard": 18
+      },
+      "source_section_id": "section_01",
+      "status": "pass",
+      "title": "Build a looped transformer"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "ForwardPassSim",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "ForwardPassSim"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "02 · puzzle",
+      "scene_id": "section-02",
+      "sentence_counts": {
+        "matched": 15,
+        "source": 15,
+        "storyboard": 15
+      },
+      "source_section_id": "section_02",
+      "status": "pass",
+      "title": "Run the forward pass yourself"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "BanachPlayableScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "BanachPlayableScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "03 · puzzle",
+      "scene_id": "section-03",
+      "sentence_counts": {
+        "matched": 21,
+        "source": 21,
+        "storyboard": 21
+      },
+      "source_section_id": "section_03",
+      "status": "pass",
+      "title": "Banach's theorem, in your hands"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "SilentThinkingPlayer"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "04",
+      "scene_id": "section-04",
+      "sentence_counts": {
+        "matched": 12,
+        "source": 12,
+        "storyboard": 12
+      },
+      "source_section_id": "section_04",
+      "status": "pass",
+      "title": "Thinking in silence"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "GradientSurgeon",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "GradientSurgeon"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "05 · puzzle",
+      "scene_id": "section-05",
+      "sentence_counts": {
+        "matched": 15,
+        "source": 15,
+        "storyboard": 15
+      },
+      "source_section_id": "section_05",
+      "status": "pass",
+      "title": "Gradient surgery"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "ComputeAllocator",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "ComputeAllocator"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "06 · puzzle",
+      "scene_id": "section-06",
+      "sentence_counts": {
+        "matched": 17,
+        "source": 17,
+        "storyboard": 17
+      },
+      "source_section_id": "section_06",
+      "status": "pass",
+      "title": "Allocate your compute"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "TrainingComputeScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "TrainingComputeScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "07",
+      "scene_id": "section-07",
+      "sentence_counts": {
+        "matched": 11,
+        "source": 11,
+        "storyboard": 11
+      },
+      "source_section_id": "section_07",
+      "status": "pass",
+      "title": "The training tax"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "WeightTyingScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "WeightTyingScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "08",
+      "scene_id": "section-08",
+      "sentence_counts": {
+        "matched": 11,
+        "source": 11,
+        "storyboard": 11
+      },
+      "source_section_id": "section_08",
+      "status": "pass",
+      "title": "What actually gets shared"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "HaltPlayableScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "HaltPlayableScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "09 · puzzle",
+      "scene_id": "section-09",
+      "sentence_counts": {
+        "matched": 15,
+        "source": 15,
+        "storyboard": 15
+      },
+      "source_section_id": "section_09",
+      "status": "pass",
+      "title": "You're the halting head"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "KVCacheArchitect",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "KVCacheArchitect"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "10 · puzzle",
+      "scene_id": "section-10",
+      "sentence_counts": {
+        "matched": 14,
+        "source": 14,
+        "storyboard": 14
+      },
+      "source_section_id": "section_10",
+      "status": "pass",
+      "title": "The KV-cache tax"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "WhenItWinsScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "WhenItWinsScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "11",
+      "scene_id": "section-11",
+      "sentence_counts": {
+        "matched": 15,
+        "source": 15,
+        "storyboard": 15
+      },
+      "source_section_id": "section_11",
+      "status": "pass",
+      "title": "When it wins, when it doesn't"
+    },
+    {
+      "diagnostics": [
+        {
+          "actual": "ReadingListScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "ReadingListScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        }
+      ],
+      "eyebrow": "12",
+      "scene_id": "section-12",
+      "sentence_counts": {
+        "matched": 9,
+        "source": 9,
+        "storyboard": 9
+      },
+      "source_section_id": "section_12",
+      "status": "pass",
+      "title": "Where to go next"
+    }
+  ],
+  "schema_version": "loa.parity-report.v1",
+  "source_kind": "existing-lesson"
+}

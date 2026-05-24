@@ -1,5 +1,4 @@
 import ts from 'typescript';
-import { canonicalJsonStringify, sha256 } from '../artifact-ref';
 import type { ExistingSection, JsonObject, JsonValue } from './types';
 
 export type AstExtractionIssueCode =
@@ -110,15 +109,12 @@ function extractSection(
   const safeDiscoveries = discoveries === undefined ? {} : discoveries;
   const start = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
   const end = sourceFile.getLineAndCharacterOfPosition(node.getEnd());
-  const canonicalText = canonicalJsonStringify({
-    eyebrow: safeEyebrow,
-    narration: safeNarration,
-    title: safeTitle,
-  });
+  const sourceSectionId = `section_${String(index + 1).padStart(2, '0')}`;
 
   const section: ExistingSection = {
     index,
-    source_section_id: sha256(`${slug}${index}${canonicalText}`).slice(0, 16),
+    // Section identity follows JSX order so narration edits do not churn downstream parity.
+    source_section_id: sourceSectionId,
     eyebrow: safeEyebrow,
     title: safeTitle,
     narration: safeNarration,

@@ -1,0 +1,834 @@
+{
+  "lesson": "world-graph-models",
+  "updated_at": "2026-05-24T23:35:12.859Z",
+  "voices": [
+    "af_bella"
+  ],
+  "entries": [
+    {
+      "hash": "6606225f6dd1",
+      "text": "A reinforcement learning agent normally pays for knowledge with real trials, one action and one consequence at a time.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "6606225f6dd1.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A reinforcement learning agent normally pays for knowledge with real trials, one action and one consequence at a time.",
+          "startMs": 0,
+          "durationMs": 8650
+        }
+      ]
+    },
+    {
+      "hash": "7b01408dc2cc",
+      "text": "A learned world model changes that bargain by turning past experience into a simulator of what might happen next.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "7b01408dc2cc.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A learned world model changes that bargain by turning past experience into a simulator of what might happen next.",
+          "startMs": 0,
+          "durationMs": 8025
+        }
+      ]
+    },
+    {
+      "hash": "e6ed86e2d88f",
+      "text": "The agent can ask the model for imagined transitions before it commits to another action in the environment.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e6ed86e2d88f.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The agent can ask the model for imagined transitions before it commits to another action in the environment.",
+          "startMs": 0,
+          "durationMs": 7200
+        }
+      ]
+    },
+    {
+      "hash": "37d3d734d667",
+      "text": "Sample efficiency improves when useful policy updates come from both real interaction and predicted experience.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "37d3d734d667.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Sample efficiency improves when useful policy updates come from both real interaction and predicted experience.",
+          "startMs": 0,
+          "durationMs": 8400
+        }
+      ]
+    },
+    {
+      "hash": "abcc30a81a73",
+      "text": "The opening question is not whether the model is perfect, but whether it is good enough to make real trials count for more.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "abcc30a81a73.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The opening question is not whether the model is perfect, but whether it is good enough to make real trials count for more.",
+          "startMs": 0,
+          "durationMs": 8075
+        }
+      ]
+    },
+    {
+      "hash": "e01969104bcc",
+      "text": "A latent world model does not need to store every pixel as the agent sees it.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e01969104bcc.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A latent world model does not need to store every pixel as the agent sees it.",
+          "startMs": 0,
+          "durationMs": 5900
+        }
+      ]
+    },
+    {
+      "hash": "d80fa11b9b9a",
+      "text": "It learns a compact state that keeps the information needed to predict rewards, observations, and consequences of actions.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "d80fa11b9b9a.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "It learns a compact state that keeps the information needed to predict rewards, observations, and consequences of actions.",
+          "startMs": 0,
+          "durationMs": 8650
+        }
+      ]
+    },
+    {
+      "hash": "27b8b7b64209",
+      "text": "Inside that compressed space, rollout steps are cheaper than replaying the full world in detail.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "27b8b7b64209.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Inside that compressed space, rollout steps are cheaper than replaying the full world in detail.",
+          "startMs": 0,
+          "durationMs": 6750
+        }
+      ]
+    },
+    {
+      "hash": "3d778ddc822d",
+      "text": "A policy can train inside those predicted futures and test many action sequences before touching the real environment again.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "3d778ddc822d.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A policy can train inside those predicted futures and test many action sequences before touching the real environment again.",
+          "startMs": 0,
+          "durationMs": 8875
+        }
+      ]
+    },
+    {
+      "hash": "0a141c754815",
+      "text": "Latent imagination is useful because it makes planning and policy learning fast enough to repeat.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "0a141c754815.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Latent imagination is useful because it makes planning and policy learning fast enough to repeat.",
+          "startMs": 0,
+          "durationMs": 6950
+        }
+      ]
+    },
+    {
+      "hash": "6daee650e4b3",
+      "text": "The same imagination that saves samples also creates a new failure mode.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "6daee650e4b3.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The same imagination that saves samples also creates a new failure mode.",
+          "startMs": 0,
+          "durationMs": 5650
+        }
+      ]
+    },
+    {
+      "hash": "a36ca9d5723d",
+      "text": "A one-step prediction can look accurate while still carrying a small error in position, reward, or hidden state.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a36ca9d5723d.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A one-step prediction can look accurate while still carrying a small error in position, reward, or hidden state.",
+          "startMs": 0,
+          "durationMs": 7900
+        }
+      ]
+    },
+    {
+      "hash": "307c8783b3f5",
+      "text": "When the model feeds its own prediction into the next prediction, that small miss can become the starting point for a larger miss.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "307c8783b3f5.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "When the model feeds its own prediction into the next prediction, that small miss can become the starting point for a larger miss.",
+          "startMs": 0,
+          "durationMs": 7675
+        }
+      ]
+    },
+    {
+      "hash": "212d644b259c",
+      "text": "Long imagined rollouts therefore have an error horizon where useful forecasts fade into model fantasy.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "212d644b259c.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Long imagined rollouts therefore have an error horizon where useful forecasts fade into model fantasy.",
+          "startMs": 0,
+          "durationMs": 7625
+        }
+      ]
+    },
+    {
+      "hash": "e2014d39faea",
+      "text": "Good model-based control must balance the value of looking ahead against the risk of trusting predictions too far.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e2014d39faea.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Good model-based control must balance the value of looking ahead against the risk of trusting predictions too far.",
+          "startMs": 0,
+          "durationMs": 8175
+        }
+      ]
+    },
+    {
+      "hash": "e8b2d569421d",
+      "text": "A single-vector latent state can summarize a scene, but it does not naturally say which part belongs to which object.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e8b2d569421d.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A single-vector latent state can summarize a scene, but it does not naturally say which part belongs to which object.",
+          "startMs": 0,
+          "durationMs": 8100
+        }
+      ]
+    },
+    {
+      "hash": "d53e40952856",
+      "text": "As the number of objects grows, the possible arrangements and interactions grow much faster than the training set.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "d53e40952856.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "As the number of objects grows, the possible arrangements and interactions grow much faster than the training set.",
+          "startMs": 0,
+          "durationMs": 7375
+        }
+      ]
+    },
+    {
+      "hash": "04669470186b",
+      "text": "An object-centric representation breaks the scene into reusable entities with their own attributes.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "04669470186b.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "An object-centric representation breaks the scene into reusable entities with their own attributes.",
+          "startMs": 0,
+          "durationMs": 7400
+        }
+      ]
+    },
+    {
+      "hash": "014eecc07ec5",
+      "text": "The model can then ask how these entities relate instead of relearning every whole-scene configuration from scratch.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "014eecc07ec5.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The model can then ask how these entities relate instead of relearning every whole-scene configuration from scratch.",
+          "startMs": 0,
+          "durationMs": 7650
+        }
+      ]
+    },
+    {
+      "hash": "b93ab1d184ee",
+      "text": "This is the combinatorial wall that pushes world models toward objects and relations.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "b93ab1d184ee.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "This is the combinatorial wall that pushes world models toward objects and relations.",
+          "startMs": 0,
+          "durationMs": 6375
+        }
+      ]
+    },
+    {
+      "hash": "1d04c8bbf492",
+      "text": "A graph builds an assumption into the model: entities are nodes, and possible influences are edges.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "1d04c8bbf492.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A graph builds an assumption into the model: entities are nodes, and possible influences are edges.",
+          "startMs": 0,
+          "durationMs": 7100
+        }
+      ]
+    },
+    {
+      "hash": "65bf9a668639",
+      "text": "The same update rule can be shared across many pairs of objects instead of being tied to one fixed scene layout.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "65bf9a668639.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The same update rule can be shared across many pairs of objects instead of being tied to one fixed scene layout.",
+          "startMs": 0,
+          "durationMs": 7625
+        }
+      ]
+    },
+    {
+      "hash": "58d1b1841ce7",
+      "text": "That relational inductive bias helps the model reuse a learned interaction when the objects are rearranged or the count changes.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "58d1b1841ce7.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "That relational inductive bias helps the model reuse a learned interaction when the objects are rearranged or the count changes.",
+          "startMs": 0,
+          "durationMs": 9350
+        }
+      ]
+    },
+    {
+      "hash": "b9f1cc71169e",
+      "text": "Generalization comes from treating relations as repeatable structure, not as accidental details of one observation.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "b9f1cc71169e.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Generalization comes from treating relations as repeatable structure, not as accidental details of one observation.",
+          "startMs": 0,
+          "durationMs": 8800
+        }
+      ]
+    },
+    {
+      "hash": "a903cd78db1a",
+      "text": "The price is that the model must choose which entities and edges deserve attention.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a903cd78db1a.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The price is that the model must choose which entities and edges deserve attention.",
+          "startMs": 0,
+          "durationMs": 5750
+        }
+      ]
+    },
+    {
+      "hash": "3ce15048e304",
+      "text": "In a graph dynamics model, prediction begins with object states and an action that may affect one object or the whole scene.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "3ce15048e304.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "In a graph dynamics model, prediction begins with object states and an action that may affect one object or the whole scene.",
+          "startMs": 0,
+          "durationMs": 8600
+        }
+      ]
+    },
+    {
+      "hash": "a1f4a11d95fc",
+      "text": "Each node sends messages along its edges that describe how it may influence its neighbors.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a1f4a11d95fc.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Each node sends messages along its edges that describe how it may influence its neighbors.",
+          "startMs": 0,
+          "durationMs": 6475
+        }
+      ]
+    },
+    {
+      "hash": "8fcfc2bcf49d",
+      "text": "A receiving node aggregates those messages with its own state and the action context.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "8fcfc2bcf49d.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A receiving node aggregates those messages with its own state and the action context.",
+          "startMs": 0,
+          "durationMs": 6375
+        }
+      ]
+    },
+    {
+      "hash": "c7d9c99d1385",
+      "text": "The shared dynamics rule updates every object into a predicted next state.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "c7d9c99d1385.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The shared dynamics rule updates every object into a predicted next state.",
+          "startMs": 0,
+          "durationMs": 5400
+        }
+      ]
+    },
+    {
+      "hash": "9fe0c42e842a",
+      "text": "Message passing acts like learned local physics because future motion emerges from repeated object-to-object influence.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "9fe0c42e842a.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Message passing acts like learned local physics because future motion emerges from repeated object-to-object influence.",
+          "startMs": 0,
+          "durationMs": 8675
+        }
+      ]
+    },
+    {
+      "hash": "93ea176c7503",
+      "text": "Object slots and graph nodes often arrive in an arbitrary order.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "93ea176c7503.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Object slots and graph nodes often arrive in an arbitrary order.",
+          "startMs": 0,
+          "durationMs": 5250
+        }
+      ]
+    },
+    {
+      "hash": "60ee6623975a",
+      "text": "If two identical descriptions are listed in a different order, the world has not physically changed.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "60ee6623975a.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "If two identical descriptions are listed in a different order, the world has not physically changed.",
+          "startMs": 0,
+          "durationMs": 6475
+        }
+      ]
+    },
+    {
+      "hash": "009015c4cd9f",
+      "text": "A permutation-equivariant graph model respects that fact by moving predictions with the reordered labels.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "009015c4cd9f.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A permutation-equivariant graph model respects that fact by moving predictions with the reordered labels.",
+          "startMs": 0,
+          "durationMs": 7150
+        }
+      ]
+    },
+    {
+      "hash": "4501e51a9173",
+      "text": "It should not predict a different collision merely because object three was renamed object one.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "4501e51a9173.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "It should not predict a different collision merely because object three was renamed object one.",
+          "startMs": 0,
+          "durationMs": 6900
+        }
+      ]
+    },
+    {
+      "hash": "e3ab1542ad31",
+      "text": "Order does not matter, but consistent correspondence does.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e3ab1542ad31.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Order does not matter, but consistent correspondence does.",
+          "startMs": 0,
+          "durationMs": 4200
+        }
+      ]
+    },
+    {
+      "hash": "57becf01166c",
+      "text": "An object-centric world model first has to find the objects before it can reason over them.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "57becf01166c.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "An object-centric world model first has to find the objects before it can reason over them.",
+          "startMs": 0,
+          "durationMs": 6425
+        }
+      ]
+    },
+    {
+      "hash": "29e351db2ef1",
+      "text": "Slot attention offers one route by assigning parts of an observation to a small set of latent slots.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "29e351db2ef1.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Slot attention offers one route by assigning parts of an observation to a small set of latent slots.",
+          "startMs": 0,
+          "durationMs": 7650
+        }
+      ]
+    },
+    {
+      "hash": "f1cb6ce57c03",
+      "text": "Those slots can become graph nodes whose relations are updated by a latent GNN dynamics model.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "f1cb6ce57c03.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Those slots can become graph nodes whose relations are updated by a latent GNN dynamics model.",
+          "startMs": 0,
+          "durationMs": 7525
+        }
+      ]
+    },
+    {
+      "hash": "59871c9bd5f3",
+      "text": "The pipeline separates perception from simulation without requiring the final state to be a single monolithic vector.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "59871c9bd5f3.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The pipeline separates perception from simulation without requiring the final state to be a single monolithic vector.",
+          "startMs": 0,
+          "durationMs": 8275
+        }
+      ]
+    },
+    {
+      "hash": "3aeee5a34e34",
+      "text": "Its promise is a world model that can discover entities from observations and then predict their interactions.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "3aeee5a34e34.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Its promise is a world model that can discover entities from observations and then predict their interactions.",
+          "startMs": 0,
+          "durationMs": 7600
+        }
+      ]
+    },
+    {
+      "hash": "468f049e0c09",
+      "text": "A training objective decides what the latent graph is pressured to remember.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "468f049e0c09.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A training objective decides what the latent graph is pressured to remember.",
+          "startMs": 0,
+          "durationMs": 5400
+        }
+      ]
+    },
+    {
+      "hash": "0bf348120a64",
+      "text": "A reconstruction loss rewards states that can rebuild observations, including details that may not matter for control.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "0bf348120a64.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A reconstruction loss rewards states that can rebuild observations, including details that may not matter for control.",
+          "startMs": 0,
+          "durationMs": 8550
+        }
+      ]
+    },
+    {
+      "hash": "74a4d4fc1d50",
+      "text": "A contrastive objective can instead reward distinctions between plausible and implausible future states.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "74a4d4fc1d50.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "A contrastive objective can instead reward distinctions between plausible and implausible future states.",
+          "startMs": 0,
+          "durationMs": 7550
+        }
+      ]
+    },
+    {
+      "hash": "f74884495992",
+      "text": "For graph world models, that difference shapes whether the representation preserves pixels, controllable factors, or relational structure.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "f74884495992.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "For graph world models, that difference shapes whether the representation preserves pixels, controllable factors, or relational structure.",
+          "startMs": 0,
+          "durationMs": 9475
+        }
+      ]
+    },
+    {
+      "hash": "4b6b7e33f593",
+      "text": "The right objective depends on whether the learner needs faithful reconstruction, useful planning features, or robust generalization.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "4b6b7e33f593.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "The right objective depends on whether the learner needs faithful reconstruction, useful planning features, or robust generalization.",
+          "startMs": 0,
+          "durationMs": 9425
+        }
+      ]
+    },
+    {
+      "hash": "a4056d90712a",
+      "text": "Once a graph latent can predict future states, planning can search through possible actions inside that learned space.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a4056d90712a.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Once a graph latent can predict future states, planning can search through possible actions inside that learned space.",
+          "startMs": 0,
+          "durationMs": 7826
+        }
+      ]
+    },
+    {
+      "hash": "95317252f0e5",
+      "text": "Model predictive control samples or optimizes short action sequences, scores their predicted futures, and executes the first action.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "95317252f0e5.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Model predictive control samples or optimizes short action sequences, scores their predicted futures, and executes the first action.",
+          "startMs": 0,
+          "durationMs": 9650
+        }
+      ]
+    },
+    {
+      "hash": "cbc11a3c7e5a",
+      "text": "Heuristic search adds guidance about which futures look promising before all branches are expanded.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "cbc11a3c7e5a.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Heuristic search adds guidance about which futures look promising before all branches are expanded.",
+          "startMs": 0,
+          "durationMs": 7050
+        }
+      ]
+    },
+    {
+      "hash": "7bde596176ed",
+      "text": "Monte Carlo tree search builds a tree of imagined graph states and uses repeated evaluations to choose the next move.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "7bde596176ed.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Monte Carlo tree search builds a tree of imagined graph states and uses repeated evaluations to choose the next move.",
+          "startMs": 0,
+          "durationMs": 8600
+        }
+      ]
+    },
+    {
+      "hash": "cedf8fc63908",
+      "text": "All of these methods trade policy commitment for on-demand reasoning, while still paying the cost of model error and branching choices.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "cedf8fc63908.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "All of these methods trade policy commitment for on-demand reasoning, while still paying the cost of model error and branching choices.",
+          "startMs": 0,
+          "durationMs": 8625
+        }
+      ]
+    },
+    {
+      "hash": "a4721da55d26",
+      "text": "By the end of the lesson, the graph has played three roles in the world model story.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "a4721da55d26.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "By the end of the lesson, the graph has played three roles in the world model story.",
+          "startMs": 0,
+          "durationMs": 5500
+        }
+      ]
+    },
+    {
+      "hash": "193741369452",
+      "text": "As connector, it names entities and relations so multi-object scenes can be represented compositionally.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "193741369452.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "As connector, it names entities and relations so multi-object scenes can be represented compositionally.",
+          "startMs": 0,
+          "durationMs": 7775
+        }
+      ]
+    },
+    {
+      "hash": "2aea811959da",
+      "text": "As simulator, it uses message passing to update object states under actions.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "2aea811959da.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "As simulator, it uses message passing to update object states under actions.",
+          "startMs": 0,
+          "durationMs": 5925
+        }
+      ]
+    },
+    {
+      "hash": "2f7ac37179e4",
+      "text": "As reasoner, it gives planners a structured space for comparing possible futures.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "2f7ac37179e4.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "As reasoner, it gives planners a structured space for comparing possible futures.",
+          "startMs": 0,
+          "durationMs": 5700
+        }
+      ]
+    },
+    {
+      "hash": "e0c0d0c457b6",
+      "text": "Each role introduces a tradeoff: stronger structure can improve generalization, but only when the learned entities, edges, and objectives match the task.",
+      "speaker_id": "narrator",
+      "voice_id": "af_bella",
+      "file": "e0c0d0c457b6.mp3",
+      "source_file": "storyboard.json",
+      "timings": [
+        {
+          "text": "Each role introduces a tradeoff: stronger structure can improve generalization, but only when the learned entities, edges, and objectives match the task.",
+          "startMs": 0,
+          "durationMs": 10775
+        }
+      ]
+    }
+  ]
+}

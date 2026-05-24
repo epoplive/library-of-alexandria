@@ -1,14 +1,62 @@
 {
   "artifacts": {
+    "asset_manifest": {
+      "bytes": 53656,
+      "hash": "bb276776470684d307385941d52f5d07883248fc9837e75d758e3e9a2625d809",
+      "path": "artifacts/asset-manifest.json",
+      "schema_ref": "loa.asset-manifest.v1",
+      "updated_at": "2026-05-24T21:04:54.104Z"
+    },
+    "consistency_report": {
+      "bytes": 5442,
+      "hash": "a30738c72161bea642722b82fc33b945b8ec83fd01fd1afa9c67ca1de41b990e",
+      "path": "artifacts/consistency-report.json",
+      "schema_ref": "loa.consistency-report.v1",
+      "updated_at": "2026-05-24T21:04:54.148Z"
+    },
+    "curriculum": {
+      "bytes": 46780,
+      "hash": "c84ad9020145b5fc0bae5572700835064aa5ddc5fbab5e888df6c0e961ec4114",
+      "path": "artifacts/curriculum.json",
+      "schema_ref": "loa.curriculum.v1",
+      "updated_at": "2026-05-24T21:04:43.223Z"
+    },
     "lesson_input": {
-      "bytes": 187459,
-      "hash": "150fa4a1368970506b91eeae148d3d46c90461db433f5a59693e8fb0a4f79597",
+      "bytes": 187019,
+      "hash": "42019aff1b3c51f7d74c2a1dc73737034659fe5a44df0307d992b880205c2e06",
       "path": "artifacts/lesson-input.json",
       "schema_ref": "loa.lesson-corpus.v1",
-      "updated_at": "2026-05-24T07:34:48.729Z"
+      "updated_at": "2026-05-24T21:04:43.137Z"
+    },
+    "parity_report": {
+      "bytes": 8542,
+      "hash": "1cd645ef17b1d6a9c7a3709b766b6a831de46d6b81211be5b24b9592fa1d1c49",
+      "path": "artifacts/parity-report.json",
+      "schema_ref": "loa.parity-report.v1",
+      "updated_at": "2026-05-24T21:04:54.148Z"
+    },
+    "pending_assets": {
+      "bytes": 62398,
+      "hash": "71033f1e3512fd5f307e67b713939a33a273ca366160fe229ed66e758cfd8833",
+      "path": "artifacts/pending_assets.json",
+      "schema_ref": "loa.pending-assets.v1",
+      "updated_at": "2026-05-24T21:04:54.104Z"
+    },
+    "scene_map": {
+      "bytes": 155043,
+      "hash": "4ed7fd1cb118771450340a616ee811ae520f286781f0134589c22f80993d333a",
+      "path": "artifacts/scene-map.json",
+      "schema_ref": "loa.scene-map.v1",
+      "updated_at": "2026-05-24T21:04:43.296Z"
+    },
+    "storyboard": {
+      "bytes": 81951,
+      "hash": "37d9cf6644f8d5934f3b0e4dd52be54447564c651660b2e4b808c1ef3f7b6230",
+      "path": "artifacts/storyboard.json",
+      "schema_ref": "loa.storyboard.v1",
+      "updated_at": "2026-05-24T21:04:43.296Z"
     }
   },
-  "audio_index_ref": "audio/index.json",
   "cast_ref": "characters.json",
   "funding": {
     "donation_links": {
@@ -35,19 +83,18 @@
     ],
     "production_cost_usd": 0
   },
-  "generated_production_ref": "productions/looping-llms.generated.ts",
   "identity": {
-    "created_at": "2026-05-21T02:00:00.000Z",
+    "authors": [],
+    "current_tier": "v0.1",
+    "lesson_id": "looping-llms",
     "summary": "Same transformer block, applied K times with shared weights — depth without parameter growth, and reasoning that happens inside the forward pass.",
     "tags": [
       "ai",
       "architecture",
       "research"
     ],
-    "tier": "v0.1",
     "title": "Looped Language Models"
   },
-  "meta_ref": "meta.json",
   "provenance": {
     "authors": [],
     "created_at": "2026-05-21T02:00:00.000Z",
@@ -56,16 +103,57 @@
   "schema_version": "loa.project.v1",
   "slug": "looping-llms",
   "source": {
-    "audio_index_ref": "audio/index.json",
-    "cast_ref": "characters.json",
     "kind": "existing-lesson",
-    "lesson_ref": "index.tsx",
-    "meta_ref": "meta.json"
+    "sections_ref": "index.tsx"
   },
+  "timeline_ref": {
+    "hash": "7fe2e88d838f37b1f2530eedb0b81799df0260cf00e9fb20fec669d6933359b9",
+    "path": "productions/looping-llms.generated.ts"
+  },
+  "validation": {
+    "asset_coverage": "missing",
+    "character_sprite_coverage": "ok",
+    "map_completeness": "pass",
+    "parity": "pass",
+    "self_consistency": "pass",
+    "tier_v0_1": "fail",
+    "tier_v0_3": "pending"
+  },
+  "variations": [],
   "workflow": {
+    "compose": {
+      "artifact_ref": "productions/looping-llms.generated.ts",
+      "last_ran_at": "2026-05-24T21:04:43.451Z",
+      "status": "ok"
+    },
+    "curriculum": {
+      "artifact_ref": "artifacts/curriculum.json",
+      "last_ran_at": "2026-05-24T21:04:43.223Z",
+      "status": "ok"
+    },
+    "hydrate": {
+      "artifact_ref": "artifacts/pending_assets.json",
+      "last_ran_at": "2026-05-24T21:04:54.104Z",
+      "status": "ok"
+    },
     "ingest": {
       "artifact_ref": "artifacts/lesson-input.json",
-      "last_ran_at": "2026-05-24T07:34:48.729Z",
+      "last_ran_at": "2026-05-24T21:04:43.137Z",
+      "status": "ok"
+    },
+    "scene-map": {
+      "artifact_ref": "artifacts/scene-map.json",
+      "last_ran_at": "2026-05-24T21:04:43.256Z",
+      "status": "ok"
+    },
+    "storyboard": {
+      "artifact_ref": "artifacts/storyboard.json",
+      "last_ran_at": "2026-05-24T21:04:43.296Z",
+      "status": "ok"
+    },
+    "validate": {
+      "artifact_ref": "artifacts/consistency-report.json",
+      "last_ran_at": "2026-05-24T21:04:54.148Z",
       "status": "ok"
     }
   }

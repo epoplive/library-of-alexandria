@@ -29,6 +29,7 @@ import type {
   TransitionEdge,
 } from '@/lib/lattice';
 import { getInteractive } from '@/lib/interactives';
+import type { ContentMap, ShotMap } from '@/lib/lesson-workflow/project-schema';
 import { COMPOSERS } from './index';
 import { backgroundSlots } from './helpers';
 import { getComposer } from './registry';
@@ -340,6 +341,8 @@ function validateInvariants(
   const diagnostics = state.diagnostics;
   diagnostics.push(...validateProductionCastReferences(state.production, ctx));
   diagnostics.push(...validateActionCueContracts(state.production, ctx, state.declaredComponents));
+  diagnostics.push(...validateDeclaredComponentsMounted(state.production, state.declaredComponents));
+  diagnostics.push(...validateShotsInContentMap(state.production, ctx));
   const slotValidation = validateSlotReferences(state.production, state.manifest, ctx.manifest_view);
   diagnostics.push(...slotValidation.diagnostics);
   diagnostics.push(...validateNoTakes(slotValidation.manifest));
@@ -508,6 +511,121 @@ function validateActionCueContracts(
     }
   }
   return diagnostics;
+}
+
+function validateDeclaredComponentsMounted(
+  production: Production,
+  declaredComponents: DeclaredComponent[],
+): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  for (const declared of declaredComponents) {
+    if (hasMountedInteractiveComponent(
+      production,
+      declared.scene_id,
+      declared.shot_id,
+      declared.component_id,
+    )) {
+      continue;
+    }
+    diagnostics.push({
+      code: 'composer.interactive.unmounted',
+      path: [
+        'scenes',
+        declared.scene_id,
+        'shots',
+        declared.shot_id,
+        'declared_components',
+        declared.component_id,
+      ],
+      actual: 'declared but no interactive element mounts component',
+      expected: 'an interactive-group Element with matching component_id at this shot',
+      repair: 'either remove the declared_components entry or add the interactive Element',
+      severity: 'error',
+    });
+  }
+  return diagnostics;
+}
+
+function hasMountedInteractiveComponent(
+  production: Production,
+  sceneId: SceneId,
+  shotId: ShotId,
+  componentId: string,
+): boolean {
+  const scene = production.scenes.find((candidate) => candidate.id === sceneId);
+  if (scene === undefined) {
+    return false;
+  }
+  const shot = scene.shots.find((candidate) => candidate.id === shotId);
+  if (shot === undefined) {
+    return false;
+  }
+  for (const element of shot.elements) {
+    if (element.kind === 'interactive-group' && element.component_id === componentId) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function validateShotsInContentMap(
+  production: Production,
+  ctx: ComposerContext,
+): Diagnostic[] {
+  const contentMap = ctx.contentMap;
+  if (contentMap === undefined) {
+    return [];
+  }
+
+  const diagnostics: Diagnostic[] = [];
+  for (const scene of production.scenes) {
+    for (const shot of scene.shots) {
+      if (contentMapHasShot(contentMap, scene.id, shot.id)) {
+        continue;
+      }
+      diagnostics.push({
+        code: 'composer.shot.not_in_map',
+        path: ['scenes', scene.id, 'shots', shot.id],
+        actual: 'shot id absent from content map',
+        expected: 'shot id present in contentMap.acts[*].scenes[*].shots[*]',
+        repair: 'add the shot to the scene-map artifact or remove from storyboard',
+        severity: 'error',
+      });
+    }
+  }
+  return diagnostics;
+}
+
+function contentMapHasShot(
+  contentMap: ContentMap,
+  sceneId: SceneId,
+  shotId: ShotId,
+): boolean {
+  for (const act of contentMap.acts) {
+    for (const scene of act.scenes) {
+      if (scene.id !== sceneId) {
+        continue;
+      }
+      for (const shot of scene.shots) {
+        if (shotMapHasShotId(shot, shotId)) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function shotMapHasShotId(shot: ShotMap, shotId: ShotId): boolean {
+  if (shot.id === shotId) {
+    return true;
+  }
+  for (const keyframe of shot.keyframes) {
+    if (keyframe.shot_id === shotId) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function validateSlotReferences(

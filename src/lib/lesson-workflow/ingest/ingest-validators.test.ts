@@ -4,7 +4,21 @@ import { minimalCorpus } from './test-fixtures';
 
 describe('validateLessonCorpus', () => {
   it('accepts a minimal valid corpus', () => {
-    expect(validateLessonCorpus(minimalCorpus())).toEqual([]);
+    expect(validateLessonCorpus(minimalCorpus({
+      interactive_inventory: [],
+    }))).toEqual([]);
+  });
+
+  it('warns when a component file exists but the lesson registry is empty', () => {
+    const diagnostics = validateLessonCorpus(minimalCorpus());
+
+    expect(diagnostics).toHaveLength(1);
+    expect(diagnostics[0]).toMatchObject({
+      code: 'ingest.interactive.unknown_component',
+      path: ['interactive_inventory', 0, 'component_id'],
+      actual: 'BanachPlayableScene',
+      severity: 'warning',
+    });
   });
 
   it('reports required quarantined sources', () => {
@@ -29,6 +43,7 @@ describe('validateLessonCorpus', () => {
 
   it('reports invalid existing sections and duplicate discoveries', () => {
     const diagnostics = validateLessonCorpus(minimalCorpus({
+      interactive_inventory: [],
       existing_sections: [
         {
           index: 0,
@@ -52,7 +67,7 @@ describe('validateLessonCorpus', () => {
     ]);
   });
 
-  it('reports missing interactive component files', () => {
+  it('reports missing interactive component files as errors', () => {
     const diagnostics = validateLessonCorpus(minimalCorpus({
       interactive_inventory: [
         {
@@ -63,5 +78,6 @@ describe('validateLessonCorpus', () => {
     }));
 
     expect(diagnostics.map((diag) => diag.code)).toEqual(['ingest.interactive.unknown_component']);
+    expect(diagnostics.map((diag) => diag.severity)).toEqual(['error']);
   });
 });

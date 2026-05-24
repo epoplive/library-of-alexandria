@@ -1,0 +1,299 @@
+{
+  "locked": {
+    "value": false
+  },
+  "schema_version": "loa.project-lock.v1",
+  "slug": "world-graph-models",
+  "steps": {
+    "compose": {
+      "completed_at": "2026-05-24T23:22:08.395Z",
+      "diagnostics": [],
+      "elapsed_ms": 2806,
+      "input_hashes": [
+        {
+          "hash": "a02104cf061f0b5074aa6c5dc849a6a63e901241132619139c4b254e0dcf8c50",
+          "path": "artifacts/scene-map.json"
+        },
+        {
+          "hash": "b8b7b4b5498cd0abdf3320ff8081fb23a150794eedab0afc141b3feaa239f1b2",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "b80ee68dba4fe04ca7589c6eb0afe11f4942ca35d665966afbfa4818cc914346",
+          "path": "characters.json"
+        },
+        {
+          "hash": "149bab4989410dd046f0c6993b59e3900e3bcafde866b0cc7edfc041a289a3ad",
+          "path": "interactives/registry.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "dae01acb96491e5a5d72ab27b7f20548ec459d0fd5c60b066f89339903ab1f13",
+          "path": "productions/world-graph-models.generated.ts"
+        },
+        {
+          "hash": "be99184fa6207a87d7507c49e011a054ee09f0902c401d36f7a664b41ae42f61",
+          "path": "artifacts/asset-manifest.json"
+        }
+      ],
+      "run_id": "compose_2026-05-24T23-22-08-395Z",
+      "status": "completed",
+      "validator_version": "p1b-compose.1"
+    },
+    "curriculum": {
+      "completed_at": "2026-05-24T23:04:38.696Z",
+      "diagnostics": [],
+      "elapsed_ms": 44788,
+      "input_hashes": [
+        {
+          "hash": "c87fbc39cbde0e8cd948829b3b3d36f673aa794fc710ab53efede8fa3805a1dd",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "a02e847940633e6bea211bcdf00fb97b8c497fe97adb6c1f73245aafef16d7e2",
+          "path": "src/lib/lesson-workflow/curriculum/curriculum-validators.ts"
+        },
+        {
+          "hash": "2423b177f8c2888941220aae00933fef6c30a1241a648b7b3699f47af9eb709c",
+          "path": "src/lib/lesson-workflow/curriculum/types.ts"
+        },
+        {
+          "hash": "9638acf345c3ebe89a7977e2bc2db6538de7727a01aaba471f1dd6cc3c7b5510",
+          "path": "src/lib/lesson-workflow/prompts/curriculum.v1.md"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "6d31af137c24a5b72e28481fe34a713ac2942b743941e7846812e99ae5f7328e",
+          "path": "artifacts/curriculum.json"
+        }
+      ],
+      "prompt_template_hash": "9638acf345c3ebe89a7977e2bc2db6538de7727a01aaba471f1dd6cc3c7b5510",
+      "prompt_template_id": "curriculum",
+      "prompt_template_version": "1.0.0",
+      "run_id": "curriculum_2026-05-24T23-04-38-696Z",
+      "schema_hash": "2423b177f8c2888941220aae00933fef6c30a1241a648b7b3699f47af9eb709c",
+      "status": "completed",
+      "validator_hash": "a02e847940633e6bea211bcdf00fb97b8c497fe97adb6c1f73245aafef16d7e2",
+      "validator_version": "p1b-curriculum.1"
+    },
+    "hydrate": {
+      "completed_at": "2026-05-24T23:35:25.355Z",
+      "diagnostics": [],
+      "elapsed_ms": 7,
+      "input_hashes": [
+        {
+          "hash": "7c5d591c3e2a921ce383c3341eaf496100127ce9ed7997ef161ef3f21ba68cdd",
+          "path": "artifacts/asset-manifest.json"
+        },
+        {
+          "hash": "b8b7b4b5498cd0abdf3320ff8081fb23a150794eedab0afc141b3feaa239f1b2",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "ce5ff2562a2af9a77ba19c5966d1951d72a25f97b9fe96ebd7e9b52a9a5b9fa7",
+          "path": "audio/index.json"
+        },
+        {
+          "hash": "b80ee68dba4fe04ca7589c6eb0afe11f4942ca35d665966afbfa4818cc914346",
+          "path": "characters.json"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "7c5d591c3e2a921ce383c3341eaf496100127ce9ed7997ef161ef3f21ba68cdd",
+          "path": "artifacts/asset-manifest.json"
+        },
+        {
+          "hash": "29c648b616ec781adff19e9b11cbf6e7fdd04d1b7ee2eb9b1c9e5b3ad823b489",
+          "path": "artifacts/pending_assets.json"
+        }
+      ],
+      "run_id": "hydrate_2026-05-24T23-35-25-355Z",
+      "status": "completed",
+      "validator_version": "p1b-hydrate.1"
+    },
+    "ingest": {
+      "completed_at": "2026-05-24T23:02:48.646Z",
+      "diagnostics": [],
+      "elapsed_ms": 110048,
+      "input_hashes": [
+        {
+          "hash": "18be633dba13cc263c1c1212ad6c5189d19e78c9427cc22ffb196e68dc035850",
+          "path": "source.topic"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "c87fbc39cbde0e8cd948829b3b3d36f673aa794fc710ab53efede8fa3805a1dd",
+          "path": "artifacts/lesson-input.json"
+        }
+      ],
+      "run_id": "ingest_2026-05-24T23-02-48-646Z",
+      "status": "completed"
+    },
+    "scene-map": {
+      "completed_at": "2026-05-24T23:05:23.486Z",
+      "diagnostics": [],
+      "elapsed_ms": 421817,
+      "input_hashes": [
+        {
+          "hash": "6d31af137c24a5b72e28481fe34a713ac2942b743941e7846812e99ae5f7328e",
+          "path": "artifacts/curriculum.json"
+        },
+        {
+          "hash": "c87fbc39cbde0e8cd948829b3b3d36f673aa794fc710ab53efede8fa3805a1dd",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "e3ae0aed1d352e93725afb995fb15b5750acdc862a4cd3c9737295fe2de6b64d",
+          "path": "src/lib/lesson-workflow/prompts/scene-map.v1.md"
+        },
+        {
+          "hash": "8dc83a6e4da1413205f6fbf4c4e7321ef8c1a955ae33fb7f134d6fbf8c1cf0c3",
+          "path": "src/lib/lesson-workflow/scene-map/scene-map-validators.ts"
+        },
+        {
+          "hash": "d6394f3d92d2fc1fa1e56e2542bd18bd421a55231d8b252c4a39b44f8adb35c9",
+          "path": "src/lib/lesson-workflow/scene-map/types.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "59bbee7c01729a4ce4ffe3e6b3f3b4b228d0a35172a440d50b45a0d36538a760",
+          "path": "artifacts/scene-map.json"
+        }
+      ],
+      "prompt_template_hash": "e3ae0aed1d352e93725afb995fb15b5750acdc862a4cd3c9737295fe2de6b64d",
+      "prompt_template_id": "scene-map",
+      "prompt_template_version": "1.0.0",
+      "run_id": "scene-map_2026-05-24T23-05-23-486Z",
+      "schema_hash": "d6394f3d92d2fc1fa1e56e2542bd18bd421a55231d8b252c4a39b44f8adb35c9",
+      "status": "completed",
+      "validator_hash": "8dc83a6e4da1413205f6fbf4c4e7321ef8c1a955ae33fb7f134d6fbf8c1cf0c3",
+      "validator_version": "p1b-scenemap.1"
+    },
+    "storyboard": {
+      "completed_at": "2026-05-24T23:12:25.306Z",
+      "diagnostics": [],
+      "elapsed_ms": 583086,
+      "input_hashes": [
+        {
+          "hash": "6d31af137c24a5b72e28481fe34a713ac2942b743941e7846812e99ae5f7328e",
+          "path": "artifacts/curriculum.json"
+        },
+        {
+          "hash": "c87fbc39cbde0e8cd948829b3b3d36f673aa794fc710ab53efede8fa3805a1dd",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "a02104cf061f0b5074aa6c5dc849a6a63e901241132619139c4b254e0dcf8c50",
+          "path": "artifacts/scene-map.json"
+        },
+        {
+          "hash": "0f137136d56a063a14472d7cb1b5056d68f042ca10ffb54a3e048ea5fd04c215",
+          "path": "src/lib/lesson-workflow/prompts/storyboard.v1.md"
+        },
+        {
+          "hash": "041494a47e8571e0dc651f8896d02e6b7780bf750868ecd221bff24b12704c20",
+          "path": "src/lib/lesson-workflow/storyboard/storyboard-validators.ts"
+        },
+        {
+          "hash": "d306371dbdea2b74ec663499fd083d1f612adb0ef96d5c64aecda4e44afe3416",
+          "path": "src/lib/lesson-workflow/storyboard/types.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "b8b7b4b5498cd0abdf3320ff8081fb23a150794eedab0afc141b3feaa239f1b2",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "a02104cf061f0b5074aa6c5dc849a6a63e901241132619139c4b254e0dcf8c50",
+          "path": "artifacts/scene-map.json"
+        }
+      ],
+      "prompt_template_hash": "0f137136d56a063a14472d7cb1b5056d68f042ca10ffb54a3e048ea5fd04c215",
+      "prompt_template_id": "storyboard",
+      "prompt_template_version": "1.0.0",
+      "run_id": "storyboard_2026-05-24T23-12-25-306Z",
+      "schema_hash": "d306371dbdea2b74ec663499fd083d1f612adb0ef96d5c64aecda4e44afe3416",
+      "status": "completed",
+      "validator_hash": "041494a47e8571e0dc651f8896d02e6b7780bf750868ecd221bff24b12704c20",
+      "validator_version": "p1b-storyboard.1"
+    },
+    "validate": {
+      "completed_at": "2026-05-24T23:35:25.364Z",
+      "diagnostics": [],
+      "elapsed_ms": 8,
+      "input_hashes": [
+        {
+          "hash": "7c5d591c3e2a921ce383c3341eaf496100127ce9ed7997ef161ef3f21ba68cdd",
+          "path": "artifacts/asset-manifest.json"
+        },
+        {
+          "hash": "c87fbc39cbde0e8cd948829b3b3d36f673aa794fc710ab53efede8fa3805a1dd",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "a02104cf061f0b5074aa6c5dc849a6a63e901241132619139c4b254e0dcf8c50",
+          "path": "artifacts/scene-map.json"
+        },
+        {
+          "hash": "b8b7b4b5498cd0abdf3320ff8081fb23a150794eedab0afc141b3feaa239f1b2",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "149bab4989410dd046f0c6993b59e3900e3bcafde866b0cc7edfc041a289a3ad",
+          "path": "interactives/registry.ts"
+        },
+        {
+          "hash": "dae01acb96491e5a5d72ab27b7f20548ec459d0fd5c60b066f89339903ab1f13",
+          "path": "productions/world-graph-models.generated.ts"
+        },
+        {
+          "hash": "7b97bcb4bcd4e034123a44ce2fc2e021ab3dae0bb274784856fd4a0fbdf3ea58",
+          "path": "project.validation.hydrate"
+        },
+        {
+          "hash": "d642f6d8c8befef2c7da522227780f4c720cfb1b93857ee7a48e91b3835d576a",
+          "path": "src/lib/lesson-workflow/validate/cli-printer.ts"
+        },
+        {
+          "hash": "29e01fd2fcf3ca56d6455d79969713e6564cbc93d07139cda8fdaee22306d0da",
+          "path": "src/lib/lesson-workflow/validate/gate-aggregator.ts"
+        },
+        {
+          "hash": "7d0c7b6a2d33bcf3c756e5d6f59b5e68d4188025699661cfceb89ac77781fdbc",
+          "path": "src/lib/lesson-workflow/validate/index.ts"
+        },
+        {
+          "hash": "be5e9a84a10e567b61ad1f64d79b9b3f3472900477f267ff40f8588d202d52f6",
+          "path": "src/lib/lesson-workflow/validate/parity.ts"
+        },
+        {
+          "hash": "9ac76d7b51aa3e0b4395d212c5eeb29ab8f482df1fc5867cb48cdb0d1e18a33a",
+          "path": "src/lib/lesson-workflow/validate/self-consistency.ts"
+        },
+        {
+          "hash": "efa7067b0789c0565b306f4584b740a8c16061860909d2649ee06f83d0d13e21",
+          "path": "src/lib/lesson-workflow/validate/types.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "a6232e2012ca75cbe1d717de7e15801e44876c5d13b4b9b6e3d92bd2875ec7c0",
+          "path": "artifacts/parity-report.json"
+        },
+        {
+          "hash": "806dd4d4f7861eb0fe8afe443d134abf75fc8a0c86414fed67370c53acfa8686",
+          "path": "artifacts/consistency-report.json"
+        }
+      ],
+      "run_id": "validate_2026-05-24T23-35-25-364Z",
+      "status": "completed",
+      "validator_version": "p1b-validate.1"
+    }
+  }
+}

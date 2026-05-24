@@ -26,25 +26,26 @@ export async function ingestTopic(
   if (llmClient === undefined) throw new Error('ingestTopic requires ctx.llmClient');
 
   const promptPath = fileURLToPath(new URL('../prompts/ingest-topic.v1.md', import.meta.url));
-  const prompt = renderPrompt(promptPath, { topic: source.topic });
+  const prompt = renderPrompt(promptPath, { topic: source.subject });
   const result = await llmClient.runJson({
     prompt_template_id: ingestTopicV1Meta.id,
     prompt_template_version: ingestTopicV1Meta.version,
     prompt: prompt.rendered,
     schema: z.unknown(),
     validator: validateResearchBriefCandidate,
+    model_hint: 'gpt-5.5',
     max_retries: 1,
   });
   const parsed = ResearchBriefSchema.parse(result.parsed);
-  const digestId = `topic-${sha256(source.topic).slice(0, 16)}`;
-  const researchBrief = normalizeResearchBrief(parsed, digestId);
+  const digestId = `topic-${sha256(source.subject).slice(0, 16)}`;
+  const researchBrief = normalizeResearchBrief(parsed, digestId, source.depth_target);
   const sourceDigest: SourceDigest = {
     id: digestId,
     kind: 'section',
     required: true,
     status: 'ok',
     content: {
-      title: source.topic,
+      title: source.subject,
       text: researchBrief.key_concepts.join('\n'),
       key_points: researchBrief.key_concepts,
       named_entities: researchBrief.named_figures.map((figure) => figure.name),
@@ -72,11 +73,22 @@ export async function ingestTopic(
   };
 }
 
-function normalizeResearchBrief(brief: ResearchBrief, digestId: string): ResearchBrief {
-  if (brief.source_digest_ids.length > 0) return brief;
+function normalizeResearchBrief(
+  brief: ResearchBrief,
+  digestId: string,
+  depthTarget: string | undefined,
+): ResearchBrief {
+  const briefWithSourceIds = brief.source_digest_ids.length > 0
+    ? brief
+    : {
+      ...brief,
+      source_digest_ids: [digestId],
+    };
+  if (depthTarget === undefined) return briefWithSourceIds;
+  if (briefWithSourceIds.depth_target !== undefined) return briefWithSourceIds;
   return {
-    ...brief,
-    source_digest_ids: [digestId],
+    ...briefWithSourceIds,
+    depth_target: depthTarget,
   };
 }
 

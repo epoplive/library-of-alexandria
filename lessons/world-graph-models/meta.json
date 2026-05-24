@@ -1,0 +1,14 @@
+{
+  "title": "World Models meet Graph Neural Networks",
+  "summary": "A generated proof-of-concept lesson on the architectural intersection between world models and graph neural networks.",
+  "createdAt": "2026-05-24T00:00:00.000Z",
+  "tags": ["ai", "architecture", "graphs"],
+  "tier": "v0.1",
+  "funding": {
+    "production_cost_usd": 0,
+    "donations_received_usd": 0,
+    "donation_links": {},
+    "planned_improvements": [],
+    "ledger": []
+  }
+}

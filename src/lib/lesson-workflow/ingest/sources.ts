@@ -14,7 +14,7 @@ import {
 } from './types';
 
 type ProjectSourcesSource = Extract<Source, { kind: 'sources' }>;
-type ProjectSourceRef = ProjectSourcesSource['source_refs'][number];
+type ProjectSourceRef = NonNullable<ProjectSourcesSource['source_refs']>[number];
 type SourceMediaType = 'text/markdown' | 'text/plain' | 'application/pdf' | 'text/html' | 'application/json';
 
 export interface SourceRefInput extends ProjectSourceRef {
@@ -23,7 +23,10 @@ export interface SourceRefInput extends ProjectSourceRef {
 
 export interface SourcesSourceInput {
   kind: 'sources';
-  source_refs: SourceRefInput[];
+  source_refs?: SourceRefInput[];
+  urls?: string[];
+  papers?: string[];
+  transcripts?: string[];
 }
 
 const MAX_SOURCE_BYTES = 2_000_000;
@@ -33,9 +36,10 @@ export async function ingestSources(
   source: SourcesSourceInput,
   ctx: IngestContext,
 ): Promise<LessonCorpus> {
+  const sourceRefs = sourceRefsFromInput(source);
   const sourceItems: SourceDigest[] = [];
-  for (let index = 0; index < source.source_refs.length; index += 1) {
-    const ref = source.source_refs[index];
+  for (let index = 0; index < sourceRefs.length; index += 1) {
+    const ref = sourceRefs[index];
     sourceItems.push(await ingestOneSource(slug, ref, index, ctx));
   }
   const researchBrief = researchBriefFromSourceItems(slug, sourceItems);
@@ -58,6 +62,29 @@ export async function ingestSources(
       })),
     },
   };
+}
+
+function sourceRefsFromInput(source: SourcesSourceInput): SourceRefInput[] {
+  const refs: SourceRefInput[] = [];
+  if (source.source_refs !== undefined) {
+    refs.push(...source.source_refs);
+  }
+  if (source.urls !== undefined) {
+    refs.push(...source.urls.map((url) => ({ path: url })));
+  }
+  if (source.papers !== undefined) {
+    refs.push(...source.papers.map((paper) => ({
+      path: paper,
+      media_type: 'application/pdf' as const,
+    })));
+  }
+  if (source.transcripts !== undefined) {
+    refs.push(...source.transcripts.map((transcript) => ({
+      path: transcript,
+      media_type: 'text/plain' as const,
+    })));
+  }
+  return refs;
 }
 
 async function ingestOneSource(

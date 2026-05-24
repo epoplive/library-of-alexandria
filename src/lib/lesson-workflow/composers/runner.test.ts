@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { defineInteractiveContract, defineInteractivesRegistry } from '@/lib/interactives';
+import type { ContentMap } from '@/lib/lesson-workflow/project-schema';
 import { composeProduction } from './runner';
 import type { ComposerContext, ShotPlan } from './types';
 
@@ -85,7 +86,7 @@ describe('composeProduction', () => {
       from: { scene_id: 'scene', shot_id: 'a' },
       to: { scene_id: 'scene', shot_id: 'b' },
       kind: 'cross-dissolve',
-      duration: 400,
+      duration_ms: 400,
       ease: 'easeOut',
       direction: undefined,
     }]);
@@ -177,6 +178,87 @@ describe('composeProduction', () => {
     expect(result.diagnostics.map((diagnostic) => diagnostic.code)).toContain('composer.shot.count');
     expect(result.production.scenes[0].shots).toHaveLength(1);
   });
+
+  it('diagnoses emitted shots absent from the content map', () => {
+    const result = composeProduction([{
+      kind: 'title-card',
+      shot_address: { scene_id: 'scene', shot_id: 'missing' },
+      speakers: [],
+      spoken_lines: [],
+      duration_estimate_s: 1,
+      title: 'Missing map entry',
+    }], {
+      ...baseContext(),
+      contentMap: contentMapWithShots('scene', ['mapped']),
+    });
+
+    expect(result.diagnostics).toContainEqual({
+      code: 'composer.shot.not_in_map',
+      path: ['scenes', 'scene', 'shots', 'missing'],
+      actual: 'shot id absent from content map',
+      expected: 'shot id present in contentMap.acts[*].scenes[*].shots[*]',
+      repair: 'add the shot to the scene-map artifact or remove from storyboard',
+      severity: 'error',
+    });
+  });
+
+  it('diagnoses declared interactive components without mounted elements', () => {
+    const contract = defineInteractiveContract({
+      component_id: 'DemoGame',
+      methods: {
+        reset: z.tuple([]),
+      },
+    });
+    const result = composeProduction([{
+      kind: 'character-demo-beat',
+      shot_address: { scene_id: 'scene', shot_id: 'demo' },
+      speakers: ['narrator'],
+      spoken_lines: [],
+      duration_estimate_s: 3,
+      characters_on_stage: [],
+      action_cues: [{
+        cast_id: 'narrator',
+        at_s: 0.5,
+        component_id: 'DemoGame',
+        method: 'reset',
+        args: [],
+      }],
+    }], {
+      ...baseContext(),
+      interactives: defineInteractivesRegistry({
+        DemoGame: { component: FakeComponent, contract },
+      }),
+    });
+
+    expect(result.diagnostics).toContainEqual({
+      code: 'composer.interactive.unmounted',
+      path: ['scenes', 'scene', 'shots', 'demo', 'declared_components', 'DemoGame'],
+      actual: 'declared but no interactive element mounts component',
+      expected: 'an interactive-group Element with matching component_id at this shot',
+      repair: 'either remove the declared_components entry or add the interactive Element',
+      severity: 'error',
+    });
+  });
+
+  it('passes content-map and mounted-interactive invariants for a matching storyboard', () => {
+    const result = composeProduction([{
+      kind: 'interactive-takeover',
+      shot_address: { scene_id: 'scene', shot_id: 'try' },
+      speakers: [],
+      spoken_lines: [],
+      duration_estimate_s: 4,
+      component_id: 'DemoGame',
+      layout: {
+        position: [0.5, 0.5, 0],
+        size: { width: 0.7, height: 0.6 },
+      },
+    }], {
+      ...baseContext(),
+      contentMap: contentMapWithShots('scene', ['try']),
+    });
+
+    expect(result.diagnostics).toEqual([]);
+  });
 });
 
 function baseContext(): ComposerContext {
@@ -198,5 +280,37 @@ function baseContext(): ComposerContext {
       ledger: [],
       updated_at: '2026-05-23T00:00:00.000Z',
     },
+  };
+}
+
+function contentMapWithShots(sceneId: string, shotIds: string[]): ContentMap {
+  return {
+    schema_version: 'loa.content-map.v1',
+    lesson_slug: 'demo',
+    acts: [{
+      id: 'act',
+      title: 'Act',
+      scenes: [{
+        id: sceneId,
+        title: 'Scene',
+        cast_in_scene: [],
+        discoveries: [],
+        shots: shotIds.map(contentMapShot),
+      }],
+    }],
+  };
+}
+
+function contentMapShot(shotId: string): ContentMap['acts'][number]['scenes'][number]['shots'][number] {
+  return {
+    id: shotId,
+    kind: 'title-card',
+    speakers: [],
+    duration_estimate_s: 1,
+    keyframes: [{
+      id: `key-${shotId}`,
+      shot_id: shotId,
+      at: 0,
+    }],
   };
 }

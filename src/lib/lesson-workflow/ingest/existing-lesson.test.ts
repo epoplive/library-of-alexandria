@@ -8,10 +8,7 @@ describe('ingestExistingLesson', () => {
       'looping-llms',
       {
         kind: 'existing-lesson',
-        lesson_ref: 'index.tsx',
-        meta_ref: 'meta.json',
-        cast_ref: 'characters.json',
-        audio_index_ref: 'audio/index.json',
+        sections_ref: 'index.tsx',
       },
       { now: () => new Date('2026-05-24T00:00:00.000Z') },
     );
@@ -26,6 +23,8 @@ describe('ingestExistingLesson', () => {
     expect(corpus.audio_index.entries).toHaveLength(73);
     expect(corpus.interactive_inventory.map((entry) => entry.component_id)).toContain('BanachPlayableScene');
     expect(corpus.interactive_inventory.map((entry) => entry.component_id)).toContain('KVCacheArchitect');
-    expect(validateLessonCorpus(corpus)).toEqual([]);
+    expect(validateLessonCorpus(corpus).map((diag) => diag.severity)).toEqual(
+      corpus.interactive_inventory.map(() => 'warning'),
+    );
   });
 });

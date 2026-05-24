@@ -252,10 +252,10 @@ export function addShot(
  * Shot address.
  * **Format gate** — from/to must be adjacent in canonical timeline
  * order; kind is cut|fade|cross-dissolve|slide|push|wipe|iris|shader;
- * duration is milliseconds and non-negative; cut requires duration:0;
+ * duration_ms is milliseconds and non-negative; cut requires duration_ms:0;
  * slide/push should include direction; shader transitions include shader.
  * **Test corpus** — add {from:{scene_id:'s',shot_id:'a'},
- * to:{scene_id:'s',shot_id:'b'},kind:'cross-dissolve',duration:600}
+ * to:{scene_id:'s',shot_id:'b'},kind:'cross-dissolve',duration_ms:600}
  * to a two-shot Production; normalizeProduction returns the same edge
  * in Production.transitions[] and no deprecated Shot transition fields.
  */

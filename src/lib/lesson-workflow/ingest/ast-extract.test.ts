@@ -44,6 +44,10 @@ describe('extractExistingLessonSections', () => {
       },
     ]);
     expect(result.sections).toHaveLength(2);
+    expect(result.sections.map((entry) => entry.section.source_section_id)).toEqual([
+      'section_01',
+      'section_02',
+    ]);
     expect(result.sections[0].section).toMatchObject({
       index: 0,
       eyebrow: '01',

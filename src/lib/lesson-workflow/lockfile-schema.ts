@@ -22,6 +22,7 @@ const PendingStepLockEntrySchema = z.object({
   status: z.literal('pending'),
   input_hashes: z.array(HashEntrySchema),
   output_hashes: z.array(HashEntrySchema),
+  composer_versions: z.record(z.string(), z.string()).optional(),
   diagnostics: z.array(DiagnosticSchema),
 }).strict();
 
@@ -41,6 +42,7 @@ const CompletedStepLockEntrySchema = z.object({
   raw_stdout_hash: z.string().regex(sha256Pattern).optional(),
   raw_stderr_hash: z.string().regex(sha256Pattern).optional(),
   parsed_json_hash: z.string().regex(sha256Pattern).optional(),
+  composer_versions: z.record(z.string(), z.string()).optional(),
   diagnostics: z.array(DiagnosticSchema),
   elapsed_ms: z.number().int().nonnegative().optional(),
   completed_at: ISODateTimeSchema,
@@ -62,6 +64,7 @@ const FailedStepLockEntrySchema = z.object({
   raw_stdout_hash: z.string().regex(sha256Pattern).optional(),
   raw_stderr_hash: z.string().regex(sha256Pattern).optional(),
   parsed_json_hash: z.string().regex(sha256Pattern).optional(),
+  composer_versions: z.record(z.string(), z.string()).optional(),
   diagnostics: z.array(DiagnosticSchema),
   elapsed_ms: z.number().int().nonnegative().optional(),
   failed_at: ISODateTimeSchema,

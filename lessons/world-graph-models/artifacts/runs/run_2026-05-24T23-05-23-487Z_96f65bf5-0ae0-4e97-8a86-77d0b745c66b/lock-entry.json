@@ -1,0 +1,51 @@
+{
+  "command": {
+    "args": [
+      "exec",
+      "--json",
+      "--model",
+      "gpt-5.5",
+      "-c",
+      "model_reasoning_effort=\"xhigh\""
+    ],
+    "executable": "codex",
+    "provider": "codex-cli"
+  },
+  "completed_at": "2026-05-24T23:12:25.299Z",
+  "diagnostics": [],
+  "elapsed_ms": 421810,
+  "input_hashes": [
+    {
+      "hash": "5b524bfac82e3e65024aa4a4b98cfb161db0d98f47c0fc216786c516386c8c14",
+      "path": "prompt"
+    },
+    {
+      "hash": "9e791c6bfd5e4701099c0faaddaae153cb703121a504606454ce8a04c7fc5b6b",
+      "path": "schema"
+    }
+  ],
+  "model_id": "gpt-5.5",
+  "output_hashes": [
+    {
+      "hash": "d67d9186b3952fcd3884a596f95b2d209242c07ef8cb23785da9b0db84237b16",
+      "path": "runs/run_2026-05-24T23-05-23-487Z_96f65bf5-0ae0-4e97-8a86-77d0b745c66b/stdout.txt"
+    },
+    {
+      "hash": "3e75d28a6681c31400a3f0fcb564c7613fd42796fb83294e4d53fea86bcbd401",
+      "path": "runs/run_2026-05-24T23-05-23-487Z_96f65bf5-0ae0-4e97-8a86-77d0b745c66b/stderr.txt"
+    },
+    {
+      "hash": "59bbee7c01729a4ce4ffe3e6b3f3b4b228d0a35172a440d50b45a0d36538a760",
+      "path": "runs/run_2026-05-24T23-05-23-487Z_96f65bf5-0ae0-4e97-8a86-77d0b745c66b/parsed.json"
+    }
+  ],
+  "parsed_json_hash": "59bbee7c01729a4ce4ffe3e6b3f3b4b228d0a35172a440d50b45a0d36538a760",
+  "prompt_template_hash": "5b524bfac82e3e65024aa4a4b98cfb161db0d98f47c0fc216786c516386c8c14",
+  "prompt_template_id": "scene-map",
+  "prompt_template_version": "1.0.0",
+  "raw_stderr_hash": "3e75d28a6681c31400a3f0fcb564c7613fd42796fb83294e4d53fea86bcbd401",
+  "raw_stdout_hash": "d67d9186b3952fcd3884a596f95b2d209242c07ef8cb23785da9b0db84237b16",
+  "run_id": "run_2026-05-24T23-05-23-487Z_96f65bf5-0ae0-4e97-8a86-77d0b745c66b",
+  "schema_hash": "9e791c6bfd5e4701099c0faaddaae153cb703121a504606454ce8a04c7fc5b6b",
+  "status": "completed"
+}

@@ -1,0 +1,1416 @@
+{
+  "content_map": {
+    "acts": [
+      {
+        "id": "act-latent-dreams",
+        "scenes": [
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "ha-schmidhuber-world-models",
+              "dreamer-latent-imagination"
+            ],
+            "eyebrow": "Opening Question",
+            "id": "scene-model-before-policy",
+            "learning_objective": "Explain how a learned world model changes the sample-efficiency problem in reinforcement learning.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The narrator frames model-based reinforcement learning as a bargain: learn a simulator of experience, then use it to choose actions with fewer real trials.",
+            "title": "Model Before Policy"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "ha-schmidhuber-world-models",
+              "dreamer-latent-imagination"
+            ],
+            "eyebrow": "Latent Imagination",
+            "id": "scene-dream-space",
+            "learning_objective": "Describe what a latent world model stores and why imagined rollouts are useful for control.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The scene moves from pixels to compressed states, showing why latent rollouts make imagination cheap enough to train policies inside predicted futures.",
+            "title": "Dream Space"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "dreamer-latent-imagination"
+            ],
+            "eyebrow": "Failure Mode",
+            "id": "scene-error-horizon",
+            "learning_objective": "Diagnose why long imagined rollouts can become unreliable even when one-step predictions look accurate.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The narrator follows a small prediction mistake as it grows over multiple imagined steps, introducing compounding prediction error as the central tax on planning with learned models.",
+            "title": "Error Horizon"
+          }
+        ],
+        "summary": "This act establishes why world models matter: agents learn compact latent futures, then improve behavior inside imagined rollouts instead of only through real interaction.",
+        "title": "Latent Dreams"
+      },
+      {
+        "id": "act-objects-and-relations",
+        "scenes": [
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "battaglia-relational-physics"
+            ],
+            "eyebrow": "Object Worlds",
+            "id": "scene-combinatorial-wall",
+            "learning_objective": "Compare a single-vector latent state with an object-centric representation for multi-object prediction.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The scene contrasts monolithic latent states with worlds made of reusable parts, making object-centric representation the answer to scaling across different numbers and arrangements of things.",
+            "title": "The Combinatorial Wall"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "battaglia-relational-physics"
+            ],
+            "eyebrow": "Graph Assumption",
+            "id": "scene-relational-bias",
+            "learning_objective": "Explain how relational inductive bias helps a model generalize across object configurations.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The narrator introduces nodes, edges, and shared update rules as a relational inductive bias that lets a model reuse what it learns about one interaction in another scene.",
+            "title": "Relational Bias"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "battaglia-relational-physics"
+            ],
+            "eyebrow": "Learned Dynamics",
+            "id": "scene-message-passing-physics",
+            "learning_objective": "Predict the role of message passing in an action-conditioned graph dynamics model.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The scene treats message passing as learned local physics: objects send influence along edges, aggregate effects, and update their future states under an action-conditioned graph dynamics model.",
+            "title": "Messages As Physics"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "battaglia-relational-physics"
+            ],
+            "eyebrow": "Equivariance",
+            "id": "scene-order-does-not-matter",
+            "learning_objective": "Explain why permutation equivariance is required for object-centric graph world models.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The narrator explains permutation equivariance through reordered objects: the graph model should change labels consistently, not change the physical prediction.",
+            "title": "Order Does Not Matter"
+          }
+        ],
+        "summary": "This act shows why graphs enter the story: multi-object worlds explode combinatorially unless the model represents entities, relations, and repeatable interaction rules.",
+        "title": "Objects And Relations"
+      },
+      {
+        "id": "act-planning-over-graphs",
+        "scenes": [
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "kipf-contrastive-structure",
+              "planning-over-graph-latents"
+            ],
+            "eyebrow": "Structure From Perception",
+            "id": "scene-learning-the-slots",
+            "learning_objective": "Describe how slot attention plus latent GNN dynamics can build an object-centric world model from observations.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The scene links slot attention and latent GNNs, showing how a model can first separate entities from observations and then simulate their interactions.",
+            "title": "Learning The Slots"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "kipf-contrastive-structure"
+            ],
+            "eyebrow": "Objective Choice",
+            "id": "scene-what-to-train-for",
+            "learning_objective": "Choose between reconstruction and contrastive objectives for a given graph world-model training goal.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The narrator compares reconstruction losses with contrastive objectives, emphasizing that the training signal shapes whether the latent graph preserves pixels, controllable structure, or task-relevant distinctions.",
+            "title": "What To Train For"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "planning-over-graph-latents",
+              "dreamer-latent-imagination"
+            ],
+            "eyebrow": "Planning Returns",
+            "id": "scene-search-in-the-graph",
+            "learning_objective": "Explain how MPC or MCTS can use graph latent rollouts to choose an action.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The scene shows MPC, heuristic search, and MCTS rolling actions forward over graph latents, selecting actions by evaluating predicted futures without committing to a full policy first.",
+            "title": "Search In The Graph"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "ha-schmidhuber-world-models",
+              "battaglia-relational-physics",
+              "kipf-contrastive-structure",
+              "planning-over-graph-latents"
+            ],
+            "eyebrow": "Synthesis",
+            "id": "scene-connector-simulator-reasoner",
+            "learning_objective": "Synthesize the three roles of graphs in world models and identify the tradeoff each role introduces.",
+            "shots": [],
+            "source_section_id": "topic-be7947959f0f35a4",
+            "summary": "The final scene summarizes the graph as three roles at once: connector between entities, simulator of dynamics, and reasoner for planning across possible futures.",
+            "title": "Connector Simulator Reasoner"
+          }
+        ],
+        "summary": "This act connects representation to action: graph latents become simulators for MPC, search, and MCTS, while training objectives decide what structure the model actually learns.",
+        "title": "Planning Over Graphs"
+      }
+    ],
+    "lesson_slug": "world-models-meet-graph-neural-networks",
+    "schema_version": "loa.content-map.v1"
+  },
+  "detail": {
+    "scenes": [
+      {
+        "beats": [
+          {
+            "id": "beat-model-before-policy-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "b9880e9b08f54375"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-model-before-policy-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "39d5f0693bab3457",
+              "a81ca8e619ba66e8"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-model-before-policy-03",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "4f037fc5db31a287",
+              "daf01f6c4d2192ce"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "A compact learned simulator lets an agent practice before risking more real trials.",
+            "deep": "Ha and Schmidhuber's World Models framed policy learning as behavior trained inside latent dreams built from experience.",
+            "key": "ha-schmidhuber-world-models",
+            "source_digest_ids": [
+              "arxiv:1803.10122"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Latent imagination became a practical engine for model-based control.",
+            "deep": "The Dreamer line showed that policies can improve from predicted latent futures instead of relying only on environment interaction.",
+            "key": "dreamer-latent-imagination",
+            "source_digest_ids": [
+              "arxiv:1912.01603"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Opening Question",
+        "learning_objective": "Explain how a learned world model changes the sample-efficiency problem in reinforcement learning.",
+        "scene_id": "scene-model-before-policy",
+        "sentences": [
+          {
+            "canonical_text": "A reinforcement learning agent normally pays for knowledge with real trials, one action and one consequence at a time.",
+            "id": "b9880e9b08f54375",
+            "normalized_text": "a reinforcement learning agent normally pays for knowledge with real trials, one action and one consequence at a time.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A learned world model changes that bargain by turning past experience into a simulator of what might happen next.",
+            "id": "39d5f0693bab3457",
+            "normalized_text": "a learned world model changes that bargain by turning past experience into a simulator of what might happen next.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The agent can ask the model for imagined transitions before it commits to another action in the environment.",
+            "id": "a81ca8e619ba66e8",
+            "normalized_text": "the agent can ask the model for imagined transitions before it commits to another action in the environment.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Sample efficiency improves when useful policy updates come from both real interaction and predicted experience.",
+            "id": "4f037fc5db31a287",
+            "normalized_text": "sample efficiency improves when useful policy updates come from both real interaction and predicted experience.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The opening question is not whether the model is perfect, but whether it is good enough to make real trials count for more.",
+            "id": "daf01f6c4d2192ce",
+            "normalized_text": "the opening question is not whether the model is perfect, but whether it is good enough to make real trials count for more.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The narrator frames model-based reinforcement learning as a bargain: learn a simulator of experience, then use it to choose actions with fewer real trials.",
+        "title": "Model Before Policy"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-dream-space-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "ac090a786eb2c74d"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-dream-space-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "de8b6f0a6c5a5ee6",
+              "3f056baf1756b3df"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-dream-space-03",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "e8754f50ce774194"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-dream-space-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "34422d701b866cd0"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "A compact learned simulator lets an agent practice before risking more real trials.",
+            "deep": "Ha and Schmidhuber's World Models framed policy learning as behavior trained inside latent dreams built from experience.",
+            "key": "ha-schmidhuber-world-models",
+            "source_digest_ids": [
+              "arxiv:1803.10122"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Latent imagination became a practical engine for model-based control.",
+            "deep": "The Dreamer line showed that policies can improve from predicted latent futures instead of relying only on environment interaction.",
+            "key": "dreamer-latent-imagination",
+            "source_digest_ids": [
+              "arxiv:1912.01603"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Latent Imagination",
+        "learning_objective": "Describe what a latent world model stores and why imagined rollouts are useful for control.",
+        "scene_id": "scene-dream-space",
+        "sentences": [
+          {
+            "canonical_text": "A latent world model does not need to store every pixel as the agent sees it.",
+            "id": "ac090a786eb2c74d",
+            "normalized_text": "a latent world model does not need to store every pixel as the agent sees it.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "It learns a compact state that keeps the information needed to predict rewards, observations, and consequences of actions.",
+            "id": "de8b6f0a6c5a5ee6",
+            "normalized_text": "it learns a compact state that keeps the information needed to predict rewards, observations, and consequences of actions.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Inside that compressed space, rollout steps are cheaper than replaying the full world in detail.",
+            "id": "3f056baf1756b3df",
+            "normalized_text": "inside that compressed space, rollout steps are cheaper than replaying the full world in detail.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A policy can train inside those predicted futures and test many action sequences before touching the real environment again.",
+            "id": "e8754f50ce774194",
+            "normalized_text": "a policy can train inside those predicted futures and test many action sequences before touching the real environment again.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Latent imagination is useful because it makes planning and policy learning fast enough to repeat.",
+            "id": "34422d701b866cd0",
+            "normalized_text": "latent imagination is useful because it makes planning and policy learning fast enough to repeat.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The scene moves from pixels to compressed states, showing why latent rollouts make imagination cheap enough to train policies inside predicted futures.",
+        "title": "Dream Space"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-error-horizon-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "8a7e1525f87236ec"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-error-horizon-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "234b1b4219a0d0f0",
+              "b48739eead614cf7"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-error-horizon-03",
+            "intent": "aside",
+            "source_sentence_ids": [
+              "945a45d42f124856"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-error-horizon-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "fd2eb5862ba7790e"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Latent imagination became a practical engine for model-based control.",
+            "deep": "The Dreamer line showed that policies can improve from predicted latent futures instead of relying only on environment interaction.",
+            "key": "dreamer-latent-imagination",
+            "source_digest_ids": [
+              "arxiv:1912.01603"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Failure Mode",
+        "learning_objective": "Diagnose why long imagined rollouts can become unreliable even when one-step predictions look accurate.",
+        "scene_id": "scene-error-horizon",
+        "sentences": [
+          {
+            "canonical_text": "The same imagination that saves samples also creates a new failure mode.",
+            "id": "8a7e1525f87236ec",
+            "normalized_text": "the same imagination that saves samples also creates a new failure mode.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A one-step prediction can look accurate while still carrying a small error in position, reward, or hidden state.",
+            "id": "234b1b4219a0d0f0",
+            "normalized_text": "a one-step prediction can look accurate while still carrying a small error in position, reward, or hidden state.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "When the model feeds its own prediction into the next prediction, that small miss can become the starting point for a larger miss.",
+            "id": "b48739eead614cf7",
+            "normalized_text": "when the model feeds its own prediction into the next prediction, that small miss can become the starting point for a larger miss.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Long imagined rollouts therefore have an error horizon where useful forecasts fade into model fantasy.",
+            "id": "945a45d42f124856",
+            "normalized_text": "long imagined rollouts therefore have an error horizon where useful forecasts fade into model fantasy.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Good model-based control must balance the value of looking ahead against the risk of trusting predictions too far.",
+            "id": "fd2eb5862ba7790e",
+            "normalized_text": "good model-based control must balance the value of looking ahead against the risk of trusting predictions too far.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The narrator follows a small prediction mistake as it grows over multiple imagined steps, introducing compounding prediction error as the central tax on planning with learned models.",
+        "title": "Error Horizon"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-combinatorial-wall-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "aee1c79da73eb49b"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-combinatorial-wall-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "8f56dcd274cad430",
+              "b290d66327718ef9"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-combinatorial-wall-03",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "8ba2cecf87512e78"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-combinatorial-wall-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "2b568ae74c33ebaf"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Message passing can behave like a learned local physics rule.",
+            "deep": "Interaction Networks and later Graph Networks turned objects and relations into reusable machinery for physical prediction.",
+            "key": "battaglia-relational-physics",
+            "source_digest_ids": [
+              "arxiv:1612.00222",
+              "arxiv:1806.01242"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Object Worlds",
+        "learning_objective": "Compare a single-vector latent state with an object-centric representation for multi-object prediction.",
+        "scene_id": "scene-combinatorial-wall",
+        "sentences": [
+          {
+            "canonical_text": "A single-vector latent state can summarize a scene, but it does not naturally say which part belongs to which object.",
+            "id": "aee1c79da73eb49b",
+            "normalized_text": "a single-vector latent state can summarize a scene, but it does not naturally say which part belongs to which object.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "As the number of objects grows, the possible arrangements and interactions grow much faster than the training set.",
+            "id": "8f56dcd274cad430",
+            "normalized_text": "as the number of objects grows, the possible arrangements and interactions grow much faster than the training set.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "An object-centric representation breaks the scene into reusable entities with their own attributes.",
+            "id": "b290d66327718ef9",
+            "normalized_text": "an object-centric representation breaks the scene into reusable entities with their own attributes.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The model can then ask how these entities relate instead of relearning every whole-scene configuration from scratch.",
+            "id": "8ba2cecf87512e78",
+            "normalized_text": "the model can then ask how these entities relate instead of relearning every whole-scene configuration from scratch.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "This is the combinatorial wall that pushes world models toward objects and relations.",
+            "id": "2b568ae74c33ebaf",
+            "normalized_text": "this is the combinatorial wall that pushes world models toward objects and relations.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The scene contrasts monolithic latent states with worlds made of reusable parts, making object-centric representation the answer to scaling across different numbers and arrangements of things.",
+        "title": "The Combinatorial Wall"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-relational-bias-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "1fcfa4ce83be9fd9"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-relational-bias-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "9a89ba2c429c44db",
+              "f174f2ecc4d9cd87"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-relational-bias-03",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "35f100d4f1512217",
+              "ac1c6acc2e3b2775"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Message passing can behave like a learned local physics rule.",
+            "deep": "Interaction Networks and later Graph Networks turned objects and relations into reusable machinery for physical prediction.",
+            "key": "battaglia-relational-physics",
+            "source_digest_ids": [
+              "arxiv:1612.00222",
+              "arxiv:1806.01242"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Graph Assumption",
+        "learning_objective": "Explain how relational inductive bias helps a model generalize across object configurations.",
+        "scene_id": "scene-relational-bias",
+        "sentences": [
+          {
+            "canonical_text": "A graph builds an assumption into the model: entities are nodes, and possible influences are edges.",
+            "id": "1fcfa4ce83be9fd9",
+            "normalized_text": "a graph builds an assumption into the model: entities are nodes, and possible influences are edges.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The same update rule can be shared across many pairs of objects instead of being tied to one fixed scene layout.",
+            "id": "9a89ba2c429c44db",
+            "normalized_text": "the same update rule can be shared across many pairs of objects instead of being tied to one fixed scene layout.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "That relational inductive bias helps the model reuse a learned interaction when the objects are rearranged or the count changes.",
+            "id": "f174f2ecc4d9cd87",
+            "normalized_text": "that relational inductive bias helps the model reuse a learned interaction when the objects are rearranged or the count changes.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Generalization comes from treating relations as repeatable structure, not as accidental details of one observation.",
+            "id": "35f100d4f1512217",
+            "normalized_text": "generalization comes from treating relations as repeatable structure, not as accidental details of one observation.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The price is that the model must choose which entities and edges deserve attention.",
+            "id": "ac1c6acc2e3b2775",
+            "normalized_text": "the price is that the model must choose which entities and edges deserve attention.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The narrator introduces nodes, edges, and shared update rules as a relational inductive bias that lets a model reuse what it learns about one interaction in another scene.",
+        "title": "Relational Bias"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-message-passing-physics-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "893fafccd1167f10"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-message-passing-physics-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "fb76c8d8fa66e005",
+              "d64319b617f9ede3"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-message-passing-physics-03",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "9298caa4b524616e"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-message-passing-physics-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "817c59e419365f29"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Message passing can behave like a learned local physics rule.",
+            "deep": "Interaction Networks and later Graph Networks turned objects and relations into reusable machinery for physical prediction.",
+            "key": "battaglia-relational-physics",
+            "source_digest_ids": [
+              "arxiv:1612.00222",
+              "arxiv:1806.01242"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Learned Dynamics",
+        "learning_objective": "Predict the role of message passing in an action-conditioned graph dynamics model.",
+        "scene_id": "scene-message-passing-physics",
+        "sentences": [
+          {
+            "canonical_text": "In a graph dynamics model, prediction begins with object states and an action that may affect one object or the whole scene.",
+            "id": "893fafccd1167f10",
+            "normalized_text": "in a graph dynamics model, prediction begins with object states and an action that may affect one object or the whole scene.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Each node sends messages along its edges that describe how it may influence its neighbors.",
+            "id": "fb76c8d8fa66e005",
+            "normalized_text": "each node sends messages along its edges that describe how it may influence its neighbors.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A receiving node aggregates those messages with its own state and the action context.",
+            "id": "d64319b617f9ede3",
+            "normalized_text": "a receiving node aggregates those messages with its own state and the action context.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The shared dynamics rule updates every object into a predicted next state.",
+            "id": "9298caa4b524616e",
+            "normalized_text": "the shared dynamics rule updates every object into a predicted next state.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Message passing acts like learned local physics because future motion emerges from repeated object-to-object influence.",
+            "id": "817c59e419365f29",
+            "normalized_text": "message passing acts like learned local physics because future motion emerges from repeated object-to-object influence.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The scene treats message passing as learned local physics: objects send influence along edges, aggregate effects, and update their future states under an action-conditioned graph dynamics model.",
+        "title": "Messages As Physics"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-order-does-not-matter-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "028aff37b8904164",
+              "3b5d89feda8f41a6"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-order-does-not-matter-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "3339b73b08d12087",
+              "1b28307ebed8d60f"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-order-does-not-matter-03",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "b6b08b2e87f04a9e"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Message passing can behave like a learned local physics rule.",
+            "deep": "Interaction Networks and later Graph Networks turned objects and relations into reusable machinery for physical prediction.",
+            "key": "battaglia-relational-physics",
+            "source_digest_ids": [
+              "arxiv:1612.00222",
+              "arxiv:1806.01242"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Equivariance",
+        "learning_objective": "Explain why permutation equivariance is required for object-centric graph world models.",
+        "scene_id": "scene-order-does-not-matter",
+        "sentences": [
+          {
+            "canonical_text": "Object slots and graph nodes often arrive in an arbitrary order.",
+            "id": "028aff37b8904164",
+            "normalized_text": "object slots and graph nodes often arrive in an arbitrary order.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "If two identical descriptions are listed in a different order, the world has not physically changed.",
+            "id": "3b5d89feda8f41a6",
+            "normalized_text": "if two identical descriptions are listed in a different order, the world has not physically changed.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A permutation-equivariant graph model respects that fact by moving predictions with the reordered labels.",
+            "id": "3339b73b08d12087",
+            "normalized_text": "a permutation-equivariant graph model respects that fact by moving predictions with the reordered labels.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "It should not predict a different collision merely because object three was renamed object one.",
+            "id": "1b28307ebed8d60f",
+            "normalized_text": "it should not predict a different collision merely because object three was renamed object one.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Order does not matter, but consistent correspondence does.",
+            "id": "b6b08b2e87f04a9e",
+            "normalized_text": "order does not matter, but consistent correspondence does.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The narrator explains permutation equivariance through reordered objects: the graph model should change labels consistently, not change the physical prediction.",
+        "title": "Order Does Not Matter"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-learning-the-slots-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "9e981a90f496937d"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-learning-the-slots-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "b90944412880b6a7",
+              "404a5ca0fb41382c"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-learning-the-slots-03",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "e6fe9fcdd847bea0"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-learning-the-slots-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "dcee0c28b5a0df6c"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Structured world models need objectives that preserve controllable relations, not only pixels.",
+            "deep": "Contrastive Structured World Models motivated learning object-centric graph latents that separate useful dynamics from reconstruction detail.",
+            "key": "kipf-contrastive-structure",
+            "source_digest_ids": [
+              "arxiv:1911.12247"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Planning can search predicted futures over graph states before choosing the next action.",
+            "deep": "Recent graph world-model and object-centric planning work returns MPC, heuristic search, and tree search to learned structured state spaces.",
+            "key": "planning-over-graph-latents",
+            "source_digest_ids": [
+              "arxiv:2507.10539",
+              "arxiv:2601.06604",
+              "arxiv:2604.27895"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Structure From Perception",
+        "learning_objective": "Describe how slot attention plus latent GNN dynamics can build an object-centric world model from observations.",
+        "scene_id": "scene-learning-the-slots",
+        "sentences": [
+          {
+            "canonical_text": "An object-centric world model first has to find the objects before it can reason over them.",
+            "id": "9e981a90f496937d",
+            "normalized_text": "an object-centric world model first has to find the objects before it can reason over them.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Slot attention offers one route by assigning parts of an observation to a small set of latent slots.",
+            "id": "b90944412880b6a7",
+            "normalized_text": "slot attention offers one route by assigning parts of an observation to a small set of latent slots.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Those slots can become graph nodes whose relations are updated by a latent GNN dynamics model.",
+            "id": "404a5ca0fb41382c",
+            "normalized_text": "those slots can become graph nodes whose relations are updated by a latent gnn dynamics model.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The pipeline separates perception from simulation without requiring the final state to be a single monolithic vector.",
+            "id": "e6fe9fcdd847bea0",
+            "normalized_text": "the pipeline separates perception from simulation without requiring the final state to be a single monolithic vector.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Its promise is a world model that can discover entities from observations and then predict their interactions.",
+            "id": "dcee0c28b5a0df6c",
+            "normalized_text": "its promise is a world model that can discover entities from observations and then predict their interactions.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The scene links slot attention and latent GNNs, showing how a model can first separate entities from observations and then simulate their interactions.",
+        "title": "Learning The Slots"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-what-to-train-for-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "624e07e5de5ae99b"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-what-to-train-for-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "05e18b8a9c57d3f1",
+              "3e43d435556ee587"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-what-to-train-for-03",
+            "intent": "aside",
+            "source_sentence_ids": [
+              "9549bcec44cb97fc"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-what-to-train-for-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "5f53d0816077ea4e"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Structured world models need objectives that preserve controllable relations, not only pixels.",
+            "deep": "Contrastive Structured World Models motivated learning object-centric graph latents that separate useful dynamics from reconstruction detail.",
+            "key": "kipf-contrastive-structure",
+            "source_digest_ids": [
+              "arxiv:1911.12247"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Objective Choice",
+        "learning_objective": "Choose between reconstruction and contrastive objectives for a given graph world-model training goal.",
+        "scene_id": "scene-what-to-train-for",
+        "sentences": [
+          {
+            "canonical_text": "A training objective decides what the latent graph is pressured to remember.",
+            "id": "624e07e5de5ae99b",
+            "normalized_text": "a training objective decides what the latent graph is pressured to remember.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A reconstruction loss rewards states that can rebuild observations, including details that may not matter for control.",
+            "id": "05e18b8a9c57d3f1",
+            "normalized_text": "a reconstruction loss rewards states that can rebuild observations, including details that may not matter for control.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "A contrastive objective can instead reward distinctions between plausible and implausible future states.",
+            "id": "3e43d435556ee587",
+            "normalized_text": "a contrastive objective can instead reward distinctions between plausible and implausible future states.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "For graph world models, that difference shapes whether the representation preserves pixels, controllable factors, or relational structure.",
+            "id": "9549bcec44cb97fc",
+            "normalized_text": "for graph world models, that difference shapes whether the representation preserves pixels, controllable factors, or relational structure.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "The right objective depends on whether the learner needs faithful reconstruction, useful planning features, or robust generalization.",
+            "id": "5f53d0816077ea4e",
+            "normalized_text": "the right objective depends on whether the learner needs faithful reconstruction, useful planning features, or robust generalization.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The narrator compares reconstruction losses with contrastive objectives, emphasizing that the training signal shapes whether the latent graph preserves pixels, controllable structure, or task-relevant distinctions.",
+        "title": "What To Train For"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-search-in-the-graph-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "78de42b71f2e4963"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-search-in-the-graph-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "525ea2455dbe408f",
+              "7f6b42c97af45f66"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-search-in-the-graph-03",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "ddea06de9985a1c1"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-search-in-the-graph-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "3c9561be2638b27c"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Planning can search predicted futures over graph states before choosing the next action.",
+            "deep": "Recent graph world-model and object-centric planning work returns MPC, heuristic search, and tree search to learned structured state spaces.",
+            "key": "planning-over-graph-latents",
+            "source_digest_ids": [
+              "arxiv:2507.10539",
+              "arxiv:2601.06604",
+              "arxiv:2604.27895"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Latent imagination became a practical engine for model-based control.",
+            "deep": "The Dreamer line showed that policies can improve from predicted latent futures instead of relying only on environment interaction.",
+            "key": "dreamer-latent-imagination",
+            "source_digest_ids": [
+              "arxiv:1912.01603"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Planning Returns",
+        "learning_objective": "Explain how MPC or MCTS can use graph latent rollouts to choose an action.",
+        "scene_id": "scene-search-in-the-graph",
+        "sentences": [
+          {
+            "canonical_text": "Once a graph latent can predict future states, planning can search through possible actions inside that learned space.",
+            "id": "78de42b71f2e4963",
+            "normalized_text": "once a graph latent can predict future states, planning can search through possible actions inside that learned space.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Model predictive control samples or optimizes short action sequences, scores their predicted futures, and executes the first action.",
+            "id": "525ea2455dbe408f",
+            "normalized_text": "model predictive control samples or optimizes short action sequences, scores their predicted futures, and executes the first action.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Heuristic search adds guidance about which futures look promising before all branches are expanded.",
+            "id": "7f6b42c97af45f66",
+            "normalized_text": "heuristic search adds guidance about which futures look promising before all branches are expanded.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Monte Carlo tree search builds a tree of imagined graph states and uses repeated evaluations to choose the next move.",
+            "id": "ddea06de9985a1c1",
+            "normalized_text": "monte carlo tree search builds a tree of imagined graph states and uses repeated evaluations to choose the next move.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "All of these methods trade policy commitment for on-demand reasoning, while still paying the cost of model error and branching choices.",
+            "id": "3c9561be2638b27c",
+            "normalized_text": "all of these methods trade policy commitment for on-demand reasoning, while still paying the cost of model error and branching choices.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The scene shows MPC, heuristic search, and MCTS rolling actions forward over graph latents, selecting actions by evaluating predicted futures without committing to a full policy first.",
+        "title": "Search In The Graph"
+      },
+      {
+        "beats": [
+          {
+            "id": "beat-connector-simulator-reasoner-01",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "85bb5871f0f2fee0"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "beat-connector-simulator-reasoner-02",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "954c567039702046",
+              "485116bfb39852fc"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "mixed"
+          },
+          {
+            "id": "beat-connector-simulator-reasoner-03",
+            "intent": "mechanism-explainer",
+            "source_sentence_ids": [
+              "f9eea99e2d37a140"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "callout"
+          },
+          {
+            "id": "beat-connector-simulator-reasoner-04",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "12a833a7ac4f8388"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "A compact learned simulator lets an agent practice before risking more real trials.",
+            "deep": "Ha and Schmidhuber's World Models framed policy learning as behavior trained inside latent dreams built from experience.",
+            "key": "ha-schmidhuber-world-models",
+            "source_digest_ids": [
+              "arxiv:1803.10122"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Message passing can behave like a learned local physics rule.",
+            "deep": "Interaction Networks and later Graph Networks turned objects and relations into reusable machinery for physical prediction.",
+            "key": "battaglia-relational-physics",
+            "source_digest_ids": [
+              "arxiv:1612.00222",
+              "arxiv:1806.01242"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Structured world models need objectives that preserve controllable relations, not only pixels.",
+            "deep": "Contrastive Structured World Models motivated learning object-centric graph latents that separate useful dynamics from reconstruction detail.",
+            "key": "kipf-contrastive-structure",
+            "source_digest_ids": [
+              "arxiv:1911.12247"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "brief": "Planning can search predicted futures over graph states before choosing the next action.",
+            "deep": "Recent graph world-model and object-centric planning work returns MPC, heuristic search, and tree search to learned structured state spaces.",
+            "key": "planning-over-graph-latents",
+            "source_digest_ids": [
+              "arxiv:2507.10539",
+              "arxiv:2601.06604",
+              "arxiv:2604.27895"
+            ],
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "eyebrow": "Synthesis",
+        "learning_objective": "Synthesize the three roles of graphs in world models and identify the tradeoff each role introduces.",
+        "scene_id": "scene-connector-simulator-reasoner",
+        "sentences": [
+          {
+            "canonical_text": "By the end of the lesson, the graph has played three roles in the world model story.",
+            "id": "85bb5871f0f2fee0",
+            "normalized_text": "by the end of the lesson, the graph has played three roles in the world model story.",
+            "source_offset": 0,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "As connector, it names entities and relations so multi-object scenes can be represented compositionally.",
+            "id": "954c567039702046",
+            "normalized_text": "as connector, it names entities and relations so multi-object scenes can be represented compositionally.",
+            "source_offset": 1,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "As simulator, it uses message passing to update object states under actions.",
+            "id": "485116bfb39852fc",
+            "normalized_text": "as simulator, it uses message passing to update object states under actions.",
+            "source_offset": 2,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "As reasoner, it gives planners a structured space for comparing possible futures.",
+            "id": "f9eea99e2d37a140",
+            "normalized_text": "as reasoner, it gives planners a structured space for comparing possible futures.",
+            "source_offset": 3,
+            "source_section_id": "topic-be7947959f0f35a4"
+          },
+          {
+            "canonical_text": "Each role introduces a tradeoff: stronger structure can improve generalization, but only when the learned entities, edges, and objectives match the task.",
+            "id": "12a833a7ac4f8388",
+            "normalized_text": "each role introduces a tradeoff: stronger structure can improve generalization, but only when the learned entities, edges, and objectives match the task.",
+            "source_offset": 4,
+            "source_section_id": "topic-be7947959f0f35a4"
+          }
+        ],
+        "source_section_id": "topic-be7947959f0f35a4",
+        "summary": "The final scene summarizes the graph as three roles at once: connector between entities, simulator of dynamics, and reasoner for planning across possible futures.",
+        "title": "Connector Simulator Reasoner"
+      }
+    ]
+  },
+  "schema_version": "loa.scene-map.v1"
+}

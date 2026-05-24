@@ -160,25 +160,25 @@ function addEdge(args: {
     return;
   }
 
-  if (args.edge.duration < 0) {
+  if (args.edge.duration_ms < 0) {
     args.diagnostics.push({
       code: 'transition.edge.duration',
-      path: [...args.path, 'duration'],
-      actual: args.edge.duration,
+      path: [...args.path, 'duration_ms'],
+      actual: args.edge.duration_ms,
       expected: 'a non-negative duration in milliseconds',
-      repair: 'set duration to 0 or a positive millisecond value',
+      repair: 'set duration_ms to 0 or a positive millisecond value',
       severity: 'error',
     });
     return;
   }
 
-  if (args.edge.kind === 'cut' && args.edge.duration !== 0) {
+  if (args.edge.kind === 'cut' && args.edge.duration_ms !== 0) {
     args.diagnostics.push({
       code: 'transition.edge.cut_duration',
-      path: [...args.path, 'duration'],
-      actual: args.edge.duration,
+      path: [...args.path, 'duration_ms'],
+      actual: args.edge.duration_ms,
       expected: 0,
-      repair: 'set cut transitions to duration: 0',
+      repair: 'set cut transitions to duration_ms: 0',
       severity: 'error',
     });
     return;
@@ -196,7 +196,7 @@ function addEdge(args: {
           edgeDiagnosticPayload(args.edge),
         ],
         expected: 'one transition edge per adjacent Shot pair',
-        repair: 'remove one transition or make the kind, duration, direction, shader, and angle match',
+        repair: 'remove one transition or make the kind, duration_ms, direction, shader, and angle match',
         severity: 'error',
       });
     }
@@ -260,7 +260,7 @@ function edgeFromLegacy(
     from,
     to,
     kind,
-    duration,
+    duration_ms: duration,
   };
   if (transition.shader !== undefined) {
     edge.shader = transition.shader;
@@ -330,7 +330,7 @@ function legacyEdgeId(from: ShotAddress, to: ShotAddress): string {
 function edgeDiagnosticPayload(edge: TransitionEdge): {
   id: string;
   kind: TransitionEdge['kind'];
-  duration: number;
+  duration_ms: number;
   direction: 'left' | 'right' | 'up' | 'down' | null;
   shader: string | null;
   angle: number | null;
@@ -341,7 +341,7 @@ function edgeDiagnosticPayload(edge: TransitionEdge): {
   return {
     id: edge.id,
     kind: edge.kind,
-    duration: edge.duration,
+    duration_ms: edge.duration_ms,
     direction,
     shader,
     angle,
@@ -351,7 +351,7 @@ function edgeDiagnosticPayload(edge: TransitionEdge): {
 function sameEdgeSemantics(a: TransitionEdge, b: TransitionEdge): boolean {
   return (
     a.kind === b.kind &&
-    a.duration === b.duration &&
+    a.duration_ms === b.duration_ms &&
     a.direction === b.direction &&
     a.shader === b.shader &&
     a.angle === b.angle

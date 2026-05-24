@@ -1,0 +1,44 @@
+{
+  "cinematic": {
+    "discovery_keys": [
+      "Ashish Vaswani",
+      "Attention is All You Need",
+      "Jeff Elman",
+      "Llama 3",
+      "RNNs"
+    ],
+    "eyebrow": "01 · puzzle",
+    "interactive_component_id": "BuildYourTransformerGame",
+    "sentence_count": 18,
+    "shot_count": 3,
+    "shot_kinds": [
+      "narrator-opener",
+      "interactive-takeover",
+      "narrative"
+    ],
+    "title": "Build a looped transformer"
+  },
+  "parity": {
+    "discovery_match": true,
+    "game_match": true,
+    "metadata_match": true,
+    "sentence_match": true
+  },
+  "parity_diagnostics": [],
+  "scene_id": "section-01",
+  "schema_version": "loa.section-diff.v1",
+  "section_id": "section_01",
+  "source": {
+    "discovery_keys": [
+      "Ashish Vaswani",
+      "Attention is All You Need",
+      "Jeff Elman",
+      "Llama 3",
+      "RNNs"
+    ],
+    "eyebrow": "01 · puzzle",
+    "game_component_id": "BuildYourTransformerGame",
+    "sentence_count": 18,
+    "title": "Build a looped transformer"
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "actual": "{\"type\":\"thread.started\",\"thread_id\":\"019e5c32-31bd-7f43-97e2-240c7f6e9ab8\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"web_search\",\"id\":\"ws_0fad8d5ca14d85f5016a13819",
+    "code": "llm.stdout.invalid_json",
+    "expected": "valid JSON matching schema",
+    "path": [],
+    "repair": "return only JSON, no prose / no markdown fences",
+    "severity": "error"
+  },
+  {
+    "actual": "{\"type\":\"thread.started\",\"thread_id\":\"019e5c33-6a90-7370-8a4e-43f619445c5d\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"web_search\",\"id\":\"ws_0ec6260efe02a650016a1381e",
+    "code": "llm.stdout.invalid_json",
+    "expected": "valid JSON matching schema",
+    "path": [],
+    "repair": "return only JSON, no prose / no markdown fences",
+    "severity": "error"
+  }
+]

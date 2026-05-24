@@ -32,8 +32,8 @@ describe('ingestMixed', () => {
         {
           kind: 'mixed',
           inputs: [
-            { kind: 'script', script_ref: scriptPath },
-            { kind: 'sources', source_refs: [{ path: transcriptPath, media_type: 'text/plain' }] },
+            { kind: 'script', script_path: scriptPath },
+            { kind: 'sources', transcripts: [transcriptPath] },
           ],
         },
         { now: () => new Date('2026-05-24T00:00:00.000Z') },

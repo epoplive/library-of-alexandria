@@ -41,19 +41,19 @@ describe('ingestSources', () => {
         'sources-demo',
         {
           kind: 'sources',
-          source_refs: [
-            { path: transcript, media_type: 'text/markdown' },
-            { path: path.join(dir, 'paper.pdf'), media_type: 'application/pdf', required: false },
-          ],
+          transcripts: [transcript],
+          papers: [path.join(dir, 'paper.pdf')],
         },
         { now: () => new Date('2026-05-24T00:00:00.000Z') },
       );
 
-      expect(corpus.source_items[0].kind).toBe('transcript');
-      expect(corpus.source_items[0].status).toBe('ok');
-      expect(corpus.source_items[1].kind).toBe('paper');
-      expect(corpus.source_items[1].status).toBe('quarantined');
-      const quarantine = corpus.source_items[1].quarantine;
+      const transcriptItem = corpus.source_items.find((item) => item.kind === 'transcript');
+      const paperItem = corpus.source_items.find((item) => item.kind === 'paper');
+      if (transcriptItem === undefined) throw new Error('expected transcript source item');
+      if (paperItem === undefined) throw new Error('expected paper source item');
+      expect(transcriptItem.status).toBe('ok');
+      expect(paperItem.status).toBe('quarantined');
+      const quarantine = paperItem.quarantine;
       if (quarantine === undefined) throw new Error('expected PDF quarantine');
       expect(quarantine.excluded_reason).toBe('pdf parsing not yet available');
     } finally {

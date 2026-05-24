@@ -22,18 +22,32 @@ interface CliCommands {
   gpt_5_5: CliCommandSpec;
 }
 
+type SpawnText = (
+  executable: string,
+  args: string[],
+  input: string,
+) => Promise<{ stdout: string; stderr: string }>;
+
 interface CliAdapterOptions {
   runsDir: string;
   commands?: Partial<CliCommands>;
+  spawnText?: SpawnText;
 }
 
-interface AttemptResult<T> {
+interface AttemptResultBase {
   raw_stdout: string;
   raw_stderr: string;
-  parsed: T;
   diagnostics: Diagnostic[];
   command: CliCommandSpec;
 }
+
+type AttemptResult<T> =
+  | (AttemptResultBase & { ok: true; parsed: T })
+  | (AttemptResultBase & { ok: false });
+
+type ParseStrictJsonResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; diagnostics: Diagnostic[] };
 
 type Hashable = string | number | boolean | null | Hashable[] | { [key: string]: Hashable };
 
@@ -43,13 +57,13 @@ const DEFAULT_COMMANDS: CliCommands = {
   claude_opus: {
     provider: 'claude-cli',
     executable: 'claude',
-    args: ['-p', '--output-format', 'json', '--model', 'opus'],
+    args: ['-p', '--output-format', 'json', '--model', 'opus', '--effort', 'xhigh'],
     model_id: 'claude-opus',
   },
   gpt_5_5: {
     provider: 'codex-cli',
     executable: 'codex',
-    args: ['exec', '--json', '--model', 'gpt-5.5'],
+    args: ['exec', '--json', '--model', 'gpt-5.5', '-c', 'model_reasoning_effort="xhigh"'],
     model_id: 'gpt-5.5',
   },
 };
@@ -57,9 +71,11 @@ const DEFAULT_COMMANDS: CliCommands = {
 export class CliLlmClient implements LlmClient {
   private readonly runsDir: string;
   private readonly commands: CliCommands;
+  private readonly spawnText: SpawnText;
 
   constructor(options: CliAdapterOptions) {
     this.runsDir = options.runsDir;
+    this.spawnText = options.spawnText === undefined ? spawnText : options.spawnText;
     const commands = options.commands === undefined ? {} : options.commands;
     const claudeOpus = commands.claude_opus === undefined
       ? DEFAULT_COMMANDS.claude_opus
@@ -81,7 +97,7 @@ export class CliLlmClient implements LlmClient {
     const runDir = path.join(this.runsDir, runId);
     await mkdir(runDir, { recursive: true });
 
-    const maxRetries = req.max_retries === undefined ? 0 : req.max_retries;
+    const maxRetries = req.max_retries === undefined ? 2 : req.max_retries;
     const command = this.commandFor(req.model_hint);
     const allDiagnostics: Diagnostic[] = [];
     let lastRawStdout = '';
@@ -93,10 +109,12 @@ export class CliLlmClient implements LlmClient {
       const attemptResult = await this.runAttempt(req, prompt, command);
       lastRawStdout = attemptResult.raw_stdout;
       lastRawStderr = attemptResult.raw_stderr;
-      lastParsed = attemptResult.parsed;
+      if (attemptResult.ok) {
+        lastParsed = attemptResult.parsed;
+      }
       allDiagnostics.push(...attemptResult.diagnostics);
       await writeAttempt(runDir, attempt + 1, attemptResult);
-      if (!hasErrorDiagnostics(attemptResult.diagnostics)) {
+      if (attemptResult.ok && !hasErrorDiagnostics(attemptResult.diagnostics)) {
         const elapsedMs = Math.round(performance.now() - started);
         const parsedJson = canonicalJsonStringify(attemptResult.parsed);
         const lockEntry = completedLockEntry({
@@ -152,14 +170,7 @@ export class CliLlmClient implements LlmClient {
   }
 
   private commandFor(modelHint: ModelHint): CliCommandSpec {
-    switch (modelHint) {
-      case 'claude-opus':
-        return this.commands.claude_opus;
-      case 'gpt-5.5':
-        return this.commands.gpt_5_5;
-      case undefined:
-        throw new Error('CliLlmClient requires model_hint to choose claude-opus or gpt-5.5');
-    }
+    return commandFor(this.commands, modelHint);
   }
 
   private async runAttempt<T>(
@@ -167,11 +178,22 @@ export class CliLlmClient implements LlmClient {
     prompt: string,
     command: CliCommandSpec,
   ): Promise<AttemptResult<T>> {
-    const { stdout, stderr } = await spawnText(command.executable, command.args, prompt);
-    const parsed = parseStrictJson(stdout, req.schema);
+    const { stdout, stderr } = await this.spawnText(command.executable, command.args, prompt);
+    const parseResult = parseStrictJson(stdout, req.schema);
+    if (!parseResult.ok) {
+      return {
+        ok: false,
+        raw_stdout: stdout,
+        raw_stderr: stderr,
+        diagnostics: parseResult.diagnostics,
+        command,
+      };
+    }
+    const parsed = parseResult.data;
     const validatorDiagnostics = req.validator === undefined ? [] : req.validator(parsed);
     const diagnostics = validatorDiagnostics.map((diag) => DiagnosticSchema.parse(diag));
     return {
+      ok: true,
       raw_stdout: stdout,
       raw_stderr: stderr,
       parsed,
@@ -211,27 +233,132 @@ async function spawnText(
   });
 }
 
-function parseStrictJson<T>(stdout: string, schema: ZodSchema<T>): T {
+function commandFor(commands: CliCommands, modelHint: ModelHint): CliCommandSpec {
+  switch (modelHint) {
+    case 'claude-opus':
+      return commands.claude_opus;
+    case 'gpt-5.5':
+      return commands.gpt_5_5;
+    case undefined:
+      throw new Error('CliLlmClient requires model_hint to choose claude-opus or gpt-5.5');
+  }
+}
+
+function parseStrictJson<T>(stdout: string, schema: ZodSchema<T>): ParseStrictJsonResult<T> {
+  // Try parsing as a single JSON document first (Claude --output-format=json
+  // case, or any caller that returns a well-formed JSON body).
   let parsedStdout: unknown;
+  let directParseFailed = false;
   try {
     parsedStdout = JSON.parse(stdout);
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'invalid JSON';
-    throw new Error(`LLM stdout was not JSON: ${message}`);
+    directParseFailed = true;
   }
 
-  const direct = schema.safeParse(parsedStdout);
-  if (direct.success) return direct.data;
+  if (!directParseFailed) {
+    const direct = schema.safeParse(parsedStdout);
+    if (direct.success) return { ok: true, data: direct.data };
 
-  if (parsedStdout !== null && typeof parsedStdout === 'object' && !Array.isArray(parsedStdout)) {
-    const response = Object.entries(parsedStdout).find(([key]) => key === 'response');
-    if (response !== undefined && typeof response[1] === 'string') {
-      const responseJson = JSON.parse(response[1]);
-      return schema.parse(responseJson);
+    if (parsedStdout !== null && typeof parsedStdout === 'object' && !Array.isArray(parsedStdout)) {
+      const response = Object.entries(parsedStdout).find(([key]) => key === 'response');
+      if (response !== undefined && typeof response[1] === 'string') {
+        let responseJson: unknown;
+        try {
+          responseJson = JSON.parse(response[1]);
+        } catch (error) {
+          return {
+            ok: false,
+            diagnostics: [invalidJsonDiagnostic(response[1], ['response'])],
+          };
+        }
+        const responseResult = schema.safeParse(responseJson);
+        if (responseResult.success) return { ok: true, data: responseResult.data };
+        return {
+          ok: false,
+          diagnostics: diagnosticsFromZod(responseResult.error),
+        };
+      }
     }
   }
 
-  throw direct.error;
+  // Codex `exec --json` emits a JSONL event stream. The final assistant
+  // response sits inside an `item.completed` event whose `.item.type` is
+  // `agent_message` and whose `.item.text` is the JSON-as-string we want.
+  const agentMessage = extractAgentMessageFromJsonl(stdout);
+  if (agentMessage !== null) {
+    let agentJson: unknown;
+    try {
+      agentJson = JSON.parse(agentMessage);
+    } catch (error) {
+      return {
+        ok: false,
+        diagnostics: [invalidJsonDiagnostic(agentMessage, ['agent_message'])],
+      };
+    }
+    const agentResult = schema.safeParse(agentJson);
+    if (agentResult.success) return { ok: true, data: agentResult.data };
+    return {
+      ok: false,
+      diagnostics: diagnosticsFromZod(agentResult.error),
+    };
+  }
+
+  if (directParseFailed) {
+    return {
+      ok: false,
+      diagnostics: [invalidJsonDiagnostic(stdout, [])],
+    };
+  }
+  // Direct parse succeeded but schema failed and the envelope wasn't recognized.
+  // The direct safeParse error is the right diagnostic to surface here.
+  const direct = schema.safeParse(parsedStdout);
+  if (direct.success) return { ok: true, data: direct.data };
+  return {
+    ok: false,
+    diagnostics: diagnosticsFromZod(direct.error),
+  };
+}
+
+function extractAgentMessageFromJsonl(stdout: string): string | null {
+  // Scan from the end — the assistant's final message is the last
+  // agent_message event in the stream.
+  const lines = stdout.split('\n');
+  for (let i = lines.length - 1; i >= 0; i -= 1) {
+    const line = lines[i].trim();
+    if (line.length === 0) continue;
+    let event: unknown;
+    try {
+      event = JSON.parse(line);
+    } catch (error) {
+      continue;
+    }
+    if (event === null || typeof event !== 'object' || Array.isArray(event)) continue;
+    const eventRecord = event as { type?: unknown; item?: unknown };
+    if (eventRecord.type !== 'item.completed') continue;
+    const item = eventRecord.item;
+    if (item === null || typeof item !== 'object' || Array.isArray(item)) continue;
+    const itemRecord = item as { type?: unknown; text?: unknown };
+    if (itemRecord.type !== 'agent_message') continue;
+    if (typeof itemRecord.text !== 'string') continue;
+    return itemRecord.text;
+  }
+  return null;
+}
+
+function invalidJsonDiagnostic(actual: string, path: Diagnostic['path']): Diagnostic {
+  return mkDiagnostic({
+    code: 'llm.stdout.invalid_json',
+    path,
+    actual: truncateForDiagnostic(actual, 200),
+    expected: 'valid JSON matching schema',
+    repair: 'return only JSON, no prose / no markdown fences',
+    severity: 'error',
+  });
+}
+
+function truncateForDiagnostic(value: string, maxLength: number): string {
+  if (value.length <= maxLength) return value;
+  return value.slice(0, maxLength);
 }
 
 function diagnosticsFromZod(error: ZodError): Diagnostic[] {
@@ -239,14 +366,21 @@ function diagnosticsFromZod(error: ZodError): Diagnostic[] {
 }
 
 function diagnosticFromZodIssue(issue: ZodIssue): Diagnostic {
-  return mkDiagnostic({
+  // Omit `actual` entirely when the issue has no `received` — explicit
+  // `actual: undefined` trips canonicalJsonStringify when the diagnostic is
+  // serialized into the run artifact files. mkDiagnostic parses through
+  // DiagnosticSchema which treats absence and explicit-undefined identically.
+  const base = {
     code: `zod.${issue.code}`,
     path: issue.path,
-    actual: 'received' in issue ? String(issue.received) : undefined,
     expected: 'expected' in issue ? String(issue.expected) : issue.message,
     repair: issue.message,
-    severity: 'error',
-  });
+    severity: 'error' as const,
+  };
+  if ('received' in issue) {
+    return mkDiagnostic({ ...base, actual: String(issue.received) });
+  }
+  return mkDiagnostic(base);
 }
 
 function retryPrompt(prompt: string, diagnostics: Diagnostic[]): string {
@@ -264,10 +398,11 @@ function hasErrorDiagnostics(diagnostics: Diagnostic[]): boolean {
 
 async function writeAttempt<T>(runDir: string, attempt: number, result: AttemptResult<T>): Promise<void> {
   const attemptDir = path.join(runDir, `attempt-${attempt}`);
+  const parsedJson = result.ok ? canonicalJsonStringify(result.parsed) : '';
   await mkdir(attemptDir, { recursive: true });
   await writeFile(path.join(attemptDir, 'stdout.txt'), result.raw_stdout, 'utf8');
   await writeFile(path.join(attemptDir, 'stderr.txt'), result.raw_stderr, 'utf8');
-  await writeFile(path.join(attemptDir, 'parsed.json'), canonicalJsonStringify(result.parsed), 'utf8');
+  await writeFile(path.join(attemptDir, 'parsed.json'), parsedJson, 'utf8');
   await writeFile(path.join(attemptDir, 'diagnostics.json'), canonicalJsonStringify(result.diagnostics), 'utf8');
 }
 
@@ -384,6 +519,7 @@ function toHashable(value: unknown): Hashable {
 }
 
 export const __test__ = {
+  commandFor: (modelHint: ModelHint) => commandFor(DEFAULT_COMMANDS, modelHint),
   diagnosticsFromZod,
   parseStrictJson,
 };

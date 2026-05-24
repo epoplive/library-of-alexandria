@@ -52,7 +52,7 @@ describe('normalizeProduction', () => {
         from: { scene_id: 's', shot_id: 'a' },
         to: { scene_id: 's', shot_id: 'b' },
         kind: 'fade',
-        duration: 400,
+        duration_ms: 400,
       }],
     });
   });
@@ -88,7 +88,7 @@ describe('normalizeProduction', () => {
         from: { scene_id: 's', shot_id: 'a' },
         to: { scene_id: 's', shot_id: 'c' },
         kind: 'fade',
-        duration: 300,
+        duration_ms: 300,
       }],
     };
 

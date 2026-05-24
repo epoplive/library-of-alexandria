@@ -1,7 +1,24 @@
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { INTERACTIVES_REGISTRY as LOOPING_LLMS_INTERACTIVES_REGISTRY } from '../../../../lessons/looping-llms/interactives/registry';
 import { DiagnosticSchema, type Diagnostic } from '../diagnostic-schema';
 import type { LessonCorpus } from './types';
+
+interface InteractiveRegistryLookup {
+  size: number;
+  complete: boolean;
+  has: (componentId: string) => boolean;
+}
+
+const INTERACTIVE_REGISTRIES: Array<{
+  slug: string;
+  registry: InteractiveRegistryLookup;
+}> = [
+  {
+    slug: 'looping-llms',
+    registry: LOOPING_LLMS_INTERACTIVES_REGISTRY,
+  },
+];
 
 export function validateLessonCorpus(corpus: LessonCorpus): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
@@ -41,17 +58,44 @@ export function validateLessonCorpus(corpus: LessonCorpus): Diagnostic[] {
     }));
   }
 
+  const interactiveRegistry = interactiveRegistryForSlug(corpus.slug);
   corpus.interactive_inventory.forEach((entry, index) => {
-    if (!interactiveFileExists(corpus.slug, entry.file_ref)) {
-      diagnostics.push(diagnostic({
-        code: 'ingest.interactive.unknown_component',
-        path: ['interactive_inventory', index, 'file_ref'],
-        actual: entry.file_ref,
-        expected: `existing component file under lessons/${corpus.slug}`,
-        repair: 'register the component with a valid file_ref',
-        severity: 'error',
-      }));
+    if (interactiveRegistry !== undefined && interactiveRegistry.complete) {
+      if (!interactiveRegistry.has(entry.component_id)) {
+        diagnostics.push(diagnostic({
+          code: 'ingest.interactive.unknown_component',
+          path: ['interactive_inventory', index, 'component_id'],
+          actual: entry.component_id,
+          expected: `registered component id for lessons/${corpus.slug}`,
+          repair: 'add the component to the per-lesson interactives registry',
+          severity: 'error',
+        }));
+      }
+      return;
     }
+
+    if (interactiveFileExists(corpus.slug, entry.file_ref)) {
+      if (interactiveRegistry !== undefined) {
+        diagnostics.push(diagnostic({
+          code: 'ingest.interactive.unknown_component',
+          path: ['interactive_inventory', index, 'component_id'],
+          actual: entry.component_id,
+          expected: `registered component id for lessons/${corpus.slug}`,
+          repair: 'add the component to the per-lesson interactives registry',
+          severity: 'warning',
+        }));
+      }
+      return;
+    }
+
+    diagnostics.push(diagnostic({
+      code: 'ingest.interactive.unknown_component',
+      path: ['interactive_inventory', index, 'file_ref'],
+      actual: entry.file_ref,
+      expected: `existing component file under lessons/${corpus.slug}`,
+      repair: 'register the component with a valid file_ref',
+      severity: 'error',
+    }));
   });
 
   const sections = corpus.existing_sections;
@@ -94,6 +138,13 @@ export function validateLessonCorpus(corpus: LessonCorpus): Diagnostic[] {
 
 function nonEmpty(value: string | undefined): boolean {
   return value !== undefined && value.trim().length > 0;
+}
+
+function interactiveRegistryForSlug(slug: string): InteractiveRegistryLookup | undefined {
+  for (const entry of INTERACTIVE_REGISTRIES) {
+    if (entry.slug === slug) return entry.registry;
+  }
+  return undefined;
 }
 
 function interactiveFileExists(slug: string, fileRef: string | undefined): boolean {

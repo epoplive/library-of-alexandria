@@ -29,12 +29,13 @@ describe('ingestTopic', () => {
 
     const corpus = await ingestTopic(
       'topic-demo',
-      { kind: 'topic', topic: 'Looped transformers' },
+      { kind: 'topic', subject: 'Looped transformers', depth_target: 'expert' },
       { now: () => new Date('2026-05-24T00:00:00.000Z'), llmClient: client },
     );
 
     if (corpus.research_brief === undefined) throw new Error('expected research brief');
     expect(corpus.research_brief.topic).toBe('Looped transformers');
+    expect(corpus.research_brief.depth_target).toBe('expert');
     expect(corpus.research_brief.source_digest_ids).toHaveLength(1);
     const content = corpus.source_items[0].content;
     if (content === undefined) throw new Error('expected source item content');

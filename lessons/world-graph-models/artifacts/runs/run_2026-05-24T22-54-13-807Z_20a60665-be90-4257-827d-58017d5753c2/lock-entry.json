@@ -1,0 +1,69 @@
+{
+  "command": {
+    "args": [
+      "exec",
+      "--json",
+      "--model",
+      "gpt-5.5",
+      "-c",
+      "model_reasoning_effort=\"xhigh\""
+    ],
+    "executable": "codex",
+    "provider": "codex-cli"
+  },
+  "diagnostics": [
+    {
+      "actual": "{\"type\":\"thread.started\",\"thread_id\":\"019e5c32-31bd-7f43-97e2-240c7f6e9ab8\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"web_search\",\"id\":\"ws_0fad8d5ca14d85f5016a13819",
+      "code": "llm.stdout.invalid_json",
+      "expected": "valid JSON matching schema",
+      "path": [],
+      "repair": "return only JSON, no prose / no markdown fences",
+      "severity": "error"
+    },
+    {
+      "actual": "{\"type\":\"thread.started\",\"thread_id\":\"019e5c33-6a90-7370-8a4e-43f619445c5d\"}\n{\"type\":\"turn.started\"}\n{\"type\":\"item.started\",\"item\":{\"id\":\"item_0\",\"type\":\"web_search\",\"id\":\"ws_0ec6260efe02a650016a1381e",
+      "code": "llm.stdout.invalid_json",
+      "expected": "valid JSON matching schema",
+      "path": [],
+      "repair": "return only JSON, no prose / no markdown fences",
+      "severity": "error"
+    }
+  ],
+  "elapsed_ms": 210389,
+  "error": "LLM JSON request failed validation after all retries",
+  "failed_at": "2026-05-24T22:57:44.198Z",
+  "input_hashes": [
+    {
+      "hash": "7134927c6f0d9895f88aa84691a5e3623ea6f40cd92bfad32fe99b602b96d567",
+      "path": "prompt"
+    },
+    {
+      "hash": "7b7a18b2036311f9b07752fe7f007d1a3245374505256af998876f1375690714",
+      "path": "schema"
+    }
+  ],
+  "model_id": "gpt-5.5",
+  "output_hashes": [
+    {
+      "hash": "9b9842f88ea44dfbfca6887256dd8455f53a81ec42f95e69b1ebf97078024317",
+      "path": "runs/run_2026-05-24T22-54-13-807Z_20a60665-be90-4257-827d-58017d5753c2/stdout.txt"
+    },
+    {
+      "hash": "9c49a3c6f5a684010eced4cc5076f7b15e28df8da8e99c60c04fdd4ee3e3cf0a",
+      "path": "runs/run_2026-05-24T22-54-13-807Z_20a60665-be90-4257-827d-58017d5753c2/stderr.txt"
+    },
+    {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "runs/run_2026-05-24T22-54-13-807Z_20a60665-be90-4257-827d-58017d5753c2/parsed.json"
+    }
+  ],
+  "parsed_json_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "prompt_template_hash": "7134927c6f0d9895f88aa84691a5e3623ea6f40cd92bfad32fe99b602b96d567",
+  "prompt_template_id": "ingest-topic",
+  "prompt_template_version": "1.0.0",
+  "raw_stderr_hash": "9c49a3c6f5a684010eced4cc5076f7b15e28df8da8e99c60c04fdd4ee3e3cf0a",
+  "raw_stdout_hash": "9b9842f88ea44dfbfca6887256dd8455f53a81ec42f95e69b1ebf97078024317",
+  "run_id": "run_2026-05-24T22-54-13-807Z_20a60665-be90-4257-827d-58017d5753c2",
+  "schema_hash": "7b7a18b2036311f9b07752fe7f007d1a3245374505256af998876f1375690714",
+  "status": "failed"
+}

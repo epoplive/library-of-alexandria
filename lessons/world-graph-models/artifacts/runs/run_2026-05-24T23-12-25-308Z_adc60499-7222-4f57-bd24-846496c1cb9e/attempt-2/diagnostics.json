@@ -1,0 +1,739 @@
+[
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      0,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      0,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      0,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      0,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      0,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      3,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      3,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      3,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      3,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      3,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      7,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      7,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      7,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      7,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      7,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      11,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      11,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      11,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      11,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      11,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      15,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      15,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      15,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      15,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      15,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      18,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      18,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      18,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      18,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      18,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      22,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      22,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      22,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      22,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      22,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      25,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      25,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      25,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      25,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      25,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      29,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      29,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      29,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      29,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      29,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      33,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      33,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      33,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      33,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      33,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      37,
+      "background_intent",
+      "stops",
+      0,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      37,
+      "background_intent",
+      "stops",
+      0
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "number",
+    "path": [
+      "plans",
+      37,
+      "background_intent",
+      "stops",
+      1,
+      "offset"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'at'",
+    "path": [
+      "plans",
+      37,
+      "background_intent",
+      "stops",
+      1
+    ],
+    "repair": "Unrecognized key(s) in object: 'at'",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'direction'",
+    "path": [
+      "plans",
+      37,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'direction'",
+    "severity": "error"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "gates": {
+    "action_method_unknown": [],
+    "cast_unknown": [],
+    "field_overlap": [],
+    "interactive_unregistered": [],
+    "map_completeness": [],
+    "shot_silent": [],
+    "slot_unknown": [],
+    "transition_non_adjacent": []
+  },
+  "lesson_slug": "world-graph-models",
+  "overall_status": "pass",
+  "schema_version": "loa.consistency-report.v1"
+}

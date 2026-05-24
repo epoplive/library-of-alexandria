@@ -5,5 +5,5 @@ export const storyboardV1Meta: PromptTemplateMeta = {
   version: '1.0.0',
   schema_in_ref: 'loa.scene-map.v1',
   schema_out_ref: 'loa.storyboard.v1',
-  content_hash: '3135069682c8af8c375f297e39a4c3288964b14bf5386a4f70d05266a2f4c4d7',
+  content_hash: '0f137136d56a063a14472d7cb1b5056d68f042ca10ffb54a3e048ea5fd04c215',
 };

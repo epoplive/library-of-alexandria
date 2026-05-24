@@ -1,0 +1,137 @@
+{
+  "artifacts": {
+    "asset_manifest": {
+      "bytes": 53095,
+      "hash": "7c5d591c3e2a921ce383c3341eaf496100127ce9ed7997ef161ef3f21ba68cdd",
+      "path": "artifacts/asset-manifest.json",
+      "schema_ref": "loa.asset-manifest.v1",
+      "updated_at": "2026-05-24T23:35:25.355Z"
+    },
+    "consistency_report": {
+      "bytes": 363,
+      "hash": "806dd4d4f7861eb0fe8afe443d134abf75fc8a0c86414fed67370c53acfa8686",
+      "path": "artifacts/consistency-report.json",
+      "schema_ref": "loa.consistency-report.v1",
+      "updated_at": "2026-05-24T23:35:25.364Z"
+    },
+    "curriculum": {
+      "bytes": 10865,
+      "hash": "6d31af137c24a5b72e28481fe34a713ac2942b743941e7846812e99ae5f7328e",
+      "path": "artifacts/curriculum.json",
+      "schema_ref": "loa.curriculum.v1",
+      "updated_at": "2026-05-24T23:04:38.696Z"
+    },
+    "lesson_input": {
+      "bytes": 7576,
+      "hash": "c87fbc39cbde0e8cd948829b3b3d36f673aa794fc710ab53efede8fa3805a1dd",
+      "path": "artifacts/lesson-input.json",
+      "schema_ref": "loa.lesson-corpus.v1",
+      "updated_at": "2026-05-24T23:02:48.646Z"
+    },
+    "parity_report": {
+      "bytes": 182,
+      "hash": "a6232e2012ca75cbe1d717de7e15801e44876c5d13b4b9b6e3d92bd2875ec7c0",
+      "path": "artifacts/parity-report.json",
+      "schema_ref": "loa.parity-report.v1",
+      "updated_at": "2026-05-24T23:35:25.364Z"
+    },
+    "pending_assets": {
+      "bytes": 63,
+      "hash": "29c648b616ec781adff19e9b11cbf6e7fdd04d1b7ee2eb9b1c9e5b3ad823b489",
+      "path": "artifacts/pending_assets.json",
+      "schema_ref": "loa.pending-assets.v1",
+      "updated_at": "2026-05-24T23:35:25.355Z"
+    },
+    "scene_map": {
+      "bytes": 73266,
+      "hash": "a02104cf061f0b5074aa6c5dc849a6a63e901241132619139c4b254e0dcf8c50",
+      "path": "artifacts/scene-map.json",
+      "schema_ref": "loa.scene-map.v1",
+      "updated_at": "2026-05-24T23:12:25.306Z"
+    },
+    "storyboard": {
+      "bytes": 39844,
+      "hash": "b8b7b4b5498cd0abdf3320ff8081fb23a150794eedab0afc141b3feaa239f1b2",
+      "path": "artifacts/storyboard.json",
+      "schema_ref": "loa.storyboard.v1",
+      "updated_at": "2026-05-24T23:12:25.306Z"
+    }
+  },
+  "cast_ref": "characters.json",
+  "funding": {
+    "donation_links": {},
+    "donations_received_usd": 0,
+    "ledger": [],
+    "planned_improvements": [],
+    "production_cost_usd": 0
+  },
+  "identity": {
+    "authors": [],
+    "current_tier": "v0.1",
+    "lesson_id": "world-graph-models",
+    "tags": [],
+    "title": "World Models meet Graph Neural Networks"
+  },
+  "provenance": {
+    "authors": [],
+    "created_at": "2026-05-24T22:52:12.146Z",
+    "license": "CC-BY-4.0"
+  },
+  "schema_version": "loa.project.v1",
+  "slug": "world-graph-models",
+  "source": {
+    "kind": "topic",
+    "subject": "World Models meet Graph Neural Networks"
+  },
+  "timeline_ref": {
+    "hash": "dae01acb96491e5a5d72ab27b7f20548ec459d0fd5c60b066f89339903ab1f13",
+    "path": "productions/world-graph-models.generated.ts"
+  },
+  "validation": {
+    "asset_coverage": "ok",
+    "character_sprite_coverage": "ok",
+    "map_completeness": "pass",
+    "parity": "n/a",
+    "self_consistency": "pass",
+    "tier_v0_1": "pass",
+    "tier_v0_3": "pending"
+  },
+  "variations": [],
+  "workflow": {
+    "compose": {
+      "artifact_ref": "productions/world-graph-models.generated.ts",
+      "last_ran_at": "2026-05-24T23:22:08.395Z",
+      "status": "ok"
+    },
+    "curriculum": {
+      "artifact_ref": "artifacts/curriculum.json",
+      "last_ran_at": "2026-05-24T23:04:38.696Z",
+      "status": "ok"
+    },
+    "hydrate": {
+      "artifact_ref": "artifacts/pending_assets.json",
+      "last_ran_at": "2026-05-24T23:35:25.355Z",
+      "status": "ok"
+    },
+    "ingest": {
+      "artifact_ref": "artifacts/lesson-input.json",
+      "last_ran_at": "2026-05-24T23:02:48.646Z",
+      "status": "ok"
+    },
+    "scene-map": {
+      "artifact_ref": "artifacts/scene-map.json",
+      "last_ran_at": "2026-05-24T23:05:23.486Z",
+      "status": "ok"
+    },
+    "storyboard": {
+      "artifact_ref": "artifacts/storyboard.json",
+      "last_ran_at": "2026-05-24T23:12:25.306Z",
+      "status": "ok"
+    },
+    "validate": {
+      "artifact_ref": "artifacts/consistency-report.json",
+      "last_ran_at": "2026-05-24T23:35:25.364Z",
+      "status": "ok"
+    }
+  }
+}

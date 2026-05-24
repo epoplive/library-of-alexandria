@@ -4,7 +4,6 @@ import type {
   CastId,
   CastMember,
   Cue,
-  EaseCurve,
   Element,
   Layout,
   Production,
@@ -21,6 +20,7 @@ import type {
 } from '@/lib/lattice';
 import type { InteractivesRegistry } from '@/lib/interactives';
 import type { Diagnostic } from '@/lib/lesson-workflow/diagnostic-schema';
+import type { ContentMap } from '@/lib/lesson-workflow/project-schema';
 import type { ShotPlanKind } from '../types';
 
 export { SHOT_PLAN_KINDS, type ShotPlanKind } from '../types';
@@ -33,12 +33,7 @@ export interface SpokenLine {
   audio_slot_id: SlotId;
 }
 
-export interface TransitionEdgeStub {
-  kind: TransitionEdge['kind'];
-  duration_ms: number;
-  ease?: EaseCurve;
-  direction?: 'left' | 'right' | 'up' | 'down';
-}
+export type TransitionEdgeStub = Pick<TransitionEdge, 'kind' | 'duration_ms' | 'ease' | 'direction'>;
 
 export interface PlanBase {
   kind: ShotPlanKind;
@@ -122,6 +117,7 @@ export interface ComposerContext {
   cast: CastMember[];
   interactives: InteractivesRegistry;
   manifest_view: ReadonlyAssetManifest;
+  contentMap?: ContentMap;
 }
 
 export interface ShotComposer<P extends ShotPlan = ShotPlan> {

@@ -61,7 +61,7 @@ function productionWithFade(): Production {
       from: { scene_id: 's', shot_id: 'a' },
       to: { scene_id: 's', shot_id: 'b' },
       kind: 'fade',
-      duration: 500,
+      duration_ms: 500,
     }],
     funding: {
       production_cost_usd: 0,

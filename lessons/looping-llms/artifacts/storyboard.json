@@ -1,0 +1,2628 @@
+{
+  "plans": [
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 17.533333333333335,
+      "kind": "narrator-opener",
+      "scene_eyebrow": "01 · puzzle",
+      "scene_title": "Build a looped transformer",
+      "shot_address": {
+        "scene_id": "section-01",
+        "shot_id": "shot-1-1"
+      },
+      "source_beat_id": "b1daff3c3a59628e",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-456642f9da89ec38",
+          "cast_id": "narrator",
+          "id": "line-shot-1-1-1",
+          "source_sentence_ids": [
+            "17207a74ba0d5a96"
+          ],
+          "text": "Every modern AI architecture starts by deciding one thing — how deep to build."
+        },
+        {
+          "audio_slot_id": "audio-pending-04566acbac6e43a4",
+          "cast_id": "narrator",
+          "id": "line-shot-1-1-2",
+          "source_sentence_ids": [
+            "09c8988bb27f3e14"
+          ],
+          "text": "The standard playbook since Ashish Vaswani and his team published Attention is All You Need at Google Brain in June 2017 has been to stack more unique layers and pay the parameter cost."
+        }
+      ]
+    },
+    {
+      "component_id": "BuildYourTransformerGame",
+      "duration_estimate_s": 51.53333333333333,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-01",
+        "shot_id": "shot-1-2"
+      },
+      "source_beat_id": "6325ec2eb54b1a9a",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-8c11628336d989f5",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-1",
+          "source_sentence_ids": [
+            "592f5d1c22e72bf6"
+          ],
+          "text": "GPT-3 went ninety-six layers."
+        },
+        {
+          "audio_slot_id": "audio-pending-df2a1ab1ca0cb0bb",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-2",
+          "source_sentence_ids": [
+            "8fd9fc1c7a1d191e"
+          ],
+          "text": "Llama 3's largest variant has one hundred twenty-six."
+        },
+        {
+          "audio_slot_id": "audio-pending-63ce6efacb7b4d95",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-3",
+          "source_sentence_ids": [
+            "2f92715e11b06db7"
+          ],
+          "text": "The frontier just keeps stacking."
+        },
+        {
+          "audio_slot_id": "audio-pending-232be3f765580e30",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-4",
+          "source_sentence_ids": [
+            "2cfb25c5e1b108c2"
+          ],
+          "text": "But there's a side path that doesn't get talked about as much."
+        },
+        {
+          "audio_slot_id": "audio-pending-29deba645c0f14b0",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-5",
+          "source_sentence_ids": [
+            "538e1243d5a905a0"
+          ],
+          "text": "Use fewer unique blocks, and just run them again."
+        },
+        {
+          "audio_slot_id": "audio-pending-33fa2fac62d9395f",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-6",
+          "source_sentence_ids": [
+            "395e43e1d48ab3a1"
+          ],
+          "text": "The idea isn't new — it descends straight from recurrent neural networks, which Jeff Elman first applied to language all the way back in 1990 at UCSD."
+        },
+        {
+          "audio_slot_id": "audio-pending-c3979bd55a070c54",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-7",
+          "source_sentence_ids": [
+            "d0120ebc3900b0fd"
+          ],
+          "text": "Same set of weights, fired over and over, building representation through repetition rather than novelty."
+        },
+        {
+          "audio_slot_id": "audio-pending-de3d54786da59a3a",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-8",
+          "source_sentence_ids": [
+            "3503da827ad19841"
+          ],
+          "text": "Now try it."
+        },
+        {
+          "audio_slot_id": "audio-pending-e433863da40c7837",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-9",
+          "source_sentence_ids": [
+            "9d4e59b74eb7a2a6"
+          ],
+          "text": "The puzzle is to hit an effective depth of twenty-four."
+        },
+        {
+          "audio_slot_id": "audio-pending-34bdcb1e6a15aa27",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-10",
+          "source_sentence_ids": [
+            "8ed5ce42a8bb1ba2"
+          ],
+          "text": "M is how many unique transformer blocks you bring."
+        },
+        {
+          "audio_slot_id": "audio-pending-245abac8c7b8a139",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-11",
+          "source_sentence_ids": [
+            "04ef90f8b5ba6ea4"
+          ],
+          "text": "K is how many times each one fires."
+        },
+        {
+          "audio_slot_id": "audio-pending-197f5d27c065748b",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-12",
+          "source_sentence_ids": [
+            "b6138b413379eb7e"
+          ],
+          "text": "There are many valid combinations — M=1 with K=24, M=8 with K=3, and everything between."
+        },
+        {
+          "audio_slot_id": "audio-pending-43952ba378198c19",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-13",
+          "source_sentence_ids": [
+            "dee213f7e481eedd"
+          ],
+          "text": "Each trade-off is real."
+        },
+        {
+          "audio_slot_id": "audio-pending-353b62b402a19224",
+          "cast_id": "narrator",
+          "id": "line-shot-1-2-14",
+          "source_sentence_ids": [
+            "9ce5a96ade7d1d6a"
+          ],
+          "text": "Parameter cost stays at M."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 9.666666666666666,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-01",
+        "shot_id": "shot-1-3"
+      },
+      "source_beat_id": "5982b1cdf75918df",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-8c7bf72f49f1e13b",
+          "cast_id": "narrator",
+          "id": "line-shot-1-3-1",
+          "source_sentence_ids": [
+            "94abb3d2e4c32c98"
+          ],
+          "text": "Compute cost grows linearly with K."
+        },
+        {
+          "audio_slot_id": "audio-pending-1dd3a62e49f2f3fb",
+          "cast_id": "narrator",
+          "id": "line-shot-1-3-2",
+          "source_sentence_ids": [
+            "49082b4de1d9eb59"
+          ],
+          "text": "Inference latency, memory pressure, the things you actually care about — all depend on which combination wins."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 7,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-02",
+        "shot_id": "shot-2-1"
+      },
+      "source_beat_id": "6a36530e63858fc5",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-88a083febd2bab01",
+          "cast_id": "narrator",
+          "id": "line-shot-2-1-1",
+          "source_sentence_ids": [
+            "3feb6c8b31d42e56"
+          ],
+          "text": "Here's where it gets concrete."
+        },
+        {
+          "audio_slot_id": "audio-pending-8e107d9c0c60bce6",
+          "cast_id": "narrator",
+          "id": "line-shot-2-1-2",
+          "source_sentence_ids": [
+            "2500d103699f6752"
+          ],
+          "text": "Inside a looped block, the weights themselves are frozen across iterations."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "ForwardPassSim",
+      "duration_estimate_s": 61.66666666666666,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-02",
+        "shot_id": "shot-2-2"
+      },
+      "source_beat_id": "d60f1512d7d0007b",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-5f89c6595e1cc6bc",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-1",
+          "source_sentence_ids": [
+            "c334a00c5a60dae8"
+          ],
+          "text": "What does change is the hidden state — the vector of activations being passed through."
+        },
+        {
+          "audio_slot_id": "audio-pending-0bba3c68f845b83a",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-2",
+          "source_sentence_ids": [
+            "ad4805011404967b"
+          ],
+          "text": "Click run-next-loop."
+        },
+        {
+          "audio_slot_id": "audio-pending-c080ae2e5ae1fe33",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-3",
+          "source_sentence_ids": [
+            "5af041c511623ec6"
+          ],
+          "text": "The bars on the left are the input state."
+        },
+        {
+          "audio_slot_id": "audio-pending-9a112fc9a62082ed",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-4",
+          "source_sentence_ids": [
+            "47e32e1e7c414564"
+          ],
+          "text": "The bars on the right are what the same block produces."
+        },
+        {
+          "audio_slot_id": "audio-pending-5ad3f96625720c8d",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-5",
+          "source_sentence_ids": [
+            "7406f5c65aa4822f"
+          ],
+          "text": "Now click again."
+        },
+        {
+          "audio_slot_id": "audio-pending-feb57fc11119958d",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-6",
+          "source_sentence_ids": [
+            "74bbde111c295d88"
+          ],
+          "text": "The output of the last loop becomes the input of the next."
+        },
+        {
+          "audio_slot_id": "audio-pending-2f90b81951f2ff4b",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-7",
+          "source_sentence_ids": [
+            "0ee5f4bfbdb5d3fc"
+          ],
+          "text": "Watch how the state stabilizes after a few passes — that's the model literally reasoning in latent space, one fixed step at a time."
+        },
+        {
+          "audio_slot_id": "audio-pending-8f8e66207a36b0b1",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-8",
+          "source_sentence_ids": [
+            "bd1598ad5387e419"
+          ],
+          "text": "The math here is the same problem Sepp Hochreiter analyzed in his 1991 master's thesis at TU Munich, when he discovered what we now call the vanishing gradient problem."
+        },
+        {
+          "audio_slot_id": "audio-pending-f6c082a21f85e5b2",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-9",
+          "source_sentence_ids": [
+            "feb7852519b1fdb5"
+          ],
+          "text": "Multiplying by the same weight matrix repeatedly is what makes training a stack of K loops hard — small changes either compound out of control or fade to nothing."
+        },
+        {
+          "audio_slot_id": "audio-pending-7b8b26804cf15593",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-10",
+          "source_sentence_ids": [
+            "2d112c4d15307f21"
+          ],
+          "text": "Hochreiter's solution six years later, with Jürgen Schmidhuber, was the LSTM — gating machinery that lets signal survive long iteration chains."
+        },
+        {
+          "audio_slot_id": "audio-pending-45c146f9375f5132",
+          "cast_id": "narrator",
+          "id": "line-shot-2-2-11",
+          "source_sentence_ids": [
+            "7558cc1140d23617"
+          ],
+          "text": "Modern looped LMs don't use LSTM-style gates."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 13.733333333333334,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-02",
+        "shot_id": "shot-2-3"
+      },
+      "source_beat_id": "c377fc2796ad08a6",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-df254f264709246c",
+          "cast_id": "narrator",
+          "id": "line-shot-2-3-1",
+          "source_sentence_ids": [
+            "fdb0239b272d82da"
+          ],
+          "text": "They fight the same problem with normalization layers, careful weight initialization, and gradient checkpointing."
+        },
+        {
+          "audio_slot_id": "audio-pending-e2adf5ad1b648871",
+          "cast_id": "narrator",
+          "id": "line-shot-2-3-2",
+          "source_sentence_ids": [
+            "6b3dfa5427365fc2"
+          ],
+          "text": "The mechanism on screen is identical to an RNN unrolled — just for depth instead of for time."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 12.2,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-03",
+        "shot_id": "shot-3-1"
+      },
+      "source_beat_id": "b67ee1441b8d616f",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-15945fb4dc532db9",
+          "cast_id": "narrator",
+          "id": "line-shot-3-1-1",
+          "source_sentence_ids": [
+            "aa471c512083ddc5"
+          ],
+          "text": "Here's a question that sounds almost too simple."
+        },
+        {
+          "audio_slot_id": "audio-pending-0b35654512900a2d",
+          "cast_id": "narrator",
+          "id": "line-shot-3-1-2",
+          "source_sentence_ids": [
+            "2ccefac883d95a36"
+          ],
+          "text": "If you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something?"
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "BanachPlayableScene",
+      "duration_estimate_s": 92.33333333333334,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-03",
+        "shot_id": "shot-3-2"
+      },
+      "source_beat_id": "e2bb907025c8c531",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-3f4562575540d090",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-1",
+          "source_sentence_ids": [
+            "a5538a3510eb0f63"
+          ],
+          "text": "In 1922, a young Polish mathematician named Stefan Banach proved the answer is yes, as long as the function is a contraction map — meaning every time you apply it, the points it produces get strictly closer to each other than they started."
+        },
+        {
+          "audio_slot_id": "audio-pending-4ea7112108c18bd6",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-2",
+          "source_sentence_ids": [
+            "25c3070f196be400"
+          ],
+          "text": "The result is now called the Banach fixed-point theorem, and the proof fits on a page."
+        },
+        {
+          "audio_slot_id": "audio-pending-7cc22282c9e4c031",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-3",
+          "source_sentence_ids": [
+            "86b1c035783c2ba1"
+          ],
+          "text": "But that one-page proof is the mathematical bedrock under every looped language model, every Deep Equilibrium Model, and even most of the numerical ODE solvers your physics simulations are using right now."
+        },
+        {
+          "audio_slot_id": "audio-pending-efe3dfe3c097c25a",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-4",
+          "source_sentence_ids": [
+            "392f4c86190779d5"
+          ],
+          "text": "Banach himself died young, of cancer, in Soviet-occupied Lviv in 1945."
+        },
+        {
+          "audio_slot_id": "audio-pending-fe002f1cfb27e9f4",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-5",
+          "source_sentence_ids": [
+            "2ee7582c98cb4542"
+          ],
+          "text": "The school of mathematics he led used to meet in a café called the Scottish Café, and they wrote unsolved problems in a notebook with prizes attached — including, famously, a live goose for problem 153."
+        },
+        {
+          "audio_slot_id": "audio-pending-fec89faecd6faf11",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-6",
+          "source_sentence_ids": [
+            "c8c7ae45a0d04659"
+          ],
+          "text": "The math you're about to play with came out of those meetings."
+        },
+        {
+          "audio_slot_id": "audio-pending-1d4317fcb3252c90",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-7",
+          "source_sentence_ids": [
+            "9a1f3cfdea6e648b"
+          ],
+          "text": "Here's the setup."
+        },
+        {
+          "audio_slot_id": "audio-pending-dbfbeb9c193cafdb",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-8",
+          "source_sentence_ids": [
+            "1a6880bf8e6507d7"
+          ],
+          "text": "The green dot is z-star — the fixed point you're trying to reach."
+        },
+        {
+          "audio_slot_id": "audio-pending-37a2f4b64a3bee7f",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-9",
+          "source_sentence_ids": [
+            "fe547bec4c8b110b"
+          ],
+          "text": "The function f is shown as a vector field."
+        },
+        {
+          "audio_slot_id": "audio-pending-6aca3985c27c8a66",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-10",
+          "source_sentence_ids": [
+            "560ae4a974448b08"
+          ],
+          "text": "Drag z-naught anywhere on the plane."
+        },
+        {
+          "audio_slot_id": "audio-pending-a15b0d6151a3ec21",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-11",
+          "source_sentence_ids": [
+            "e2c71f1abe364bdc"
+          ],
+          "text": "Pick K, the number of times to iterate."
+        },
+        {
+          "audio_slot_id": "audio-pending-b05fe7336f4c828f",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-12",
+          "source_sentence_ids": [
+            "4532d01fcc161398"
+          ],
+          "text": "Some functions converge fast; some slowly; some spiral; one diverges entirely."
+        },
+        {
+          "audio_slot_id": "audio-pending-fc618a027b337ecc",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-13",
+          "source_sentence_ids": [
+            "10b12d9bbdfe9e61"
+          ],
+          "text": "There are four levels."
+        },
+        {
+          "audio_slot_id": "audio-pending-4cad41cd2a1d1c05",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-14",
+          "source_sentence_ids": [
+            "fdb677e0eafe670c"
+          ],
+          "text": "Level one — find the equilibrium of a single f."
+        },
+        {
+          "audio_slot_id": "audio-pending-9f0a6ee502eafbee",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-15",
+          "source_sentence_ids": [
+            "b495a13e6a6aa8f3"
+          ],
+          "text": "Level two — three candidate f's, pick the one that converges fastest."
+        },
+        {
+          "audio_slot_id": "audio-pending-a72a85022be663c5",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-16",
+          "source_sentence_ids": [
+            "ad47c9e2202fef53"
+          ],
+          "text": "Level three — set K precisely to reach within tolerance epsilon."
+        },
+        {
+          "audio_slot_id": "audio-pending-376b0e54700ecdb8",
+          "cast_id": "narrator",
+          "id": "line-shot-3-2-17",
+          "source_sentence_ids": [
+            "79bf5fc485630337"
+          ],
+          "text": "Level four is the real DEQ design problem."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 21.46666666666667,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-03",
+        "shot_id": "shot-3-3"
+      },
+      "source_beat_id": "f8e3615e210c2172",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-73e369e82d2a853e",
+          "cast_id": "narrator",
+          "id": "line-shot-3-3-1",
+          "source_sentence_ids": [
+            "1190e3b9f8f45087"
+          ],
+          "text": "You're given a compute budget, two candidate f's with different per-loop costs, and you have to choose both f and K to hit the target."
+        },
+        {
+          "audio_slot_id": "audio-pending-5477f7295fb5a3bb",
+          "cast_id": "narrator",
+          "id": "line-shot-3-3-2",
+          "source_sentence_ids": [
+            "69cf2a9cd96fcfa9"
+          ],
+          "text": "The cheapest path through that compute budget is what Shaojie Bai's 2019 PhD work at CMU showed how to find analytically, without iterating at all — that's what Deep Equilibrium Models do."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 10.133333333333333,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-04",
+        "shot_id": "shot-4-1"
+      },
+      "source_beat_id": "6c591ec27cd628e4",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-2aa08fe959c2cf49",
+          "cast_id": "narrator",
+          "id": "line-shot-4-1-1",
+          "source_sentence_ids": [
+            "98fabf3ca6cef920"
+          ],
+          "text": "When a normal model reasons through a hard problem, it has to think out loud."
+        },
+        {
+          "audio_slot_id": "audio-pending-a45d391b38331a03",
+          "cast_id": "narrator",
+          "id": "line-shot-4-1-2",
+          "source_sentence_ids": [
+            "b0f59572211bec27"
+          ],
+          "text": "Every intermediate step burns output tokens that stream across your screen."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "SilentThinkingPlayer",
+      "duration_estimate_s": 67.00833333333333,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-04",
+        "shot_id": "shot-4-2"
+      },
+      "source_beat_id": "6664556a14e9d48c",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-76c3ab59d2922fed",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-1",
+          "source_sentence_ids": [
+            "241da90afce3e33a"
+          ],
+          "text": "That's chain-of-thought reasoning, popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K."
+        },
+        {
+          "audio_slot_id": "audio-pending-0b4993082342f598",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-2",
+          "source_sentence_ids": [
+            "ac6ab6245b1ba19e"
+          ],
+          "text": "The technique is now the foundation of every reasoning model — OpenAI's o1, DeepSeek R1, Anthropic's extended thinking."
+        },
+        {
+          "audio_slot_id": "audio-pending-b9c555e09d2946a3",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-3",
+          "source_sentence_ids": [
+            "12f0920c2e80dcf3"
+          ],
+          "text": "But a looped model does something stranger."
+        },
+        {
+          "audio_slot_id": "audio-pending-00975461298f9599",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-4",
+          "source_sentence_ids": [
+            "5e00f5eadbdf1570"
+          ],
+          "text": "It thinks silently, inside the forward pass, looping its own block over and over before emitting a single answer token."
+        },
+        {
+          "audio_slot_id": "audio-pending-1f05755d3d68af73",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-5",
+          "source_sentence_ids": [
+            "c0895732cfb329c0"
+          ],
+          "text": "None of the intermediate reasoning surfaces."
+        },
+        {
+          "audio_slot_id": "audio-pending-03346ec910c51bbc",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-6",
+          "source_sentence_ids": [
+            "4082b7c92b457eb5"
+          ],
+          "text": "The 2025 latent reasoning paper from EleutherAI showed eight internal loops can match twenty-two tokens of visible chain-of-thought on multi-hop benchmarks."
+        },
+        {
+          "audio_slot_id": "audio-cc9c32191234",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-7",
+          "source_sentence_ids": [
+            "f337cc2be83a1966"
+          ],
+          "text": "There's a parallel thread from Stanford called Quiet-STaR, where the model thinks token by token in silence — same target, different machinery."
+        },
+        {
+          "audio_slot_id": "audio-pending-12cd59684b3d069e",
+          "cast_id": "narrator",
+          "id": "line-shot-4-2-8",
+          "source_sentence_ids": [
+            "67dca9932b8f22b6"
+          ],
+          "text": "Both share a common thesis with looped LMs — that the cheapest form of compute is the kind that never leaves the network and never costs you an output token."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 17.200000000000003,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-04",
+        "shot_id": "shot-4-3"
+      },
+      "source_beat_id": "f569ae2e2427e472",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-0b950b263a4c8f7c",
+          "cast_id": "narrator",
+          "id": "line-shot-4-3-1",
+          "source_sentence_ids": [
+            "0f99de3bdd260075"
+          ],
+          "text": "The big open question is whether silent reasoning ever genuinely surpasses verbalized reasoning."
+        },
+        {
+          "audio_slot_id": "audio-pending-be6b465e85c42275",
+          "cast_id": "narrator",
+          "id": "line-shot-4-3-2",
+          "source_sentence_ids": [
+            "ec1ef03116aac0d4"
+          ],
+          "text": "As of now the empirical answer is roughly: matches it cheaply on tasks the model already had the capacity for; doesn't unlock new capabilities the way scale does."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 10.333333333333334,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-05",
+        "shot_id": "shot-5-1"
+      },
+      "source_beat_id": "79a56e9972a99e32",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-db2558496af80007",
+          "cast_id": "narrator",
+          "id": "line-shot-5-1-1",
+          "source_sentence_ids": [
+            "27ac9effa2706c2b"
+          ],
+          "text": "Looping isn't free at training time."
+        },
+        {
+          "audio_slot_id": "audio-pending-af10fcc951cdd495",
+          "cast_id": "narrator",
+          "id": "line-shot-5-1-2",
+          "source_sentence_ids": [
+            "c43e26c26ca55431"
+          ],
+          "text": "The same set of weights gets touched K times in one forward pass — and during backpropagation, they get blamed K times."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "GradientSurgeon",
+      "duration_estimate_s": 66.73333333333333,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-05",
+        "shot_id": "shot-5-2"
+      },
+      "source_beat_id": "51febef6169a9ea5",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-2e3b968aa0b32773",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-1",
+          "source_sentence_ids": [
+            "bf1ce60226861e36"
+          ],
+          "text": "All those gradient contributions sum into the same parameter update."
+        },
+        {
+          "audio_slot_id": "audio-pending-65ce7cfe5808f248",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-2",
+          "source_sentence_ids": [
+            "e318ba55f241b888"
+          ],
+          "text": "The failure modes are well-known: exploding gradients when the spectral radius of the Jacobian drifts above one, vanishing gradients when it falls below, and out-of-memory crashes when K-fold activation storage exceeds your VRAM."
+        },
+        {
+          "audio_slot_id": "audio-pending-a9aec189e32735dc",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-3",
+          "source_sentence_ids": [
+            "45bd2c68ea00fe31"
+          ],
+          "text": "Each one shows up as a different curve shape in your training log."
+        },
+        {
+          "audio_slot_id": "audio-pending-bb766435d7082c41",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-4",
+          "source_sentence_ids": [
+            "329febc864f19ab6"
+          ],
+          "text": "Now you're the gradient surgeon."
+        },
+        {
+          "audio_slot_id": "audio-pending-43c0df9067c91341",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-5",
+          "source_sentence_ids": [
+            "ab60097439171e4b"
+          ],
+          "text": "Three broken training runs are waiting for you — one that explodes mid-training, one that plateaus and never recovers, and one that crashes from memory pressure."
+        },
+        {
+          "audio_slot_id": "audio-pending-55fe841b2527a4bb",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-6",
+          "source_sentence_ids": [
+            "2a8f067a08b1f5e3"
+          ],
+          "text": "For each, you'll diagnose the failure and apply one of five mitigations."
+        },
+        {
+          "audio_slot_id": "audio-pending-279fd4ef07b1843e",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-7",
+          "source_sentence_ids": [
+            "3249f946327bb48b"
+          ],
+          "text": "Scaled initialization keeps the spectral radius near one."
+        },
+        {
+          "audio_slot_id": "audio-pending-2508974ea474b26f",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-8",
+          "source_sentence_ids": [
+            "eb49629ecbda87ba"
+          ],
+          "text": "Layer normalization at the loop boundary resets state magnitude between iterations."
+        },
+        {
+          "audio_slot_id": "audio-pending-dac0a681234d7243",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-9",
+          "source_sentence_ids": [
+            "4a30f7d8c6df34da"
+          ],
+          "text": "Gradient clipping caps the explosion at the cost of masking root cause."
+        },
+        {
+          "audio_slot_id": "audio-pending-a701d1bfa658796c",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-10",
+          "source_sentence_ids": [
+            "272e81b096a518e8"
+          ],
+          "text": "Gradient checkpointing — Tianqi Chen's 2016 trick — recomputes activations on backward instead of storing them."
+        },
+        {
+          "audio_slot_id": "audio-pending-1916ad9f0b9d6c0d",
+          "cast_id": "narrator",
+          "id": "line-shot-5-2-11",
+          "source_sentence_ids": [
+            "097170b53a0491e4"
+          ],
+          "text": "And lowering K avoids the issue by giving up depth."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 5.666666666666666,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-05",
+        "shot_id": "shot-5-3"
+      },
+      "source_beat_id": "b5754da4f3d03196",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-51459354f72202ea",
+          "cast_id": "narrator",
+          "id": "line-shot-5-3-1",
+          "source_sentence_ids": [
+            "c6bd53e1217d5ec6"
+          ],
+          "text": "The right mitigation depends on the failure."
+        },
+        {
+          "audio_slot_id": "audio-pending-6acdf76e0944dc2b",
+          "cast_id": "narrator",
+          "id": "line-shot-5-3-2",
+          "source_sentence_ids": [
+            "685e328258cf9ac0"
+          ],
+          "text": "Pick wrong and the curve doesn't recover."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 5.933333333333334,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-06",
+        "shot_id": "shot-6-1"
+      },
+      "source_beat_id": "2ba3c475a90fd440",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-44aee010a2802837",
+          "cast_id": "narrator",
+          "id": "line-shot-6-1-1",
+          "source_sentence_ids": [
+            "bf05eb07d6a45d27"
+          ],
+          "text": "Looping is one of several ways to spend inference compute."
+        },
+        {
+          "audio_slot_id": "audio-pending-0b10d207a12b9c54",
+          "cast_id": "narrator",
+          "id": "line-shot-6-1-2",
+          "source_sentence_ids": [
+            "27625c306f74eeb5"
+          ],
+          "text": "Chain-of-thought spends tokens."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "ComputeAllocator",
+      "duration_estimate_s": 45.33333333333333,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-06",
+        "shot_id": "shot-6-2"
+      },
+      "source_beat_id": "b795ada44ae4c4c1",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-1862822e765fff98",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-1",
+          "source_sentence_ids": [
+            "6121dcd02ca8282e"
+          ],
+          "text": "Mixture-of-experts spends parameters per token."
+        },
+        {
+          "audio_slot_id": "audio-pending-3fe1ffb2f0de8732",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-2",
+          "source_sentence_ids": [
+            "a9163641a67d1497"
+          ],
+          "text": "Speculative decoding spends draft-model FLOPs to batch more verifier work."
+        },
+        {
+          "audio_slot_id": "audio-pending-4f72dffc44d6adf3",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-3",
+          "source_sentence_ids": [
+            "141ef38371909517"
+          ],
+          "text": "Loops spend depth."
+        },
+        {
+          "audio_slot_id": "audio-pending-5c39b7bb9829ffe7",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-4",
+          "source_sentence_ids": [
+            "5d699e86ed987f40"
+          ],
+          "text": "The frontier labs are quietly building all four."
+        },
+        {
+          "audio_slot_id": "audio-pending-b703248fd8fedbeb",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-5",
+          "source_sentence_ids": [
+            "7d3be0c01bcf857f"
+          ],
+          "text": "Different query types reward different allocations — a factual lookup gets nothing from extra reasoning, but it benefits from the right specialized expert."
+        },
+        {
+          "audio_slot_id": "audio-pending-5691b10394639a97",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-6",
+          "source_sentence_ids": [
+            "f92d8a1d00707bf8"
+          ],
+          "text": "A multi-hop chain wants loops or chain-of-thought."
+        },
+        {
+          "audio_slot_id": "audio-pending-4decb5d14e9053ee",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-7",
+          "source_sentence_ids": [
+            "a2031d1f55d510ee"
+          ],
+          "text": "Code generation wants width and throughput."
+        },
+        {
+          "audio_slot_id": "audio-pending-e2dda498b4f03786",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-8",
+          "source_sentence_ids": [
+            "5c8ccd1d688b8dd1"
+          ],
+          "text": "Creative writing wants varied generation."
+        },
+        {
+          "audio_slot_id": "audio-pending-6193aa0e64fd6985",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-9",
+          "source_sentence_ids": [
+            "c74bb7a9af0b73aa"
+          ],
+          "text": "Now play it."
+        },
+        {
+          "audio_slot_id": "audio-pending-0ace2a981fd3e43b",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-10",
+          "source_sentence_ids": [
+            "e7c430f95d11c920"
+          ],
+          "text": "Five query types come in sequentially."
+        },
+        {
+          "audio_slot_id": "audio-pending-2f81f7e21fb74141",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-11",
+          "source_sentence_ids": [
+            "deb0a3c4210036de"
+          ],
+          "text": "You have a budget of one hundred compute units per query."
+        },
+        {
+          "audio_slot_id": "audio-pending-a0f0b1a61d4b2048",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-12",
+          "source_sentence_ids": [
+            "d3ea72085277e6b0"
+          ],
+          "text": "Distribute them across the four paradigms."
+        },
+        {
+          "audio_slot_id": "audio-pending-530cbf2efc932dd7",
+          "cast_id": "narrator",
+          "id": "line-shot-6-2-13",
+          "source_sentence_ids": [
+            "ee77793092218469"
+          ],
+          "text": "Watch the predicted accuracy update as you allocate."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 10.266666666666667,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-06",
+        "shot_id": "shot-6-3"
+      },
+      "source_beat_id": "10a10608c719b129",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-126e929fa272ace2",
+          "cast_id": "narrator",
+          "id": "line-shot-6-3-1",
+          "source_sentence_ids": [
+            "04d16f9a46818a63"
+          ],
+          "text": "Submit each query when remaining hits zero."
+        },
+        {
+          "audio_slot_id": "audio-pending-bf523e5b162535db",
+          "cast_id": "narrator",
+          "id": "line-shot-6-3-2",
+          "source_sentence_ids": [
+            "ba15f170a7f7f3d6"
+          ],
+          "text": "At the end you get scored against the optimal mix per query — and your run total against the optimal portfolio."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 9.933333333333334,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-07",
+        "shot_id": "shot-7-1"
+      },
+      "source_beat_id": "b1442ec77c5647c5",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-9fc34705f67d6605",
+          "cast_id": "narrator",
+          "id": "line-shot-7-1-1",
+          "source_sentence_ids": [
+            "4d6ef028528da5c3"
+          ],
+          "text": "Here's the cost most papers downplay."
+        },
+        {
+          "audio_slot_id": "audio-pending-d252e396cdde95bd",
+          "cast_id": "narrator",
+          "id": "line-shot-7-1-2",
+          "source_sentence_ids": [
+            "2dd2a5e58364596e"
+          ],
+          "text": "Looping K times means K forward passes per training step — and K backward passes through the exact same weights."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "TrainingComputeScene",
+      "duration_estimate_s": 56.13333333333333,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-07",
+        "shot_id": "shot-7-2"
+      },
+      "source_beat_id": "0403effe3e9f8f5c",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-93768fe7b829b342",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-1",
+          "source_sentence_ids": [
+            "ecbea2494e0e6128"
+          ],
+          "text": "Activation memory normally scales with K too, because backpropagation through time needs every intermediate state to compute gradients."
+        },
+        {
+          "audio_slot_id": "audio-pending-308974e3faae4e8c",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-2",
+          "source_sentence_ids": [
+            "d9e237336932c424"
+          ],
+          "text": "A K-equals-eight looped model costs roughly eight times the training compute of a single-block model, even though it has eight times fewer parameters."
+        },
+        {
+          "audio_slot_id": "audio-pending-6db3dd9c0076db58",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-3",
+          "source_sentence_ids": [
+            "87b0bf07184ed77e"
+          ],
+          "text": "The net is an unusual trade."
+        },
+        {
+          "audio_slot_id": "audio-pending-c8b99ecf6f22ce97",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-4",
+          "source_sentence_ids": [
+            "c0c6a1c2836d68dc"
+          ],
+          "text": "Cheap at inference once trained, expensive to train in the first place."
+        },
+        {
+          "audio_slot_id": "audio-pending-1492dd95a89bfa36",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-5",
+          "source_sentence_ids": [
+            "3716f82813c77f26"
+          ],
+          "text": "It's the opposite of mixture-of-experts, where you can swell the total parameter count without paying per-token FLOPs, but you have to load the whole model into VRAM at inference time."
+        },
+        {
+          "audio_slot_id": "audio-pending-66472f042bb677c0",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-6",
+          "source_sentence_ids": [
+            "4c68e608ad5244b2"
+          ],
+          "text": "DeepSeek-V3 is the modern example — 671 billion total parameters, only 37 billion active per token."
+        },
+        {
+          "audio_slot_id": "audio-pending-41a8c459cebb7a21",
+          "cast_id": "narrator",
+          "id": "line-shot-7-2-7",
+          "source_sentence_ids": [
+            "bddeb205ca2067b4"
+          ],
+          "text": "Gradient checkpointing fixes the looped-LM memory blowup at the cost of recomputing activations on the backward pass — about thirty percent extra wall-clock for the privilege."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 16.333333333333332,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-07",
+        "shot_id": "shot-7-3"
+      },
+      "source_beat_id": "00ec1f7cfd848bb1",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-4b450bc37130b9bf",
+          "cast_id": "narrator",
+          "id": "line-shot-7-3-1",
+          "source_sentence_ids": [
+            "48a7faa2eba5efd4"
+          ],
+          "text": "The training-cost asymmetry is why looped LMs haven't shown up at frontier scale yet, even though they're competitive at one to three billion parameters."
+        },
+        {
+          "audio_slot_id": "audio-pending-740fa53447282967",
+          "cast_id": "narrator",
+          "id": "line-shot-7-3-2",
+          "source_sentence_ids": [
+            "562bcab8c55d2016"
+          ],
+          "text": "Anyone with frontier compute spends it on more unique parameters instead of training cycles."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 11.666666666666666,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-08",
+        "shot_id": "shot-8-1"
+      },
+      "source_beat_id": "d7afa6203d6e1c7f",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-41a3d05ef670aa91",
+          "cast_id": "narrator",
+          "id": "line-shot-8-1-1",
+          "source_sentence_ids": [
+            "9cd1623170cd57ee"
+          ],
+          "text": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018."
+        },
+        {
+          "audio_slot_id": "audio-pending-61113eb34693fd73",
+          "cast_id": "narrator",
+          "id": "line-shot-8-1-2",
+          "source_sentence_ids": [
+            "ac43eff59db749f7"
+          ],
+          "text": "But you can be more surgical."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "WeightTyingScene",
+      "duration_estimate_s": 53.93333333333334,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-08",
+        "shot_id": "shot-8-2"
+      },
+      "source_beat_id": "4187c80c8b71e94e",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-8d8aa246726cb4d6",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-1",
+          "source_sentence_ids": [
+            "52e9648649663851"
+          ],
+          "text": "Share just the attention weights, and the multilayer perceptron — the MLP — can still specialize per loop iteration."
+        },
+        {
+          "audio_slot_id": "audio-pending-3702a8604bef56a3",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-2",
+          "source_sentence_ids": [
+            "1267e5eff3290b1f"
+          ],
+          "text": "Or share just the MLP, and attention stays unique at each iteration."
+        },
+        {
+          "audio_slot_id": "audio-pending-7c34a638b55883e4",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-3",
+          "source_sentence_ids": [
+            "d1fc66404d1e5088"
+          ],
+          "text": "Each choice trades parameter efficiency for representational flexibility."
+        },
+        {
+          "audio_slot_id": "audio-pending-3786291f34a4870a",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-4",
+          "source_sentence_ids": [
+            "56105989d3c71faa"
+          ],
+          "text": "The 2018 paper used full sharing and matched LSTM baselines on bAbI reasoning tasks."
+        },
+        {
+          "audio_slot_id": "audio-pending-034e9435a8544420",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-5",
+          "source_sentence_ids": [
+            "0e0f540f084f5450"
+          ],
+          "text": "Modern variants in 2024 and 2025 are exploring all three sharing patterns."
+        },
+        {
+          "audio_slot_id": "audio-pending-5b4d77d9d582fe55",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-6",
+          "source_sentence_ids": [
+            "60a238ff4e058b8c"
+          ],
+          "text": "Full sharing is still the most common default, partly because it's the most parameter-efficient, partly because it composes cleanly with adaptive halting."
+        },
+        {
+          "audio_slot_id": "audio-pending-2c2c72c5a9b3c8f3",
+          "cast_id": "narrator",
+          "id": "line-shot-8-2-7",
+          "source_sentence_ids": [
+            "6d88023823c01818"
+          ],
+          "text": "The bAbI benchmark Dehghani's team used was a set of twenty synthetic reading-comprehension tasks released by Facebook AI Research in 2015 — the standard reasoning testbed before LLMs made larger benchmarks like MMLU and HellaSwag the norm."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 23.46666666666667,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-08",
+        "shot_id": "shot-8-3"
+      },
+      "source_beat_id": "ac38b39283013b7a",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-66845313694384c6",
+          "cast_id": "narrator",
+          "id": "line-shot-8-3-1",
+          "source_sentence_ids": [
+            "40fde46a69a023ee"
+          ],
+          "text": "Universal Transformer's claim to fame was solving bAbI fully where vanilla transformers stalled — the first concrete hint that recurrence helps specifically on tasks with algorithmic structure."
+        },
+        {
+          "audio_slot_id": "audio-pending-c3ca62323ce3fe4a",
+          "cast_id": "narrator",
+          "id": "line-shot-8-3-2",
+          "source_sentence_ids": [
+            "258bb54495abf799"
+          ],
+          "text": "The paper was largely ignored at the time, overshadowed by BERT and GPT-1 launching the same year, and only rediscovered when latent reasoning got hot in 2024."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 7.333333333333334,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-09",
+        "shot_id": "shot-9-1"
+      },
+      "source_beat_id": "7e6074b694ae1a8a",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-725111bb1ef9fa8e",
+          "cast_id": "narrator",
+          "id": "line-shot-9-1-1",
+          "source_sentence_ids": [
+            "82b89f69e1566f9f"
+          ],
+          "text": "Not every problem deserves eight loops."
+        },
+        {
+          "audio_slot_id": "audio-pending-72cf2f98f9270ee0",
+          "cast_id": "narrator",
+          "id": "line-shot-9-1-2",
+          "source_sentence_ids": [
+            "50e3624e853b48c7"
+          ],
+          "text": "A chess engine doesn't think for the same amount of time on every move."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "HaltPlayableScene",
+      "duration_estimate_s": 64.93333333333334,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-09",
+        "shot_id": "shot-9-2"
+      },
+      "source_beat_id": "80aff28835aadc2a",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-74b361bbcae8dcf4",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-1",
+          "source_sentence_ids": [
+            "2bbd43b10ec76722"
+          ],
+          "text": "A grandmaster spends seconds on a forced capture and minutes on a closed positional decision."
+        },
+        {
+          "audio_slot_id": "audio-pending-8ba34d5e08a6b05a",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-2",
+          "source_sentence_ids": [
+            "afa8c0164aafd4ec"
+          ],
+          "text": "Adaptive halting gives a looped LM the same kind of dynamic compute allocation."
+        },
+        {
+          "audio_slot_id": "audio-pending-8d2f38c3b88e89ba",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-3",
+          "source_sentence_ids": [
+            "58d75d68c04e0c83"
+          ],
+          "text": "A tiny head sits on top of the network and emits a stop probability at each iteration."
+        },
+        {
+          "audio_slot_id": "audio-pending-ac49387b666d0ae5",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-4",
+          "source_sentence_ids": [
+            "b3ded403c33c9127"
+          ],
+          "text": "The training signal is a careful trade-off — a ponder cost penalizes extra iterations, but answer-loss penalizes early termination."
+        },
+        {
+          "audio_slot_id": "audio-pending-cbdc197cdadfcf67",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-5",
+          "source_sentence_ids": [
+            "2da50493d0b433be"
+          ],
+          "text": "The math comes from Alex Graves's 2016 paper Adaptive Computation Time, written while he was at DeepMind."
+        },
+        {
+          "audio_slot_id": "audio-pending-c1457445dcccf5bd",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-6",
+          "source_sentence_ids": [
+            "2acbfc40c18e57e8"
+          ],
+          "text": "Graves is one of the most underrated architects in deep learning — he also invented connectionist temporal classification, the algorithm that powers every speech recognition system, and Neural Turing Machines, the direct ancestor of attention."
+        },
+        {
+          "audio_slot_id": "audio-pending-debbaa002af642ae",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-7",
+          "source_sentence_ids": [
+            "aefd9ceb6f12729b"
+          ],
+          "text": "Now you play the halting head."
+        },
+        {
+          "audio_slot_id": "audio-pending-c89e6f20c453e1de",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-8",
+          "source_sentence_ids": [
+            "992ec001932f1ba9"
+          ],
+          "text": "Three problems of varying difficulty."
+        },
+        {
+          "audio_slot_id": "audio-pending-03fa05a24b8cde12",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-9",
+          "source_sentence_ids": [
+            "3deaab4341ce2e5c"
+          ],
+          "text": "Watch the internal confidence at each iteration and click halt when you think the model has it."
+        },
+        {
+          "audio_slot_id": "audio-pending-5424cb6638afaeb0",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-10",
+          "source_sentence_ids": [
+            "ad7ce9c7c946a523"
+          ],
+          "text": "Halt too early, you get the wrong answer."
+        },
+        {
+          "audio_slot_id": "audio-pending-49171b523833e37a",
+          "cast_id": "narrator",
+          "id": "line-shot-9-2-11",
+          "source_sentence_ids": [
+            "86993b5edeba7de5"
+          ],
+          "text": "Halt too late, you wasted compute."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 12.399999999999999,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-09",
+        "shot_id": "shot-9-3"
+      },
+      "source_beat_id": "4d5eeebe7aaf3574",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-debff54a5ddccf23",
+          "cast_id": "narrator",
+          "id": "line-shot-9-3-1",
+          "source_sentence_ids": [
+            "f2efebcebb42aea0"
+          ],
+          "text": "Both are penalized in real ACT training."
+        },
+        {
+          "audio_slot_id": "audio-pending-5bf3d961a6a0b80e",
+          "cast_id": "narrator",
+          "id": "line-shot-9-3-2",
+          "source_sentence_ids": [
+            "87ec376b6691c751"
+          ],
+          "text": "The optimal policy is exactly what the halting head converges to — minimize compute, maximize correctness, find the trade-off that fits your task."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 14.333333333333334,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-10",
+        "shot_id": "shot-10-1"
+      },
+      "source_beat_id": "8404e88f080b0a17",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-e6437be37c459ac4",
+          "cast_id": "narrator",
+          "id": "line-shot-10-1-1",
+          "source_sentence_ids": [
+            "b2dde47571959876"
+          ],
+          "text": "Here's the gotcha that catches everyone implementing this."
+        },
+        {
+          "audio_slot_id": "audio-pending-4378d233effc292d",
+          "cast_id": "narrator",
+          "id": "line-shot-10-1-2",
+          "source_sentence_ids": [
+            "00bf032f586a26db"
+          ],
+          "text": "The KV cache — the data structure that makes long-context inference fast by remembering keys and values from previous tokens — does not shrink when you loop."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "KVCacheArchitect",
+      "duration_estimate_s": 76.2,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-10",
+        "shot_id": "shot-10-2"
+      },
+      "source_beat_id": "04ffc218fc327ee1",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-6fb9e95a04f67e06",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-1",
+          "source_sentence_ids": [
+            "9ce1d0ed3ea9b0d3"
+          ],
+          "text": "Visiting the same three blocks eight times still requires twenty-four separate stacks of cached attention, because each visit is attending over a different hidden state."
+        },
+        {
+          "audio_slot_id": "audio-pending-ce31efed78465e90",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-2",
+          "source_sentence_ids": [
+            "ee445a14bd16fbea"
+          ],
+          "text": "Looping saves parameter memory."
+        },
+        {
+          "audio_slot_id": "audio-pending-707d0da0c64f8a8e",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-3",
+          "source_sentence_ids": [
+            "60c15f61457b4d05"
+          ],
+          "text": "It does NOT save cache memory."
+        },
+        {
+          "audio_slot_id": "audio-pending-c7b2aea091335a5b",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-4",
+          "source_sentence_ids": [
+            "de68ed1408d9d854"
+          ],
+          "text": "At long context, that's where the bill actually comes due."
+        },
+        {
+          "audio_slot_id": "audio-pending-81bfc693292dc8ec",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-5",
+          "source_sentence_ids": [
+            "3f13f7548866a0e7"
+          ],
+          "text": "The formula is two times the number of effective layers times sequence length times hidden dimension times bytes per element."
+        },
+        {
+          "audio_slot_id": "audio-pending-7a5c222d45f3ed4e",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-6",
+          "source_sentence_ids": [
+            "cccbb7c1a60683dc"
+          ],
+          "text": "For a model at one hundred twenty-eight thousand sequence length, four thousand hidden, and bfloat16 precision, with twenty-four effective layers, you're looking at roughly fifty gigabytes of cache per request."
+        },
+        {
+          "audio_slot_id": "audio-pending-390b4ea4b089cd6e",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-7",
+          "source_sentence_ids": [
+            "bc03f27dc7fa05e5"
+          ],
+          "text": "That's why frontier inference is bottlenecked on memory bandwidth, not raw FLOPs."
+        },
+        {
+          "audio_slot_id": "audio-pending-10365b9ad3f661e8",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-8",
+          "source_sentence_ids": [
+            "4315c097906d8f39"
+          ],
+          "text": "There are research variants that share the cache across loop iterations — sometimes called token-recurrent or cross-iteration architectures — but they trade memory for representational expressiveness."
+        },
+        {
+          "audio_slot_id": "audio-pending-a088a129448b0c02",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-9",
+          "source_sentence_ids": [
+            "33e7e720a52b00d1"
+          ],
+          "text": "DeepSeek's multi-head latent attention is a different approach to the same problem, compressing the cache via low-rank projection."
+        },
+        {
+          "audio_slot_id": "audio-pending-e03ecdab525b642e",
+          "cast_id": "narrator",
+          "id": "line-shot-10-2-10",
+          "source_sentence_ids": [
+            "bbd3f6b10b44371b"
+          ],
+          "text": "The cache-sharing question is one of the most active design choices in late-2024 and 2025 looped-LM research."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 10.8,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-10",
+        "shot_id": "shot-10-3"
+      },
+      "source_beat_id": "b215d775a9ca6c42",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-d307567de7b09109",
+          "cast_id": "narrator",
+          "id": "line-shot-10-3-1",
+          "source_sentence_ids": [
+            "e4cd8dbc78a875d8"
+          ],
+          "text": "Drag the sliders below."
+        },
+        {
+          "audio_slot_id": "audio-pending-4d9244b1688d51ef",
+          "cast_id": "narrator",
+          "id": "line-shot-10-3-2",
+          "source_sentence_ids": [
+            "87d3bb3330197163"
+          ],
+          "text": "Watch how cache memory scales with sequence length and effective depth — regardless of whether you got that depth from stacking or looping."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 8.866666666666667,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-11",
+        "shot_id": "shot-11-1"
+      },
+      "source_beat_id": "aa7440e6d8c03714",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-eecf75d4d4c3fd5d",
+          "cast_id": "narrator",
+          "id": "line-shot-11-1-1",
+          "source_sentence_ids": [
+            "cbd67e2636c28528"
+          ],
+          "text": "So when does this actually pay off?"
+        },
+        {
+          "audio_slot_id": "audio-pending-6b08d71e8438e714",
+          "cast_id": "narrator",
+          "id": "line-shot-11-1-2",
+          "source_sentence_ids": [
+            "26bac1115777175c"
+          ],
+          "text": "Looping wins on tasks with a step that repeats — arithmetic, multi-hop chains, traversal, parsing."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "WhenItWinsScene",
+      "duration_estimate_s": 73.33333333333334,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-11",
+        "shot_id": "shot-11-2"
+      },
+      "source_beat_id": "58993b52c29c3483",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-a702a5be74ff34f5",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-1",
+          "source_sentence_ids": [
+            "180a9990fb603e31"
+          ],
+          "text": "The shared block learns the step once, and the loop counts how many times to apply it."
+        },
+        {
+          "audio_slot_id": "audio-421a677c7388",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-2",
+          "source_sentence_ids": [
+            "4d42819b9f4a8bf1"
+          ],
+          "text": "It does not help much on pattern matching that one forward pass can solve — sentiment classification doesn't care how deep your network is past a point."
+        },
+        {
+          "audio_slot_id": "audio-pending-97b149b2a9d25fc4",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-3",
+          "source_sentence_ids": [
+            "222826c65fb4272e"
+          ],
+          "text": "And at frontier scale, beyond seventy billion parameters, unique-layer specialization starts to win again."
+        },
+        {
+          "audio_slot_id": "audio-pending-0e50f75b59168b2f",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-4",
+          "source_sentence_ids": [
+            "2ea106c65ec87181"
+          ],
+          "text": "Different layers learn different functions in big models; forcing them all to be the same block costs more than it saves."
+        },
+        {
+          "audio_slot_id": "audio-pending-aaf4650a9e8746cd",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-5",
+          "source_sentence_ids": [
+            "9c3b652efe251891"
+          ],
+          "text": "There's an interesting echo across the literature."
+        },
+        {
+          "audio_slot_id": "audio-pending-b4576ab8b60f6b26",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-6",
+          "source_sentence_ids": [
+            "700415f15d77984d"
+          ],
+          "text": "In 1989, George Cybenko at Dartmouth proved the universal approximation theorem — a single-hidden-layer feedforward network with enough width can approximate any continuous function."
+        },
+        {
+          "audio_slot_id": "audio-pending-e27fa89df08c41b0",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-7",
+          "source_sentence_ids": [
+            "df36183764d41a93"
+          ],
+          "text": "Kurt Hornik extended it in 1991."
+        },
+        {
+          "audio_slot_id": "audio-pending-fbc8d6ba1b557cf6",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-8",
+          "source_sentence_ids": [
+            "7770285bbb14ae64"
+          ],
+          "text": "Width can substitute for depth."
+        },
+        {
+          "audio_slot_id": "audio-pending-75c6c357637049a6",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-9",
+          "source_sentence_ids": [
+            "2fe745d9b4a3a061"
+          ],
+          "text": "Looped LMs are the depth-side dual of that result — depth can substitute for width, in the right regime."
+        },
+        {
+          "audio_slot_id": "audio-pending-75165610d510fe40",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-10",
+          "source_sentence_ids": [
+            "b484e5cc9cb94416"
+          ],
+          "text": "The 2024 paper by Yang et al titled Looped Transformers as Programmable Computers extends this dual all the way: looped transformers can in principle simulate any Turing machine."
+        },
+        {
+          "audio_slot_id": "audio-pending-7f64e46ec93b43b4",
+          "cast_id": "narrator",
+          "id": "line-shot-11-2-11",
+          "source_sentence_ids": [
+            "a23af2b4ce566f59"
+          ],
+          "text": "But both universality theorems share the same problem."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 13,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-11",
+        "shot_id": "shot-11-3"
+      },
+      "source_beat_id": "38ea458d8821d60a",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-3382c0bf000cb5ec",
+          "cast_id": "narrator",
+          "id": "line-shot-11-3-1",
+          "source_sentence_ids": [
+            "2e3746ff336c21f2"
+          ],
+          "text": "They say absolutely nothing about how learnable the parameters are."
+        },
+        {
+          "audio_slot_id": "audio-pending-297d89d8ec987307",
+          "cast_id": "narrator",
+          "id": "line-shot-11-3-2",
+          "source_sentence_ids": [
+            "0c6ffe220df5072e"
+          ],
+          "text": "That gap between what's representable in principle and what's trainable in practice is where all the interesting research lives."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "background_intent": {
+        "drift": {
+          "direction": "right",
+          "speed_s": 30
+        },
+        "kind": "gradient",
+        "stops": [
+          {
+            "color": "#0f172a",
+            "offset": 0
+          },
+          {
+            "color": "#1f4f46",
+            "offset": 0.52
+          },
+          {
+            "color": "#f2c14e",
+            "offset": 1
+          }
+        ]
+      },
+      "duration_estimate_s": 15.45,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-12",
+        "shot_id": "shot-12-1"
+      },
+      "source_beat_id": "28f501160fb753be",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-aca78fe79808",
+          "cast_id": "narrator",
+          "id": "line-shot-12-1-1",
+          "source_sentence_ids": [
+            "84a0ef314bf9289d"
+          ],
+          "text": "Five papers, in the order I'd read them."
+        },
+        {
+          "audio_slot_id": "audio-pending-1b6dcfe20fe9f25d",
+          "cast_id": "narrator",
+          "id": "line-shot-12-1-2",
+          "source_sentence_ids": [
+            "4aab8889cc975715"
+          ],
+          "text": "Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 600,
+        "kind": "cross-dissolve"
+      }
+    },
+    {
+      "component_id": "ReadingListScene",
+      "duration_estimate_s": 64.65833333333333,
+      "kind": "interactive-takeover",
+      "layout": {
+        "opacity": 1,
+        "position": [
+          0.5,
+          0.5,
+          0
+        ],
+        "size": {
+          "height": 0.8,
+          "width": 0.8
+        },
+        "z_order": 10
+      },
+      "shot_address": {
+        "scene_id": "section-12",
+        "shot_id": "shot-12-2"
+      },
+      "source_beat_id": "59bf4df61a50421c",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-d662f7c64efb",
+          "cast_id": "narrator",
+          "id": "line-shot-12-2-1",
+          "source_sentence_ids": [
+            "e8456dc97df5c922"
+          ],
+          "text": "Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states."
+        },
+        {
+          "audio_slot_id": "audio-d0791f7372e3",
+          "cast_id": "narrator",
+          "id": "line-shot-12-2-2",
+          "source_sentence_ids": [
+            "b1e37aa617cea596"
+          ],
+          "text": "Then Yang et al 2024, Looped Transformers as Programmable Computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets."
+        },
+        {
+          "audio_slot_id": "audio-c797f4fd8a20",
+          "cast_id": "narrator",
+          "id": "line-shot-12-2-3",
+          "source_sentence_ids": [
+            "2951c01a14efe129"
+          ],
+          "text": "The 2025 paper from EleutherAI on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of K against task type."
+        },
+        {
+          "audio_slot_id": "audio-pending-689ae7dbbaa22b3f",
+          "cast_id": "narrator",
+          "id": "line-shot-12-2-4",
+          "source_sentence_ids": [
+            "3be41cf56f23fd6b"
+          ],
+          "text": "And finally, the 2026 mechanistic analysis paper — it reverse-engineers what the loops are actually computing internally, by reading the circuits trained looped networks converge to."
+        },
+        {
+          "audio_slot_id": "audio-pending-3553a228ff64c565",
+          "cast_id": "narrator",
+          "id": "line-shot-12-2-5",
+          "source_sentence_ids": [
+            "4af835dbcf7ea704"
+          ],
+          "text": "Those five papers, in that order, take you from foundations to frontier."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    },
+    {
+      "duration_estimate_s": 12.133333333333333,
+      "kind": "narrative",
+      "shot_address": {
+        "scene_id": "section-12",
+        "shot_id": "shot-12-3"
+      },
+      "source_beat_id": "7d096da75029d15f",
+      "speakers": [
+        "narrator"
+      ],
+      "spoken_lines": [
+        {
+          "audio_slot_id": "audio-pending-c369c27fdc35ca76",
+          "cast_id": "narrator",
+          "id": "line-shot-12-3-1",
+          "source_sentence_ids": [
+            "2ec2dcec6b2998ad"
+          ],
+          "text": "Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper."
+        },
+        {
+          "audio_slot_id": "audio-pending-0b39515b8c4182ad",
+          "cast_id": "narrator",
+          "id": "line-shot-12-3-2",
+          "source_sentence_ids": [
+            "461af1c3b7df53f6"
+          ],
+          "text": "The graph of lessons grows wherever your curiosity pulls."
+        }
+      ],
+      "transition_in": {
+        "duration_ms": 0,
+        "kind": "cut"
+      }
+    }
+  ],
+  "schema_version": "loa.storyboard.v1"
+}

@@ -2,7 +2,12 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { readArtifact, writeArtifact } from './artifact-ref';
 import { ProjectLockSchema, type ProjectLock } from './lockfile-schema';
-import { LessonProjectSchema, type LessonProject } from './project-schema';
+import {
+  LessonProjectSchema,
+  type LessonProject,
+  type WorkflowStepStatus,
+} from './project-schema';
+import type { WorkflowStep } from './types';
 
 export function paths(slug: string): {
   projectJson: string;
@@ -23,7 +28,7 @@ export function paths(slug: string): {
     artifactsDir: path.join(lessonDir, 'artifacts'),
     productionsDir: path.join(lessonDir, 'productions'),
     storyboardsDir: path.join(lessonDir, 'storyboards'),
-    runsDir: path.join(lessonDir, 'runs'),
+    runsDir: path.join(lessonDir, 'artifacts', 'runs'),
     audioDir: path.join(lessonDir, 'audio'),
     charactersJson: path.join(lessonDir, 'characters.json'),
     lessonDir,
@@ -49,6 +54,34 @@ export async function readLock(slug: string): Promise<ProjectLock> {
 export async function writeLock(slug: string, lock: ProjectLock): Promise<void> {
   const projectPaths = paths(slug);
   await writeArtifact(projectPaths.lockJson, lock, ProjectLockSchema);
+}
+
+export function setWorkflowStepStatus(
+  project: LessonProject,
+  step: WorkflowStep,
+  status: WorkflowStepStatus,
+  artifactRef?: string,
+  ranAt?: string,
+): LessonProject {
+  const lastRanAt = ranAt === undefined ? new Date().toISOString() : ranAt;
+  const workflow = project.workflow === undefined ? {} : project.workflow;
+  const stepState = artifactRef === undefined
+    ? {
+      status,
+      last_ran_at: lastRanAt,
+    }
+    : {
+      status,
+      last_ran_at: lastRanAt,
+      artifact_ref: artifactRef,
+    };
+  return LessonProjectSchema.parse({
+    ...project,
+    workflow: {
+      ...workflow,
+      [step]: stepState,
+    },
+  });
 }
 
 export async function ensureProjectScaffold(slug: string): Promise<void> {

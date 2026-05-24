@@ -53,7 +53,7 @@ describe('narrativeShotComposer', () => {
       from: { scene_id: 'scene', shot_id: 'beat' },
       to: { scene_id: 'scene', shot_id: 'beat' },
       kind: 'fade',
-      duration: 300,
+      duration_ms: 300,
     });
   });
 });

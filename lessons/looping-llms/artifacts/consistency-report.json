@@ -1,0 +1,203 @@
+{
+  "gates": {
+    "action_method_unknown": [],
+    "cast_unknown": [],
+    "field_overlap": [],
+    "interactive_unregistered": [
+      {
+        "actual": "ForwardPassSim",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          1,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "BanachPlayableScene",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          2,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "SilentThinkingPlayer",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          3,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "GradientSurgeon",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          4,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "ComputeAllocator",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          5,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "TrainingComputeScene",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          6,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "WeightTyingScene",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          7,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "HaltPlayableScene",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          8,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "KVCacheArchitect",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          9,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "WhenItWinsScene",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          10,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      },
+      {
+        "actual": "ReadingListScene",
+        "code": "consistency.interactive.unregistered",
+        "expected": "component_id registered in INTERACTIVES_REGISTRY",
+        "path": [
+          "production",
+          "scenes",
+          11,
+          "shots",
+          1,
+          "elements",
+          0,
+          "component_id"
+        ],
+        "repair": "register this component in INTERACTIVES_REGISTRY",
+        "severity": "warning"
+      }
+    ],
+    "map_completeness": [],
+    "shot_silent": [],
+    "slot_unknown": [],
+    "transition_non_adjacent": []
+  },
+  "lesson_slug": "looping-llms",
+  "overall_status": "pass",
+  "schema_version": "loa.consistency-report.v1"
+}

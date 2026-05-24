@@ -24,9 +24,9 @@ export async function ingestScript(
   source: ScriptSource,
   ctx: IngestContext,
 ): Promise<LessonCorpus> {
-  const scriptPath = path.isAbsolute(source.script_ref)
-    ? source.script_ref
-    : path.join(paths(slug).lessonDir, source.script_ref);
+  const scriptPath = path.isAbsolute(source.script_path)
+    ? source.script_path
+    : path.join(paths(slug).lessonDir, source.script_path);
   const raw = await readFile(scriptPath, 'utf8');
   const passages = parseScriptPassages(raw);
   const outline = outlineFromPassages(passages);

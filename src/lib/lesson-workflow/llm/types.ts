@@ -9,6 +9,10 @@ export interface LlmJsonRequest<T> {
   schema: ZodSchema<T>;
   validator?: (parsed: T) => Diagnostic[];
   model_hint?: 'claude-opus' | 'gpt-5.5';
+  /**
+   * Maximum retry count after the first attempt. CliLlmClient defaults to 2
+   * when omitted, for up to 3 total attempts.
+   */
   max_retries?: number;
   temperature?: number;
 }

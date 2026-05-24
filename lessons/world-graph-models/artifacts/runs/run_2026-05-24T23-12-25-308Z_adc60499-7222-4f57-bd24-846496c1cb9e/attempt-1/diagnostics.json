@@ -1,0 +1,266 @@
+[
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      0,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      0,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      3,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      3,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      7,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      7,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      11,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      11,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      15,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      15,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      18,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      18,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      22,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      22,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      25,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      25,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      29,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      29,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      33,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      33,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  },
+  {
+    "actual": "undefined",
+    "code": "zod.invalid_type",
+    "expected": "array",
+    "path": [
+      "plans",
+      37,
+      "background_intent",
+      "stops"
+    ],
+    "repair": "Required",
+    "severity": "error"
+  },
+  {
+    "code": "zod.unrecognized_keys",
+    "expected": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "path": [
+      "plans",
+      37,
+      "background_intent"
+    ],
+    "repair": "Unrecognized key(s) in object: 'palette', 'drift_direction'",
+    "severity": "error"
+  }
+]

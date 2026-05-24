@@ -86,7 +86,7 @@ describe('titleCardComposer', () => {
       from: { scene_id: 'demo-scene', shot_id: 'title' },
       to: { scene_id: 'demo-scene', shot_id: 'title' },
       kind: 'cross-dissolve',
-      duration: 400,
+      duration_ms: 400,
       ease: 'easeOut',
     });
   });

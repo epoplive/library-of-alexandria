@@ -167,6 +167,10 @@ export function orderedPlaybackSegments(
   }));
 }
 
+export function isSilentSegment(segment: PlaybackAudioSegment, manifest: AssetManifest): boolean {
+  return resolveSlot(segment.audio, manifest).url === null;
+}
+
 export function activeStateForPlaybackSegment(segment: PlaybackAudioSegment): {
   activeSpeakerCastId: CastId;
   activeSegment: PlaybackActiveSegment;
@@ -336,17 +340,32 @@ function materializeSegmentDurations(
     return durations;
   }
 
+  const knownTotal = durations.reduce((sum, duration) => sum + duration, 0);
+  const residual = shotDuration - knownTotal;
+  if (residual < 0) {
+    throw new Error(`playback.segment_duration.exceeds_shot: ${shotId}`);
+  }
+
   if (unknownIndexes.length === 1) {
-    const knownTotal = durations.reduce((sum, duration) => sum + duration, 0);
-    const residual = shotDuration - knownTotal;
-    if (residual < 0) {
-      throw new Error(`playback.segment_duration.exceeds_shot: ${shotId}`);
-    }
     durations[unknownIndexes[0]] = residual;
     return durations;
   }
 
-  throw new Error(`playback.segment_duration.ambiguous: ${shotId}`);
+  // Preview mode (Takes not yet ready): split the residual across the
+  // unknown segments, weighted by line text length so longer sentences
+  // get proportionally more playback time. Falls back to even split if
+  // all unknown lines are empty.
+  let weightTotal = 0;
+  const weights: number[] = [];
+  for (const index of unknownIndexes) {
+    const weight = Math.max(segments[index].line.length, 1);
+    weights.push(weight);
+    weightTotal += weight;
+  }
+  for (let i = 0; i < unknownIndexes.length; i += 1) {
+    durations[unknownIndexes[i]] = (residual * weights[i]) / weightTotal;
+  }
+  return durations;
 }
 
 export function Playback({
@@ -445,6 +464,18 @@ export function Playback({
         return elapsed;
       };
 
+      const advanceAfterSegment = (segmentIdx: number, segmentStart: number, segmentDuration: number): void => {
+        setShotTime(segmentStart + segmentDuration);
+        setActiveTake(null);
+        setActiveSpeakerCastId(null);
+        setActiveSegment(null);
+        if (segmentIdx + 1 < segments.length) {
+          playSegment(segmentIdx + 1, 0);
+          return;
+        }
+        playShot(idx + 1);
+      };
+
       const playSegment = (segmentIdx: number, segmentStartAt: number): void => {
         const segment = segments[segmentIdx];
         if (segment === undefined) {
@@ -458,7 +489,19 @@ export function Playback({
 
         const resolved = resolveSlot(segment.audio, manifest);
         if (resolved.url === null) {
-          throw new Error(`playback.segment.audio.unresolved: ${segment.audio.slot_id}`);
+          // Preview mode: no audio Take ready for this slot. Advance via
+          // setTimeout using the segment's estimated duration so the chrome
+          // can still show subtitle/teleprompter text and the playhead
+          // continues to the next segment.
+          setActiveTake(null);
+          setIsPreparing(false);
+          setIsPlaying(true);
+          const remainingMs = Math.max(0, (segment.duration - segmentStartAt) * 1000);
+          timeoutRef.current = setTimeout(() => {
+            timeoutRef.current = null;
+            advanceAfterSegment(segmentIdx, segmentStart, segment.duration);
+          }, remainingMs);
+          return;
         }
         setActiveTake(resolved.take);
         setIsPreparing(true);
@@ -472,17 +515,7 @@ export function Playback({
           }
         });
         audio.addEventListener('timeupdate', () => setShotTime(segmentStart + audio.currentTime));
-        audio.addEventListener('ended', () => {
-          setShotTime(segmentStart + segment.duration);
-          setActiveTake(null);
-          setActiveSpeakerCastId(null);
-          setActiveSegment(null);
-          if (segmentIdx + 1 < segments.length) {
-            playSegment(segmentIdx + 1, 0);
-            return;
-          }
-          playShot(idx + 1);
-        });
+        audio.addEventListener('ended', () => advanceAfterSegment(segmentIdx, segmentStart, segment.duration));
         audio.addEventListener('error', () => {
           setIsPreparing(false);
           throw new Error(`playback.segment.audio.error: ${segment.audio.slot_id}`);

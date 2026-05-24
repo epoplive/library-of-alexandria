@@ -1,0 +1,2915 @@
+{
+  "content_map": {
+    "acts": [
+      {
+        "id": "main",
+        "scenes": [
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "Ashish Vaswani",
+              "Attention is All You Need",
+              "RNNs",
+              "Jeff Elman",
+              "Llama 3"
+            ],
+            "eyebrow": "01 · puzzle",
+            "id": "section-01",
+            "interactive_ref": {
+              "component_id": "BuildYourTransformerGame"
+            },
+            "learning_objective": "Understand Build a looped transformer: Every modern AI architecture starts by deciding one thing — how deep to build.",
+            "shots": [
+              {
+                "duration_estimate_s": 17.533333333333335,
+                "id": "shot-1-1",
+                "keyframes": [],
+                "kind": "narrator-opener",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 51.53333333333333,
+                "id": "shot-1-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 9.666666666666666,
+                "id": "shot-1-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_01",
+            "summary": "Every modern AI architecture starts by deciding one thing — how deep to build. The standard playbook since Ashish Vaswani and his team published Attention is All You Need at Google Brain in June 2017 has been to stack more unique layers and pay the parameter cost. GPT-3 went ninety-six layers.",
+            "title": "Build a looped transformer"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "hidden state",
+              "Sepp Hochreiter",
+              "vanishing gradient",
+              "LSTM",
+              "Jürgen Schmidhuber"
+            ],
+            "eyebrow": "02 · puzzle",
+            "id": "section-02",
+            "interactive_ref": {
+              "component_id": "ForwardPassSim"
+            },
+            "learning_objective": "Understand Run the forward pass yourself: Here's where it gets concrete.",
+            "shots": [
+              {
+                "duration_estimate_s": 7,
+                "id": "shot-2-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 61.66666666666666,
+                "id": "shot-2-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 13.733333333333334,
+                "id": "shot-2-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_02",
+            "summary": "Here's where it gets concrete. Inside a looped block, the weights themselves are frozen across iterations. What does change is the hidden state — the vector of activations being passed through.",
+            "title": "Run the forward pass yourself"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "Stefan Banach",
+              "Scottish Café",
+              "Banach fixed-point theorem",
+              "contraction map",
+              "Deep Equilibrium Models",
+              "Shaojie Bai",
+              "Zico Kolter"
+            ],
+            "eyebrow": "03 · puzzle",
+            "id": "section-03",
+            "interactive_ref": {
+              "component_id": "BanachPlayableScene"
+            },
+            "learning_objective": "Understand Banach's theorem, in your hands: Here's a question that sounds almost too simple.",
+            "shots": [
+              {
+                "duration_estimate_s": 12.2,
+                "id": "shot-3-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 92.33333333333334,
+                "id": "shot-3-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 21.46666666666667,
+                "id": "shot-3-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_03",
+            "summary": "Here's a question that sounds almost too simple. If you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something? In 1922, a young Polish mathematician named Stefan Banach proved the answer is yes, as long as the function is a contraction map — meaning every time you apply it, the points it produces get strictly closer to each other than they started.",
+            "title": "Banach's theorem, in your hands"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "chain-of-thought",
+              "Jason Wei",
+              "o1",
+              "Quiet-STaR",
+              "EleutherAI"
+            ],
+            "eyebrow": "04",
+            "id": "section-04",
+            "interactive_ref": {
+              "component_id": "SilentThinkingPlayer"
+            },
+            "learning_objective": "Understand Thinking in silence: When a normal model reasons through a hard problem, it has to think out loud.",
+            "shots": [
+              {
+                "duration_estimate_s": 10.133333333333333,
+                "id": "shot-4-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 67.00833333333333,
+                "id": "shot-4-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 17.200000000000003,
+                "id": "shot-4-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_04",
+            "summary": "When a normal model reasons through a hard problem, it has to think out loud. Every intermediate step burns output tokens that stream across your screen. That's chain-of-thought reasoning, popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K.",
+            "title": "Thinking in silence"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "backprop",
+              "spectral radius",
+              "gradient checkpointing",
+              "Tianqi Chen",
+              "BPTT"
+            ],
+            "eyebrow": "05 · puzzle",
+            "id": "section-05",
+            "interactive_ref": {
+              "component_id": "GradientSurgeon"
+            },
+            "learning_objective": "Understand Gradient surgery: Looping isn't free at training time.",
+            "shots": [
+              {
+                "duration_estimate_s": 10.333333333333334,
+                "id": "shot-5-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 66.73333333333333,
+                "id": "shot-5-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 5.666666666666666,
+                "id": "shot-5-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_05",
+            "summary": "Looping isn't free at training time. The same set of weights gets touched K times in one forward pass — and during backpropagation, they get blamed K times. All those gradient contributions sum into the same parameter update.",
+            "title": "Gradient surgery"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "speculative decoding",
+              "inference-time compute"
+            ],
+            "eyebrow": "06 · puzzle",
+            "id": "section-06",
+            "interactive_ref": {
+              "component_id": "ComputeAllocator"
+            },
+            "learning_objective": "Understand Allocate your compute: Looping is one of several ways to spend inference compute.",
+            "shots": [
+              {
+                "duration_estimate_s": 5.933333333333334,
+                "id": "shot-6-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 45.33333333333333,
+                "id": "shot-6-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 10.266666666666667,
+                "id": "shot-6-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_06",
+            "summary": "Looping is one of several ways to spend inference compute. Chain-of-thought spends tokens. Mixture-of-experts spends parameters per token.",
+            "title": "Allocate your compute"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "mixture-of-experts",
+              "DeepSeek-V3",
+              "Paul Werbos"
+            ],
+            "eyebrow": "07",
+            "id": "section-07",
+            "interactive_ref": {
+              "component_id": "TrainingComputeScene"
+            },
+            "learning_objective": "Understand The training tax: Here's the cost most papers downplay.",
+            "shots": [
+              {
+                "duration_estimate_s": 9.933333333333334,
+                "id": "shot-7-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 56.13333333333333,
+                "id": "shot-7-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 16.333333333333332,
+                "id": "shot-7-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_07",
+            "summary": "Here's the cost most papers downplay. Looping K times means K forward passes per training step — and K backward passes through the exact same weights. Activation memory normally scales with K too, because backpropagation through time needs every intermediate state to compute gradients.",
+            "title": "The training tax"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "Universal Transformer",
+              "Mostafa Dehghani",
+              "bAbI",
+              "Łukasz Kaiser",
+              "MMLU"
+            ],
+            "eyebrow": "08",
+            "id": "section-08",
+            "interactive_ref": {
+              "component_id": "WeightTyingScene"
+            },
+            "learning_objective": "Understand What actually gets shared: Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018.",
+            "shots": [
+              {
+                "duration_estimate_s": 11.666666666666666,
+                "id": "shot-8-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 53.93333333333334,
+                "id": "shot-8-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 23.46666666666667,
+                "id": "shot-8-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_08",
+            "summary": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018. But you can be more surgical. Share just the attention weights, and the multilayer perceptron — the MLP — can still specialize per loop iteration.",
+            "title": "What actually gets shared"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "Adaptive Computation Time",
+              "Alex Graves",
+              "Neural Turing Machines",
+              "ponder cost",
+              "DeepMind"
+            ],
+            "eyebrow": "09 · puzzle",
+            "id": "section-09",
+            "interactive_ref": {
+              "component_id": "HaltPlayableScene"
+            },
+            "learning_objective": "Understand You're the halting head: Not every problem deserves eight loops.",
+            "shots": [
+              {
+                "duration_estimate_s": 7.333333333333334,
+                "id": "shot-9-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 64.93333333333334,
+                "id": "shot-9-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 12.399999999999999,
+                "id": "shot-9-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_09",
+            "summary": "Not every problem deserves eight loops. A chess engine doesn't think for the same amount of time on every move. A grandmaster spends seconds on a forced capture and minutes on a closed positional decision.",
+            "title": "You're the halting head"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "KV cache",
+              "multi-head latent attention",
+              "memory bandwidth",
+              "state-space models"
+            ],
+            "eyebrow": "10 · puzzle",
+            "id": "section-10",
+            "interactive_ref": {
+              "component_id": "KVCacheArchitect"
+            },
+            "learning_objective": "Understand The KV-cache tax: Here's the gotcha that catches everyone implementing this.",
+            "shots": [
+              {
+                "duration_estimate_s": 14.333333333333334,
+                "id": "shot-10-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 76.2,
+                "id": "shot-10-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 10.8,
+                "id": "shot-10-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_10",
+            "summary": "Here's the gotcha that catches everyone implementing this. The KV cache — the data structure that makes long-context inference fast by remembering keys and values from previous tokens — does not shrink when you loop. Visiting the same three blocks eight times still requires twenty-four separate stacks of cached attention, because each visit is attending over a different hidden state.",
+            "title": "The KV-cache tax"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "universal approximation theorem",
+              "George Cybenko",
+              "Kurt Hornik",
+              "Yang 2024",
+              "learnability gap"
+            ],
+            "eyebrow": "11",
+            "id": "section-11",
+            "interactive_ref": {
+              "component_id": "WhenItWinsScene"
+            },
+            "learning_objective": "Understand When it wins, when it doesn't: So when does this actually pay off?",
+            "shots": [
+              {
+                "duration_estimate_s": 8.866666666666667,
+                "id": "shot-11-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 73.33333333333334,
+                "id": "shot-11-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 13,
+                "id": "shot-11-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_11",
+            "summary": "So when does this actually pay off? Looping wins on tasks with a step that repeats — arithmetic, multi-hop chains, traversal, parsing. The shared block learns the step once, and the loop counts how many times to apply it.",
+            "title": "When it wins, when it doesn't"
+          },
+          {
+            "cast_in_scene": [
+              "narrator"
+            ],
+            "discoveries": [
+              "implicit differentiation",
+              "mechanistic interpretability"
+            ],
+            "eyebrow": "12",
+            "id": "section-12",
+            "interactive_ref": {
+              "component_id": "ReadingListScene"
+            },
+            "learning_objective": "Understand Where to go next: Five papers, in the order I'd read them.",
+            "shots": [
+              {
+                "duration_estimate_s": 15.45,
+                "id": "shot-12-1",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 64.65833333333333,
+                "id": "shot-12-2",
+                "keyframes": [],
+                "kind": "interactive-takeover",
+                "speakers": [
+                  "narrator"
+                ]
+              },
+              {
+                "duration_estimate_s": 12.133333333333333,
+                "id": "shot-12-3",
+                "keyframes": [],
+                "kind": "narrative",
+                "speakers": [
+                  "narrator"
+                ]
+              }
+            ],
+            "source_section_id": "section_12",
+            "summary": "Five papers, in the order I'd read them. Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go. Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states.",
+            "title": "Where to go next"
+          }
+        ],
+        "summary": "Every modern AI architecture starts by deciding one thing — how deep to build. The standard playbook since Ashish Vaswani and his team published Attention is All You Need at Google Brain in June 2017 has been to stack more unique layers and pay the parameter cost. GPT-3 went ninety-six layers. Here's where it gets concrete. Inside a looped block, the weights themselves are frozen across iterations. What does change is the hidden state — the vector of activations being passed through.",
+        "title": "Looped Language Models"
+      }
+    ],
+    "lesson_slug": "looping-llms",
+    "schema_version": "loa.content-map.v1"
+  },
+  "detail": {
+    "scenes": [
+      {
+        "beats": [
+          {
+            "id": "b1daff3c3a59628e",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "17207a74ba0d5a96",
+              "09c8988bb27f3e14"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "6325ec2eb54b1a9a",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "592f5d1c22e72bf6",
+              "8fd9fc1c7a1d191e",
+              "2f92715e11b06db7",
+              "2cfb25c5e1b108c2",
+              "538e1243d5a905a0",
+              "395e43e1d48ab3a1",
+              "d0120ebc3900b0fd",
+              "3503da827ad19841",
+              "9d4e59b74eb7a2a6",
+              "8ed5ce42a8bb1ba2",
+              "04ef90f8b5ba6ea4",
+              "b6138b413379eb7e",
+              "dee213f7e481eedd",
+              "9ce5a96ade7d1d6a"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "5982b1cdf75918df",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "94abb3d2e4c32c98",
+              "49082b4de1d9eb59"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Lead author of Attention Is All You Need (2017). Indian-American researcher, formerly at Google Brain. Left in 2021 and founded Essential AI in 2023.",
+            "deep": "Vaswani was working under Jakob Uszkoreit at Google Brain when the transformer paper came together. The eight-author paper was drafted in a matter of weeks. His startup Essential AI raised $56M Series A in 2023 specifically to commercialize transformer-derived architectures. The original transformer team has scattered — Łukasz Kaiser is at OpenAI, Aidan Gomez founded Cohere, Niki Parmar joined Vaswani at Essential.",
+            "key": "Ashish Vaswani",
+            "source_section_id": "section_01"
+          },
+          {
+            "brief": "Vaswani et al, June 2017. Six pages that killed recurrence and convolution as the dominant sequence-modeling primitives.",
+            "deep": "The paper was originally aimed at machine translation. The authors did not anticipate it would obsolete most of seq2seq research within months. Its citation impact rivals the 1986 backpropagation paper and the 1989 CNN paper. The full author list — Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, Polosukhin — has scattered across the major labs and founded several startups between them.",
+            "key": "Attention is All You Need",
+            "source_section_id": "section_01"
+          },
+          {
+            "brief": "Recurrent Neural Networks — networks where the same set of weights is applied at each time step, processing a sequence one element at a time.",
+            "deep": "The conceptual parent of looped LMs. Both share weights across iterations. The difference: classical RNNs iterate over POSITIONS in a sequence (time); looped LMs iterate over DEPTH at the same position. Universal Transformer (Dehghani 2018) was the first to apply RNN-style weight sharing to transformer depth rather than sequence length. The mathematical machinery is identical.",
+            "key": "RNNs",
+            "source_section_id": "section_01"
+          },
+          {
+            "brief": "Cognitive scientist at UCSD. His 1990 paper \"Finding Structure in Time\" introduced the simple recurrent network — the \"Elman network\" — for language modeling.",
+            "deep": "Elman trained RNNs on tiny synthetic languages and showed they could learn grammatical categories without being told what they were. The paper anchors the conceptual ancestry of LSTMs, transformers, and looped LMs — the idea that a network can build hierarchical structure through repeated application of a learned function. He died in 2018; UCSD's cognitive science department building is named after him.",
+            "key": "Jeff Elman",
+            "source_section_id": "section_01"
+          },
+          {
+            "brief": "Meta's 2024 frontier open-weight model family. The 405B variant has 126 transformer layers.",
+            "deep": "The Llama series is the de facto open-weights baseline for frontier work. Llama 3 405B was trained on ~15T tokens. The architecture is essentially vanilla transformer with grouped-query attention and rotary position embeddings — no looping. Looped variants of Llama have been explored in research papers but not yet at frontier scale.",
+            "key": "Llama 3",
+            "source_section_id": "section_01"
+          }
+        ],
+        "eyebrow": "01 · puzzle",
+        "interactive_ref": {
+          "component_id": "BuildYourTransformerGame"
+        },
+        "learning_objective": "Understand Build a looped transformer: Every modern AI architecture starts by deciding one thing — how deep to build.",
+        "scene_id": "section-01",
+        "sentences": [
+          {
+            "canonical_text": "Every modern AI architecture starts by deciding one thing — how deep to build.",
+            "id": "17207a74ba0d5a96",
+            "normalized_text": "every modern ai architecture starts by deciding one thing — how deep to build.",
+            "source_offset": 0,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "The standard playbook since Ashish Vaswani and his team published Attention is All You Need at Google Brain in June 2017 has been to stack more unique layers and pay the parameter cost.",
+            "id": "09c8988bb27f3e14",
+            "normalized_text": "the standard playbook since ashish vaswani and his team published attention is all you need at google brain in june 2017 has been to stack more unique layers and pay the parameter cost.",
+            "source_offset": 1,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "GPT-3 went ninety-six layers.",
+            "id": "592f5d1c22e72bf6",
+            "normalized_text": "gpt-3 went ninety-six layers.",
+            "source_offset": 2,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Llama 3's largest variant has one hundred twenty-six.",
+            "id": "8fd9fc1c7a1d191e",
+            "normalized_text": "llama 3's largest variant has one hundred twenty-six.",
+            "source_offset": 3,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "The frontier just keeps stacking.",
+            "id": "2f92715e11b06db7",
+            "normalized_text": "the frontier just keeps stacking.",
+            "source_offset": 4,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "But there's a side path that doesn't get talked about as much.",
+            "id": "2cfb25c5e1b108c2",
+            "normalized_text": "but there's a side path that doesn't get talked about as much.",
+            "source_offset": 5,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Use fewer unique blocks, and just run them again.",
+            "id": "538e1243d5a905a0",
+            "normalized_text": "use fewer unique blocks, and just run them again.",
+            "source_offset": 6,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "The idea isn't new — it descends straight from recurrent neural networks, which Jeff Elman first applied to language all the way back in 1990 at UCSD.",
+            "id": "395e43e1d48ab3a1",
+            "normalized_text": "the idea isn't new — it descends straight from recurrent neural networks, which jeff elman first applied to language all the way back in 1990 at ucsd.",
+            "source_offset": 7,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Same set of weights, fired over and over, building representation through repetition rather than novelty.",
+            "id": "d0120ebc3900b0fd",
+            "normalized_text": "same set of weights, fired over and over, building representation through repetition rather than novelty.",
+            "source_offset": 8,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Now try it.",
+            "id": "3503da827ad19841",
+            "normalized_text": "now try it.",
+            "source_offset": 9,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "The puzzle is to hit an effective depth of twenty-four.",
+            "id": "9d4e59b74eb7a2a6",
+            "normalized_text": "the puzzle is to hit an effective depth of twenty-four.",
+            "source_offset": 10,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "M is how many unique transformer blocks you bring.",
+            "id": "8ed5ce42a8bb1ba2",
+            "normalized_text": "m is how many unique transformer blocks you bring.",
+            "source_offset": 11,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "K is how many times each one fires.",
+            "id": "04ef90f8b5ba6ea4",
+            "normalized_text": "k is how many times each one fires.",
+            "source_offset": 12,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "There are many valid combinations — M=1 with K=24, M=8 with K=3, and everything between.",
+            "id": "b6138b413379eb7e",
+            "normalized_text": "there are many valid combinations — m=1 with k=24, m=8 with k=3, and everything between.",
+            "source_offset": 13,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Each trade-off is real.",
+            "id": "dee213f7e481eedd",
+            "normalized_text": "each trade-off is real.",
+            "source_offset": 14,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Parameter cost stays at M.",
+            "id": "9ce5a96ade7d1d6a",
+            "normalized_text": "parameter cost stays at m.",
+            "source_offset": 15,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Compute cost grows linearly with K.",
+            "id": "94abb3d2e4c32c98",
+            "normalized_text": "compute cost grows linearly with k.",
+            "source_offset": 16,
+            "source_section_id": "section_01"
+          },
+          {
+            "canonical_text": "Inference latency, memory pressure, the things you actually care about — all depend on which combination wins.",
+            "id": "49082b4de1d9eb59",
+            "normalized_text": "inference latency, memory pressure, the things you actually care about — all depend on which combination wins.",
+            "source_offset": 17,
+            "source_section_id": "section_01"
+          }
+        ],
+        "source_section_id": "section_01",
+        "summary": "Every modern AI architecture starts by deciding one thing — how deep to build. The standard playbook since Ashish Vaswani and his team published Attention is All You Need at Google Brain in June 2017 has been to stack more unique layers and pay the parameter cost. GPT-3 went ninety-six layers.",
+        "title": "Build a looped transformer"
+      },
+      {
+        "beats": [
+          {
+            "id": "6a36530e63858fc5",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "3feb6c8b31d42e56",
+              "2500d103699f6752"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "d60f1512d7d0007b",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "c334a00c5a60dae8",
+              "ad4805011404967b",
+              "5af041c511623ec6",
+              "47e32e1e7c414564",
+              "7406f5c65aa4822f",
+              "74bbde111c295d88",
+              "0ee5f4bfbdb5d3fc",
+              "bd1598ad5387e419",
+              "feb7852519b1fdb5",
+              "2d112c4d15307f21",
+              "7558cc1140d23617"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "c377fc2796ad08a6",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "fdb0239b272d82da",
+              "6b3dfa5427365fc2"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "The vector of intermediate activations passed between layers (or loop iterations). Carries everything the model has \"computed so far\" about the input.",
+            "deep": "In a transformer, the hidden state is a (sequence_length × hidden_dim) matrix at every layer. Hidden_dim is typically 2048–16384 in modern frontier models. Each token has its own vector that gets transformed by each layer or loop. The looped-LM thesis is that you can keep refining this state with the same parameters and gain effective depth without growing parameter count.",
+            "key": "hidden state",
+            "source_section_id": "section_02"
+          },
+          {
+            "brief": "Austrian computer scientist. His 1991 master's thesis at TU Munich identified the vanishing gradient problem in recurrent networks — a discovery that delayed neural network adoption for years.",
+            "deep": "Hochreiter went on to co-invent the LSTM with Jürgen Schmidhuber in 1997 as a direct fix for the problem he identified. He's still active — runs the Institute for Machine Learning at JKU Linz and has been a vocal critic of the transformer-only zeitgeist, arguing that LSTM ideas are still underused at scale. His 1991 thesis was written in German and remained largely unknown in the English-speaking world until the late 1990s.",
+            "key": "Sepp Hochreiter",
+            "source_section_id": "section_02"
+          },
+          {
+            "brief": "When you backpropagate through many layers or loop iterations with shared weights, gradients can shrink exponentially toward zero — making the early layers effectively untrainable.",
+            "deep": "The math: if you multiply a gradient by a Jacobian with spectral radius less than 1 at each step, K applications shrink it by that factor to the K-th power. Yoshua Bengio, Patrice Simard, and Paolo Frasconi formalized the analysis in 1994. The opposite failure mode — exploding gradients — happens when the spectral radius exceeds 1. Mitigations: gated units (LSTM, GRU), residual connections (ResNet, 2015), careful initialization, and gradient clipping. Looped LMs hit the same problem head-on because K applications of the same block is exactly the worst case.",
+            "key": "vanishing gradient",
+            "source_section_id": "section_02"
+          },
+          {
+            "brief": "Long Short-Term Memory networks. Hochreiter & Schmidhuber, 1997. Solved vanishing gradients by adding gating mechanisms that let signal flow unaltered across many time steps.",
+            "deep": "For a decade and a half, LSTM was the workhorse of every sequence model — speech recognition, machine translation, language modeling. It was only displaced by transformers after 2017. Schmidhuber still maintains, fairly publicly, that most of modern deep learning is built on LSTM-era insights. The original 1997 paper was rejected from NeurIPS multiple times before being published in Neural Computation.",
+            "key": "LSTM",
+            "source_section_id": "section_02"
+          },
+          {
+            "brief": "Swiss-German computer scientist. Hochreiter's PhD advisor and LSTM co-inventor. Director at the Dalle Molle AI institute (IDSIA) in Switzerland, now also at KAUST in Saudi Arabia.",
+            "deep": "Schmidhuber is famous for relentlessly arguing that his lab's 1990s work anticipated most modern deep learning. He's often correct — fast weight programmers (1991) prefigured transformers, his unsupervised learning work prefigured GANs. He's also famously combative at conferences, regularly standing up during talks to dispute attribution.",
+            "key": "Jürgen Schmidhuber",
+            "source_section_id": "section_02"
+          }
+        ],
+        "eyebrow": "02 · puzzle",
+        "interactive_ref": {
+          "component_id": "ForwardPassSim"
+        },
+        "learning_objective": "Understand Run the forward pass yourself: Here's where it gets concrete.",
+        "scene_id": "section-02",
+        "sentences": [
+          {
+            "canonical_text": "Here's where it gets concrete.",
+            "id": "3feb6c8b31d42e56",
+            "normalized_text": "here's where it gets concrete.",
+            "source_offset": 0,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Inside a looped block, the weights themselves are frozen across iterations.",
+            "id": "2500d103699f6752",
+            "normalized_text": "inside a looped block, the weights themselves are frozen across iterations.",
+            "source_offset": 1,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "What does change is the hidden state — the vector of activations being passed through.",
+            "id": "c334a00c5a60dae8",
+            "normalized_text": "what does change is the hidden state — the vector of activations being passed through.",
+            "source_offset": 2,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Click run-next-loop.",
+            "id": "ad4805011404967b",
+            "normalized_text": "click run-next-loop.",
+            "source_offset": 3,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "The bars on the left are the input state.",
+            "id": "5af041c511623ec6",
+            "normalized_text": "the bars on the left are the input state.",
+            "source_offset": 4,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "The bars on the right are what the same block produces.",
+            "id": "47e32e1e7c414564",
+            "normalized_text": "the bars on the right are what the same block produces.",
+            "source_offset": 5,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Now click again.",
+            "id": "7406f5c65aa4822f",
+            "normalized_text": "now click again.",
+            "source_offset": 6,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "The output of the last loop becomes the input of the next.",
+            "id": "74bbde111c295d88",
+            "normalized_text": "the output of the last loop becomes the input of the next.",
+            "source_offset": 7,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Watch how the state stabilizes after a few passes — that's the model literally reasoning in latent space, one fixed step at a time.",
+            "id": "0ee5f4bfbdb5d3fc",
+            "normalized_text": "watch how the state stabilizes after a few passes — that's the model literally reasoning in latent space, one fixed step at a time.",
+            "source_offset": 8,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "The math here is the same problem Sepp Hochreiter analyzed in his 1991 master's thesis at TU Munich, when he discovered what we now call the vanishing gradient problem.",
+            "id": "bd1598ad5387e419",
+            "normalized_text": "the math here is the same problem sepp hochreiter analyzed in his 1991 master's thesis at tu munich, when he discovered what we now call the vanishing gradient problem.",
+            "source_offset": 9,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Multiplying by the same weight matrix repeatedly is what makes training a stack of K loops hard — small changes either compound out of control or fade to nothing.",
+            "id": "feb7852519b1fdb5",
+            "normalized_text": "multiplying by the same weight matrix repeatedly is what makes training a stack of k loops hard — small changes either compound out of control or fade to nothing.",
+            "source_offset": 10,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Hochreiter's solution six years later, with Jürgen Schmidhuber, was the LSTM — gating machinery that lets signal survive long iteration chains.",
+            "id": "2d112c4d15307f21",
+            "normalized_text": "hochreiter's solution six years later, with jürgen schmidhuber, was the lstm — gating machinery that lets signal survive long iteration chains.",
+            "source_offset": 11,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "Modern looped LMs don't use LSTM-style gates.",
+            "id": "7558cc1140d23617",
+            "normalized_text": "modern looped lms don't use lstm-style gates.",
+            "source_offset": 12,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "They fight the same problem with normalization layers, careful weight initialization, and gradient checkpointing.",
+            "id": "fdb0239b272d82da",
+            "normalized_text": "they fight the same problem with normalization layers, careful weight initialization, and gradient checkpointing.",
+            "source_offset": 13,
+            "source_section_id": "section_02"
+          },
+          {
+            "canonical_text": "The mechanism on screen is identical to an RNN unrolled — just for depth instead of for time.",
+            "id": "6b3dfa5427365fc2",
+            "normalized_text": "the mechanism on screen is identical to an rnn unrolled — just for depth instead of for time.",
+            "source_offset": 14,
+            "source_section_id": "section_02"
+          }
+        ],
+        "source_section_id": "section_02",
+        "summary": "Here's where it gets concrete. Inside a looped block, the weights themselves are frozen across iterations. What does change is the hidden state — the vector of activations being passed through.",
+        "title": "Run the forward pass yourself"
+      },
+      {
+        "beats": [
+          {
+            "id": "b67ee1441b8d616f",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "aa471c512083ddc5",
+              "2ccefac883d95a36"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "e2bb907025c8c531",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "a5538a3510eb0f63",
+              "25c3070f196be400",
+              "86b1c035783c2ba1",
+              "392f4c86190779d5",
+              "2ee7582c98cb4542",
+              "c8c7ae45a0d04659",
+              "9a1f3cfdea6e648b",
+              "1a6880bf8e6507d7",
+              "fe547bec4c8b110b",
+              "560ae4a974448b08",
+              "e2c71f1abe364bdc",
+              "4532d01fcc161398",
+              "10b12d9bbdfe9e61",
+              "fdb677e0eafe670c",
+              "b495a13e6a6aa8f3",
+              "ad47c9e2202fef53",
+              "79bf5fc485630337"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "f8e3615e210c2172",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "1190e3b9f8f45087",
+              "69cf2a9cd96fcfa9"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Polish mathematician, 1892–1945. Founded the Lwów School of functional analysis. Died of cancer in Soviet-occupied Lviv just months before WWII ended.",
+            "deep": "Banach was self-taught for most of his early life — he never finished a formal undergraduate degree. He was discovered by Hugo Steinhaus in 1916, who overheard him and a friend discussing Lebesgue integrals on a park bench in Kraków. Steinhaus called it the \"greatest mathematical discovery of his life.\" Banach's 1932 book on linear operators is still the foundational text for functional analysis.",
+            "key": "Stefan Banach",
+            "source_section_id": "section_03"
+          },
+          {
+            "brief": "A café in Lwów (then Poland, now Lviv, Ukraine) where Banach, Steinhaus, Mazur, Ulam, and the rest of the Lwów school did their mathematics from the 1930s through 1941.",
+            "deep": "They wrote unsolved problems in a notebook called the Scottish Book — over 190 problems in total, with prizes attached. Problem 153, posed by Stanisław Mazur in 1936 (a question about basis representations in Banach spaces), carried a prize of a live goose. The problem was solved in 1972 by Per Enflo, a Swedish mathematician, who came to Warsaw to collect his goose. The ceremony was televised. Most of the school died or fled during the war; Ulam ended up at Los Alamos working on the H-bomb.",
+            "key": "Scottish Café",
+            "source_section_id": "section_03"
+          },
+          {
+            "brief": "For any contraction f on a complete metric space, there is exactly one fixed point z*, and iterating f from any starting point converges to it.",
+            "deep": "The proof: pick any starting point z. The sequence z, f(z), f(f(z)), ... is Cauchy (each successive pair is closer than the previous one by factor c), so it converges. Call the limit z*. Apply f to it — since f is continuous, you get f(z*). But the sequence z, f(z), f(f(z))... has the same limit as f(z), f(f(z)), ... so f(z*) = z*. Uniqueness: if there were two fixed points, applying f would shrink the distance between them by factor c, contradiction. Done in five lines. The convergence rate is c^K, so picking K = log(epsilon)/log(c) reaches any tolerance.",
+            "key": "Banach fixed-point theorem",
+            "source_section_id": "section_03"
+          },
+          {
+            "brief": "A function f where applying it brings any two points closer together — formally, |f(x)−f(y)| ≤ c·|x−y| for some c<1.",
+            "deep": "The constant c is the Lipschitz constant, named for Rudolf Lipschitz (1832–1903), a German mathematician at Bonn. He introduced it in 1864 to study ordinary differential equations. The Picard–Lindelöf theorem — existence and uniqueness of ODE solutions — is actually a direct application of Banach's theorem to the contraction defined by an integral equation. Every numerical ODE solver is, deep down, fixed-point iteration. Same for Newton's method, gradient descent with small enough learning rate, and policy iteration in reinforcement learning.",
+            "key": "contraction map",
+            "source_section_id": "section_03"
+          },
+          {
+            "brief": "DEQ — Shaojie Bai, J. Zico Kolter, Vladlen Koltun. NeurIPS 2019. Networks that compute their output as the fixed point of a single layer, trained via implicit differentiation. Effectively infinite-depth networks with constant memory cost.",
+            "deep": "Looped LMs with K=8 are essentially finite-step approximations to DEQs. The DEQ trick: instead of running the layer K times forward, solve f(z)=z directly with Anderson acceleration or Broyden's method. Backprop through the equation rather than the unrolled iterations — using the implicit function theorem, you never store intermediate states. Memory is constant in depth. Downside: convergence isn't guaranteed for arbitrary parametrized f, so most DEQs use input-injection tricks. The 2019 paper got SOTA on WikiText-103 language modeling at a third the parameters of comparable transformers. Bai's 2022 PhD thesis on multiscale DEQs is the modern reference.",
+            "key": "Deep Equilibrium Models",
+            "source_section_id": "section_03"
+          },
+          {
+            "brief": "CMU PhD student of Zico Kolter (graduated 2022). First-authored DEQ networks and the multiscale extension. Now research scientist at Apple.",
+            "deep": "Bai's thesis \"On the Equivalence Between Implicit and Explicit Deep Learning\" is a careful unification of looped models, neural ODEs, and DEQs into a single mathematical framework. It argues all three are doing the same thing with different parameterizations. Worth reading if you want to see the family tree of implicit-layer methods drawn clean.",
+            "key": "Shaojie Bai",
+            "source_section_id": "section_03"
+          },
+          {
+            "brief": "CMU professor, Chief Scientist at Bosch AI, joined Anthropic in 2024. Built much of the academic backbone of implicit-layer methods and certified robustness.",
+            "deep": "Kolter's group produced DEQ (2019), the OptNet / cvxpylayers line of differentiable optimization, and Wong & Kolter's adversarial-robustness work. He's on the board of OpenAI as their independent oversight director after the 2023 board crisis. His joining Anthropic in 2024 was widely read as a signal that the implicit-layer thread was about to get serious industry attention.",
+            "key": "Zico Kolter",
+            "source_section_id": "section_03"
+          }
+        ],
+        "eyebrow": "03 · puzzle",
+        "interactive_ref": {
+          "component_id": "BanachPlayableScene"
+        },
+        "learning_objective": "Understand Banach's theorem, in your hands: Here's a question that sounds almost too simple.",
+        "scene_id": "section-03",
+        "sentences": [
+          {
+            "canonical_text": "Here's a question that sounds almost too simple.",
+            "id": "aa471c512083ddc5",
+            "normalized_text": "here's a question that sounds almost too simple.",
+            "source_offset": 0,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "If you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something?",
+            "id": "2ccefac883d95a36",
+            "normalized_text": "if you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something?",
+            "source_offset": 1,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "In 1922, a young Polish mathematician named Stefan Banach proved the answer is yes, as long as the function is a contraction map — meaning every time you apply it, the points it produces get strictly closer to each other than they started.",
+            "id": "a5538a3510eb0f63",
+            "normalized_text": "in 1922, a young polish mathematician named stefan banach proved the answer is yes, as long as the function is a contraction map — meaning every time you apply it, the points it produces get strictly closer to each other than they started.",
+            "source_offset": 2,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "The result is now called the Banach fixed-point theorem, and the proof fits on a page.",
+            "id": "25c3070f196be400",
+            "normalized_text": "the result is now called the banach fixed-point theorem, and the proof fits on a page.",
+            "source_offset": 3,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "But that one-page proof is the mathematical bedrock under every looped language model, every Deep Equilibrium Model, and even most of the numerical ODE solvers your physics simulations are using right now.",
+            "id": "86b1c035783c2ba1",
+            "normalized_text": "but that one-page proof is the mathematical bedrock under every looped language model, every deep equilibrium model, and even most of the numerical ode solvers your physics simulations are using right now.",
+            "source_offset": 4,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Banach himself died young, of cancer, in Soviet-occupied Lviv in 1945.",
+            "id": "392f4c86190779d5",
+            "normalized_text": "banach himself died young, of cancer, in soviet-occupied lviv in 1945.",
+            "source_offset": 5,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "The school of mathematics he led used to meet in a café called the Scottish Café, and they wrote unsolved problems in a notebook with prizes attached — including, famously, a live goose for problem 153.",
+            "id": "2ee7582c98cb4542",
+            "normalized_text": "the school of mathematics he led used to meet in a café called the scottish café, and they wrote unsolved problems in a notebook with prizes attached — including, famously, a live goose for problem 153.",
+            "source_offset": 6,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "The math you're about to play with came out of those meetings.",
+            "id": "c8c7ae45a0d04659",
+            "normalized_text": "the math you're about to play with came out of those meetings.",
+            "source_offset": 7,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Here's the setup.",
+            "id": "9a1f3cfdea6e648b",
+            "normalized_text": "here's the setup.",
+            "source_offset": 8,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "The green dot is z-star — the fixed point you're trying to reach.",
+            "id": "1a6880bf8e6507d7",
+            "normalized_text": "the green dot is z-star — the fixed point you're trying to reach.",
+            "source_offset": 9,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "The function f is shown as a vector field.",
+            "id": "fe547bec4c8b110b",
+            "normalized_text": "the function f is shown as a vector field.",
+            "source_offset": 10,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Drag z-naught anywhere on the plane.",
+            "id": "560ae4a974448b08",
+            "normalized_text": "drag z-naught anywhere on the plane.",
+            "source_offset": 11,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Pick K, the number of times to iterate.",
+            "id": "e2c71f1abe364bdc",
+            "normalized_text": "pick k, the number of times to iterate.",
+            "source_offset": 12,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Some functions converge fast; some slowly; some spiral; one diverges entirely.",
+            "id": "4532d01fcc161398",
+            "normalized_text": "some functions converge fast; some slowly; some spiral; one diverges entirely.",
+            "source_offset": 13,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "There are four levels.",
+            "id": "10b12d9bbdfe9e61",
+            "normalized_text": "there are four levels.",
+            "source_offset": 14,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Level one — find the equilibrium of a single f.",
+            "id": "fdb677e0eafe670c",
+            "normalized_text": "level one — find the equilibrium of a single f.",
+            "source_offset": 15,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Level two — three candidate f's, pick the one that converges fastest.",
+            "id": "b495a13e6a6aa8f3",
+            "normalized_text": "level two — three candidate f's, pick the one that converges fastest.",
+            "source_offset": 16,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Level three — set K precisely to reach within tolerance epsilon.",
+            "id": "ad47c9e2202fef53",
+            "normalized_text": "level three — set k precisely to reach within tolerance epsilon.",
+            "source_offset": 17,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "Level four is the real DEQ design problem.",
+            "id": "79bf5fc485630337",
+            "normalized_text": "level four is the real deq design problem.",
+            "source_offset": 18,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "You're given a compute budget, two candidate f's with different per-loop costs, and you have to choose both f and K to hit the target.",
+            "id": "1190e3b9f8f45087",
+            "normalized_text": "you're given a compute budget, two candidate f's with different per-loop costs, and you have to choose both f and k to hit the target.",
+            "source_offset": 19,
+            "source_section_id": "section_03"
+          },
+          {
+            "canonical_text": "The cheapest path through that compute budget is what Shaojie Bai's 2019 PhD work at CMU showed how to find analytically, without iterating at all — that's what Deep Equilibrium Models do.",
+            "id": "69cf2a9cd96fcfa9",
+            "normalized_text": "the cheapest path through that compute budget is what shaojie bai's 2019 phd work at cmu showed how to find analytically, without iterating at all — that's what deep equilibrium models do.",
+            "source_offset": 20,
+            "source_section_id": "section_03"
+          }
+        ],
+        "source_section_id": "section_03",
+        "summary": "Here's a question that sounds almost too simple. If you take a function and apply it to a number, then apply it again to the result, then again — do you eventually settle on something? In 1922, a young Polish mathematician named Stefan Banach proved the answer is yes, as long as the function is a contraction map — meaning every time you apply it, the points it produces get strictly closer to each other than they started.",
+        "title": "Banach's theorem, in your hands"
+      },
+      {
+        "beats": [
+          {
+            "id": "6c591ec27cd628e4",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "98fabf3ca6cef920",
+              "b0f59572211bec27"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "6664556a14e9d48c",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "241da90afce3e33a",
+              "ac6ab6245b1ba19e",
+              "12f0920c2e80dcf3",
+              "5e00f5eadbdf1570",
+              "c0895732cfb329c0",
+              "4082b7c92b457eb5",
+              "f337cc2be83a1966",
+              "67dca9932b8f22b6"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "f569ae2e2427e472",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "0f99de3bdd260075",
+              "ec1ef03116aac0d4"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Prompting technique where the model is encouraged to emit intermediate reasoning steps before the final answer. Jason Wei et al, Google Brain, January 2022.",
+            "deep": "The original paper showed that just adding \"Let's think step by step\" to prompts massively improved GSM8K math accuracy for large enough models — but only above ~62B parameters. The phenomenon is a clean example of an emergent capability. The CoT pattern is the conceptual ancestor of o1, DeepSeek R1, and the whole reasoning-model thread that took over in 2024.",
+            "key": "chain-of-thought",
+            "source_section_id": "section_04"
+          },
+          {
+            "brief": "Researcher at OpenAI (formerly Google Brain). First-authored the chain-of-thought paper in 2022 at age 26.",
+            "deep": "Wei joined OpenAI in early 2023 and has been one of the public faces of the o1 / o3 reasoning-model line. His earlier work on emergent abilities — the claim that capabilities appear suddenly with scale — is one of the most-cited and most-debated papers of the 2020s. Stanford grad school dropout.",
+            "key": "Jason Wei",
+            "source_section_id": "section_04"
+          },
+          {
+            "brief": "OpenAI's first dedicated reasoning model, released September 2024. Spends substantial inference compute on hidden chain-of-thought before answering.",
+            "deep": "o1 was the moment 'inference-time compute' became a frontier-lab strategy. The model is fundamentally a chain-of-thought generator that's been RL-finetuned to think well. Looped LMs and Quiet-STaR are research-track attempts at the same outcome via different mechanisms — pushing compute into the forward pass rather than into emitted tokens. o3 followed in late 2024, scaling the same approach.",
+            "key": "o1",
+            "source_section_id": "section_04"
+          },
+          {
+            "brief": "Stanford 2024 paper by Eric Zelikman et al. Models learn to generate \"thinking tokens\" between every word, but those tokens are never emitted to the user.",
+            "deep": "Quiet-STaR's thinking is token-level, not depth-level. It's the direct token-level cousin of looped LMs. Trained with a REINFORCE-style objective on whether the thought improved next-token prediction. The paper shows non-trivial improvements on zero-shot reasoning benchmarks. Eric Zelikman has been steadily building the implicit-reasoning thread since his earlier STaR paper in 2022.",
+            "key": "Quiet-STaR",
+            "source_section_id": "section_04"
+          },
+          {
+            "brief": "Open-source AI research collective founded in 2020 by Connor Leahy, Sid Black, and Leo Gao. Started on a Discord server. Produced GPT-J, GPT-NeoX, the Pile dataset, and a lot of the open-weights pretraining infrastructure.",
+            "deep": "EleutherAI is the closest thing the open-source AI world has to a research lab. They've consistently put out papers and models that would otherwise have been locked inside OpenAI or DeepMind. Leahy left in 2022 to found Conjecture for AI safety work. The lab is informally aligned with AI safety and mechanistic interpretability research. Stella Biderman has been the de facto research lead since.",
+            "key": "EleutherAI",
+            "source_section_id": "section_04"
+          }
+        ],
+        "eyebrow": "04",
+        "interactive_ref": {
+          "component_id": "SilentThinkingPlayer"
+        },
+        "learning_objective": "Understand Thinking in silence: When a normal model reasons through a hard problem, it has to think out loud.",
+        "scene_id": "section-04",
+        "sentences": [
+          {
+            "canonical_text": "When a normal model reasons through a hard problem, it has to think out loud.",
+            "id": "98fabf3ca6cef920",
+            "normalized_text": "when a normal model reasons through a hard problem, it has to think out loud.",
+            "source_offset": 0,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "Every intermediate step burns output tokens that stream across your screen.",
+            "id": "b0f59572211bec27",
+            "normalized_text": "every intermediate step burns output tokens that stream across your screen.",
+            "source_offset": 1,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "That's chain-of-thought reasoning, popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K.",
+            "id": "241da90afce3e33a",
+            "normalized_text": "that's chain-of-thought reasoning, popularized in 2022 when jason wei at google brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like gsm8k.",
+            "source_offset": 2,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "The technique is now the foundation of every reasoning model — OpenAI's o1, DeepSeek R1, Anthropic's extended thinking.",
+            "id": "ac6ab6245b1ba19e",
+            "normalized_text": "the technique is now the foundation of every reasoning model — openai's o1, deepseek r1, anthropic's extended thinking.",
+            "source_offset": 3,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "But a looped model does something stranger.",
+            "id": "12f0920c2e80dcf3",
+            "normalized_text": "but a looped model does something stranger.",
+            "source_offset": 4,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "It thinks silently, inside the forward pass, looping its own block over and over before emitting a single answer token.",
+            "id": "5e00f5eadbdf1570",
+            "normalized_text": "it thinks silently, inside the forward pass, looping its own block over and over before emitting a single answer token.",
+            "source_offset": 5,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "None of the intermediate reasoning surfaces.",
+            "id": "c0895732cfb329c0",
+            "normalized_text": "none of the intermediate reasoning surfaces.",
+            "source_offset": 6,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "The 2025 latent reasoning paper from EleutherAI showed eight internal loops can match twenty-two tokens of visible chain-of-thought on multi-hop benchmarks.",
+            "id": "4082b7c92b457eb5",
+            "normalized_text": "the 2025 latent reasoning paper from eleutherai showed eight internal loops can match twenty-two tokens of visible chain-of-thought on multi-hop benchmarks.",
+            "source_offset": 7,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "There's a parallel thread from Stanford called Quiet-STaR, where the model thinks token by token in silence — same target, different machinery.",
+            "id": "f337cc2be83a1966",
+            "normalized_text": "there's a parallel thread from stanford called quiet-star, where the model thinks token by token in silence — same target, different machinery.",
+            "source_offset": 8,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "Both share a common thesis with looped LMs — that the cheapest form of compute is the kind that never leaves the network and never costs you an output token.",
+            "id": "67dca9932b8f22b6",
+            "normalized_text": "both share a common thesis with looped lms — that the cheapest form of compute is the kind that never leaves the network and never costs you an output token.",
+            "source_offset": 9,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "The big open question is whether silent reasoning ever genuinely surpasses verbalized reasoning.",
+            "id": "0f99de3bdd260075",
+            "normalized_text": "the big open question is whether silent reasoning ever genuinely surpasses verbalized reasoning.",
+            "source_offset": 10,
+            "source_section_id": "section_04"
+          },
+          {
+            "canonical_text": "As of now the empirical answer is roughly: matches it cheaply on tasks the model already had the capacity for; doesn't unlock new capabilities the way scale does.",
+            "id": "ec1ef03116aac0d4",
+            "normalized_text": "as of now the empirical answer is roughly: matches it cheaply on tasks the model already had the capacity for; doesn't unlock new capabilities the way scale does.",
+            "source_offset": 11,
+            "source_section_id": "section_04"
+          }
+        ],
+        "source_section_id": "section_04",
+        "summary": "When a normal model reasons through a hard problem, it has to think out loud. Every intermediate step burns output tokens that stream across your screen. That's chain-of-thought reasoning, popularized in 2022 when Jason Wei at Google Brain showed that just adding 'let's think step by step' to a prompt massively improved arithmetic accuracy on benchmarks like GSM8K.",
+        "title": "Thinking in silence"
+      },
+      {
+        "beats": [
+          {
+            "id": "79a56e9972a99e32",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "27ac9effa2706c2b",
+              "c43e26c26ca55431"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "51febef6169a9ea5",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "bf1ce60226861e36",
+              "e318ba55f241b888",
+              "45bd2c68ea00fe31",
+              "329febc864f19ab6",
+              "ab60097439171e4b",
+              "2a8f067a08b1f5e3",
+              "3249f946327bb48b",
+              "eb49629ecbda87ba",
+              "4a30f7d8c6df34da",
+              "272e81b096a518e8",
+              "097170b53a0491e4"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "b5754da4f3d03196",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "c6bd53e1217d5ec6",
+              "685e328258cf9ac0"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Short for backpropagation — the algorithm that computes gradients through a neural network via the chain rule, layer by layer in reverse.",
+            "deep": "Backprop was independently rediscovered several times. Paul Werbos described it in his 1974 Harvard PhD thesis, but the modern formulation comes from the 1986 Rumelhart, Hinton, and Williams paper. For RNNs and looped LMs, the variant is backpropagation through time (BPTT), Werbos 1990 — gradients flow backward through every iteration of the same weights, accumulating into a single update.",
+            "key": "backprop",
+            "source_section_id": "section_05"
+          },
+          {
+            "brief": "The maximum absolute eigenvalue of a matrix. For a Jacobian, it controls how much the matrix amplifies or shrinks signal.",
+            "deep": "If the spectral radius is exactly 1, repeated multiplication preserves signal magnitude — exactly what you want for K applications of the same block. Less than 1, gradients vanish. Greater, they explode. This is why orthogonal initialization (spectral radius = 1 by construction) works well for RNNs and looped LMs. Henaff, Szlam & LeCun's 2016 paper formalized this for deep architectures.",
+            "key": "spectral radius",
+            "source_section_id": "section_05"
+          },
+          {
+            "brief": "Memory-saving training trick: don't store all intermediate activations during the forward pass. Recompute them during backprop. Trades memory for a ~1.3× wall-clock cost on backward.",
+            "deep": "Formalized by Tianqi Chen, Bing Xu, Chiyuan Zhang, and Carlos Guestrin in their 2016 paper \"Training Deep Nets with Sublinear Memory Cost.\" Now standard in every large-model training stack. For looped LMs, it's what makes K=8 or higher training tractable on commodity GPUs — the alternative is storing K full activation snapshots in memory per training step.",
+            "key": "gradient checkpointing",
+            "source_section_id": "section_05"
+          },
+          {
+            "brief": "CMU/UW assistant professor, co-founded OctoML. Author of XGBoost, Apache MXNet, Apache TVM, and the gradient checkpointing paper — infrastructure that touches every ML workflow.",
+            "deep": "Chen's output rate is borderline absurd. He wrote XGBoost as a PhD student. He wrote MXNet at the same time. TVM, the compiler stack for ML, came next. He left academia to found OctoML in 2019, which was acquired by Nvidia in 2024. Few researchers have a higher infrastructure-impact-per-paper ratio.",
+            "key": "Tianqi Chen",
+            "source_section_id": "section_05"
+          },
+          {
+            "brief": "Backpropagation Through Time — the algorithm for training networks with shared weights across iterations. Conceptually, unroll the loop into K copies, then do normal backprop.",
+            "deep": "BPTT was formalized by Paul Werbos in 1990. The naive version stores all K intermediate activations, blowing up memory linearly with K. Truncated BPTT — only backprop K' < K steps — was the classical workaround for RNN training. Modern looped LMs use gradient checkpointing instead, which is strictly better when you can pay the recomputation cost.",
+            "key": "BPTT",
+            "source_section_id": "section_05"
+          }
+        ],
+        "eyebrow": "05 · puzzle",
+        "interactive_ref": {
+          "component_id": "GradientSurgeon"
+        },
+        "learning_objective": "Understand Gradient surgery: Looping isn't free at training time.",
+        "scene_id": "section-05",
+        "sentences": [
+          {
+            "canonical_text": "Looping isn't free at training time.",
+            "id": "27ac9effa2706c2b",
+            "normalized_text": "looping isn't free at training time.",
+            "source_offset": 0,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "The same set of weights gets touched K times in one forward pass — and during backpropagation, they get blamed K times.",
+            "id": "c43e26c26ca55431",
+            "normalized_text": "the same set of weights gets touched k times in one forward pass — and during backpropagation, they get blamed k times.",
+            "source_offset": 1,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "All those gradient contributions sum into the same parameter update.",
+            "id": "bf1ce60226861e36",
+            "normalized_text": "all those gradient contributions sum into the same parameter update.",
+            "source_offset": 2,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "The failure modes are well-known: exploding gradients when the spectral radius of the Jacobian drifts above one, vanishing gradients when it falls below, and out-of-memory crashes when K-fold activation storage exceeds your VRAM.",
+            "id": "e318ba55f241b888",
+            "normalized_text": "the failure modes are well-known: exploding gradients when the spectral radius of the jacobian drifts above one, vanishing gradients when it falls below, and out-of-memory crashes when k-fold activation storage exceeds your vram.",
+            "source_offset": 3,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Each one shows up as a different curve shape in your training log.",
+            "id": "45bd2c68ea00fe31",
+            "normalized_text": "each one shows up as a different curve shape in your training log.",
+            "source_offset": 4,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Now you're the gradient surgeon.",
+            "id": "329febc864f19ab6",
+            "normalized_text": "now you're the gradient surgeon.",
+            "source_offset": 5,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Three broken training runs are waiting for you — one that explodes mid-training, one that plateaus and never recovers, and one that crashes from memory pressure.",
+            "id": "ab60097439171e4b",
+            "normalized_text": "three broken training runs are waiting for you — one that explodes mid-training, one that plateaus and never recovers, and one that crashes from memory pressure.",
+            "source_offset": 6,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "For each, you'll diagnose the failure and apply one of five mitigations.",
+            "id": "2a8f067a08b1f5e3",
+            "normalized_text": "for each, you'll diagnose the failure and apply one of five mitigations.",
+            "source_offset": 7,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Scaled initialization keeps the spectral radius near one.",
+            "id": "3249f946327bb48b",
+            "normalized_text": "scaled initialization keeps the spectral radius near one.",
+            "source_offset": 8,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Layer normalization at the loop boundary resets state magnitude between iterations.",
+            "id": "eb49629ecbda87ba",
+            "normalized_text": "layer normalization at the loop boundary resets state magnitude between iterations.",
+            "source_offset": 9,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Gradient clipping caps the explosion at the cost of masking root cause.",
+            "id": "4a30f7d8c6df34da",
+            "normalized_text": "gradient clipping caps the explosion at the cost of masking root cause.",
+            "source_offset": 10,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Gradient checkpointing — Tianqi Chen's 2016 trick — recomputes activations on backward instead of storing them.",
+            "id": "272e81b096a518e8",
+            "normalized_text": "gradient checkpointing — tianqi chen's 2016 trick — recomputes activations on backward instead of storing them.",
+            "source_offset": 11,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "And lowering K avoids the issue by giving up depth.",
+            "id": "097170b53a0491e4",
+            "normalized_text": "and lowering k avoids the issue by giving up depth.",
+            "source_offset": 12,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "The right mitigation depends on the failure.",
+            "id": "c6bd53e1217d5ec6",
+            "normalized_text": "the right mitigation depends on the failure.",
+            "source_offset": 13,
+            "source_section_id": "section_05"
+          },
+          {
+            "canonical_text": "Pick wrong and the curve doesn't recover.",
+            "id": "685e328258cf9ac0",
+            "normalized_text": "pick wrong and the curve doesn't recover.",
+            "source_offset": 14,
+            "source_section_id": "section_05"
+          }
+        ],
+        "source_section_id": "section_05",
+        "summary": "Looping isn't free at training time. The same set of weights gets touched K times in one forward pass — and during backpropagation, they get blamed K times. All those gradient contributions sum into the same parameter update.",
+        "title": "Gradient surgery"
+      },
+      {
+        "beats": [
+          {
+            "id": "2ba3c475a90fd440",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "bf05eb07d6a45d27",
+              "27625c306f74eeb5"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "b795ada44ae4c4c1",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "6121dcd02ca8282e",
+              "a9163641a67d1497",
+              "141ef38371909517",
+              "5d699e86ed987f40",
+              "7d3be0c01bcf857f",
+              "f92d8a1d00707bf8",
+              "a2031d1f55d510ee",
+              "5c8ccd1d688b8dd1",
+              "c74bb7a9af0b73aa",
+              "e7c430f95d11c920",
+              "deb0a3c4210036de",
+              "d3ea72085277e6b0",
+              "ee77793092218469"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "10a10608c719b129",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "04d16f9a46818a63",
+              "ba15f170a7f7f3d6"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Inference-time speedup: a small \"draft\" model proposes K tokens, the large model verifies them in parallel.",
+            "deep": "Speculative decoding (Leviathan et al, 2022; Chen et al, 2023) gives 2-4× wall-clock speedup with no quality loss when draft and target agree often. It's a throughput trick, not a quality trick — won't help on hard problems where the draft is wrong. Now standard in production serving stacks like vLLM and TGI.",
+            "key": "speculative decoding",
+            "source_section_id": "section_06"
+          },
+          {
+            "brief": "The class of techniques that spend more compute at inference (not training) to improve answer quality.",
+            "deep": "The big shift of 2024-2025. o1, R1, looped LMs, Quiet-STaR, MCTS-based reasoning — all are bets that inference-time compute scales better than parameters past a certain point. The scaling laws for inference compute are still being mapped; preliminary results suggest ~log gains in accuracy per linear inference compute, similar to training scaling.",
+            "key": "inference-time compute",
+            "source_section_id": "section_06"
+          }
+        ],
+        "eyebrow": "06 · puzzle",
+        "interactive_ref": {
+          "component_id": "ComputeAllocator"
+        },
+        "learning_objective": "Understand Allocate your compute: Looping is one of several ways to spend inference compute.",
+        "scene_id": "section-06",
+        "sentences": [
+          {
+            "canonical_text": "Looping is one of several ways to spend inference compute.",
+            "id": "bf05eb07d6a45d27",
+            "normalized_text": "looping is one of several ways to spend inference compute.",
+            "source_offset": 0,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Chain-of-thought spends tokens.",
+            "id": "27625c306f74eeb5",
+            "normalized_text": "chain-of-thought spends tokens.",
+            "source_offset": 1,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Mixture-of-experts spends parameters per token.",
+            "id": "6121dcd02ca8282e",
+            "normalized_text": "mixture-of-experts spends parameters per token.",
+            "source_offset": 2,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Speculative decoding spends draft-model FLOPs to batch more verifier work.",
+            "id": "a9163641a67d1497",
+            "normalized_text": "speculative decoding spends draft-model flops to batch more verifier work.",
+            "source_offset": 3,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Loops spend depth.",
+            "id": "141ef38371909517",
+            "normalized_text": "loops spend depth.",
+            "source_offset": 4,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "The frontier labs are quietly building all four.",
+            "id": "5d699e86ed987f40",
+            "normalized_text": "the frontier labs are quietly building all four.",
+            "source_offset": 5,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Different query types reward different allocations — a factual lookup gets nothing from extra reasoning, but it benefits from the right specialized expert.",
+            "id": "7d3be0c01bcf857f",
+            "normalized_text": "different query types reward different allocations — a factual lookup gets nothing from extra reasoning, but it benefits from the right specialized expert.",
+            "source_offset": 6,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "A multi-hop chain wants loops or chain-of-thought.",
+            "id": "f92d8a1d00707bf8",
+            "normalized_text": "a multi-hop chain wants loops or chain-of-thought.",
+            "source_offset": 7,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Code generation wants width and throughput.",
+            "id": "a2031d1f55d510ee",
+            "normalized_text": "code generation wants width and throughput.",
+            "source_offset": 8,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Creative writing wants varied generation.",
+            "id": "5c8ccd1d688b8dd1",
+            "normalized_text": "creative writing wants varied generation.",
+            "source_offset": 9,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Now play it.",
+            "id": "c74bb7a9af0b73aa",
+            "normalized_text": "now play it.",
+            "source_offset": 10,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Five query types come in sequentially.",
+            "id": "e7c430f95d11c920",
+            "normalized_text": "five query types come in sequentially.",
+            "source_offset": 11,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "You have a budget of one hundred compute units per query.",
+            "id": "deb0a3c4210036de",
+            "normalized_text": "you have a budget of one hundred compute units per query.",
+            "source_offset": 12,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Distribute them across the four paradigms.",
+            "id": "d3ea72085277e6b0",
+            "normalized_text": "distribute them across the four paradigms.",
+            "source_offset": 13,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Watch the predicted accuracy update as you allocate.",
+            "id": "ee77793092218469",
+            "normalized_text": "watch the predicted accuracy update as you allocate.",
+            "source_offset": 14,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "Submit each query when remaining hits zero.",
+            "id": "04d16f9a46818a63",
+            "normalized_text": "submit each query when remaining hits zero.",
+            "source_offset": 15,
+            "source_section_id": "section_06"
+          },
+          {
+            "canonical_text": "At the end you get scored against the optimal mix per query — and your run total against the optimal portfolio.",
+            "id": "ba15f170a7f7f3d6",
+            "normalized_text": "at the end you get scored against the optimal mix per query — and your run total against the optimal portfolio.",
+            "source_offset": 16,
+            "source_section_id": "section_06"
+          }
+        ],
+        "source_section_id": "section_06",
+        "summary": "Looping is one of several ways to spend inference compute. Chain-of-thought spends tokens. Mixture-of-experts spends parameters per token.",
+        "title": "Allocate your compute"
+      },
+      {
+        "beats": [
+          {
+            "id": "b1442ec77c5647c5",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "4d6ef028528da5c3",
+              "2dd2a5e58364596e"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "0403effe3e9f8f5c",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "ecbea2494e0e6128",
+              "d9e237336932c424",
+              "87b0bf07184ed77e",
+              "c0c6a1c2836d68dc",
+              "3716f82813c77f26",
+              "4c68e608ad5244b2",
+              "bddeb205ca2067b4"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "00ec1f7cfd848bb1",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "48a7faa2eba5efd4",
+              "562bcab8c55d2016"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "MoE — architecture where each token is routed to a small subset of \"expert\" sub-networks (typically 2 of 64 or 8 of 256). Parameter count scales, but per-token FLOPs stay constant.",
+            "deep": "MoE descends from Geoff Hinton's 1991 mixture-of-experts paper, but the modern transformer version is Shazeer et al, 2017 (\"Outrageously Large Neural Networks\"). Modern frontier models — Mixtral, DeepSeek-V3, widely-believed GPT-4 — are all MoE. The trade-off vs looped LMs is opposite. MoE: more parameters, constant compute. Looped: constant parameters, more compute. They compose; you can build a looped MoE, and a few research papers in 2025 have.",
+            "key": "mixture-of-experts",
+            "source_section_id": "section_07"
+          },
+          {
+            "brief": "Chinese open-weights frontier model released December 2024. 671B total parameters, 37B active per token via MoE routing.",
+            "deep": "DeepSeek-V3 was the model that made the West realize how cheap frontier training could be. Trained for under $6M on 2048 H800 GPUs. The architecture includes multi-head latent attention (MLA), which compresses the KV cache dramatically — directly relevant to the cache-tax problem looped LMs face. DeepSeek released the weights, the architecture report, and most of the training infrastructure.",
+            "key": "DeepSeek-V3",
+            "source_section_id": "section_07"
+          },
+          {
+            "brief": "American economist and engineer. His 1974 Harvard PhD thesis first described modern backpropagation. His 1990 paper formalized BPTT for recurrent networks.",
+            "deep": "Werbos's 1974 thesis was titled \"Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences\" — explicitly framed as an economics-and-psychology contribution. It sat largely unread for over a decade. He spent most of his career as a program director at NSF rather than as a tenured academic. The Rumelhart-Hinton-Williams 1986 backprop paper is what made the technique famous, but Werbos had it first.",
+            "key": "Paul Werbos",
+            "source_section_id": "section_07"
+          }
+        ],
+        "eyebrow": "07",
+        "interactive_ref": {
+          "component_id": "TrainingComputeScene"
+        },
+        "learning_objective": "Understand The training tax: Here's the cost most papers downplay.",
+        "scene_id": "section-07",
+        "sentences": [
+          {
+            "canonical_text": "Here's the cost most papers downplay.",
+            "id": "4d6ef028528da5c3",
+            "normalized_text": "here's the cost most papers downplay.",
+            "source_offset": 0,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "Looping K times means K forward passes per training step — and K backward passes through the exact same weights.",
+            "id": "2dd2a5e58364596e",
+            "normalized_text": "looping k times means k forward passes per training step — and k backward passes through the exact same weights.",
+            "source_offset": 1,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "Activation memory normally scales with K too, because backpropagation through time needs every intermediate state to compute gradients.",
+            "id": "ecbea2494e0e6128",
+            "normalized_text": "activation memory normally scales with k too, because backpropagation through time needs every intermediate state to compute gradients.",
+            "source_offset": 2,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "A K-equals-eight looped model costs roughly eight times the training compute of a single-block model, even though it has eight times fewer parameters.",
+            "id": "d9e237336932c424",
+            "normalized_text": "a k-equals-eight looped model costs roughly eight times the training compute of a single-block model, even though it has eight times fewer parameters.",
+            "source_offset": 3,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "The net is an unusual trade.",
+            "id": "87b0bf07184ed77e",
+            "normalized_text": "the net is an unusual trade.",
+            "source_offset": 4,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "Cheap at inference once trained, expensive to train in the first place.",
+            "id": "c0c6a1c2836d68dc",
+            "normalized_text": "cheap at inference once trained, expensive to train in the first place.",
+            "source_offset": 5,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "It's the opposite of mixture-of-experts, where you can swell the total parameter count without paying per-token FLOPs, but you have to load the whole model into VRAM at inference time.",
+            "id": "3716f82813c77f26",
+            "normalized_text": "it's the opposite of mixture-of-experts, where you can swell the total parameter count without paying per-token flops, but you have to load the whole model into vram at inference time.",
+            "source_offset": 6,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "DeepSeek-V3 is the modern example — 671 billion total parameters, only 37 billion active per token.",
+            "id": "4c68e608ad5244b2",
+            "normalized_text": "deepseek-v3 is the modern example — 671 billion total parameters, only 37 billion active per token.",
+            "source_offset": 7,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "Gradient checkpointing fixes the looped-LM memory blowup at the cost of recomputing activations on the backward pass — about thirty percent extra wall-clock for the privilege.",
+            "id": "bddeb205ca2067b4",
+            "normalized_text": "gradient checkpointing fixes the looped-lm memory blowup at the cost of recomputing activations on the backward pass — about thirty percent extra wall-clock for the privilege.",
+            "source_offset": 8,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "The training-cost asymmetry is why looped LMs haven't shown up at frontier scale yet, even though they're competitive at one to three billion parameters.",
+            "id": "48a7faa2eba5efd4",
+            "normalized_text": "the training-cost asymmetry is why looped lms haven't shown up at frontier scale yet, even though they're competitive at one to three billion parameters.",
+            "source_offset": 9,
+            "source_section_id": "section_07"
+          },
+          {
+            "canonical_text": "Anyone with frontier compute spends it on more unique parameters instead of training cycles.",
+            "id": "562bcab8c55d2016",
+            "normalized_text": "anyone with frontier compute spends it on more unique parameters instead of training cycles.",
+            "source_offset": 10,
+            "source_section_id": "section_07"
+          }
+        ],
+        "source_section_id": "section_07",
+        "summary": "Here's the cost most papers downplay. Looping K times means K forward passes per training step — and K backward passes through the exact same weights. Activation memory normally scales with K too, because backpropagation through time needs every intermediate state to compute gradients.",
+        "title": "The training tax"
+      },
+      {
+        "beats": [
+          {
+            "id": "d7afa6203d6e1c7f",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "9cd1623170cd57ee",
+              "ac43eff59db749f7"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "4187c80c8b71e94e",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "52e9648649663851",
+              "1267e5eff3290b1f",
+              "d1fc66404d1e5088",
+              "56105989d3c71faa",
+              "0e0f540f084f5450",
+              "60a238ff4e058b8c",
+              "6d88023823c01818"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "ac38b39283013b7a",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "40fde46a69a023ee",
+              "258bb54495abf799"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser — Google Brain, ICLR 2019. First paper to apply RNN-style weight sharing across transformer depth, with an adaptive halting mechanism baked in.",
+            "deep": "The paper compared against vanilla transformers on bAbI, learning-to-execute, and machine translation. Found that the recurrent structure helped most on tasks with algorithmic structure. Largely ignored at the time — overshadowed by the BERT and GPT-1 hype the same year. Rediscovered in 2024 when latent reasoning got hot. Łukasz Kaiser, one of the authors, is now at OpenAI working on the o-series reasoning models.",
+            "key": "Universal Transformer",
+            "source_section_id": "section_08"
+          },
+          {
+            "brief": "Iranian-Dutch researcher at Google DeepMind. First-authored Universal Transformer in 2018 and has been a steady contributor to attention and transformer-architecture work since.",
+            "deep": "PhD from University of Amsterdam, originally in information retrieval. At Google he's worked on attention efficiency, Vision Transformers (the original ViT paper), and the Pathways system. His co-author Łukasz Kaiser was also on the original Attention Is All You Need paper, so Universal Transformer was effectively Kaiser revisiting his own architecture with recurrence one year later.",
+            "key": "Mostafa Dehghani",
+            "source_section_id": "section_08"
+          },
+          {
+            "brief": "A set of 20 synthetic reading-comprehension tasks released by Facebook AI Research in 2015. Designed to test specific reasoning capabilities — counting, induction, deduction, multi-hop, and so on.",
+            "deep": "bAbI was the standard reasoning benchmark in the pre-LLM era. Facebook's Memory Networks paper (2014) introduced it as a controlled testbed. By 2017 LSTMs were solving most of it; by 2019 transformers had crushed it. Universal Transformer's claim to fame in 2018 was solving bAbI fully where vanilla transformers stalled — a hint that recurrence helps on algorithmic structure.",
+            "key": "bAbI",
+            "source_section_id": "section_08"
+          },
+          {
+            "brief": "Polish-born researcher, now at OpenAI. Co-author of Attention Is All You Need (2017), Universal Transformer (2018), and the original Transformer-XL.",
+            "deep": "Kaiser is one of the few people who has both invented the original transformer AND tried to fundamentally rethink it (with recurrence). He joined OpenAI in 2021 and has been part of the o1/o3 reasoning-model push. His Polish theoretical-CS background shows in his consistent focus on architectures with provable computational properties.",
+            "key": "Łukasz Kaiser",
+            "source_section_id": "section_08"
+          },
+          {
+            "brief": "Massive Multitask Language Understanding — Hendrycks et al, 2020. The standard general-knowledge benchmark for LLMs, covering 57 subjects from elementary math to professional law.",
+            "deep": "MMLU was the de facto frontier benchmark from 2020 until ~2024, when frontier models started saturating it (scoring above 85%). It's been replaced at the frontier by GPQA, BIG-Bench Hard, and tougher reasoning benchmarks. Dan Hendrycks, the lead author, now runs the Center for AI Safety.",
+            "key": "MMLU",
+            "source_section_id": "section_08"
+          }
+        ],
+        "eyebrow": "08",
+        "interactive_ref": {
+          "component_id": "WeightTyingScene"
+        },
+        "learning_objective": "Understand What actually gets shared: Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018.",
+        "scene_id": "section-08",
+        "sentences": [
+          {
+            "canonical_text": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018.",
+            "id": "9cd1623170cd57ee",
+            "normalized_text": "sharing the whole block is the cleanest version — that's what mostafa dehghani's team at google brain did with universal transformer back in 2018.",
+            "source_offset": 0,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "But you can be more surgical.",
+            "id": "ac43eff59db749f7",
+            "normalized_text": "but you can be more surgical.",
+            "source_offset": 1,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "Share just the attention weights, and the multilayer perceptron — the MLP — can still specialize per loop iteration.",
+            "id": "52e9648649663851",
+            "normalized_text": "share just the attention weights, and the multilayer perceptron — the mlp — can still specialize per loop iteration.",
+            "source_offset": 2,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "Or share just the MLP, and attention stays unique at each iteration.",
+            "id": "1267e5eff3290b1f",
+            "normalized_text": "or share just the mlp, and attention stays unique at each iteration.",
+            "source_offset": 3,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "Each choice trades parameter efficiency for representational flexibility.",
+            "id": "d1fc66404d1e5088",
+            "normalized_text": "each choice trades parameter efficiency for representational flexibility.",
+            "source_offset": 4,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "The 2018 paper used full sharing and matched LSTM baselines on bAbI reasoning tasks.",
+            "id": "56105989d3c71faa",
+            "normalized_text": "the 2018 paper used full sharing and matched lstm baselines on babi reasoning tasks.",
+            "source_offset": 5,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "Modern variants in 2024 and 2025 are exploring all three sharing patterns.",
+            "id": "0e0f540f084f5450",
+            "normalized_text": "modern variants in 2024 and 2025 are exploring all three sharing patterns.",
+            "source_offset": 6,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "Full sharing is still the most common default, partly because it's the most parameter-efficient, partly because it composes cleanly with adaptive halting.",
+            "id": "60a238ff4e058b8c",
+            "normalized_text": "full sharing is still the most common default, partly because it's the most parameter-efficient, partly because it composes cleanly with adaptive halting.",
+            "source_offset": 7,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "The bAbI benchmark Dehghani's team used was a set of twenty synthetic reading-comprehension tasks released by Facebook AI Research in 2015 — the standard reasoning testbed before LLMs made larger benchmarks like MMLU and HellaSwag the norm.",
+            "id": "6d88023823c01818",
+            "normalized_text": "the babi benchmark dehghani's team used was a set of twenty synthetic reading-comprehension tasks released by facebook ai research in 2015 — the standard reasoning testbed before llms made larger benchmarks like mmlu and hellaswag the norm.",
+            "source_offset": 8,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "Universal Transformer's claim to fame was solving bAbI fully where vanilla transformers stalled — the first concrete hint that recurrence helps specifically on tasks with algorithmic structure.",
+            "id": "40fde46a69a023ee",
+            "normalized_text": "universal transformer's claim to fame was solving babi fully where vanilla transformers stalled — the first concrete hint that recurrence helps specifically on tasks with algorithmic structure.",
+            "source_offset": 9,
+            "source_section_id": "section_08"
+          },
+          {
+            "canonical_text": "The paper was largely ignored at the time, overshadowed by BERT and GPT-1 launching the same year, and only rediscovered when latent reasoning got hot in 2024.",
+            "id": "258bb54495abf799",
+            "normalized_text": "the paper was largely ignored at the time, overshadowed by bert and gpt-1 launching the same year, and only rediscovered when latent reasoning got hot in 2024.",
+            "source_offset": 10,
+            "source_section_id": "section_08"
+          }
+        ],
+        "source_section_id": "section_08",
+        "summary": "Sharing the whole block is the cleanest version — that's what Mostafa Dehghani's team at Google Brain did with Universal Transformer back in 2018. But you can be more surgical. Share just the attention weights, and the multilayer perceptron — the MLP — can still specialize per loop iteration.",
+        "title": "What actually gets shared"
+      },
+      {
+        "beats": [
+          {
+            "id": "7e6074b694ae1a8a",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "82b89f69e1566f9f",
+              "50e3624e853b48c7"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "80aff28835aadc2a",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "2bbd43b10ec76722",
+              "afa8c0164aafd4ec",
+              "58d75d68c04e0c83",
+              "b3ded403c33c9127",
+              "2da50493d0b433be",
+              "2acbfc40c18e57e8",
+              "aefd9ceb6f12729b",
+              "992ec001932f1ba9",
+              "3deaab4341ce2e5c",
+              "ad7ce9c7c946a523",
+              "86993b5edeba7de5"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "4d5eeebe7aaf3574",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "f2efebcebb42aea0",
+              "87ec376b6691c751"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "ACT — Alex Graves, DeepMind 2016. Lets a network spend variable compute per input by emitting a halting probability at each step.",
+            "deep": "ACT was originally proposed for RNNs, not transformers. The training trick: a ponder cost added to the loss penalizes extra iterations, while answer loss penalizes early termination. The model learns to halt early when confident. Universal Transformer (2018) was the first paper to bolt ACT onto transformers. Modern test-time-compute models like o1 and DeepSeek R1 use very different mechanisms, but the conceptual ancestor is ACT.",
+            "key": "Adaptive Computation Time",
+            "source_section_id": "section_09"
+          },
+          {
+            "brief": "British research scientist at DeepMind from 2014 to 2023. Now independent. Probably the single most underrated architect in deep learning history.",
+            "deep": "Graves invented or co-invented: connectionist temporal classification (CTC, used in every speech recognition system), Neural Turing Machines (direct precursor to attention), differentiable neural computers, ACT halting, and the speech-recognition LSTMs that powered Google's Assistant. He did his PhD under Schmidhuber. Notably quiet and publication-light for someone whose ideas underpin so much modern AI.",
+            "key": "Alex Graves",
+            "source_section_id": "section_09"
+          },
+          {
+            "brief": "Graves, Wayne, Danihelka, DeepMind 2014. A neural network with an external memory bank it can read from and write to via attention.",
+            "deep": "NTMs were the conceptual precursor to attention-based transformers. The 2014 paper introduced soft attention as a differentiable way to address memory locations. Two years later, attention was the core mechanism of Bahdanau's neural machine translation paper, then Vaswani's 2017 transformer. Without NTMs, no transformers. The memory-bank framing has come back into fashion with retrieval-augmented generation.",
+            "key": "Neural Turing Machines",
+            "source_section_id": "section_09"
+          },
+          {
+            "brief": "A regularization term added to ACT training loss that penalizes the model for using more iterations. Forces the halting head to learn when to stop.",
+            "deep": "Without ponder cost, ACT models would just learn to always loop the maximum K — more compute usually helps accuracy. The cost is a hyperparameter you tune to balance speed against quality. Modern test-time-compute training (o1, R1) replaces this with RL reward shaping but the trade-off is identical: more thinking generally helps, but you have to pay for it.",
+            "key": "ponder cost",
+            "source_section_id": "section_09"
+          },
+          {
+            "brief": "London-based AI lab founded 2010 by Demis Hassabis, Shane Legg, and Mustafa Suleyman. Acquired by Google in 2014 for £400M. Now Google DeepMind.",
+            "deep": "DeepMind produced AlphaGo, AlphaFold, AlphaZero, Atari DQN, WaveNet, and much of the foundational RL and attention work that shaped modern AI. Hassabis won the 2024 Nobel Prize in Chemistry for AlphaFold alongside John Jumper. Suleyman left for Microsoft AI in 2024; Legg is still Chief AGI Scientist.",
+            "key": "DeepMind",
+            "source_section_id": "section_09"
+          }
+        ],
+        "eyebrow": "09 · puzzle",
+        "interactive_ref": {
+          "component_id": "HaltPlayableScene"
+        },
+        "learning_objective": "Understand You're the halting head: Not every problem deserves eight loops.",
+        "scene_id": "section-09",
+        "sentences": [
+          {
+            "canonical_text": "Not every problem deserves eight loops.",
+            "id": "82b89f69e1566f9f",
+            "normalized_text": "not every problem deserves eight loops.",
+            "source_offset": 0,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "A chess engine doesn't think for the same amount of time on every move.",
+            "id": "50e3624e853b48c7",
+            "normalized_text": "a chess engine doesn't think for the same amount of time on every move.",
+            "source_offset": 1,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "A grandmaster spends seconds on a forced capture and minutes on a closed positional decision.",
+            "id": "2bbd43b10ec76722",
+            "normalized_text": "a grandmaster spends seconds on a forced capture and minutes on a closed positional decision.",
+            "source_offset": 2,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Adaptive halting gives a looped LM the same kind of dynamic compute allocation.",
+            "id": "afa8c0164aafd4ec",
+            "normalized_text": "adaptive halting gives a looped lm the same kind of dynamic compute allocation.",
+            "source_offset": 3,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "A tiny head sits on top of the network and emits a stop probability at each iteration.",
+            "id": "58d75d68c04e0c83",
+            "normalized_text": "a tiny head sits on top of the network and emits a stop probability at each iteration.",
+            "source_offset": 4,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "The training signal is a careful trade-off — a ponder cost penalizes extra iterations, but answer-loss penalizes early termination.",
+            "id": "b3ded403c33c9127",
+            "normalized_text": "the training signal is a careful trade-off — a ponder cost penalizes extra iterations, but answer-loss penalizes early termination.",
+            "source_offset": 5,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "The math comes from Alex Graves's 2016 paper Adaptive Computation Time, written while he was at DeepMind.",
+            "id": "2da50493d0b433be",
+            "normalized_text": "the math comes from alex graves's 2016 paper adaptive computation time, written while he was at deepmind.",
+            "source_offset": 6,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Graves is one of the most underrated architects in deep learning — he also invented connectionist temporal classification, the algorithm that powers every speech recognition system, and Neural Turing Machines, the direct ancestor of attention.",
+            "id": "2acbfc40c18e57e8",
+            "normalized_text": "graves is one of the most underrated architects in deep learning — he also invented connectionist temporal classification, the algorithm that powers every speech recognition system, and neural turing machines, the direct ancestor of attention.",
+            "source_offset": 7,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Now you play the halting head.",
+            "id": "aefd9ceb6f12729b",
+            "normalized_text": "now you play the halting head.",
+            "source_offset": 8,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Three problems of varying difficulty.",
+            "id": "992ec001932f1ba9",
+            "normalized_text": "three problems of varying difficulty.",
+            "source_offset": 9,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Watch the internal confidence at each iteration and click halt when you think the model has it.",
+            "id": "3deaab4341ce2e5c",
+            "normalized_text": "watch the internal confidence at each iteration and click halt when you think the model has it.",
+            "source_offset": 10,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Halt too early, you get the wrong answer.",
+            "id": "ad7ce9c7c946a523",
+            "normalized_text": "halt too early, you get the wrong answer.",
+            "source_offset": 11,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Halt too late, you wasted compute.",
+            "id": "86993b5edeba7de5",
+            "normalized_text": "halt too late, you wasted compute.",
+            "source_offset": 12,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "Both are penalized in real ACT training.",
+            "id": "f2efebcebb42aea0",
+            "normalized_text": "both are penalized in real act training.",
+            "source_offset": 13,
+            "source_section_id": "section_09"
+          },
+          {
+            "canonical_text": "The optimal policy is exactly what the halting head converges to — minimize compute, maximize correctness, find the trade-off that fits your task.",
+            "id": "87ec376b6691c751",
+            "normalized_text": "the optimal policy is exactly what the halting head converges to — minimize compute, maximize correctness, find the trade-off that fits your task.",
+            "source_offset": 14,
+            "source_section_id": "section_09"
+          }
+        ],
+        "source_section_id": "section_09",
+        "summary": "Not every problem deserves eight loops. A chess engine doesn't think for the same amount of time on every move. A grandmaster spends seconds on a forced capture and minutes on a closed positional decision.",
+        "title": "You're the halting head"
+      },
+      {
+        "beats": [
+          {
+            "id": "8404e88f080b0a17",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "b2dde47571959876",
+              "00bf032f586a26db"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "04ffc218fc327ee1",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "9ce1d0ed3ea9b0d3",
+              "ee445a14bd16fbea",
+              "60c15f61457b4d05",
+              "de68ed1408d9d854",
+              "3f13f7548866a0e7",
+              "cccbb7c1a60683dc",
+              "bc03f27dc7fa05e5",
+              "4315c097906d8f39",
+              "33e7e720a52b00d1",
+              "bbd3f6b10b44371b"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "b215d775a9ca6c42",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "e4cd8dbc78a875d8",
+              "87d3bb3330197163"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "Inference optimization: store the keys and values computed during attention so subsequent tokens don't have to recompute them. Standard in every modern LLM serving stack.",
+            "deep": "The cache size is 2 × num_layers × seq_len × hidden_dim × bytes_per_element. At 8k context, 4k hidden, 24 layers, bf16, that's about 3 GB per request. For a 128k context model that's ~50 GB. Hence the modern obsession with cache compression — Mamba and state-space models try to obsolete the cache entirely. For looped LMs the cache is still keyed by (block, visit) pairs, so M=3, K=8 still gives you 24 cache \"layers\" worth of memory.",
+            "key": "KV cache",
+            "source_section_id": "section_10"
+          },
+          {
+            "brief": "MLA — DeepSeek's KV-cache compression technique. Project keys and values into a low-dimensional latent space, store that instead. Massively reduces cache size with minimal quality loss.",
+            "deep": "MLA showed up in DeepSeek-V2 and got more polished in V3. Roughly: K and V are projected through a learned low-rank decomposition before being cached. At inference time, the cached low-rank vectors are projected back up. The technique gives DeepSeek's models a much larger effective context window for the same memory budget. It composes with looped LMs — you can have a looped architecture where each visit's cache is MLA-compressed.",
+            "key": "multi-head latent attention",
+            "source_section_id": "section_10"
+          },
+          {
+            "brief": "The rate at which data can be moved between GPU memory and compute units. For LLM inference, this is usually the bottleneck — not raw FLOPs.",
+            "deep": "Modern frontier inference is dominated by memory bandwidth, not arithmetic throughput. Loading the KV cache for each token is the killer cost — every generated token requires reading the full cache. This is why looped LMs are interesting for inference: fewer unique weights to load, even if the cache cost is unchanged. NVIDIA H100s have 3.35 TB/s memory bandwidth; H200s push 4.8. The cache-vs-bandwidth equation is what makes long-context serving expensive.",
+            "key": "memory bandwidth",
+            "source_section_id": "section_10"
+          },
+          {
+            "brief": "An alternative to attention. Mamba (Gu & Dao, 2023) is the most prominent example — uses a selective state-space mechanism instead of attention, with constant memory regardless of sequence length.",
+            "deep": "Mamba and other SSMs solve the cache problem by not having a cache. The sequence is processed via a recurrence with bounded state — like an RNN, but with much better gradient flow thanks to careful structure. Albert Gu's group at CMU has been pushing this thread. Mamba-2 came out in 2024; hybrid Mamba-transformer models (like Jamba) tried to get the best of both. They haven't displaced transformers at frontier scale, but they're real competitors.",
+            "key": "state-space models",
+            "source_section_id": "section_10"
+          }
+        ],
+        "eyebrow": "10 · puzzle",
+        "interactive_ref": {
+          "component_id": "KVCacheArchitect"
+        },
+        "learning_objective": "Understand The KV-cache tax: Here's the gotcha that catches everyone implementing this.",
+        "scene_id": "section-10",
+        "sentences": [
+          {
+            "canonical_text": "Here's the gotcha that catches everyone implementing this.",
+            "id": "b2dde47571959876",
+            "normalized_text": "here's the gotcha that catches everyone implementing this.",
+            "source_offset": 0,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "The KV cache — the data structure that makes long-context inference fast by remembering keys and values from previous tokens — does not shrink when you loop.",
+            "id": "00bf032f586a26db",
+            "normalized_text": "the kv cache — the data structure that makes long-context inference fast by remembering keys and values from previous tokens — does not shrink when you loop.",
+            "source_offset": 1,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "Visiting the same three blocks eight times still requires twenty-four separate stacks of cached attention, because each visit is attending over a different hidden state.",
+            "id": "9ce1d0ed3ea9b0d3",
+            "normalized_text": "visiting the same three blocks eight times still requires twenty-four separate stacks of cached attention, because each visit is attending over a different hidden state.",
+            "source_offset": 2,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "Looping saves parameter memory.",
+            "id": "ee445a14bd16fbea",
+            "normalized_text": "looping saves parameter memory.",
+            "source_offset": 3,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "It does NOT save cache memory.",
+            "id": "60c15f61457b4d05",
+            "normalized_text": "it does not save cache memory.",
+            "source_offset": 4,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "At long context, that's where the bill actually comes due.",
+            "id": "de68ed1408d9d854",
+            "normalized_text": "at long context, that's where the bill actually comes due.",
+            "source_offset": 5,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "The formula is two times the number of effective layers times sequence length times hidden dimension times bytes per element.",
+            "id": "3f13f7548866a0e7",
+            "normalized_text": "the formula is two times the number of effective layers times sequence length times hidden dimension times bytes per element.",
+            "source_offset": 6,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "For a model at one hundred twenty-eight thousand sequence length, four thousand hidden, and bfloat16 precision, with twenty-four effective layers, you're looking at roughly fifty gigabytes of cache per request.",
+            "id": "cccbb7c1a60683dc",
+            "normalized_text": "for a model at one hundred twenty-eight thousand sequence length, four thousand hidden, and bfloat16 precision, with twenty-four effective layers, you're looking at roughly fifty gigabytes of cache per request.",
+            "source_offset": 7,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "That's why frontier inference is bottlenecked on memory bandwidth, not raw FLOPs.",
+            "id": "bc03f27dc7fa05e5",
+            "normalized_text": "that's why frontier inference is bottlenecked on memory bandwidth, not raw flops.",
+            "source_offset": 8,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "There are research variants that share the cache across loop iterations — sometimes called token-recurrent or cross-iteration architectures — but they trade memory for representational expressiveness.",
+            "id": "4315c097906d8f39",
+            "normalized_text": "there are research variants that share the cache across loop iterations — sometimes called token-recurrent or cross-iteration architectures — but they trade memory for representational expressiveness.",
+            "source_offset": 9,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "DeepSeek's multi-head latent attention is a different approach to the same problem, compressing the cache via low-rank projection.",
+            "id": "33e7e720a52b00d1",
+            "normalized_text": "deepseek's multi-head latent attention is a different approach to the same problem, compressing the cache via low-rank projection.",
+            "source_offset": 10,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "The cache-sharing question is one of the most active design choices in late-2024 and 2025 looped-LM research.",
+            "id": "bbd3f6b10b44371b",
+            "normalized_text": "the cache-sharing question is one of the most active design choices in late-2024 and 2025 looped-lm research.",
+            "source_offset": 11,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "Drag the sliders below.",
+            "id": "e4cd8dbc78a875d8",
+            "normalized_text": "drag the sliders below.",
+            "source_offset": 12,
+            "source_section_id": "section_10"
+          },
+          {
+            "canonical_text": "Watch how cache memory scales with sequence length and effective depth — regardless of whether you got that depth from stacking or looping.",
+            "id": "87d3bb3330197163",
+            "normalized_text": "watch how cache memory scales with sequence length and effective depth — regardless of whether you got that depth from stacking or looping.",
+            "source_offset": 13,
+            "source_section_id": "section_10"
+          }
+        ],
+        "source_section_id": "section_10",
+        "summary": "Here's the gotcha that catches everyone implementing this. The KV cache — the data structure that makes long-context inference fast by remembering keys and values from previous tokens — does not shrink when you loop. Visiting the same three blocks eight times still requires twenty-four separate stacks of cached attention, because each visit is attending over a different hidden state.",
+        "title": "The KV-cache tax"
+      },
+      {
+        "beats": [
+          {
+            "id": "aa7440e6d8c03714",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "cbd67e2636c28528",
+              "26bac1115777175c"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "58993b52c29c3483",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "180a9990fb603e31",
+              "4d42819b9f4a8bf1",
+              "222826c65fb4272e",
+              "2ea106c65ec87181",
+              "9c3b652efe251891",
+              "700415f15d77984d",
+              "df36183764d41a93",
+              "7770285bbb14ae64",
+              "2fe745d9b4a3a061",
+              "b484e5cc9cb94416",
+              "a23af2b4ce566f59"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "38ea458d8821d60a",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "2e3746ff336c21f2",
+              "0c6ffe220df5072e"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "George Cybenko, 1989. A feedforward network with one hidden layer and enough neurons can approximate any continuous function on a compact domain, given a non-polynomial activation.",
+            "deep": "Cybenko's proof used a clever density argument with sigmoid activations. Kurt Hornik generalized it in 1991 to any non-polynomial activation. The theorem is celebrated and somewhat misleading — it says nothing about how MANY neurons you need (potentially exponentially many) or whether gradient descent will actually find them. The 2024 looped-transformer-as-programmable-computer paper by Yang et al is the depth-side analog: enough loops can simulate any program.",
+            "key": "universal approximation theorem",
+            "source_section_id": "section_11"
+          },
+          {
+            "brief": "American mathematician at Dartmouth. Best known for the 1989 universal approximation paper. Has also worked extensively in signal processing and cybersecurity.",
+            "deep": "Cybenko's 1989 paper appeared in Mathematics of Control, Signals, and Systems — not a major AI venue. It was largely ignored until the 2010s, when deep learning made it suddenly relevant. He's now emeritus at Dartmouth's Thayer School of Engineering. The kind of result that quietly became foundational decades after publication.",
+            "key": "George Cybenko",
+            "source_section_id": "section_11"
+          },
+          {
+            "brief": "Austrian statistician at Vienna University of Economics. Extended Cybenko's universal approximation result in 1991 to arbitrary non-polynomial activations.",
+            "deep": "Hornik's 1991 paper showed the result was much more general than Cybenko realized — sigmoids weren't special. The proof technique generalizes via a clever use of the Stone-Weierstrass theorem. He's also a long-time core developer of R (the statistical language), maintaining the kernel since the late 90s. Has more obscure but foundational contributions than most people realize.",
+            "key": "Kurt Hornik",
+            "source_section_id": "section_11"
+          },
+          {
+            "brief": "Looped Transformers as Programmable Computers — Yang, Lee, Papailiopoulos, Lee. ICML 2024. Theoretical proof that looped transformers can simulate Turing machines and execute arbitrary programs.",
+            "deep": "The paper constructs explicit looped transformer programs for in-context gradient descent and a small CPU instruction set. Demonstrates that the looped architecture has the same computational power as a programmable computer — universality, but operationalized. Doesn't prove learnability, but provides the theoretical floor that motivates the modern empirical work.",
+            "key": "Yang 2024",
+            "source_section_id": "section_11"
+          },
+          {
+            "brief": "The difference between what a model architecture CAN represent in principle and what gradient-based training actually finds in practice.",
+            "deep": "Universal approximation theorems and looped-transformer universality results both prove existence, not findability. In practice, a single-hidden-layer network can fit anything but might need exponentially many neurons. A looped transformer can simulate any program but the training objective doesn't directly reward finding compact programs. This gap is where most modern theory work lives — generalization, optimization landscapes, neural tangent kernels, mean-field analysis.",
+            "key": "learnability gap",
+            "source_section_id": "section_11"
+          }
+        ],
+        "eyebrow": "11",
+        "interactive_ref": {
+          "component_id": "WhenItWinsScene"
+        },
+        "learning_objective": "Understand When it wins, when it doesn't: So when does this actually pay off?",
+        "scene_id": "section-11",
+        "sentences": [
+          {
+            "canonical_text": "So when does this actually pay off?",
+            "id": "cbd67e2636c28528",
+            "normalized_text": "so when does this actually pay off?",
+            "source_offset": 0,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "Looping wins on tasks with a step that repeats — arithmetic, multi-hop chains, traversal, parsing.",
+            "id": "26bac1115777175c",
+            "normalized_text": "looping wins on tasks with a step that repeats — arithmetic, multi-hop chains, traversal, parsing.",
+            "source_offset": 1,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "The shared block learns the step once, and the loop counts how many times to apply it.",
+            "id": "180a9990fb603e31",
+            "normalized_text": "the shared block learns the step once, and the loop counts how many times to apply it.",
+            "source_offset": 2,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "It does not help much on pattern matching that one forward pass can solve — sentiment classification doesn't care how deep your network is past a point.",
+            "id": "4d42819b9f4a8bf1",
+            "normalized_text": "it does not help much on pattern matching that one forward pass can solve — sentiment classification doesn't care how deep your network is past a point.",
+            "source_offset": 3,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "And at frontier scale, beyond seventy billion parameters, unique-layer specialization starts to win again.",
+            "id": "222826c65fb4272e",
+            "normalized_text": "and at frontier scale, beyond seventy billion parameters, unique-layer specialization starts to win again.",
+            "source_offset": 4,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "Different layers learn different functions in big models; forcing them all to be the same block costs more than it saves.",
+            "id": "2ea106c65ec87181",
+            "normalized_text": "different layers learn different functions in big models; forcing them all to be the same block costs more than it saves.",
+            "source_offset": 5,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "There's an interesting echo across the literature.",
+            "id": "9c3b652efe251891",
+            "normalized_text": "there's an interesting echo across the literature.",
+            "source_offset": 6,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "In 1989, George Cybenko at Dartmouth proved the universal approximation theorem — a single-hidden-layer feedforward network with enough width can approximate any continuous function.",
+            "id": "700415f15d77984d",
+            "normalized_text": "in 1989, george cybenko at dartmouth proved the universal approximation theorem — a single-hidden-layer feedforward network with enough width can approximate any continuous function.",
+            "source_offset": 7,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "Kurt Hornik extended it in 1991.",
+            "id": "df36183764d41a93",
+            "normalized_text": "kurt hornik extended it in 1991.",
+            "source_offset": 8,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "Width can substitute for depth.",
+            "id": "7770285bbb14ae64",
+            "normalized_text": "width can substitute for depth.",
+            "source_offset": 9,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "Looped LMs are the depth-side dual of that result — depth can substitute for width, in the right regime.",
+            "id": "2fe745d9b4a3a061",
+            "normalized_text": "looped lms are the depth-side dual of that result — depth can substitute for width, in the right regime.",
+            "source_offset": 10,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "The 2024 paper by Yang et al titled Looped Transformers as Programmable Computers extends this dual all the way: looped transformers can in principle simulate any Turing machine.",
+            "id": "b484e5cc9cb94416",
+            "normalized_text": "the 2024 paper by yang et al titled looped transformers as programmable computers extends this dual all the way: looped transformers can in principle simulate any turing machine.",
+            "source_offset": 11,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "But both universality theorems share the same problem.",
+            "id": "a23af2b4ce566f59",
+            "normalized_text": "but both universality theorems share the same problem.",
+            "source_offset": 12,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "They say absolutely nothing about how learnable the parameters are.",
+            "id": "2e3746ff336c21f2",
+            "normalized_text": "they say absolutely nothing about how learnable the parameters are.",
+            "source_offset": 13,
+            "source_section_id": "section_11"
+          },
+          {
+            "canonical_text": "That gap between what's representable in principle and what's trainable in practice is where all the interesting research lives.",
+            "id": "0c6ffe220df5072e",
+            "normalized_text": "that gap between what's representable in principle and what's trainable in practice is where all the interesting research lives.",
+            "source_offset": 14,
+            "source_section_id": "section_11"
+          }
+        ],
+        "source_section_id": "section_11",
+        "summary": "So when does this actually pay off? Looping wins on tasks with a step that repeats — arithmetic, multi-hop chains, traversal, parsing. The shared block learns the step once, and the loop counts how many times to apply it.",
+        "title": "When it wins, when it doesn't"
+      },
+      {
+        "beats": [
+          {
+            "id": "28f501160fb753be",
+            "intent": "opener",
+            "source_sentence_ids": [
+              "84a0ef314bf9289d",
+              "4aab8889cc975715"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          },
+          {
+            "id": "59bf4df61a50421c",
+            "intent": "demo",
+            "source_sentence_ids": [
+              "e8456dc97df5c922",
+              "b1e37aa617cea596",
+              "2951c01a14efe129",
+              "3be41cf56f23fd6b",
+              "4af835dbcf7ea704"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "game"
+          },
+          {
+            "id": "7d096da75029d15f",
+            "intent": "closer",
+            "source_sentence_ids": [
+              "2ec2dcec6b2998ad",
+              "461af1c3b7df53f6"
+            ],
+            "speaker_ids": [
+              "narrator"
+            ],
+            "visual_role": "background"
+          }
+        ],
+        "cast_in_scene": [
+          "narrator"
+        ],
+        "discoveries": [
+          {
+            "brief": "A way to compute gradients through an equation rather than through a fixed sequence of operations. If z* solves f(z*) = z*, you can get ∂z*/∂θ via the implicit function theorem without storing any intermediate states.",
+            "deep": "For DEQ networks, this means infinite-depth gradient flow with constant memory. The math: ∂z*/∂θ = (I − ∂f/∂z)⁻¹ ∂f/∂θ evaluated at z*. The trick is solving the linear system (I − J)x = b for x using iterative methods like GMRES or Anderson acceleration. Same machinery powers a lot of meta-learning (MAML implicit), differentiable optimization (cvxpylayers), and physics simulators with neural components.",
+            "key": "implicit differentiation",
+            "source_section_id": "section_12"
+          },
+          {
+            "brief": "A research thread that aims to reverse-engineer what trained neural networks compute internally, often by reading individual circuits.",
+            "deep": "Pioneered by Chris Olah's group at Anthropic (and earlier at Distill / OpenAI). The toolkit includes activation patching, sparse autoencoders, and circuit analysis. Applied to looped LMs, it asks: what specific algorithm does each loop implement? Early results show looped models learn cleaner, more reusable circuits than stacked transformers — consistent with the depth-via-iteration intuition. Anthropic's interpretability team published a major paper on monosemantic features in 2024 that's a good entry point.",
+            "key": "mechanistic interpretability",
+            "source_section_id": "section_12"
+          }
+        ],
+        "eyebrow": "12",
+        "interactive_ref": {
+          "component_id": "ReadingListScene"
+        },
+        "learning_objective": "Understand Where to go next: Five papers, in the order I'd read them.",
+        "scene_id": "section-12",
+        "sentences": [
+          {
+            "canonical_text": "Five papers, in the order I'd read them.",
+            "id": "84a0ef314bf9289d",
+            "normalized_text": "five papers, in the order i'd read them.",
+            "source_offset": 0,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go.",
+            "id": "4aab8889cc975715",
+            "normalized_text": "start with mostafa dehghani's universal transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go.",
+            "source_offset": 1,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states.",
+            "id": "e8456dc97df5c922",
+            "normalized_text": "next, shaojie bai's 2019 deep equilibrium models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states.",
+            "source_offset": 2,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "Then Yang et al 2024, Looped Transformers as Programmable Computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets.",
+            "id": "b1e37aa617cea596",
+            "normalized_text": "then yang et al 2024, looped transformers as programmable computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets.",
+            "source_offset": 3,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "The 2025 paper from EleutherAI on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of K against task type.",
+            "id": "2951c01a14efe129",
+            "normalized_text": "the 2025 paper from eleutherai on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of k against task type.",
+            "source_offset": 4,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "And finally, the 2026 mechanistic analysis paper — it reverse-engineers what the loops are actually computing internally, by reading the circuits trained looped networks converge to.",
+            "id": "3be41cf56f23fd6b",
+            "normalized_text": "and finally, the 2026 mechanistic analysis paper — it reverse-engineers what the loops are actually computing internally, by reading the circuits trained looped networks converge to.",
+            "source_offset": 5,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "Those five papers, in that order, take you from foundations to frontier.",
+            "id": "4af835dbcf7ea704",
+            "normalized_text": "those five papers, in that order, take you from foundations to frontier.",
+            "source_offset": 6,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "Each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper.",
+            "id": "2ec2dcec6b2998ad",
+            "normalized_text": "each name and concept in this lesson is a clickable rabbit hole — generate a full lesson on any of them to keep going deeper.",
+            "source_offset": 7,
+            "source_section_id": "section_12"
+          },
+          {
+            "canonical_text": "The graph of lessons grows wherever your curiosity pulls.",
+            "id": "461af1c3b7df53f6",
+            "normalized_text": "the graph of lessons grows wherever your curiosity pulls.",
+            "source_offset": 8,
+            "source_section_id": "section_12"
+          }
+        ],
+        "source_section_id": "section_12",
+        "summary": "Five papers, in the order I'd read them. Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the source paper, and it sets up both the depth-recurrence idea and the adaptive halting machinery in one go. Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states.",
+        "title": "Where to go next"
+      }
+    ]
+  },
+  "schema_version": "loa.scene-map.v1"
+}

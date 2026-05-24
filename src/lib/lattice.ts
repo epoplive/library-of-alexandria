@@ -543,8 +543,8 @@ export interface TransitionEdge {
   from: ShotAddress;
   to: ShotAddress;
   kind: 'cut' | 'fade' | 'cross-dissolve' | 'slide' | 'push' | 'wipe' | 'iris' | 'shader';
-  /** Milliseconds; `cut` is always duration: 0. */
-  duration: number;
+  /** Milliseconds; `cut` is always duration_ms: 0. */
+  duration_ms: number;
   ease?: EaseCurve;
   direction?: 'left' | 'right' | 'up' | 'down';
   shader?: string;

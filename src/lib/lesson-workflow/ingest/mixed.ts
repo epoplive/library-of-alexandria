@@ -20,19 +20,15 @@ import {
 
 type ProjectMixedSource = Extract<Source, { kind: 'mixed' }>;
 
-export type MixedSourceInput = ProjectMixedSource | {
-  kind: 'mixed';
-  inputs: Source[];
-};
+export type MixedSourceInput = ProjectMixedSource;
 
 export async function ingestMixed(
   slug: string,
   source: MixedSourceInput,
   ctx: IngestContext,
 ): Promise<LessonCorpus> {
-  const children = childSources(source);
   const corpora: LessonCorpus[] = [];
-  for (const child of children) {
+  for (const child of source.inputs) {
     switch (child.kind) {
       case 'existing-lesson':
         corpora.push(await ingestExistingLesson(slug, child, ctx));
@@ -84,11 +80,6 @@ export async function ingestMixed(
   if (scriptOutline !== undefined) corpus.script_outline = scriptOutline;
   if (audioIndex !== undefined) corpus.audio_index = audioIndex;
   return corpus;
-}
-
-function childSources(source: MixedSourceInput): Source[] {
-  if ('sources' in source) return source.sources;
-  return source.inputs;
 }
 
 function mergeResearchBriefs(slug: string, corpora: LessonCorpus[]): ResearchBrief | undefined {

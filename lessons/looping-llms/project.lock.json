@@ -6,27 +6,418 @@
   "slug": "looping-llms",
   "steps": {
     "compose": {
+      "completed_at": "2026-05-24T21:04:43.451Z",
       "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "elapsed_ms": 10639,
+      "input_hashes": [
+        {
+          "hash": "4ed7fd1cb118771450340a616ee811ae520f286781f0134589c22f80993d333a",
+          "path": "artifacts/scene-map.json"
+        },
+        {
+          "hash": "37d9cf6644f8d5934f3b0e4dd52be54447564c651660b2e4b808c1ef3f7b6230",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "53e67c82cd4cd362e752c2c9787f44ab5f5adfd763f74180887fff565870def5",
+          "path": "characters.json"
+        },
+        {
+          "hash": "d7e8e944eb094a374b3e14bb47afb53f86352142da9e2b7d1099ca85515e6833",
+          "path": "interactives/registry.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "7fe2e88d838f37b1f2530eedb0b81799df0260cf00e9fb20fec669d6933359b9",
+          "path": "productions/looping-llms.generated.ts"
+        },
+        {
+          "hash": "c8281c666d637114ab600a2119e80d420e0601e4214a12f577298bf009be4536",
+          "path": "artifacts/asset-manifest.json"
+        }
+      ],
+      "run_id": "compose_2026-05-24T21-04-43-451Z",
+      "status": "completed",
+      "validator_version": "p1b-compose.1"
     },
     "curriculum": {
-      "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "completed_at": "2026-05-24T21:04:43.223Z",
+      "diagnostics": [
+        {
+          "actual": "ForwardPassSim",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            1,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "BanachPlayableScene",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            2,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            3,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "GradientSurgeon",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            4,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "ComputeAllocator",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            5,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "TrainingComputeScene",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            6,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "WeightTyingScene",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            7,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "HaltPlayableScene",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            8,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "KVCacheArchitect",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            9,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "WhenItWinsScene",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            10,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "ReadingListScene",
+          "code": "curriculum.game.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "acts",
+            0,
+            "scenes",
+            11,
+            "game_component_id"
+          ],
+          "repair": "register the component or remove game_component_id from this scene",
+          "severity": "warning"
+        }
+      ],
+      "elapsed_ms": 23,
+      "input_hashes": [
+        {
+          "hash": "42019aff1b3c51f7d74c2a1dc73737034659fe5a44df0307d992b880205c2e06",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "a02e847940633e6bea211bcdf00fb97b8c497fe97adb6c1f73245aafef16d7e2",
+          "path": "src/lib/lesson-workflow/curriculum/curriculum-validators.ts"
+        },
+        {
+          "hash": "2423b177f8c2888941220aae00933fef6c30a1241a648b7b3699f47af9eb709c",
+          "path": "src/lib/lesson-workflow/curriculum/types.ts"
+        },
+        {
+          "hash": "9638acf345c3ebe89a7977e2bc2db6538de7727a01aaba471f1dd6cc3c7b5510",
+          "path": "src/lib/lesson-workflow/prompts/curriculum.v1.md"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "c84ad9020145b5fc0bae5572700835064aa5ddc5fbab5e888df6c0e961ec4114",
+          "path": "artifacts/curriculum.json"
+        }
+      ],
+      "prompt_template_hash": "9638acf345c3ebe89a7977e2bc2db6538de7727a01aaba471f1dd6cc3c7b5510",
+      "prompt_template_id": "curriculum",
+      "prompt_template_version": "1.0.0",
+      "run_id": "curriculum_2026-05-24T21-04-43-223Z",
+      "schema_hash": "2423b177f8c2888941220aae00933fef6c30a1241a648b7b3699f47af9eb709c",
+      "status": "completed",
+      "validator_hash": "a02e847940633e6bea211bcdf00fb97b8c497fe97adb6c1f73245aafef16d7e2",
+      "validator_version": "p1b-curriculum.1"
     },
     "hydrate": {
+      "completed_at": "2026-05-24T21:04:54.104Z",
       "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "elapsed_ms": 29,
+      "input_hashes": [
+        {
+          "hash": "bb276776470684d307385941d52f5d07883248fc9837e75d758e3e9a2625d809",
+          "path": "artifacts/asset-manifest.json"
+        },
+        {
+          "hash": "37d9cf6644f8d5934f3b0e4dd52be54447564c651660b2e4b808c1ef3f7b6230",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "55b0be15734da5aa9a1ede68d4c0c8337ce3a0ad7d2a961e4216c1b2a1382885",
+          "path": "audio/index.json"
+        },
+        {
+          "hash": "53e67c82cd4cd362e752c2c9787f44ab5f5adfd763f74180887fff565870def5",
+          "path": "characters.json"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "bb276776470684d307385941d52f5d07883248fc9837e75d758e3e9a2625d809",
+          "path": "artifacts/asset-manifest.json"
+        },
+        {
+          "hash": "71033f1e3512fd5f307e67b713939a33a273ca366160fe229ed66e758cfd8833",
+          "path": "artifacts/pending_assets.json"
+        }
+      ],
+      "run_id": "hydrate_2026-05-24T21-04-54-104Z",
+      "status": "completed",
+      "validator_version": "p1b-hydrate.1"
     },
     "ingest": {
-      "completed_at": "2026-05-24T07:34:48.729Z",
-      "diagnostics": [],
-      "elapsed_ms": 47,
+      "completed_at": "2026-05-24T21:04:43.137Z",
+      "diagnostics": [
+        {
+          "actual": "BuildYourTransformerGame",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            0,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "ForwardPassSim",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            1,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "BanachPlayableScene",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            2,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            3,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "GradientSurgeon",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            4,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "ComputeAllocator",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            5,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "TrainingComputeScene",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            6,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "WeightTyingScene",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            7,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "HaltPlayableScene",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            8,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "KVCacheArchitect",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            9,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "WhenItWinsScene",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            10,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        },
+        {
+          "actual": "ReadingListScene",
+          "code": "ingest.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "interactive_inventory",
+            11,
+            "component_id"
+          ],
+          "repair": "add the component to the per-lesson interactives registry",
+          "severity": "warning"
+        }
+      ],
+      "elapsed_ms": 76,
       "input_hashes": [
         {
           "hash": "55b0be15734da5aa9a1ede68d4c0c8337ce3a0ad7d2a961e4216c1b2a1382885",
@@ -37,7 +428,7 @@
           "path": "characters.json"
         },
         {
-          "hash": "8888b109c617bf61f4e8711bfafcae04ce2f5d340cbc5b50c1d3f801bc49004c",
+          "hash": "f80e97b1980750344a28e62b9a04124a78f08795e70c2e470fbe988fbac232dc",
           "path": "index.tsx"
         },
         {
@@ -47,30 +438,796 @@
       ],
       "output_hashes": [
         {
-          "hash": "150fa4a1368970506b91eeae148d3d46c90461db433f5a59693e8fb0a4f79597",
+          "hash": "42019aff1b3c51f7d74c2a1dc73737034659fe5a44df0307d992b880205c2e06",
           "path": "artifacts/lesson-input.json"
         }
       ],
-      "run_id": "ingest_2026-05-24T07-34-48-729Z",
+      "run_id": "ingest_2026-05-24T21-04-43-137Z",
       "status": "completed"
     },
     "scene-map": {
-      "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "completed_at": "2026-05-24T21:04:43.256Z",
+      "diagnostics": [
+        {
+          "actual": "BuildYourTransformerGame",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            0,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "ForwardPassSim",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            1,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "BanachPlayableScene",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            2,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            3,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "GradientSurgeon",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            4,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "ComputeAllocator",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            5,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "TrainingComputeScene",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            6,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "WeightTyingScene",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            7,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "HaltPlayableScene",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            8,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "KVCacheArchitect",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            9,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "WhenItWinsScene",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            10,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        },
+        {
+          "actual": "ReadingListScene",
+          "code": "scene-map.interactive.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "detail",
+            "scenes",
+            11,
+            "interactive_ref",
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this scene",
+          "severity": "warning"
+        }
+      ],
+      "elapsed_ms": 22,
+      "input_hashes": [
+        {
+          "hash": "c84ad9020145b5fc0bae5572700835064aa5ddc5fbab5e888df6c0e961ec4114",
+          "path": "artifacts/curriculum.json"
+        },
+        {
+          "hash": "42019aff1b3c51f7d74c2a1dc73737034659fe5a44df0307d992b880205c2e06",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "e3ae0aed1d352e93725afb995fb15b5750acdc862a4cd3c9737295fe2de6b64d",
+          "path": "src/lib/lesson-workflow/prompts/scene-map.v1.md"
+        },
+        {
+          "hash": "8dc83a6e4da1413205f6fbf4c4e7321ef8c1a955ae33fb7f134d6fbf8c1cf0c3",
+          "path": "src/lib/lesson-workflow/scene-map/scene-map-validators.ts"
+        },
+        {
+          "hash": "d6394f3d92d2fc1fa1e56e2542bd18bd421a55231d8b252c4a39b44f8adb35c9",
+          "path": "src/lib/lesson-workflow/scene-map/types.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "8a7ef5402a3e3c677fdc9f726b50bf7e68a3496aaef8618b315b3c41c868ba12",
+          "path": "artifacts/scene-map.json"
+        }
+      ],
+      "prompt_template_hash": "e3ae0aed1d352e93725afb995fb15b5750acdc862a4cd3c9737295fe2de6b64d",
+      "prompt_template_id": "scene-map",
+      "prompt_template_version": "1.0.0",
+      "run_id": "scene-map_2026-05-24T21-04-43-256Z",
+      "schema_hash": "d6394f3d92d2fc1fa1e56e2542bd18bd421a55231d8b252c4a39b44f8adb35c9",
+      "status": "completed",
+      "validator_hash": "8dc83a6e4da1413205f6fbf4c4e7321ef8c1a955ae33fb7f134d6fbf8c1cf0c3",
+      "validator_version": "p1b-scenemap.1"
     },
     "storyboard": {
-      "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "completed_at": "2026-05-24T21:04:43.296Z",
+      "diagnostics": [
+        {
+          "actual": "ForwardPassSim",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            4,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "BanachPlayableScene",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            7,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            10,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "GradientSurgeon",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            13,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "ComputeAllocator",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            16,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "TrainingComputeScene",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            19,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "WeightTyingScene",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            22,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "HaltPlayableScene",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            25,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "KVCacheArchitect",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            28,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "WhenItWinsScene",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            31,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        },
+        {
+          "actual": "ReadingListScene",
+          "code": "storyboard.takeover.unknown_component",
+          "expected": "registered component id for lessons/looping-llms",
+          "path": [
+            "plans",
+            34,
+            "component_id"
+          ],
+          "repair": "register the component before visual execution uses this storyboard",
+          "severity": "warning"
+        }
+      ],
+      "elapsed_ms": 142,
+      "input_hashes": [
+        {
+          "hash": "c84ad9020145b5fc0bae5572700835064aa5ddc5fbab5e888df6c0e961ec4114",
+          "path": "artifacts/curriculum.json"
+        },
+        {
+          "hash": "42019aff1b3c51f7d74c2a1dc73737034659fe5a44df0307d992b880205c2e06",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "4ed7fd1cb118771450340a616ee811ae520f286781f0134589c22f80993d333a",
+          "path": "artifacts/scene-map.json"
+        },
+        {
+          "hash": "0f137136d56a063a14472d7cb1b5056d68f042ca10ffb54a3e048ea5fd04c215",
+          "path": "src/lib/lesson-workflow/prompts/storyboard.v1.md"
+        },
+        {
+          "hash": "041494a47e8571e0dc651f8896d02e6b7780bf750868ecd221bff24b12704c20",
+          "path": "src/lib/lesson-workflow/storyboard/storyboard-validators.ts"
+        },
+        {
+          "hash": "d306371dbdea2b74ec663499fd083d1f612adb0ef96d5c64aecda4e44afe3416",
+          "path": "src/lib/lesson-workflow/storyboard/types.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "37d9cf6644f8d5934f3b0e4dd52be54447564c651660b2e4b808c1ef3f7b6230",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "4ed7fd1cb118771450340a616ee811ae520f286781f0134589c22f80993d333a",
+          "path": "artifacts/scene-map.json"
+        }
+      ],
+      "prompt_template_hash": "0f137136d56a063a14472d7cb1b5056d68f042ca10ffb54a3e048ea5fd04c215",
+      "prompt_template_id": "storyboard",
+      "prompt_template_version": "1.0.0",
+      "run_id": "storyboard_2026-05-24T21-04-43-296Z",
+      "schema_hash": "d306371dbdea2b74ec663499fd083d1f612adb0ef96d5c64aecda4e44afe3416",
+      "status": "completed",
+      "validator_hash": "041494a47e8571e0dc651f8896d02e6b7780bf750868ecd221bff24b12704c20",
+      "validator_version": "p1b-storyboard.1"
     },
     "validate": {
-      "diagnostics": [],
-      "input_hashes": [],
-      "output_hashes": [],
-      "status": "pending"
+      "completed_at": "2026-05-24T21:04:54.148Z",
+      "diagnostics": [
+        {
+          "actual": "ForwardPassSim",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "ForwardPassSim"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "BanachPlayableScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "BanachPlayableScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "SilentThinkingPlayer"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "GradientSurgeon",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "GradientSurgeon"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "ComputeAllocator",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "ComputeAllocator"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "TrainingComputeScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "TrainingComputeScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "WeightTyingScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "WeightTyingScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "HaltPlayableScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "HaltPlayableScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "KVCacheArchitect",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "KVCacheArchitect"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "WhenItWinsScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "WhenItWinsScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "ReadingListScene",
+          "code": "parity.game.uncontracted",
+          "expected": "registered InteractiveContract",
+          "path": [
+            "interactives",
+            "registry.ts",
+            "ReadingListScene"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY with an InteractiveContract",
+          "severity": "warning"
+        },
+        {
+          "actual": "ForwardPassSim",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            1,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "BanachPlayableScene",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            2,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "SilentThinkingPlayer",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            3,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "GradientSurgeon",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            4,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "ComputeAllocator",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            5,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "TrainingComputeScene",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            6,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "WeightTyingScene",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            7,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "HaltPlayableScene",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            8,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "KVCacheArchitect",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            9,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "WhenItWinsScene",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            10,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        },
+        {
+          "actual": "ReadingListScene",
+          "code": "consistency.interactive.unregistered",
+          "expected": "component_id registered in INTERACTIVES_REGISTRY",
+          "path": [
+            "production",
+            "scenes",
+            11,
+            "shots",
+            1,
+            "elements",
+            0,
+            "component_id"
+          ],
+          "repair": "register this component in INTERACTIVES_REGISTRY",
+          "severity": "warning"
+        }
+      ],
+      "elapsed_ms": 215,
+      "input_hashes": [
+        {
+          "hash": "bb276776470684d307385941d52f5d07883248fc9837e75d758e3e9a2625d809",
+          "path": "artifacts/asset-manifest.json"
+        },
+        {
+          "hash": "42019aff1b3c51f7d74c2a1dc73737034659fe5a44df0307d992b880205c2e06",
+          "path": "artifacts/lesson-input.json"
+        },
+        {
+          "hash": "4ed7fd1cb118771450340a616ee811ae520f286781f0134589c22f80993d333a",
+          "path": "artifacts/scene-map.json"
+        },
+        {
+          "hash": "37d9cf6644f8d5934f3b0e4dd52be54447564c651660b2e4b808c1ef3f7b6230",
+          "path": "artifacts/storyboard.json"
+        },
+        {
+          "hash": "d7e8e944eb094a374b3e14bb47afb53f86352142da9e2b7d1099ca85515e6833",
+          "path": "interactives/registry.ts"
+        },
+        {
+          "hash": "7fe2e88d838f37b1f2530eedb0b81799df0260cf00e9fb20fec669d6933359b9",
+          "path": "productions/looping-llms.generated.ts"
+        },
+        {
+          "hash": "a746b1b0c89f2a3dd02eb2fa1e2960c361132ecc5f4f38056874665cc137c583",
+          "path": "project.validation.hydrate"
+        },
+        {
+          "hash": "d642f6d8c8befef2c7da522227780f4c720cfb1b93857ee7a48e91b3835d576a",
+          "path": "src/lib/lesson-workflow/validate/cli-printer.ts"
+        },
+        {
+          "hash": "29e01fd2fcf3ca56d6455d79969713e6564cbc93d07139cda8fdaee22306d0da",
+          "path": "src/lib/lesson-workflow/validate/gate-aggregator.ts"
+        },
+        {
+          "hash": "7d0c7b6a2d33bcf3c756e5d6f59b5e68d4188025699661cfceb89ac77781fdbc",
+          "path": "src/lib/lesson-workflow/validate/index.ts"
+        },
+        {
+          "hash": "be5e9a84a10e567b61ad1f64d79b9b3f3472900477f267ff40f8588d202d52f6",
+          "path": "src/lib/lesson-workflow/validate/parity.ts"
+        },
+        {
+          "hash": "9ac76d7b51aa3e0b4395d212c5eeb29ab8f482df1fc5867cb48cdb0d1e18a33a",
+          "path": "src/lib/lesson-workflow/validate/self-consistency.ts"
+        },
+        {
+          "hash": "efa7067b0789c0565b306f4584b740a8c16061860909d2649ee06f83d0d13e21",
+          "path": "src/lib/lesson-workflow/validate/types.ts"
+        }
+      ],
+      "output_hashes": [
+        {
+          "hash": "1cd645ef17b1d6a9c7a3709b766b6a831de46d6b81211be5b24b9592fa1d1c49",
+          "path": "artifacts/parity-report.json"
+        },
+        {
+          "hash": "a30738c72161bea642722b82fc33b945b8ec83fd01fd1afa9c67ca1de41b990e",
+          "path": "artifacts/consistency-report.json"
+        }
+      ],
+      "run_id": "validate_2026-05-24T21-04-54-148Z",
+      "status": "completed",
+      "validator_version": "p1b-validate.1"
     }
   }
 }

@@ -1,0 +1,1343 @@
+{
+  "ledger": [],
+  "production_id": "looping-llms",
+  "slots": {
+    "audio-421a677c7388": {
+      "description": "Voiceover for narrator: It does not help much on pattern matching that one forward pass can solve — s...",
+      "id": "audio-421a677c7388",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": [
+        {
+          "artifact": {
+            "hash": "421a677c7388",
+            "path": "lessons/looping-llms/audio/421a677c7388.mp3",
+            "url": "lessons/looping-llms/audio/421a677c7388.mp3"
+          },
+          "provenance": {
+            "provider": "kokoro",
+            "voice_id": "af_bella"
+          },
+          "status": "ready",
+          "tier": "v0.1",
+          "timings": [
+            {
+              "durationMs": 10400,
+              "startMs": 0,
+              "text": "It does not help much on pattern matching that one forward pass can solve — sentiment classification doesn't care how deep your network is past a point."
+            }
+          ]
+        }
+      ]
+    },
+    "audio-aca78fe79808": {
+      "description": "Voiceover for narrator: Five papers, in the order I'd read them.",
+      "id": "audio-aca78fe79808",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": [
+        {
+          "artifact": {
+            "hash": "aca78fe79808",
+            "path": "lessons/looping-llms/audio/aca78fe79808.mp3",
+            "url": "lessons/looping-llms/audio/aca78fe79808.mp3"
+          },
+          "provenance": {
+            "provider": "kokoro",
+            "voice_id": "af_bella"
+          },
+          "status": "ready",
+          "tier": "v0.1",
+          "timings": [
+            {
+              "durationMs": 3450,
+              "startMs": 0,
+              "text": "Five papers, in the order I'd read them."
+            }
+          ]
+        }
+      ]
+    },
+    "audio-c797f4fd8a20": {
+      "description": "Voiceover for narrator: The 2025 paper from EleutherAI on scaling latent reasoning is the modern empi...",
+      "id": "audio-c797f4fd8a20",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": [
+        {
+          "artifact": {
+            "hash": "c797f4fd8a20",
+            "path": "lessons/looping-llms/audio/c797f4fd8a20.mp3",
+            "url": "lessons/looping-llms/audio/c797f4fd8a20.mp3"
+          },
+          "provenance": {
+            "provider": "kokoro",
+            "voice_id": "af_bella"
+          },
+          "status": "ready",
+          "tier": "v0.1",
+          "timings": [
+            {
+              "durationMs": 14300,
+              "startMs": 0,
+              "text": "The 2025 paper from EleutherAI on scaling latent reasoning is the modern empirical work, with real benchmark numbers from real model sizes and a clean ablation of K against task type."
+            }
+          ]
+        }
+      ]
+    },
+    "audio-cc9c32191234": {
+      "description": "Voiceover for narrator: There's a parallel thread from Stanford called Quiet-STaR, where the model th...",
+      "id": "audio-cc9c32191234",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": [
+        {
+          "artifact": {
+            "hash": "cc9c32191234",
+            "path": "lessons/looping-llms/audio/cc9c32191234.mp3",
+            "url": "lessons/looping-llms/audio/cc9c32191234.mp3"
+          },
+          "provenance": {
+            "provider": "kokoro",
+            "voice_id": "af_bella"
+          },
+          "status": "ready",
+          "tier": "v0.1",
+          "timings": [
+            {
+              "durationMs": 10275,
+              "startMs": 0,
+              "text": "There's a parallel thread from Stanford called Quiet-STaR, where the model thinks token by token in silence — same target, different machinery."
+            }
+          ]
+        }
+      ]
+    },
+    "audio-d0791f7372e3": {
+      "description": "Voiceover for narrator: Then Yang et al 2024, Looped Transformers as Programmable Computers, for the ...",
+      "id": "audio-d0791f7372e3",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": [
+        {
+          "artifact": {
+            "hash": "d0791f7372e3",
+            "path": "lessons/looping-llms/audio/d0791f7372e3.mp3",
+            "url": "lessons/looping-llms/audio/d0791f7372e3.mp3"
+          },
+          "provenance": {
+            "provider": "kokoro",
+            "voice_id": "af_bella"
+          },
+          "status": "ready",
+          "tier": "v0.1",
+          "timings": [
+            {
+              "durationMs": 18075,
+              "startMs": 0,
+              "text": "Then Yang et al 2024, Looped Transformers as Programmable Computers, for the theoretical capacity argument — looped transformers can in principle simulate any program, with explicit constructions for in-context gradient descent and small instruction sets."
+            }
+          ]
+        }
+      ]
+    },
+    "audio-d662f7c64efb": {
+      "description": "Voiceover for narrator: Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical ...",
+      "id": "audio-d662f7c64efb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": [
+        {
+          "artifact": {
+            "hash": "d662f7c64efb",
+            "path": "lessons/looping-llms/audio/d662f7c64efb.mp3",
+            "url": "lessons/looping-llms/audio/d662f7c64efb.mp3"
+          },
+          "provenance": {
+            "provider": "kokoro",
+            "voice_id": "af_bella"
+          },
+          "status": "ready",
+          "tier": "v0.1",
+          "timings": [
+            {
+              "durationMs": 15350,
+              "startMs": 0,
+              "text": "Next, Shaojie Bai's 2019 Deep Equilibrium Models paper, for the mathematical depth — especially the implicit differentiation trick that lets you backpropagate through a fixed point without storing any intermediate states."
+            }
+          ]
+        }
+      ]
+    },
+    "audio-pending-00975461298f9599": {
+      "description": "Voiceover for narrator: It thinks silently, inside the forward pass, looping its own block over and o...",
+      "id": "audio-pending-00975461298f9599",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-03346ec910c51bbc": {
+      "description": "Voiceover for narrator: The 2025 latent reasoning paper from EleutherAI showed eight internal loops c...",
+      "id": "audio-pending-03346ec910c51bbc",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-034e9435a8544420": {
+      "description": "Voiceover for narrator: Modern variants in 2024 and 2025 are exploring all three sharing patterns.",
+      "id": "audio-pending-034e9435a8544420",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-03fa05a24b8cde12": {
+      "description": "Voiceover for narrator: Watch the internal confidence at each iteration and click halt when you think...",
+      "id": "audio-pending-03fa05a24b8cde12",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-04566acbac6e43a4": {
+      "description": "Voiceover for narrator: The standard playbook since Ashish Vaswani and his team published Attention i...",
+      "id": "audio-pending-04566acbac6e43a4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0ace2a981fd3e43b": {
+      "description": "Voiceover for narrator: Five query types come in sequentially.",
+      "id": "audio-pending-0ace2a981fd3e43b",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0b10d207a12b9c54": {
+      "description": "Voiceover for narrator: Chain-of-thought spends tokens.",
+      "id": "audio-pending-0b10d207a12b9c54",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0b35654512900a2d": {
+      "description": "Voiceover for narrator: If you take a function and apply it to a number, then apply it again to the r...",
+      "id": "audio-pending-0b35654512900a2d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0b39515b8c4182ad": {
+      "description": "Voiceover for narrator: The graph of lessons grows wherever your curiosity pulls.",
+      "id": "audio-pending-0b39515b8c4182ad",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0b4993082342f598": {
+      "description": "Voiceover for narrator: The technique is now the foundation of every reasoning model — OpenAI's o1, D...",
+      "id": "audio-pending-0b4993082342f598",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0b950b263a4c8f7c": {
+      "description": "Voiceover for narrator: The big open question is whether silent reasoning ever genuinely surpasses ve...",
+      "id": "audio-pending-0b950b263a4c8f7c",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0bba3c68f845b83a": {
+      "description": "Voiceover for narrator: Click run-next-loop.",
+      "id": "audio-pending-0bba3c68f845b83a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-0e50f75b59168b2f": {
+      "description": "Voiceover for narrator: Different layers learn different functions in big models; forcing them all to...",
+      "id": "audio-pending-0e50f75b59168b2f",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-10365b9ad3f661e8": {
+      "description": "Voiceover for narrator: There are research variants that share the cache across loop iterations — som...",
+      "id": "audio-pending-10365b9ad3f661e8",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-126e929fa272ace2": {
+      "description": "Voiceover for narrator: Submit each query when remaining hits zero.",
+      "id": "audio-pending-126e929fa272ace2",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-12cd59684b3d069e": {
+      "description": "Voiceover for narrator: Both share a common thesis with looped LMs — that the cheapest form of comput...",
+      "id": "audio-pending-12cd59684b3d069e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1492dd95a89bfa36": {
+      "description": "Voiceover for narrator: It's the opposite of mixture-of-experts, where you can swell the total parame...",
+      "id": "audio-pending-1492dd95a89bfa36",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-15945fb4dc532db9": {
+      "description": "Voiceover for narrator: Here's a question that sounds almost too simple.",
+      "id": "audio-pending-15945fb4dc532db9",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1862822e765fff98": {
+      "description": "Voiceover for narrator: Mixture-of-experts spends parameters per token.",
+      "id": "audio-pending-1862822e765fff98",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1916ad9f0b9d6c0d": {
+      "description": "Voiceover for narrator: And lowering K avoids the issue by giving up depth.",
+      "id": "audio-pending-1916ad9f0b9d6c0d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-197f5d27c065748b": {
+      "description": "Voiceover for narrator: There are many valid combinations — M=1 with K=24, M=8 with K=3, and everythi...",
+      "id": "audio-pending-197f5d27c065748b",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1b6dcfe20fe9f25d": {
+      "description": "Voiceover for narrator: Start with Mostafa Dehghani's Universal Transformer from 2018 — that's the so...",
+      "id": "audio-pending-1b6dcfe20fe9f25d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1d4317fcb3252c90": {
+      "description": "Voiceover for narrator: Here's the setup.",
+      "id": "audio-pending-1d4317fcb3252c90",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1dd3a62e49f2f3fb": {
+      "description": "Voiceover for narrator: Inference latency, memory pressure, the things you actually care about — all ...",
+      "id": "audio-pending-1dd3a62e49f2f3fb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-1f05755d3d68af73": {
+      "description": "Voiceover for narrator: None of the intermediate reasoning surfaces.",
+      "id": "audio-pending-1f05755d3d68af73",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-232be3f765580e30": {
+      "description": "Voiceover for narrator: But there's a side path that doesn't get talked about as much.",
+      "id": "audio-pending-232be3f765580e30",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-245abac8c7b8a139": {
+      "description": "Voiceover for narrator: K is how many times each one fires.",
+      "id": "audio-pending-245abac8c7b8a139",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-2508974ea474b26f": {
+      "description": "Voiceover for narrator: Layer normalization at the loop boundary resets state magnitude between itera...",
+      "id": "audio-pending-2508974ea474b26f",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-279fd4ef07b1843e": {
+      "description": "Voiceover for narrator: Scaled initialization keeps the spectral radius near one.",
+      "id": "audio-pending-279fd4ef07b1843e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-297d89d8ec987307": {
+      "description": "Voiceover for narrator: That gap between what's representable in principle and what's trainable in pr...",
+      "id": "audio-pending-297d89d8ec987307",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-29deba645c0f14b0": {
+      "description": "Voiceover for narrator: Use fewer unique blocks, and just run them again.",
+      "id": "audio-pending-29deba645c0f14b0",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-2aa08fe959c2cf49": {
+      "description": "Voiceover for narrator: When a normal model reasons through a hard problem, it has to think out loud.",
+      "id": "audio-pending-2aa08fe959c2cf49",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-2c2c72c5a9b3c8f3": {
+      "description": "Voiceover for narrator: The bAbI benchmark Dehghani's team used was a set of twenty synthetic reading...",
+      "id": "audio-pending-2c2c72c5a9b3c8f3",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-2e3b968aa0b32773": {
+      "description": "Voiceover for narrator: All those gradient contributions sum into the same parameter update.",
+      "id": "audio-pending-2e3b968aa0b32773",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-2f81f7e21fb74141": {
+      "description": "Voiceover for narrator: You have a budget of one hundred compute units per query.",
+      "id": "audio-pending-2f81f7e21fb74141",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-2f90b81951f2ff4b": {
+      "description": "Voiceover for narrator: Watch how the state stabilizes after a few passes — that's the model literall...",
+      "id": "audio-pending-2f90b81951f2ff4b",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-308974e3faae4e8c": {
+      "description": "Voiceover for narrator: A K-equals-eight looped model costs roughly eight times the training compute ...",
+      "id": "audio-pending-308974e3faae4e8c",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-3382c0bf000cb5ec": {
+      "description": "Voiceover for narrator: They say absolutely nothing about how learnable the parameters are.",
+      "id": "audio-pending-3382c0bf000cb5ec",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-33fa2fac62d9395f": {
+      "description": "Voiceover for narrator: The idea isn't new — it descends straight from recurrent neural networks, whi...",
+      "id": "audio-pending-33fa2fac62d9395f",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-34bdcb1e6a15aa27": {
+      "description": "Voiceover for narrator: M is how many unique transformer blocks you bring.",
+      "id": "audio-pending-34bdcb1e6a15aa27",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-353b62b402a19224": {
+      "description": "Voiceover for narrator: Parameter cost stays at M.",
+      "id": "audio-pending-353b62b402a19224",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-3553a228ff64c565": {
+      "description": "Voiceover for narrator: Those five papers, in that order, take you from foundations to frontier.",
+      "id": "audio-pending-3553a228ff64c565",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-3702a8604bef56a3": {
+      "description": "Voiceover for narrator: Or share just the MLP, and attention stays unique at each iteration.",
+      "id": "audio-pending-3702a8604bef56a3",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-376b0e54700ecdb8": {
+      "description": "Voiceover for narrator: Level four is the real DEQ design problem.",
+      "id": "audio-pending-376b0e54700ecdb8",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-3786291f34a4870a": {
+      "description": "Voiceover for narrator: The 2018 paper used full sharing and matched LSTM baselines on bAbI reasoning...",
+      "id": "audio-pending-3786291f34a4870a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-37a2f4b64a3bee7f": {
+      "description": "Voiceover for narrator: The function f is shown as a vector field.",
+      "id": "audio-pending-37a2f4b64a3bee7f",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-390b4ea4b089cd6e": {
+      "description": "Voiceover for narrator: That's why frontier inference is bottlenecked on memory bandwidth, not raw FL...",
+      "id": "audio-pending-390b4ea4b089cd6e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-3f4562575540d090": {
+      "description": "Voiceover for narrator: In 1922, a young Polish mathematician named Stefan Banach proved the answer i...",
+      "id": "audio-pending-3f4562575540d090",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-3fe1ffb2f0de8732": {
+      "description": "Voiceover for narrator: Speculative decoding spends draft-model FLOPs to batch more verifier work.",
+      "id": "audio-pending-3fe1ffb2f0de8732",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-41a3d05ef670aa91": {
+      "description": "Voiceover for narrator: Sharing the whole block is the cleanest version — that's what Mostafa Dehghan...",
+      "id": "audio-pending-41a3d05ef670aa91",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-41a8c459cebb7a21": {
+      "description": "Voiceover for narrator: Gradient checkpointing fixes the looped-LM memory blowup at the cost of recom...",
+      "id": "audio-pending-41a8c459cebb7a21",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4378d233effc292d": {
+      "description": "Voiceover for narrator: The KV cache — the data structure that makes long-context inference fast by r...",
+      "id": "audio-pending-4378d233effc292d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-43952ba378198c19": {
+      "description": "Voiceover for narrator: Each trade-off is real.",
+      "id": "audio-pending-43952ba378198c19",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-43c0df9067c91341": {
+      "description": "Voiceover for narrator: Three broken training runs are waiting for you — one that explodes mid-traini...",
+      "id": "audio-pending-43c0df9067c91341",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-44aee010a2802837": {
+      "description": "Voiceover for narrator: Looping is one of several ways to spend inference compute.",
+      "id": "audio-pending-44aee010a2802837",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-456642f9da89ec38": {
+      "description": "Voiceover for narrator: Every modern AI architecture starts by deciding one thing — how deep to build.",
+      "id": "audio-pending-456642f9da89ec38",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-45c146f9375f5132": {
+      "description": "Voiceover for narrator: Modern looped LMs don't use LSTM-style gates.",
+      "id": "audio-pending-45c146f9375f5132",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-49171b523833e37a": {
+      "description": "Voiceover for narrator: Halt too late, you wasted compute.",
+      "id": "audio-pending-49171b523833e37a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4b450bc37130b9bf": {
+      "description": "Voiceover for narrator: The training-cost asymmetry is why looped LMs haven't shown up at frontier sc...",
+      "id": "audio-pending-4b450bc37130b9bf",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4cad41cd2a1d1c05": {
+      "description": "Voiceover for narrator: Level one — find the equilibrium of a single f.",
+      "id": "audio-pending-4cad41cd2a1d1c05",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4d9244b1688d51ef": {
+      "description": "Voiceover for narrator: Watch how cache memory scales with sequence length and effective depth — rega...",
+      "id": "audio-pending-4d9244b1688d51ef",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4decb5d14e9053ee": {
+      "description": "Voiceover for narrator: Code generation wants width and throughput.",
+      "id": "audio-pending-4decb5d14e9053ee",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4ea7112108c18bd6": {
+      "description": "Voiceover for narrator: The result is now called the Banach fixed-point theorem, and the proof fits o...",
+      "id": "audio-pending-4ea7112108c18bd6",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-4f72dffc44d6adf3": {
+      "description": "Voiceover for narrator: Loops spend depth.",
+      "id": "audio-pending-4f72dffc44d6adf3",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-51459354f72202ea": {
+      "description": "Voiceover for narrator: The right mitigation depends on the failure.",
+      "id": "audio-pending-51459354f72202ea",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-530cbf2efc932dd7": {
+      "description": "Voiceover for narrator: Watch the predicted accuracy update as you allocate.",
+      "id": "audio-pending-530cbf2efc932dd7",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5424cb6638afaeb0": {
+      "description": "Voiceover for narrator: Halt too early, you get the wrong answer.",
+      "id": "audio-pending-5424cb6638afaeb0",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5477f7295fb5a3bb": {
+      "description": "Voiceover for narrator: The cheapest path through that compute budget is what Shaojie Bai's 2019 PhD ...",
+      "id": "audio-pending-5477f7295fb5a3bb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-55fe841b2527a4bb": {
+      "description": "Voiceover for narrator: For each, you'll diagnose the failure and apply one of five mitigations.",
+      "id": "audio-pending-55fe841b2527a4bb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5691b10394639a97": {
+      "description": "Voiceover for narrator: A multi-hop chain wants loops or chain-of-thought.",
+      "id": "audio-pending-5691b10394639a97",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5ad3f96625720c8d": {
+      "description": "Voiceover for narrator: Now click again.",
+      "id": "audio-pending-5ad3f96625720c8d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5b4d77d9d582fe55": {
+      "description": "Voiceover for narrator: Full sharing is still the most common default, partly because it's the most p...",
+      "id": "audio-pending-5b4d77d9d582fe55",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5bf3d961a6a0b80e": {
+      "description": "Voiceover for narrator: The optimal policy is exactly what the halting head converges to — minimize c...",
+      "id": "audio-pending-5bf3d961a6a0b80e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5c39b7bb9829ffe7": {
+      "description": "Voiceover for narrator: The frontier labs are quietly building all four.",
+      "id": "audio-pending-5c39b7bb9829ffe7",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-5f89c6595e1cc6bc": {
+      "description": "Voiceover for narrator: What does change is the hidden state — the vector of activations being passed...",
+      "id": "audio-pending-5f89c6595e1cc6bc",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-61113eb34693fd73": {
+      "description": "Voiceover for narrator: But you can be more surgical.",
+      "id": "audio-pending-61113eb34693fd73",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-6193aa0e64fd6985": {
+      "description": "Voiceover for narrator: Now play it.",
+      "id": "audio-pending-6193aa0e64fd6985",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-63ce6efacb7b4d95": {
+      "description": "Voiceover for narrator: The frontier just keeps stacking.",
+      "id": "audio-pending-63ce6efacb7b4d95",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-65ce7cfe5808f248": {
+      "description": "Voiceover for narrator: The failure modes are well-known: exploding gradients when the spectral radiu...",
+      "id": "audio-pending-65ce7cfe5808f248",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-66472f042bb677c0": {
+      "description": "Voiceover for narrator: DeepSeek-V3 is the modern example — 671 billion total parameters, only 37 bil...",
+      "id": "audio-pending-66472f042bb677c0",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-66845313694384c6": {
+      "description": "Voiceover for narrator: Universal Transformer's claim to fame was solving bAbI fully where vanilla tr...",
+      "id": "audio-pending-66845313694384c6",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-689ae7dbbaa22b3f": {
+      "description": "Voiceover for narrator: And finally, the 2026 mechanistic analysis paper — it reverse-engineers what ...",
+      "id": "audio-pending-689ae7dbbaa22b3f",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-6aca3985c27c8a66": {
+      "description": "Voiceover for narrator: Drag z-naught anywhere on the plane.",
+      "id": "audio-pending-6aca3985c27c8a66",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-6acdf76e0944dc2b": {
+      "description": "Voiceover for narrator: Pick wrong and the curve doesn't recover.",
+      "id": "audio-pending-6acdf76e0944dc2b",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-6b08d71e8438e714": {
+      "description": "Voiceover for narrator: Looping wins on tasks with a step that repeats — arithmetic, multi-hop chains...",
+      "id": "audio-pending-6b08d71e8438e714",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-6db3dd9c0076db58": {
+      "description": "Voiceover for narrator: The net is an unusual trade.",
+      "id": "audio-pending-6db3dd9c0076db58",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-6fb9e95a04f67e06": {
+      "description": "Voiceover for narrator: Visiting the same three blocks eight times still requires twenty-four separat...",
+      "id": "audio-pending-6fb9e95a04f67e06",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-707d0da0c64f8a8e": {
+      "description": "Voiceover for narrator: It does NOT save cache memory.",
+      "id": "audio-pending-707d0da0c64f8a8e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-725111bb1ef9fa8e": {
+      "description": "Voiceover for narrator: Not every problem deserves eight loops.",
+      "id": "audio-pending-725111bb1ef9fa8e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-72cf2f98f9270ee0": {
+      "description": "Voiceover for narrator: A chess engine doesn't think for the same amount of time on every move.",
+      "id": "audio-pending-72cf2f98f9270ee0",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-73e369e82d2a853e": {
+      "description": "Voiceover for narrator: You're given a compute budget, two candidate f's with different per-loop cost...",
+      "id": "audio-pending-73e369e82d2a853e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-740fa53447282967": {
+      "description": "Voiceover for narrator: Anyone with frontier compute spends it on more unique parameters instead of t...",
+      "id": "audio-pending-740fa53447282967",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-74b361bbcae8dcf4": {
+      "description": "Voiceover for narrator: A grandmaster spends seconds on a forced capture and minutes on a closed posi...",
+      "id": "audio-pending-74b361bbcae8dcf4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-75165610d510fe40": {
+      "description": "Voiceover for narrator: The 2024 paper by Yang et al titled Looped Transformers as Programmable Compu...",
+      "id": "audio-pending-75165610d510fe40",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-75c6c357637049a6": {
+      "description": "Voiceover for narrator: Looped LMs are the depth-side dual of that result — depth can substitute for ...",
+      "id": "audio-pending-75c6c357637049a6",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-76c3ab59d2922fed": {
+      "description": "Voiceover for narrator: That's chain-of-thought reasoning, popularized in 2022 when Jason Wei at Goog...",
+      "id": "audio-pending-76c3ab59d2922fed",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-7a5c222d45f3ed4e": {
+      "description": "Voiceover for narrator: For a model at one hundred twenty-eight thousand sequence length, four thousa...",
+      "id": "audio-pending-7a5c222d45f3ed4e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-7b8b26804cf15593": {
+      "description": "Voiceover for narrator: Hochreiter's solution six years later, with Jürgen Schmidhuber, was the LSTM ...",
+      "id": "audio-pending-7b8b26804cf15593",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-7c34a638b55883e4": {
+      "description": "Voiceover for narrator: Each choice trades parameter efficiency for representational flexibility.",
+      "id": "audio-pending-7c34a638b55883e4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-7cc22282c9e4c031": {
+      "description": "Voiceover for narrator: But that one-page proof is the mathematical bedrock under every looped langua...",
+      "id": "audio-pending-7cc22282c9e4c031",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-7f64e46ec93b43b4": {
+      "description": "Voiceover for narrator: But both universality theorems share the same problem.",
+      "id": "audio-pending-7f64e46ec93b43b4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-81bfc693292dc8ec": {
+      "description": "Voiceover for narrator: The formula is two times the number of effective layers times sequence length...",
+      "id": "audio-pending-81bfc693292dc8ec",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-88a083febd2bab01": {
+      "description": "Voiceover for narrator: Here's where it gets concrete.",
+      "id": "audio-pending-88a083febd2bab01",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8ba34d5e08a6b05a": {
+      "description": "Voiceover for narrator: Adaptive halting gives a looped LM the same kind of dynamic compute allocation.",
+      "id": "audio-pending-8ba34d5e08a6b05a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8c11628336d989f5": {
+      "description": "Voiceover for narrator: GPT-3 went ninety-six layers.",
+      "id": "audio-pending-8c11628336d989f5",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8c7bf72f49f1e13b": {
+      "description": "Voiceover for narrator: Compute cost grows linearly with K.",
+      "id": "audio-pending-8c7bf72f49f1e13b",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8d2f38c3b88e89ba": {
+      "description": "Voiceover for narrator: A tiny head sits on top of the network and emits a stop probability at each i...",
+      "id": "audio-pending-8d2f38c3b88e89ba",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8d8aa246726cb4d6": {
+      "description": "Voiceover for narrator: Share just the attention weights, and the multilayer perceptron — the MLP — c...",
+      "id": "audio-pending-8d8aa246726cb4d6",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8e107d9c0c60bce6": {
+      "description": "Voiceover for narrator: Inside a looped block, the weights themselves are frozen across iterations.",
+      "id": "audio-pending-8e107d9c0c60bce6",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-8f8e66207a36b0b1": {
+      "description": "Voiceover for narrator: The math here is the same problem Sepp Hochreiter analyzed in his 1991 master...",
+      "id": "audio-pending-8f8e66207a36b0b1",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-93768fe7b829b342": {
+      "description": "Voiceover for narrator: Activation memory normally scales with K too, because backpropagation through...",
+      "id": "audio-pending-93768fe7b829b342",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-97b149b2a9d25fc4": {
+      "description": "Voiceover for narrator: And at frontier scale, beyond seventy billion parameters, unique-layer specia...",
+      "id": "audio-pending-97b149b2a9d25fc4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-9a112fc9a62082ed": {
+      "description": "Voiceover for narrator: The bars on the right are what the same block produces.",
+      "id": "audio-pending-9a112fc9a62082ed",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-9f0a6ee502eafbee": {
+      "description": "Voiceover for narrator: Level two — three candidate f's, pick the one that converges fastest.",
+      "id": "audio-pending-9f0a6ee502eafbee",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-9fc34705f67d6605": {
+      "description": "Voiceover for narrator: Here's the cost most papers downplay.",
+      "id": "audio-pending-9fc34705f67d6605",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a088a129448b0c02": {
+      "description": "Voiceover for narrator: DeepSeek's multi-head latent attention is a different approach to the same pr...",
+      "id": "audio-pending-a088a129448b0c02",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a0f0b1a61d4b2048": {
+      "description": "Voiceover for narrator: Distribute them across the four paradigms.",
+      "id": "audio-pending-a0f0b1a61d4b2048",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a15b0d6151a3ec21": {
+      "description": "Voiceover for narrator: Pick K, the number of times to iterate.",
+      "id": "audio-pending-a15b0d6151a3ec21",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a45d391b38331a03": {
+      "description": "Voiceover for narrator: Every intermediate step burns output tokens that stream across your screen.",
+      "id": "audio-pending-a45d391b38331a03",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a701d1bfa658796c": {
+      "description": "Voiceover for narrator: Gradient checkpointing — Tianqi Chen's 2016 trick — recomputes activations on...",
+      "id": "audio-pending-a701d1bfa658796c",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a702a5be74ff34f5": {
+      "description": "Voiceover for narrator: The shared block learns the step once, and the loop counts how many times to ...",
+      "id": "audio-pending-a702a5be74ff34f5",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a72a85022be663c5": {
+      "description": "Voiceover for narrator: Level three — set K precisely to reach within tolerance epsilon.",
+      "id": "audio-pending-a72a85022be663c5",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-a9aec189e32735dc": {
+      "description": "Voiceover for narrator: Each one shows up as a different curve shape in your training log.",
+      "id": "audio-pending-a9aec189e32735dc",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-aaf4650a9e8746cd": {
+      "description": "Voiceover for narrator: There's an interesting echo across the literature.",
+      "id": "audio-pending-aaf4650a9e8746cd",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-ac49387b666d0ae5": {
+      "description": "Voiceover for narrator: The training signal is a careful trade-off — a ponder cost penalizes extra it...",
+      "id": "audio-pending-ac49387b666d0ae5",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-af10fcc951cdd495": {
+      "description": "Voiceover for narrator: The same set of weights gets touched K times in one forward pass — and during...",
+      "id": "audio-pending-af10fcc951cdd495",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-b05fe7336f4c828f": {
+      "description": "Voiceover for narrator: Some functions converge fast; some slowly; some spiral; one diverges entirely.",
+      "id": "audio-pending-b05fe7336f4c828f",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-b4576ab8b60f6b26": {
+      "description": "Voiceover for narrator: In 1989, George Cybenko at Dartmouth proved the universal approximation theor...",
+      "id": "audio-pending-b4576ab8b60f6b26",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-b703248fd8fedbeb": {
+      "description": "Voiceover for narrator: Different query types reward different allocations — a factual lookup gets no...",
+      "id": "audio-pending-b703248fd8fedbeb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-b9c555e09d2946a3": {
+      "description": "Voiceover for narrator: But a looped model does something stranger.",
+      "id": "audio-pending-b9c555e09d2946a3",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-bb766435d7082c41": {
+      "description": "Voiceover for narrator: Now you're the gradient surgeon.",
+      "id": "audio-pending-bb766435d7082c41",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-be6b465e85c42275": {
+      "description": "Voiceover for narrator: As of now the empirical answer is roughly: matches it cheaply on tasks the mo...",
+      "id": "audio-pending-be6b465e85c42275",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-bf523e5b162535db": {
+      "description": "Voiceover for narrator: At the end you get scored against the optimal mix per query — and your run to...",
+      "id": "audio-pending-bf523e5b162535db",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c080ae2e5ae1fe33": {
+      "description": "Voiceover for narrator: The bars on the left are the input state.",
+      "id": "audio-pending-c080ae2e5ae1fe33",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c1457445dcccf5bd": {
+      "description": "Voiceover for narrator: Graves is one of the most underrated architects in deep learning — he also in...",
+      "id": "audio-pending-c1457445dcccf5bd",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c369c27fdc35ca76": {
+      "description": "Voiceover for narrator: Each name and concept in this lesson is a clickable rabbit hole — generate a ...",
+      "id": "audio-pending-c369c27fdc35ca76",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c3979bd55a070c54": {
+      "description": "Voiceover for narrator: Same set of weights, fired over and over, building representation through rep...",
+      "id": "audio-pending-c3979bd55a070c54",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c3ca62323ce3fe4a": {
+      "description": "Voiceover for narrator: The paper was largely ignored at the time, overshadowed by BERT and GPT-1 lau...",
+      "id": "audio-pending-c3ca62323ce3fe4a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c7b2aea091335a5b": {
+      "description": "Voiceover for narrator: At long context, that's where the bill actually comes due.",
+      "id": "audio-pending-c7b2aea091335a5b",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c89e6f20c453e1de": {
+      "description": "Voiceover for narrator: Three problems of varying difficulty.",
+      "id": "audio-pending-c89e6f20c453e1de",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-c8b99ecf6f22ce97": {
+      "description": "Voiceover for narrator: Cheap at inference once trained, expensive to train in the first place.",
+      "id": "audio-pending-c8b99ecf6f22ce97",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-cbdc197cdadfcf67": {
+      "description": "Voiceover for narrator: The math comes from Alex Graves's 2016 paper Adaptive Computation Time, writt...",
+      "id": "audio-pending-cbdc197cdadfcf67",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-ce31efed78465e90": {
+      "description": "Voiceover for narrator: Looping saves parameter memory.",
+      "id": "audio-pending-ce31efed78465e90",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-d252e396cdde95bd": {
+      "description": "Voiceover for narrator: Looping K times means K forward passes per training step — and K backward pas...",
+      "id": "audio-pending-d252e396cdde95bd",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-d307567de7b09109": {
+      "description": "Voiceover for narrator: Drag the sliders below.",
+      "id": "audio-pending-d307567de7b09109",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-dac0a681234d7243": {
+      "description": "Voiceover for narrator: Gradient clipping caps the explosion at the cost of masking root cause.",
+      "id": "audio-pending-dac0a681234d7243",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-db2558496af80007": {
+      "description": "Voiceover for narrator: Looping isn't free at training time.",
+      "id": "audio-pending-db2558496af80007",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-dbfbeb9c193cafdb": {
+      "description": "Voiceover for narrator: The green dot is z-star — the fixed point you're trying to reach.",
+      "id": "audio-pending-dbfbeb9c193cafdb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-de3d54786da59a3a": {
+      "description": "Voiceover for narrator: Now try it.",
+      "id": "audio-pending-de3d54786da59a3a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-debbaa002af642ae": {
+      "description": "Voiceover for narrator: Now you play the halting head.",
+      "id": "audio-pending-debbaa002af642ae",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-debff54a5ddccf23": {
+      "description": "Voiceover for narrator: Both are penalized in real ACT training.",
+      "id": "audio-pending-debff54a5ddccf23",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-df254f264709246c": {
+      "description": "Voiceover for narrator: They fight the same problem with normalization layers, careful weight initial...",
+      "id": "audio-pending-df254f264709246c",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-df2a1ab1ca0cb0bb": {
+      "description": "Voiceover for narrator: Llama 3's largest variant has one hundred twenty-six.",
+      "id": "audio-pending-df2a1ab1ca0cb0bb",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-e03ecdab525b642e": {
+      "description": "Voiceover for narrator: The cache-sharing question is one of the most active design choices in late-2...",
+      "id": "audio-pending-e03ecdab525b642e",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-e27fa89df08c41b0": {
+      "description": "Voiceover for narrator: Kurt Hornik extended it in 1991.",
+      "id": "audio-pending-e27fa89df08c41b0",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-e2adf5ad1b648871": {
+      "description": "Voiceover for narrator: The mechanism on screen is identical to an RNN unrolled — just for depth inst...",
+      "id": "audio-pending-e2adf5ad1b648871",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-e2dda498b4f03786": {
+      "description": "Voiceover for narrator: Creative writing wants varied generation.",
+      "id": "audio-pending-e2dda498b4f03786",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-e433863da40c7837": {
+      "description": "Voiceover for narrator: The puzzle is to hit an effective depth of twenty-four.",
+      "id": "audio-pending-e433863da40c7837",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-e6437be37c459ac4": {
+      "description": "Voiceover for narrator: Here's the gotcha that catches everyone implementing this.",
+      "id": "audio-pending-e6437be37c459ac4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-eecf75d4d4c3fd5d": {
+      "description": "Voiceover for narrator: So when does this actually pay off?",
+      "id": "audio-pending-eecf75d4d4c3fd5d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-efe3dfe3c097c25a": {
+      "description": "Voiceover for narrator: Banach himself died young, of cancer, in Soviet-occupied Lviv in 1945.",
+      "id": "audio-pending-efe3dfe3c097c25a",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-f6c082a21f85e5b2": {
+      "description": "Voiceover for narrator: Multiplying by the same weight matrix repeatedly is what makes training a sta...",
+      "id": "audio-pending-f6c082a21f85e5b2",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-fbc8d6ba1b557cf6": {
+      "description": "Voiceover for narrator: Width can substitute for depth.",
+      "id": "audio-pending-fbc8d6ba1b557cf6",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-fc618a027b337ecc": {
+      "description": "Voiceover for narrator: There are four levels.",
+      "id": "audio-pending-fc618a027b337ecc",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-fe002f1cfb27e9f4": {
+      "description": "Voiceover for narrator: The school of mathematics he led used to meet in a café called the Scottish C...",
+      "id": "audio-pending-fe002f1cfb27e9f4",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-feb57fc11119958d": {
+      "description": "Voiceover for narrator: The output of the last loop becomes the input of the next.",
+      "id": "audio-pending-feb57fc11119958d",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    },
+    "audio-pending-fec89faecd6faf11": {
+      "description": "Voiceover for narrator: The math you're about to play with came out of those meetings.",
+      "id": "audio-pending-fec89faecd6faf11",
+      "kind": "audio-vo",
+      "selection": "best-available",
+      "takes": []
+    }
+  }
+}

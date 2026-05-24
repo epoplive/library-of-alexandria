@@ -170,7 +170,7 @@ export function transitionInEdgeStub(
     from: shot_address,
     to: shot_address,
     kind: transition.kind,
-    duration: transition.duration_ms,
+    duration_ms: transition.duration_ms,
     ease: transition.ease,
     direction: transition.direction,
   };
