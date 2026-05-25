@@ -20,7 +20,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "recharts": "^2.13.3",
-    "three": "^0.184.0"
+    "three": "^0.184.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/katex": "^0.16.7",
